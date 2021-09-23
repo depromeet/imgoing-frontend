@@ -6,5 +6,6 @@
     "module": "commonjs",
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
+    "noImplicitAny": true
   }
 }
