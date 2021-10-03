@@ -4,8 +4,9 @@ import { createStackNavigator } from 'react-navigation-stack';
 import MainScreen from '../screens/MainScreen';
 import LoginScreen from '../screens/LoginScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import BottomTabNavigator from './BottomTabNavigator';
 
-const AppStack = createStackNavigator({ Main: MainScreen });
+const AppStack = createStackNavigator({ App: { screen: BottomTabNavigator } });
 const AuthStack = createStackNavigator({ SignIn: LoginScreen });
 
 export default createAppContainer(

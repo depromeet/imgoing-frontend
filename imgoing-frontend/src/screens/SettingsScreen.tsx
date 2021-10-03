@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Text } from 'react-native';
 import styled from 'styled-components/native';
 
-const MainScreen = () => {
+const SettingScreen = () => {
   return (
     <Wrapper>
-      <Text>Main</Text>
+      <Text>Settings</Text>
     </Wrapper>
   );
 };
 
-export default MainScreen;
+export default SettingScreen;
 
 const Wrapper = styled.View`
   flex: 1;
