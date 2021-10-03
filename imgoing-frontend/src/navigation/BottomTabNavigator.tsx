@@ -11,8 +11,12 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const Tabs = () => {
   return (
     <BottomTab.Navigator initialRouteName="Main">
-      <BottomTab.Screen name="Main" component={MainScreen} />
-      <BottomTab.Screen name="Settings" component={SettingScreen} />
+      <BottomTab.Screen name="Main" component={MainScreen} options={{ headerShown: false }} />
+      <BottomTab.Screen
+        name="Settings"
+        component={SettingScreen}
+        options={{ headerShown: false }}
+      />
     </BottomTab.Navigator>
   );
 };

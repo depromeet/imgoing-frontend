@@ -6,7 +6,9 @@ import LoginScreen from '../screens/LoginScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import BottomTabNavigator from './BottomTabNavigator';
 
-const AppStack = createStackNavigator({ App: { screen: BottomTabNavigator } });
+const AppStack = createStackNavigator({
+  App: { screen: BottomTabNavigator, navigationOptions: { headerShown: false } },
+});
 const AuthStack = createStackNavigator({ SignIn: LoginScreen });
 
 export default createAppContainer(
