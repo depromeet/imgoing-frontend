@@ -5,4 +5,5 @@ export interface TypoProps {
   children: React.ReactNode;
   lang: TypoLanguage;
   weight: TypoWeight;
+  color?: string;
 }

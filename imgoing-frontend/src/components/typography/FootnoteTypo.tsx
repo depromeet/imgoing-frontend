@@ -14,12 +14,13 @@ const Typo = styled.Text<Omit<TypoProps, 'children'>>`
   font-size: 12px;
   line-height: ${(props) => typoHeight[props.lang]};
   font-weight: ${(props) => typoStyle[props.lang][props.weight]};
+  color: ${(props) => props.color ?? '#313338'};
 `;
 
 const FootnoteTypo = (props: TypoProps) => {
-  const { children, lang, weight } = props;
+  const { children, lang, weight, color } = props;
   return (
-    <Typo lang={lang} weight={weight}>
+    <Typo lang={lang} weight={weight} color={color}>
       {children}
     </Typo>
   );
