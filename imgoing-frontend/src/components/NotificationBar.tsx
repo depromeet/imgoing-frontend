@@ -13,8 +13,8 @@ const NotificationBarWrapper = styled.View`
   width: 100%;
   height: 46px;
   align-items: center;
-  margin-left: 16px;
   background-color: #f3f6ff;
+  padding-left: 16px;
 `;
 
 const ShortcutButton = styled(Text)`
