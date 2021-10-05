@@ -13,20 +13,17 @@ const NotificationBarWrapper = styled.View`
   width: 100%;
   height: 46px;
   align-items: center;
-  justify-content: center;
+  margin-left: 16px;
+  background-color: #f3f6ff;
 `;
 
 const ShortcutButton = styled(Text)`
-  padding-left: 8px;
   text-decoration-line: underline;
   color: ${({ theme }) => theme.colors.grayHeavy};
   font-size: 12px;
   font-weight: 500;
   line-height: 17px;
-`;
-
-const NotiMessage = styled(FootnoteTypo)`
-  color: #0045b0;
+  padding: 0 52px 0 8px;
 `;
 
 const CloseButton = styled(Image)`
@@ -37,9 +34,9 @@ const NotificationBar = (props: NotificationBarProps) => {
   const { setIsNotiBarVisible } = props;
   return (
     <NotificationBarWrapper>
-      <NotiMessage lang={'ko'} weight={'B'} color={'blue'}>
+      <FootnoteTypo lang={'ko'} weight={'B'} color={'blue'}>
         🗣 반복 루틴은 설정에서 관리할 수 있어요.
-      </NotiMessage>
+      </FootnoteTypo>
       <TouchableOpacity onPress={() => {}}>
         <ShortcutButton>바로 가기</ShortcutButton>
       </TouchableOpacity>
