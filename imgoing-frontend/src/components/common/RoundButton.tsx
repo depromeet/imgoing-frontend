@@ -22,7 +22,7 @@ const StyledButton = styled(TouchableOpacity)<Pick<ButtonProps, 'blank' | 'disab
   ${(props) => {
     if (props.disabled)
       return css`
-        background: #0045b0;
+        background: #e8ebed;
       `;
     if (props.blank)
       return css`
