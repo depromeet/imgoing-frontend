@@ -15,10 +15,10 @@ export const colors = {
   blue: '#0045B0',
   blueLight: '#F3F6FF',
   red: '#FF0000',
-  grayHeavy: '#F7F8F9', 
-  grayDark: '#E8EBED', 
-  grayMedium: '#DBDBDB',
-  grayLight: '#8B8B8B',
-}
+  grayHeavy: '#8B8B8B',
+  grayDark: '#DBDBDB',
+  grayMedium: '#E8EBED',
+  grayLight: '#F7F8F9',
+};
 
 export type ColorScheme = typeof colors;
