@@ -17,7 +17,7 @@ const NotificationBarWrapper = styled.View`
   padding-left: 16px;
 `;
 
-const ShortcutButton = styled(Text)`
+const ShortcutButton = styled.Text`
   text-decoration-line: underline;
   color: ${({ theme }) => theme.colors.grayHeavy};
   font-size: 12px;
@@ -26,7 +26,7 @@ const ShortcutButton = styled(Text)`
   padding: 0 52px 0 8px;
 `;
 
-const CloseButton = styled(Image)`
+const CloseButton = styled.Image`
   margin-left: 52px;
 `;
 

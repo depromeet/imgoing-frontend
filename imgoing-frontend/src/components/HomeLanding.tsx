@@ -1,33 +1,33 @@
 import React, { useState } from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Image } from 'react-native';
 import CalloutTypo from './typography/CalloutTypo';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import FootnoteTypo from './typography/FootnoteTypo';
 import NotificationBar from './NotificationBar';
 import RoundButton from './common/RoundButton';
 
-const ImgView = styled(Image)`
+const ImgView = styled.Image`
   height: 180px;
   width: 260px;
   margin-top: 119px;
   margin-bottom: 40.99px;
 `;
 
-const CalloutTypoView = styled(View)`
+const CalloutTypoView = styled.View`
   align-items: center;
   height: 46px;
   width: 100%;
   margin-bottom: 16px;
 `;
 
-const FootnoteTypoView = styled(View)`
+const FootnoteTypoView = styled.View`
   align-items: center;
   width: 100%;
   height: 34px;
   margin-bottom: 108px;
 `;
 
-const ButtonView = styled(View)`
+const ButtonView = styled.View`
   flex-direction: row;
   justify-content: center;
   height: 50px;
@@ -35,7 +35,11 @@ const ButtonView = styled(View)`
   margin-bottom: 24px;
 `;
 
-const NotificationBarView = styled(View)`
+const Gap = styled.View`
+  width: 12px;
+`;
+
+const NotificationBarView = styled.View`
   width: 100%;
   padding-top: 110px;
 `;
@@ -66,6 +70,7 @@ const HomeLanding = () => {
         <RoundButton onClick={() => {}} blank>
           가이드 보기
         </RoundButton>
+        <Gap />
         <RoundButton onClick={() => {}}>일정 등록하기</RoundButton>
       </ButtonView>
       <NotificationBarView>
