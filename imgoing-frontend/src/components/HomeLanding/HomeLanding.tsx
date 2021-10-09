@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import CalloutTypo from '../typography/CalloutTypo';
 import styled from 'styled-components/native';
 import FootnoteTypo from '../typography/FootnoteTypo';
-import NotificationBar from './NotificationBar';
+// import NotificationBar from './NotificationBar';
 import RoundButton from '../common/RoundButton';
 
 const HomeLanding = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  // const [isVisible, setIsVisible] = useState<boolean>(true);
 
   return (
     <>
@@ -35,16 +35,16 @@ const HomeLanding = () => {
         <RoundButton onClick={() => {}}>일정 등록하기</RoundButton>
       </ButtonView>
       {/* 설정 페이지 없을 땐 비활성화 */}
-      <NotificationBarView>
+      {/* <NotificationBarView>
         {isVisible && (
           <NotificationBar
-            imoji="🗣 "
+            imoji="🗣"
             content="반복 루틴은 설정에서 관리할 수 있어요."
             color="blue"
             setIsVisible={setIsVisible}
           />
         )}
-      </NotificationBarView>
+      </NotificationBarView> */}
     </>
   );
 };
@@ -82,10 +82,10 @@ const Gap = styled.View`
   width: 12px;
 `;
 
-const NotificationBarView = styled.View`
-  width: 100%;
-  position: absolute;
-  top: 100%;
-`;
+// const NotificationBarView = styled.View`
+//   width: 100%;
+//   position: absolute;
+//   top: 100%;
+// `;
 
 export default HomeLanding;
