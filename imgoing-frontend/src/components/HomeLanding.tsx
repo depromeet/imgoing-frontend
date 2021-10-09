@@ -45,7 +45,7 @@ const NotificationBarView = styled.View`
 `;
 
 const HomeLanding = () => {
-  const [isNotiBarVisible, setIsNotiBarVisible] = useState(true);
+  const [isNotiBarVisible, setIsNotiBarVisible] = useState<boolean>(true);
 
   return (
     <>
