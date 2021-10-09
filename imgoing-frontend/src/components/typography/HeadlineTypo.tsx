@@ -6,11 +6,10 @@ const typoHeight = {
   en: '28px',
 };
 
-
 const HeadlineTypo = (props: TypoProps) => {
-  const { children, lang, weight, color } = props;
+  const { children, en, bold, color } = props;
   return (
-    <BaseTypo fontSize="24px" typoHeight={typoHeight} lang={lang} weight={weight} color={color}>
+    <BaseTypo fontSize="24px" typoHeight={typoHeight} en={en} bold={bold} color={color}>
       {children}
     </BaseTypo>
   );
