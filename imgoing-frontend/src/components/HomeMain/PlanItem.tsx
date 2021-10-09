@@ -7,17 +7,17 @@ import SubheadlineTypo from '../typography/SubheadlineTypo';
 import DeleteModal from './DeleteModal';
 import MenuModal from './MenuModal';
 
-interface ScheduleItemProps {
+interface PlanItemProps {
   data: {};
 }
 
-const ScheduleItem = (props: ScheduleItemProps) => {
+const PlanItem = (props: PlanItemProps) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState<boolean>(false);
 
   return (
-    <ScheduleItemView
+    <PlanItemView
       onPress={() => {
         setIsExpanded(!isExpanded);
       }}>
@@ -95,11 +95,11 @@ const ScheduleItem = (props: ScheduleItemProps) => {
           />
         </DetailView>
       )}
-    </ScheduleItemView>
+    </PlanItemView>
   );
 };
 
-const ScheduleItemView = styled.TouchableOpacity`
+const PlanItemView = styled.TouchableOpacity`
   width: 100%;
   margin-bottom: 16px;
 `;
@@ -158,4 +158,4 @@ const KaKaoMapButton = styled.TouchableOpacity`
 
 const KaKaoMapImage = styled.Image``;
 
-export default ScheduleItem;
+export default PlanItem;

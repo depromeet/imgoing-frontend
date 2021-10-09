@@ -1,16 +1,15 @@
 import React from 'react';
-import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
-import ScheduleItem from './ScheduleItem';
+import PlanItem from './PlanItem';
 
 // 임시 데이터 생성
 const dummyScheduleData = [{}, {}, {}];
 
-const ScheduleItemList = () => {
+const PlanList = () => {
   return (
     <FlatListView
       data={dummyScheduleData}
-      renderItem={(item) => <ScheduleItem data={item} />}
+      renderItem={(item) => <PlanItem data={item} />}
       keyExtractor={(item, index) => index.toString()}
     />
   );
@@ -20,4 +19,4 @@ const FlatListView = styled.FlatList`
   width: 90%;
 `;
 
-export default ScheduleItemList;
+export default PlanList;
