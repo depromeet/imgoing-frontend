@@ -3,15 +3,6 @@ import styled from 'styled-components/native';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
 import TitleTypo from '../typography/TitleTypo';
 
-const TitleView = styled.View`
-  margin: 60px 0 80px 0;
-  align-items: center;
-`;
-
-const Gap = styled.View`
-  height: 6px;
-`;
-
 const TimeReminder = () => {
   return (
     <TitleView>
@@ -19,6 +10,7 @@ const TimeReminder = () => {
         준비 시작까지
       </SubheadlineTypo>
       <Gap />
+      {/* 데이터 받아서 계산하여 표시 필요 */}
       <TitleTypo lang={'ko'} weight={'B'} color={'blue'}>
         🔥24시간 59분
       </TitleTypo>
@@ -29,5 +21,14 @@ const TimeReminder = () => {
     </TitleView>
   );
 };
+
+const TitleView = styled.View`
+  padding: 50px 0 50px 0;
+  align-items: center;
+`;
+
+const Gap = styled.View`
+  height: 6px;
+`;
 
 export default TimeReminder;
