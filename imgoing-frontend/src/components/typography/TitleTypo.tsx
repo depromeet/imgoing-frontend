@@ -1,27 +1,18 @@
 import React from 'react';
-import { Text } from 'react-native';
-import styled from 'styled-components/native';
-
-import { TypoProps } from '../../types/';
-import { typoStyle } from '../../constants';
+import BaseTypo, { TypoProps } from './BaseTypo';
 
 const typoHeight = {
   ko: '43px',
   en: '35px',
 };
 
-const Typo = styled.Text<Omit<TypoProps, 'children'>>`
-  font-size: 30px;
-  line-height: ${(props) => typoHeight[props.lang]};
-  font-weight: ${(props) => typoStyle[props.lang][props.weight]};
-`;
 
 const TitleTypo = (props: TypoProps) => {
-  const { children, lang, weight } = props;
+  const { children, lang, weight, color } = props;
   return (
-    <Typo lang={lang} weight={weight}>
+    <BaseTypo fontSize="30px" typoHeight={typoHeight} lang={lang} weight={weight} color={color}>
       {children}
-    </Typo>
+    </BaseTypo>
   );
 };
 

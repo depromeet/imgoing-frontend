@@ -1,20 +1,21 @@
-// import React from 'react';
-// import { ThemeProvider } from 'styled-components/native';
+import { ThemeProvider } from 'styled-components/native'
+import { colors, ColorScheme } from '../constants';
 
-// interface Props{
-//     children: React.ReactNode
-// }
+interface Props{
+    children: React.ReactNode
+}
 
-// interface Dummy {}
-// declare module 'styled-components' {
-//     export interface Theme extends Dummy {}
-// }
+type StyledTheme = {
+    colors: ColorScheme
+}
 
-// const GlobalProvider: React.FC<Props> = ({children}) => {
-//     return(
-//         <ThemeProvider theme="">
-//             {children}
-//         </ThemeProvider>
-//     )
-// }
-// export default GlobalProvider;
+
+const GlobalProvider = ({children}: Props) => {
+    return(
+        <ThemeProvider theme={{colors: colors}}>
+            {children}
+        </ThemeProvider>
+    )
+}
+
+export default GlobalProvider;
