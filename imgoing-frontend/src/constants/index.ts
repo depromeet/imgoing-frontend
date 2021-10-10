@@ -18,7 +18,7 @@ export const colors = {
   grayHeavy: '#8B8B8B',
   grayDark: '#DBDBDB',
   grayMedium: '#E8EBED',
-  grayLight: '#F7F8F9#8B8B8B',
+  grayLight: '#F7F8F9',
 };
 
 export type ColorScheme = typeof colors;

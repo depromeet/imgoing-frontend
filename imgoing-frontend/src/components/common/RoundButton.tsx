@@ -38,7 +38,7 @@ const StyledButton = styled(TouchableOpacity)<Pick<ButtonProps, 'blank' | 'disab
 const RoundButton = (props: ButtonProps) => {
   return (
     <StyledButton {...props} activeOpacity={0.6}>
-      <SubheadlineTypo lang={'ko'} weight={'B'} color={props.blank ? '#000000' : '#ffffff'}>
+      <SubheadlineTypo lang={'ko'} weight={'B'} color={props.blank ? 'black' : 'white'}>
         {props.children}
       </SubheadlineTypo>
     </StyledButton>

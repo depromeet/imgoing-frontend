@@ -1,41 +1,41 @@
-import { FC } from "react";
+import { FC } from 'react';
 import styled from 'styled-components/native';
-import { ColorScheme, typoStyle } from "../../../constants";
-
-
+import { ColorScheme, typoStyle } from '../../../constants';
 
 type TypoHeight = {
-    en: string,
-    ko: string
-}
-
+  en: string;
+  ko: string;
+};
 
 export type TypoWeight = 'R' | 'B';
 export type TypoLanguage = keyof TypoHeight;
 
-
 export interface OwnProps {
-    typoHeight: TypoHeight;
-    fontSize: string
+  typoHeight: TypoHeight;
+  fontSize: string;
 }
 
 export interface TypoProps {
-    children: React.ReactNode;
-    lang?: TypoLanguage;
-    weight?: TypoWeight;
-    color?: keyof ColorScheme;
+  children: React.ReactNode;
+  en?: boolean;
+  bold?: boolean;
+  color?: keyof ColorScheme;
 }
 
-type Props = OwnProps & TypoProps
+type Props = OwnProps & TypoProps;
 const BaseTypo = styled.Text<Props>`
-    font-family: 'Roboto,NotoSansKR';
-    font-size: ${(props)=>props.fontSize};
-    /* line-height: ${({typoHeight, lang}) => lang && typoHeight[lang]}; */
-    font-weight: ${(props) => typoStyle.en.B};
-    color: ${({theme, color}) => color ? theme.colors[color] : theme.colors.black};
+  font-family: 'Roboto';
+  font-size: ${(props) => props.fontSize};
+  line-height: ${({ typoHeight, en }) => (en ? typoHeight.en : typoHeight.ko)};
+  font-weight: ${(props) => {
+    if (props.en) {
+      if (props.bold) return typoStyle.en.B;
+      return typoStyle.en.R;
+    }
+    if (props.bold) return typoStyle.ko.B;
+    return typoStyle.ko.R;
+  }};
+  color: ${({ theme, color }) => (color ? theme.colors[color] : theme.colors.black)};
 `;
-
-
-
 
 export default BaseTypo;
