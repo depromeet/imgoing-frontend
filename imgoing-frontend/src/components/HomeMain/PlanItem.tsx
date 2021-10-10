@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import CalloutTypo from '../typography/CalloutTypo';
 import CaptionTypo from '../typography/CaptionTypo';
-import FootnoteTypo from '../typography/FootnoteTypo';
+import ContentTypo from '../typography/ContentTypo';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
 import DeleteModal from './DeleteModal';
 import MenuModal from './MenuModal';
@@ -55,11 +55,11 @@ const PlanItem = (props: PlanItemProps) => {
         <DetailView>
           <Row>
             <IconImage source={require('../../../assets/images/⏳.png')} />
-            <FootnoteTypo color={'black'}>준비 40분 소요</FootnoteTypo>
+            <ContentTypo color={'black'}>준비 40분 소요</ContentTypo>
           </Row>
           <Row>
             <IconImage source={require('../../../assets/images/📍.png')} />
-            <FootnoteTypo color={'black'}>홍대입구역 2번 출구</FootnoteTypo>
+            <ContentTypo color={'black'}>홍대입구역 2번 출구</ContentTypo>
           </Row>
           {/* 지도 연결 필요 */}
           <KaKaoMapButton>
@@ -67,11 +67,11 @@ const PlanItem = (props: PlanItemProps) => {
           </KaKaoMapButton>
           <Row>
             <IconImage source={require('../../../assets/images/🎒️.png')} />
-            <FootnoteTypo color={'black'}>보조 배터리, 고데기</FootnoteTypo>
+            <ContentTypo color={'black'}>보조 배터리, 고데기</ContentTypo>
           </Row>
           <Row>
             <IconImage source={require('../../../assets/images/✏️.png')} />
-            <FootnoteTypo color={'black'}>편의점 들러서 물 사기</FootnoteTypo>
+            <ContentTypo color={'black'}>편의점 들러서 물 사기</ContentTypo>
           </Row>
           <MenuModal
             isModalVisible={isModalVisible}

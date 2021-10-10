@@ -3,7 +3,7 @@ import { Modal } from 'react-native';
 import styled from 'styled-components/native';
 import RoundButton from '../common/RoundButton';
 import CalloutTypo from '../typography/CalloutTypo';
-import FootnoteTypo from '../typography/FootnoteTypo';
+import ContentTypo from '../typography/ContentTypo';
 
 interface ModalProps {
   isDeleteModalVisible: boolean;
@@ -24,8 +24,8 @@ const DeleteModal = (props: ModalProps) => {
           </CalloutTypo>
           {/* 13px Typo로 변경 */}
           <TextRow>
-            <FootnoteTypo color={'grayHeavy'}>삭제한 스케줄은 </FootnoteTypo>
-            <FootnoteTypo color={'red'}>복구할 수 없어요</FootnoteTypo>
+            <ContentTypo color={'grayHeavy'}>삭제한 스케줄은 </ContentTypo>
+            <ContentTypo color={'red'}>복구할 수 없어요</ContentTypo>
           </TextRow>
           <Row>
             <RoundButton
