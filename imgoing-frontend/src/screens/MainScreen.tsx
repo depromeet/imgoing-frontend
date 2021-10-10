@@ -1,25 +1,21 @@
-import React, { useEffect } from 'react';
-import { Text } from 'react-native';
+import React from 'react';
 import styled from 'styled-components/native';
-import CaptionTypo from '../components/typography/CaptionTypo';
-import TitleTypo from '../components/typography/TitleTypo';
+import HomeLanding from '../components/HomeLanding/HomeLanding';
 
 const MainScreen = () => {
   return (
     <Wrapper>
-      <TitleTypo lang="en">Main</TitleTypo>
-      <CaptionTypo lang="ko">이건한글</CaptionTypo>
+      <HomeLanding />
     </Wrapper>
   );
 };
 
 export default MainScreen;
 
-const Test = styled.Text`
-  color: ${({theme})=>theme.colors.blue}
-`
-const Wrapper = styled.View`
+const Wrapper = styled.SafeAreaView`
   flex: 1;
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme }) => theme.colors.white};
+  width: 100%;
 `;
