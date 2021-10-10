@@ -15,7 +15,7 @@ const NotificationBar = (props: NotificationBarProps) => {
   const { setIsVisible, imoji, content, color = 'black' } = props;
   return (
     <NotificationBarWrapper>
-      <FootnoteTypo lang={'ko'} weight={'B'} color={color}>
+      <FootnoteTypo bold color={color}>
         {imoji}
         {content}
       </FootnoteTypo>

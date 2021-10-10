@@ -19,17 +19,13 @@ const DeleteModal = (props: ModalProps) => {
           setIsDeleteModalVisible(!isDeleteModalVisible);
         }}>
         <ModalView>
-          <CalloutTypo lang={'ko'} weight={'B'} color={'black'}>
+          <CalloutTypo bold color={'black'}>
             스케줄을 삭제할까요?
           </CalloutTypo>
           {/* 13px Typo로 변경 */}
           <TextRow>
-            <FootnoteTypo lang={'ko'} weight={'R'} color={'grayHeavy'}>
-              삭제한 스케줄은{' '}
-            </FootnoteTypo>
-            <FootnoteTypo lang={'ko'} weight={'R'} color={'red'}>
-              복구할 수 없어요
-            </FootnoteTypo>
+            <FootnoteTypo color={'grayHeavy'}>삭제한 스케줄은 </FootnoteTypo>
+            <FootnoteTypo color={'red'}>복구할 수 없어요</FootnoteTypo>
           </TextRow>
           <Row>
             <RoundButton

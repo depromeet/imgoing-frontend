@@ -22,23 +22,17 @@ const MenuModal = (props: ModalProps) => {
     <Modal animationType="slide" transparent={true} visible={isModalVisible}>
       <ModalView onPress={() => setIsModalVisible(!isModalVisible)}>
         <ModalButton first onPress={() => setIsModalVisible(!isModalVisible)}>
-          <CalloutTypo lang={'ko'} weight={'R'} color={'black'}>
-            고정하기
-          </CalloutTypo>
+          <CalloutTypo color={'black'}>고정하기</CalloutTypo>
         </ModalButton>
         <ModalButton onPress={() => setIsModalVisible(!isModalVisible)}>
-          <CalloutTypo lang={'ko'} weight={'R'} color={'black'}>
-            편집하기
-          </CalloutTypo>
+          <CalloutTypo color={'black'}>편집하기</CalloutTypo>
         </ModalButton>
         <ModalButton
           onPress={() => {
             setIsModalVisible(!isModalVisible);
             setIsDeleteModalVisible(!isDeleteModalVisible);
           }}>
-          <CalloutTypo lang={'ko'} weight={'R'} color={'black'}>
-            삭제하기
-          </CalloutTypo>
+          <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
         </ModalButton>
       </ModalView>
     </Modal>

@@ -16,7 +16,7 @@ const IconButton = (props: ButtonProps) => {
       {props.full && (
         <>
           <Gap />
-          <SubheadlineTypo lang={'ko'} weight={'B'} color={'white'}>
+          <SubheadlineTypo bold color={'white'}>
             {props.children}
           </SubheadlineTypo>
         </>

@@ -12,18 +12,14 @@ const HomeLanding = () => {
     <>
       <ImgView source={require('../../../assets/images/landing.png')} />
       <CalloutTypoView>
-        <CalloutTypo lang={'ko'} weight={'B'}>
-          만나서 반가워요. 암고잉과
-        </CalloutTypo>
-        <CalloutTypo lang={'ko'} weight={'B'}>
-          첫 번째 일정을 등록해 볼까요?
-        </CalloutTypo>
+        <CalloutTypo bold>만나서 반가워요. 암고잉과</CalloutTypo>
+        <CalloutTypo bold>첫 번째 일정을 등록해 볼까요?</CalloutTypo>
       </CalloutTypoView>
       <FootnoteTypoView>
-        <FootnoteTypo lang={'ko'} color={'grayHeavy'}>
+        <FootnoteTypo color={'grayHeavy'}>
           나만의 준비 루틴을 설정하고, 약속 시간에 늦지 않게
         </FootnoteTypo>
-        <FootnoteTypo lang={'ko'} color={'grayHeavy'}>
+        <FootnoteTypo color={'grayHeavy'}>
           도착해 보세요! 더 이상 지각 걱정은 필요 없어요.
         </FootnoteTypo>
       </FootnoteTypoView>

@@ -25,11 +25,11 @@ const PlanItem = (props: PlanItemProps) => {
       <ExpandableBar>
         {/* 시간에 따라 변경 */}
         <TimeTag>
-          <CaptionTypo lang={'en'} weight={'B'} color={'white'}>
+          <CaptionTypo bold en color={'white'}>
             PM
           </CaptionTypo>
         </TimeTag>
-        <SubheadlineTypo lang={'en'} weight={'B'} color={'black'}>
+        <SubheadlineTypo bold en color={'black'}>
           11:12
         </SubheadlineTypo>
         {/* 고정여부에 따라 변경 */}
@@ -48,24 +48,18 @@ const PlanItem = (props: PlanItemProps) => {
         </ExpandButton>
       </ExpandableBar>
       <TitleView>
-        <CalloutTypo lang={'ko'} weight={'R'} color={'grayHeavy'}>
-          유나랑 영풍문고 앞에서 만나서 이번주 작업하기
-        </CalloutTypo>
+        <CalloutTypo color={'grayHeavy'}>유나랑 영풍문고 앞에서 만나서 이번주 작업하기</CalloutTypo>
       </TitleView>
       {/* 컴포넌트화 고려 */}
       {isExpanded && (
         <DetailView>
           <Row>
             <IconImage source={require('../../../assets/images/⏳.png')} />
-            <FootnoteTypo lang={'ko'} weight={'R'} color={'black'}>
-              준비 40분 소요
-            </FootnoteTypo>
+            <FootnoteTypo color={'black'}>준비 40분 소요</FootnoteTypo>
           </Row>
           <Row>
             <IconImage source={require('../../../assets/images/📍.png')} />
-            <FootnoteTypo lang={'ko'} weight={'R'} color={'black'}>
-              홍대입구역 2번 출구
-            </FootnoteTypo>
+            <FootnoteTypo color={'black'}>홍대입구역 2번 출구</FootnoteTypo>
           </Row>
           {/* 지도 연결 필요 */}
           <KaKaoMapButton>
@@ -73,15 +67,11 @@ const PlanItem = (props: PlanItemProps) => {
           </KaKaoMapButton>
           <Row>
             <IconImage source={require('../../../assets/images/🎒️.png')} />
-            <FootnoteTypo lang={'ko'} weight={'R'} color={'black'}>
-              보조 배터리, 고데기
-            </FootnoteTypo>
+            <FootnoteTypo color={'black'}>보조 배터리, 고데기</FootnoteTypo>
           </Row>
           <Row>
             <IconImage source={require('../../../assets/images/✏️.png')} />
-            <FootnoteTypo lang={'ko'} weight={'R'} color={'black'}>
-              편의점 들러서 물 사기
-            </FootnoteTypo>
+            <FootnoteTypo color={'black'}>편의점 들러서 물 사기</FootnoteTypo>
           </Row>
           <MenuModal
             isModalVisible={isModalVisible}
