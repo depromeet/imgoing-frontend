@@ -14,31 +14,6 @@ interface ModalButtonProps {
   first?: boolean;
 }
 
-const MenuModal = (props: ModalProps) => {
-  const { isModalVisible, setIsModalVisible, isDeleteModalVisible, setIsDeleteModalVisible } =
-    props;
-
-  return (
-    <Modal animationType="slide" transparent={true} visible={isModalVisible}>
-      <ModalView onPress={() => setIsModalVisible(!isModalVisible)}>
-        <ModalButton first onPress={() => setIsModalVisible(!isModalVisible)}>
-          <CalloutTypo color={'black'}>고정하기</CalloutTypo>
-        </ModalButton>
-        <ModalButton onPress={() => setIsModalVisible(!isModalVisible)}>
-          <CalloutTypo color={'black'}>편집하기</CalloutTypo>
-        </ModalButton>
-        <ModalButton
-          onPress={() => {
-            setIsModalVisible(!isModalVisible);
-            setIsDeleteModalVisible(!isDeleteModalVisible);
-          }}>
-          <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
-        </ModalButton>
-      </ModalView>
-    </Modal>
-  );
-};
-
 const ModalView = styled.TouchableOpacity`
   display: flex;
   height: 100%;
@@ -62,5 +37,30 @@ const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
       `;
   }}
 `;
+
+const MenuModal = (props: ModalProps) => {
+  const { isModalVisible, setIsModalVisible, isDeleteModalVisible, setIsDeleteModalVisible } =
+    props;
+
+  return (
+    <Modal animationType={'slide'} transparent={true} visible={isModalVisible}>
+      <ModalView onPress={() => setIsModalVisible(!isModalVisible)}>
+        <ModalButton first onPress={() => setIsModalVisible(!isModalVisible)}>
+          <CalloutTypo color={'black'}>고정하기</CalloutTypo>
+        </ModalButton>
+        <ModalButton onPress={() => setIsModalVisible(!isModalVisible)}>
+          <CalloutTypo color={'black'}>편집하기</CalloutTypo>
+        </ModalButton>
+        <ModalButton
+          onPress={() => {
+            setIsModalVisible(!isModalVisible);
+            setIsDeleteModalVisible(!isDeleteModalVisible);
+          }}>
+          <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
+        </ModalButton>
+      </ModalView>
+    </Modal>
+  );
+};
 
 export default MenuModal;

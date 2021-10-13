@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import PlanItem from './PlanItem';
 
+const FlatListView = styled.FlatList`
+  width: 90%;
+`;
 // 임시 데이터 생성
 const dummyScheduleData = [{}, {}, {}];
 
@@ -14,9 +17,5 @@ const PlanList = () => {
     />
   );
 };
-
-const FlatListView = styled.FlatList`
-  width: 90%;
-`;
 
 export default PlanList;

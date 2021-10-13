@@ -11,24 +11,6 @@ interface NotificationBarProps {
   color?: keyof ColorScheme;
 }
 
-const NotificationBar = (props: NotificationBarProps) => {
-  const { setIsVisible, imoji, content, color = 'black' } = props;
-  return (
-    <NotificationBarWrapper>
-      <FootnoteTypo bold color={color}>
-        {imoji}
-        {content}
-      </FootnoteTypo>
-      <TouchableOpacity onPress={() => {}}>
-        <ShortcutButton>바로 가기</ShortcutButton>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => setIsVisible(false)}>
-        <CloseButton source={require('../../../assets/images/close_button.png')} />
-      </TouchableOpacity>
-    </NotificationBarWrapper>
-  );
-};
-
 const NotificationBarWrapper = styled.View`
   flex-direction: row;
   width: 100%;
@@ -50,5 +32,23 @@ const ShortcutButton = styled.Text`
 const CloseButton = styled.Image`
   margin-left: 52px;
 `;
+
+const NotificationBar = (props: NotificationBarProps) => {
+  const { setIsVisible, imoji, content, color = 'black' } = props;
+  return (
+    <NotificationBarWrapper>
+      <FootnoteTypo bold color={color}>
+        {imoji}
+        {content}
+      </FootnoteTypo>
+      <TouchableOpacity onPress={() => {}}>
+        <ShortcutButton>바로 가기</ShortcutButton>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => setIsVisible(false)}>
+        <CloseButton source={require('../../../assets/images/close_button.png')} />
+      </TouchableOpacity>
+    </NotificationBarWrapper>
+  );
+};
 
 export default NotificationBar;

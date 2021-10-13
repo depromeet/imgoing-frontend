@@ -9,22 +9,6 @@ interface ButtonProps {
   full?: boolean;
 }
 
-const IconButton = (props: ButtonProps) => {
-  return (
-    <StyledButton {...props}>
-      <Image source={require('../../../assets/images/plus.png')} />
-      {props.full && (
-        <>
-          <Gap />
-          <SubheadlineTypo bold color={'white'}>
-            {props.children}
-          </SubheadlineTypo>
-        </>
-      )}
-    </StyledButton>
-  );
-};
-
 const Gap = styled.View`
   width: 4px;
 `;
@@ -55,5 +39,21 @@ const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'full'>>`
     `;
   }}
 `;
+
+const IconButton = (props: ButtonProps) => {
+  return (
+    <StyledButton {...props}>
+      <Image source={require('../../../assets/images/plus.png')} />
+      {props.full && (
+        <>
+          <Gap />
+          <SubheadlineTypo bold color={'white'}>
+            {props.children}
+          </SubheadlineTypo>
+        </>
+      )}
+    </StyledButton>
+  );
+};
 
 export default IconButton;

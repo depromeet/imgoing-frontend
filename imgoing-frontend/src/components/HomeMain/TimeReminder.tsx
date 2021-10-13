@@ -3,6 +3,15 @@ import styled from 'styled-components/native';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
 import TitleTypo from '../typography/TitleTypo';
 
+const TitleView = styled.View`
+  padding: 50px 0 50px 0;
+  align-items: center;
+`;
+
+const Gap = styled.View`
+  height: 6px;
+`;
+
 const TimeReminder = () => {
   return (
     <TitleView>
@@ -21,14 +30,5 @@ const TimeReminder = () => {
     </TitleView>
   );
 };
-
-const TitleView = styled.View`
-  padding: 50px 0 50px 0;
-  align-items: center;
-`;
-
-const Gap = styled.View`
-  height: 6px;
-`;
 
 export default TimeReminder;
