@@ -53,9 +53,9 @@ const Stacks = () => {
 
 const Tabs = () => {
   return (
-    <BottomTab.Navigator initialRouteName="Main">
+    <BottomTab.Navigator initialRouteName="Home">
       <BottomTab.Screen
-        name="Main"
+        name="Home"
         component={MainScreen}
         options={{
           headerShown: false,

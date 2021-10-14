@@ -1,5 +1,4 @@
-
 export type BottomTabParamList = {
-  Main: undefined;
+  Home: undefined;
   Settings: undefined;
 };
