@@ -1,25 +1,44 @@
+import { useState } from 'react';
 import React from 'react';
-import { TextInput } from 'react-native';
-import styled from 'styled-components';
+import { TextInput, TextInputProps } from 'react-native';
+import styled from 'styled-components/native';
+import SubheadlineTypo from '../typography/SubheadlineTypo';
+import { colors } from '../../constants';
 
-interface InputProps {
-  isValueEmpty: boolean;
-  placeholder: string;
-  onKeyUp?: (e: React.KeyboardEvent<TextInput>) => void;
+interface InputProps extends TextInputProps {
+  title?: string;
 }
 
-const StyledInput = styled(TextInput)<Pick<InputProps, 'isValueEmpty'>>`
+interface OwnProps{
+  isFocus: boolean;
+}
+
+const StyledInput = styled(TextInput)<OwnProps & InputProps>`
   width: 100%;
   height: 50px;
-  background: #ffffff;
-  border: 2px solid ${(props) => (props.isValueEmpty ? '#313338' : '#0045b0')};
+  margin-top: ${({title}) => title && 16}px;
+  background: ${({theme}) => theme.colors.white};
+  border: 2px solid ${({theme, isFocus}) => isFocus ? theme.colors.blue : theme.colors.black}; 
   border-radius: 4px;
   font-size: 16px;
   padding: 13px 16px 14px 16px;
-`;
+`
+const InputWrapper = styled.View``
+
 
 const Input = (props: InputProps) => {
-  return <StyledInput {...props} />;
+  const [isFocus, setFocus] = useState<boolean>(false);
+  return (
+    <InputWrapper>
+      { props.title && <SubheadlineTypo color="grayHeavy">{props.title}</SubheadlineTypo> }
+      <StyledInput 
+        isFocus={isFocus} 
+        placeholderTextColor={colors.grayHeavy}
+        onFocus={() => setFocus(true)} 
+        onBlur={() => setFocus(false)} 
+        {...props} />
+    </InputWrapper>
+  );
 };
 
 export default Input;
