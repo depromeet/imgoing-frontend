@@ -5,7 +5,7 @@ import SubheadlineTypo from '../typography/SubheadlineTypo';
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
+  onPress: () => void;
   full?: boolean;
 }
 
