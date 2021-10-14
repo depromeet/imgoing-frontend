@@ -1,21 +1,17 @@
-import * as React from 'react';
-import { Text } from 'react-native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { BottomTabParamList } from '../types/BottomTabNavigator';
+import { NavigatorParamList } from '../types/Route';
 import { NavigationContainer } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
 
-import SettingScreen from '../screens/SettingsScreen';
 import EditScreen from '../screens/EditScreen';
-import MainScreen from '../screens/MainScreen';
-import { icon_arrowLeft, icon_homeDot, icon_menu } from '../../assets/svg';
+import { icon_arrowLeft } from '../../assets/svg';
 import { colors } from '../constants';
 import PlanAddScreen from '../screens/PlanAddScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
+import MainBottomTab from './MainBottomTab';
 
-const BottomTab = createBottomTabNavigator<BottomTabParamList>();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<NavigatorParamList>();
 
 const Stacks = () => {
   return (
@@ -25,7 +21,7 @@ const Stacks = () => {
         component={AuthLoadingScreen}
         options={{ headerShown: true }}
       />
-      <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
+      <Stack.Screen name="Main" component={MainBottomTab} options={{ headerShown: false }} />
       <Stack.Screen
         name="Edit"
         component={EditScreen}
@@ -54,39 +50,6 @@ const Stacks = () => {
         }}
       />
     </Stack.Navigator>
-  );
-};
-
-const Main = () => {
-  return (
-    <BottomTab.Navigator initialRouteName="Home">
-      <BottomTab.Screen
-        name="Home"
-        component={MainScreen}
-        options={{
-          headerShown: false,
-          tabBarLabel: ({ focused }) => (
-            <Text style={{ color: focused ? colors.black : colors.grayHeavy }}>홈</Text>
-          ),
-          tabBarIcon: ({ focused }) => (
-            <SvgXml xml={icon_homeDot} fill={focused ? colors.black : colors.grayHeavy} />
-          ),
-        }}
-      />
-      <BottomTab.Screen
-        name="Settings"
-        component={SettingScreen}
-        options={{
-          headerShown: false,
-          tabBarLabel: ({ focused }) => (
-            <Text style={{ color: focused ? colors.black : colors.grayHeavy }}>설정</Text>
-          ),
-          tabBarIcon: ({ focused }) => (
-            <SvgXml xml={icon_menu} fill={focused ? colors.black : colors.grayHeavy} />
-          ),
-        }}
-      />
-    </BottomTab.Navigator>
   );
 };
 
