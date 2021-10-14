@@ -53,10 +53,10 @@ const Stacks = () => {
   );
 };
 
-export default function BottomTabNavigator() {
+export default () => {
   return (
     <NavigationContainer>
       <Stacks />
     </NavigationContainer>
   );
-}
+};
