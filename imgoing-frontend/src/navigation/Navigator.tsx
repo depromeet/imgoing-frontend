@@ -12,14 +12,20 @@ import MainScreen from '../screens/MainScreen';
 import { icon_arrowLeft, icon_homeDot, icon_menu } from '../../assets/svg';
 import { colors } from '../constants';
 import PlanAddScreen from '../screens/PlanAddScreen';
+import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 const Stack = createStackNavigator();
 
 const Stacks = () => {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false }} />
+    <Stack.Navigator initialRouteName="AuthLoadingScreen">
+      <Stack.Screen
+        name="AuthLoadingScreen"
+        component={AuthLoadingScreen}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen name="Main" component={Main} options={{ headerShown: false }} />
       <Stack.Screen
         name="Edit"
         component={EditScreen}
@@ -51,7 +57,7 @@ const Stacks = () => {
   );
 };
 
-const Tabs = () => {
+const Main = () => {
   return (
     <BottomTab.Navigator initialRouteName="Home">
       <BottomTab.Screen
