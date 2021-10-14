@@ -23,7 +23,7 @@ const Stacks = () => {
       />
       <Stack.Screen name="Main" component={MainBottomTab} options={{ headerShown: false }} />
       <Stack.Screen
-        name="Edit"
+        name="PlanEdit"
         component={PlanEditScreen}
         options={{
           title: '편집하기',

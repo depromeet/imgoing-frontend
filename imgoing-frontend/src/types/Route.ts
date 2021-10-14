@@ -6,6 +6,6 @@ export type BottomTabParamList = {
 export type NavigatorParamList = {
   AuthLoadingScreen: undefined;
   Main: undefined;
-  Edit: undefined;
+  PlanEdit: undefined;
   PlanAdd: undefined;
 };
