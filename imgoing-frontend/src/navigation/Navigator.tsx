@@ -4,7 +4,7 @@ import { NavigatorParamList } from '../types/Route';
 import { NavigationContainer } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
 
-import EditScreen from '../screens/EditScreen';
+import PlanEditScreen from '../screens/PlanEditScreen';
 import { icon_arrowLeft } from '../../assets/svg';
 import { colors } from '../constants';
 import PlanAddScreen from '../screens/PlanAddScreen';
@@ -24,7 +24,7 @@ const Stacks = () => {
       <Stack.Screen name="Main" component={MainBottomTab} options={{ headerShown: false }} />
       <Stack.Screen
         name="Edit"
-        component={EditScreen}
+        component={PlanEditScreen}
         options={{
           title: '편집하기',
           headerShown: true,
