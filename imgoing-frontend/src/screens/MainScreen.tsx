@@ -1,16 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import HomeLanding from '../components/HomeLanding/HomeLanding';
-
-const MainScreen = () => {
-  return (
-    <Wrapper>
-      <HomeLanding />
-    </Wrapper>
-  );
-};
-
-export default MainScreen;
+import HomeMain from '../components/HomeMain/HomeMain';
+import PLANS from '../mock/plan.mock';
 
 const Wrapper = styled.SafeAreaView`
   flex: 1;
@@ -19,3 +11,9 @@ const Wrapper = styled.SafeAreaView`
   background-color: ${({ theme }) => theme.colors.white};
   width: 100%;
 `;
+
+const MainScreen = () => {
+  return <Wrapper>{PLANS ? <HomeMain /> : <HomeLanding />}</Wrapper>;
+};
+
+export default MainScreen;
