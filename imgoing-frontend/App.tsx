@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 // import GlobalProvider from './src/contexts/GlobalProvider';
-import AppNavigator from './src/navigation/AppNavigator';
+import { ThemeProvider } from 'styled-components/native';
 import { ThemeProvider } from 'styled-components/native'
 import { colors } from './src/constants';
 import * as Font from 'expo-font';
 import { Text } from 'react-native';
+import Navigator from './src/navigation/Navigator';
 
 
 export default function App() {
@@ -21,8 +22,8 @@ export default function App() {
   }, [])
   if(!state) return null;
   return (
-    <ThemeProvider theme={{colors: colors}}>
-      <AppNavigator />
+    <ThemeProvider theme={{ colors: colors }}>
+      <Navigator />
     </ThemeProvider>
   );
 }
