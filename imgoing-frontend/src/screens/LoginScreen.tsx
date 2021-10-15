@@ -1,23 +1,21 @@
 import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
+import { NavigationScreenProp } from 'react-navigation';
 import imgoingLogo from '../../assets/svg/imgoingLogo';
 import kakaoLogin from '../../assets/svg/kakaoLogin';
 import CaptionTypo from '../components/typography/CaptionTypo';
 import SubheadlineTypo from '../components/typography/SubheadlineTypo';
+
+interface LoginProps {
+  navigation: NavigationScreenProp<any, any>;
+}
 
 const Wrapper = styled.SafeAreaView`
   flex: 1;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.colors.white};
-`;
-
-const Gap = styled.View`
-  height: 308px;
-`;
-const KaKaoLoginButton = styled.TouchableOpacity`
-  width: 100%;
 `;
 
 const TextView = styled.View`
@@ -27,7 +25,16 @@ const TextView = styled.View`
   margin-top: 20px;
 `;
 
-const LoginScreen = () => {
+const Gap = styled.View`
+  height: 308px;
+`;
+
+const KaKaoLoginButton = styled.TouchableOpacity`
+  width: 100%;
+`;
+
+const LoginScreen = (props: LoginProps) => {
+  const { navigation } = props;
   return (
     <Wrapper>
       <SvgXml xml={imgoingLogo} width="100%" height="46px" />
@@ -36,7 +43,11 @@ const LoginScreen = () => {
         <SubheadlineTypo color={'black'}>약속시간까지 늦지 않게!</SubheadlineTypo>
       </TextView>
       <Gap />
-      <KaKaoLoginButton activeOpacity={0.7}>
+      <KaKaoLoginButton
+        activeOpacity={0.7}
+        onPress={() => {
+          navigation.navigate('Main');
+        }}>
         <SvgXml xml={kakaoLogin} width="100%" height="50px" />
       </KaKaoLoginButton>
       <TextView>
