@@ -12,7 +12,7 @@ const AuthLoadingScreen = (props: AuthLoadingProps) => {
   const getUserToken = async () => {
     const token = await AsyncStorage.getItem('userToken');
     // props.navigation.navigate(token ? 'App' : 'Auth');
-    props.navigation.navigate('App');
+    props.navigation.navigate('Main');
   };
 
   useEffect(() => {

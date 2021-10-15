@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { BottomTabParamList } from '../types/BottomTabNavigator';
-import { NavigationContainer } from '@react-navigation/native';
+import { BottomTabParamList, NavigatorParamList } from '../types/Route';
 import { SvgXml } from 'react-native-svg';
 
 import SettingScreen from '../screens/SettingsScreen';
@@ -12,12 +11,12 @@ import { colors } from '../constants';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-const Tabs = () => {
+const MainBottomTab = () => {
   return (
-    <BottomTab.Navigator initialRouteName="Main">
+    <BottomTab.Navigator initialRouteName="Home">
       <BottomTab.Screen
-        name="Main"
-        component={MainScreen}
+        name="Home"
+        component={HomeScreen}
         options={{
           headerShown: false,
           tabBarLabel: ({ focused }) => (
@@ -45,10 +44,4 @@ const Tabs = () => {
   );
 };
 
-export default function BottomTabNavigator() {
-  return (
-    <NavigationContainer>
-      <Tabs />
-    </NavigationContainer>
-  );
-}
+export default MainBottomTab;

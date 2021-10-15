@@ -5,7 +5,7 @@ import SubheadlineTypo from '../typography/SubheadlineTypo';
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
+  onPress: () => void;
   blank?: boolean;
   disabled?: boolean;
 }
@@ -38,7 +38,7 @@ const StyledButton = styled(TouchableOpacity)<Pick<ButtonProps, 'blank' | 'disab
 const RoundButton = (props: ButtonProps) => {
   return (
     <StyledButton {...props} activeOpacity={0.6}>
-      <SubheadlineTypo lang={'ko'} weight={'B'} color={props.blank ? 'black' : 'white'}>
+      <SubheadlineTypo bold color={props.blank ? 'black' : 'white'}>
         {props.children}
       </SubheadlineTypo>
     </StyledButton>
