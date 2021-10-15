@@ -5,7 +5,7 @@ import { BottomTabParamList, NavigatorParamList } from '../types/Route';
 import { SvgXml } from 'react-native-svg';
 
 import SettingScreen from '../screens/SettingsScreen';
-import HomeScreen from '../screens/HomeScreen';
+import MainScreen from '../screens/MainScreen';
 import { icon_homeDot, icon_menu } from '../../assets/svg';
 import { colors } from '../constants';
 
@@ -23,7 +23,7 @@ const MainBottomTab = () => {
             <Text style={{ color: focused ? colors.black : colors.grayHeavy }}>홈</Text>
           ),
           tabBarIcon: ({ focused }) => (
-            <SvgXml xml={icon_homeDot} fill={focused ? colors.black : colors.grayHeavy} />
+            <SvgXml xml={icon_home} fill={focused ? colors.black : colors.grayHeavy} />
           ),
         }}
       />
@@ -36,7 +36,7 @@ const MainBottomTab = () => {
             <Text style={{ color: focused ? colors.black : colors.grayHeavy }}>설정</Text>
           ),
           tabBarIcon: ({ focused }) => (
-            <SvgXml xml={icon_menu} fill={focused ? colors.black : colors.grayHeavy} />
+            <SvgXml xml={icon_menuDot} fill={focused ? colors.black : colors.grayHeavy} />
           ),
         }}
       />
