@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
+import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
+import kakaoMap from '../../../assets/svg/kakaoMap';
 import CalloutTypo from '../typography/CalloutTypo';
 import CaptionTypo from '../typography/CaptionTypo';
 import ContentTypo from '../typography/ContentTypo';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
 import DeleteModal from './DeleteModal';
 import MenuModal from './MenuModal';
+import { icon_menu_rounded, icon_open, icon_pin } from '../../../assets/svg';
+import { colors } from '../../constants';
 interface PlanItemProps {
   data: {};
 }
@@ -13,6 +17,7 @@ interface PlanItemProps {
 const PlanItemView = styled.TouchableOpacity`
   width: 100%;
   margin-bottom: 16px;
+  padding-top: 5px;
 `;
 
 const ExpandableBar = styled.View`
@@ -30,28 +35,36 @@ const TimeTag = styled.View`
   margin-right: 8px;
 `;
 
-const TitleView = styled.View`
-  margin: 8px 0 0 40px;
-  width: 260px;
-`;
-
-const ImageView = styled.Image`
-  margin-left: 6px;
+const Pin = styled.View`
+  width: 25px;
+  padding-left: 6px;
 `;
 
 const OpenMenuButton = styled.TouchableOpacity`
   position: absolute;
   left: 82%;
+  width: 50px;
 `;
 
 const ExpandButton = styled.View`
   position: absolute;
   left: 90%;
+  width: 50px;
+`;
+
+const TitleView = styled.View`
+  margin: 8px 0 0 40px;
+  width: 260px;
+`;
+
+const Emoji = styled.View`
+  margin-right: 12px;
 `;
 
 const Row = styled.View`
   flex-direction: row;
   padding: 6px 0 6px 0;
+  align-items: center;
 `;
 
 const DetailView = styled.View`
@@ -59,15 +72,11 @@ const DetailView = styled.View`
   margin-left: 40px;
 `;
 
-const IconImage = styled.Image`
-  margin-right: 12px;
-`;
-
 const KaKaoMapButton = styled.TouchableOpacity`
-  margin: 0px 0 0px 28px;
+  justify-content: flex-start;
+  width: 100px;
+  margin-left: 28px;
 `;
-
-const KaKaoMapImage = styled.Image``;
 
 const PlanItem = (props: PlanItemProps) => {
   const [toggleExpanded, setToggleExpanded] = useState<boolean>(false);
@@ -92,17 +101,19 @@ const PlanItem = (props: PlanItemProps) => {
           11:12
         </SubheadlineTypo>
         {/* 고정여부에 따라 변경 */}
-        <ImageView source={require('../../../assets/images/pin.png')} />
+        <Pin>
+          <SvgXml xml={icon_pin.fill} width="100%" height="16px" fill={colors.blue} />
+        </Pin>
         {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
         <OpenMenuButton onPress={() => setIsModalVisible(true)}>
-          <IconImage source={require('../../../assets/images/menu.png')} />
+          <SvgXml xml={icon_menu_rounded} width="100%" height="22px" fill={colors.blue} />
         </OpenMenuButton>
         {/* 확장여부에 따라 내용 표시 변경 */}
         <ExpandButton>
           {!toggleExpanded ? (
-            <ImageView source={require('../../../assets/images/down.png')} />
+            <SvgXml xml={icon_open.down} width="100%" height="16px" fill={colors.blue} />
           ) : (
-            <ImageView source={require('../../../assets/images/up.png')} />
+            <SvgXml xml={icon_open.up} width="100%" height="16px" fill={colors.blue} />
           )}
         </ExpandButton>
       </ExpandableBar>
@@ -113,23 +124,39 @@ const PlanItem = (props: PlanItemProps) => {
       {toggleExpanded && (
         <DetailView>
           <Row>
-            <IconImage source={require('../../../assets/images/⏳.png')} />
+            <Emoji>
+              <CalloutTypo bold color={'grayHeavy'}>
+                ⏳
+              </CalloutTypo>
+            </Emoji>
             <ContentTypo color={'black'}>준비 40분 소요</ContentTypo>
           </Row>
           <Row>
-            <IconImage source={require('../../../assets/images/📍.png')} />
+            <Emoji>
+              <CalloutTypo bold color={'grayHeavy'}>
+                📍
+              </CalloutTypo>
+            </Emoji>
             <ContentTypo color={'black'}>홍대입구역 2번 출구</ContentTypo>
           </Row>
           {/* 지도 연결 필요 */}
           <KaKaoMapButton activeOpacity={0.7}>
-            <KaKaoMapImage source={require('../../../assets/images/kakaomap.png')} />
+            <SvgXml xml={kakaoMap} width="100%" height="32px" />
           </KaKaoMapButton>
           <Row>
-            <IconImage source={require('../../../assets/images/🎒️.png')} />
+            <Emoji>
+              <CalloutTypo bold color={'grayHeavy'}>
+                🎒️
+              </CalloutTypo>
+            </Emoji>
             <ContentTypo color={'black'}>보조 배터리, 고데기</ContentTypo>
           </Row>
           <Row>
-            <IconImage source={require('../../../assets/images/✏️.png')} />
+            <Emoji>
+              <CalloutTypo bold color={'grayHeavy'}>
+                ✏️
+              </CalloutTypo>
+            </Emoji>
             <ContentTypo color={'black'}>편의점 들러서 물 사기</ContentTypo>
           </Row>
           <MenuModal

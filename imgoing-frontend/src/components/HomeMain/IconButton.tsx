@@ -1,17 +1,14 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 import styled, { css } from 'styled-components/native';
+import { icon_plus } from '../../../assets/svg';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
-
+import { colors } from '../../constants';
 interface ButtonProps {
   children: React.ReactNode;
   onPress: () => void;
   full?: boolean;
 }
-
-const Gap = styled.View`
-  width: 4px;
-`;
 
 const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'full'>>`
   position: absolute;
@@ -39,11 +36,18 @@ const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'full'>>`
     `;
   }}
 `;
+const Gap = styled.View`
+  width: 4px;
+`;
 
 const IconButton = (props: ButtonProps) => {
   return (
     <StyledButton {...props}>
-      <Image source={require('../../../assets/images/plus.png')} />
+      {props.full ? (
+        <SvgXml xml={icon_plus} width="20px" fill={colors.white} />
+      ) : (
+        <SvgXml xml={icon_plus} width="24px" fill={colors.white} />
+      )}
       {props.full && (
         <>
           <Gap />

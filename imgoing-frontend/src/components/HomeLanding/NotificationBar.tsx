@@ -1,7 +1,9 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
-import { ColorScheme } from '../../constants';
+import { icon_close } from '../../../assets/svg';
+import { colors, ColorScheme } from '../../constants';
 import FootnoteTypo from '../typography/FootnoteTypo';
 
 interface NotificationBarProps {
@@ -20,7 +22,7 @@ const NotificationBarWrapper = styled.View`
   padding-left: 16px;
 `;
 
-const ShortcutButton = styled.Text`
+const ShortcutButtonText = styled.Text`
   text-decoration-line: underline;
   color: ${({ theme }) => theme.colors.grayHeavy};
   font-size: 12px;
@@ -29,8 +31,11 @@ const ShortcutButton = styled.Text`
   padding: 0 52px 0 8px;
 `;
 
-const CloseButton = styled.Image`
-  margin-left: 52px;
+const ShortcutButton = styled.TouchableOpacity``;
+
+const CloseButton = styled.TouchableOpacity`
+  left: 85%;
+  width: 16px;
 `;
 
 const NotificationBar = (props: NotificationBarProps) => {
@@ -41,12 +46,12 @@ const NotificationBar = (props: NotificationBarProps) => {
         {imoji}
         {content}
       </FootnoteTypo>
-      <TouchableOpacity onPress={() => {}}>
-        <ShortcutButton>바로 가기</ShortcutButton>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => setIsVisible(false)}>
-        <CloseButton source={require('../../../assets/images/close_button.png')} />
-      </TouchableOpacity>
+      <ShortcutButton onPress={() => {}}>
+        <ShortcutButtonText>바로 가기</ShortcutButtonText>
+      </ShortcutButton>
+      <CloseButton onPress={() => setIsVisible(false)}>
+        <SvgXml xml={icon_close} width="100%" height="16px" fill={colors.blue} />
+      </CloseButton>
     </NotificationBarWrapper>
   );
 };
