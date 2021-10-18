@@ -1,5 +1,4 @@
 import React from 'react';
-import { Modal } from 'react-native';
 import styled from 'styled-components/native';
 import RoundButton from '../common/RoundButton';
 import CalloutTypo from '../typography/CalloutTypo';

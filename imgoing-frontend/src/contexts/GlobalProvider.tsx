@@ -5,10 +5,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-type StyledTheme = {
-  colors: ColorScheme;
-};
-
 const GlobalProvider = ({ children }: Props) => {
   return <ThemeProvider theme={{ colors: colors }}>{children}</ThemeProvider>;
 };

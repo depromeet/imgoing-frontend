@@ -1,5 +1,4 @@
-import { FC } from 'react';
-import { StyleProp, TextProps, TextStyle } from 'react-native';
+import { TextProps } from 'react-native';
 import styled from 'styled-components/native';
 import { ColorScheme, typoStyle } from '../../../constants';
 

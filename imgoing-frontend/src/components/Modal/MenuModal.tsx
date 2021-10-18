@@ -1,5 +1,4 @@
 import React from 'react';
-import { Modal } from 'react-native';
 import styled, { css } from 'styled-components/native';
 import CalloutTypo from '../typography/CalloutTypo';
 

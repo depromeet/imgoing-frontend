@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CalloutTypo from '../typography/CalloutTypo';
 import styled from 'styled-components/native';
 import FootnoteTypo from '../typography/FootnoteTypo';
@@ -63,11 +63,11 @@ const HomeLanding = () => {
         </FootnoteTypo>
       </FootnoteTypoView>
       <ButtonView>
-        <RoundButton onClick={() => {}} blank>
+        <RoundButton onPress={() => {}} blank>
           가이드 보기
         </RoundButton>
         <Gap />
-        <RoundButton onClick={() => {}}>일정 등록하기</RoundButton>
+        <RoundButton onPress={() => {}}>일정 등록하기</RoundButton>
       </ButtonView>
       {/* 설정 페이지 없을 땐 비활성화 */}
       {/* <NotificationBarView>
