@@ -7,9 +7,15 @@ const typoHeight = {
 };
 
 const FootnoteTypo = (props: TypoProps) => {
-  const { children, en, bold, color } = props;
+  const { children, en, bold, color, ...restProps } = props;
   return (
-    <BaseTypo fontSize="12px" typoHeight={typoHeight} en={en} bold={bold} color={color}>
+    <BaseTypo
+      fontSize="12px"
+      typoHeight={typoHeight}
+      en={en}
+      bold={bold}
+      color={color}
+      {...restProps}>
       {children}
     </BaseTypo>
   );

@@ -7,9 +7,15 @@ const typoHeight = {
 };
 
 const LargeTitleTypo = (props: TypoProps) => {
-  const { children, en, bold, color } = props;
+  const { children, en, bold, color, ...restProps } = props;
   return (
-    <BaseTypo fontSize="36px" typoHeight={typoHeight} en={en} bold={bold} color={color}>
+    <BaseTypo
+      fontSize="36px"
+      typoHeight={typoHeight}
+      en={en}
+      bold={bold}
+      color={color}
+      {...restProps}>
       {children}
     </BaseTypo>
   );
