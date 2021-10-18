@@ -4,8 +4,8 @@ import CalloutTypo from '../typography/CalloutTypo';
 import CaptionTypo from '../typography/CaptionTypo';
 import ContentTypo from '../typography/ContentTypo';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
-import DeleteModal from './DeleteModal';
-import MenuModal from './MenuModal';
+import DeleteModal from '../Modal/DeleteModal';
+import MenuModal from '../Modal/MenuModal';
 interface PlanItemProps {
   data: {};
 }
@@ -132,16 +132,6 @@ const PlanItem = (props: PlanItemProps) => {
             <IconImage source={require('../../../assets/images/✏️.png')} />
             <ContentTypo color={'black'}>편의점 들러서 물 사기</ContentTypo>
           </Row>
-          <MenuModal
-            isModalVisible={isModalVisible}
-            setIsModalVisible={setIsModalVisible}
-            isDeleteModalVisible={isDeleteModalVisible}
-            setIsDeleteModalVisible={setIsDeleteModalVisible}
-          />
-          <DeleteModal
-            isDeleteModalVisible={isDeleteModalVisible}
-            setIsDeleteModalVisible={setIsDeleteModalVisible}
-          />
         </DetailView>
       )}
     </PlanItemView>
