@@ -1,5 +1,4 @@
 import React from 'react';
-import { Text } from 'react-native';
 import BaseTypo, { TypoProps } from './BaseTypo';
 
 const typoHeight = {

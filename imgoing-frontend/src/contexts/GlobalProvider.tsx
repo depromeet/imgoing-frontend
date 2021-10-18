@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components/native';
-import { colors, ColorScheme } from '../constants';
+import { colors } from '@/constants';
 
 interface Props {
   children: React.ReactNode;

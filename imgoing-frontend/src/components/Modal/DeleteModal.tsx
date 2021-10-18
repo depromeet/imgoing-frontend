@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import RoundButton from '../common/RoundButton';
-import CalloutTypo from '../typography/CalloutTypo';
-import ContentTypo from '../typography/ContentTypo';
+
+import RoundButton from '@/components/common/RoundButton';
+import CalloutTypo from '@/components/typography/CalloutTypo';
+import ContentTypo from '@/components/typography/ContentTypo';
 
 interface ModalProps {
   isDeleteModalVisible: boolean;

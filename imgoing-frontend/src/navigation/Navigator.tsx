@@ -1,16 +1,16 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { NavigatorParamList } from '../types/Route';
 import { NavigationContainer } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
 
-import PlanEditScreen from '../screens/PlanEditScreen';
-import { icon_arrowLeft } from '../../assets/svg';
-import { colors } from '../constants';
-import PlanAddScreen from '../screens/PlanAddScreen';
-import AuthLoadingScreen from '../screens/AuthLoadingScreen';
-import MainBottomTab from './MainBottomTab';
-import LoginScreen from '../screens/LoginScreen';
+import { icon_arrowLeft } from '@assets/svg';
+import { NavigatorParamList } from '@/types/Route';
+import { colors } from '@/constants';
+import PlanEditScreen from '@/screens/PlanEditScreen';
+import PlanAddScreen from '@/screens/PlanAddScreen';
+import LoginScreen from '@/screens/LoginScreen';
+import AuthLoadingScreen from '@/screens/AuthLoadingScreen';
+import MainBottomTab from '@/navigation/MainBottomTab';
 
 const Stack = createStackNavigator<NavigatorParamList>();
 

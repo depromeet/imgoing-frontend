@@ -1,9 +1,9 @@
 import React from 'react';
-import CalloutTypo from '../typography/CalloutTypo';
+import CalloutTypo from '@/components/typography/CalloutTypo';
 import styled from 'styled-components/native';
-import FootnoteTypo from '../typography/FootnoteTypo';
+import FootnoteTypo from '@/components/typography/FootnoteTypo';
 // import NotificationBar from './NotificationBar';
-import RoundButton from '../common/RoundButton';
+import RoundButton from '@/components/common/RoundButton';
 
 const ImgView = styled.Image`
   height: 180px;
@@ -49,7 +49,7 @@ const HomeLanding = () => {
 
   return (
     <>
-      <ImgView source={require('../../../assets/images/landing.png')} />
+      <ImgView source={require('../@assets/images/landing.png')} />
       <CalloutTypoView>
         <CalloutTypo bold>만나서 반가워요. 암고잉과</CalloutTypo>
         <CalloutTypo bold>첫 번째 일정을 등록해 볼까요?</CalloutTypo>

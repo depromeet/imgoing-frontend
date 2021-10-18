@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { TouchableHighlightProps } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
-import { icon_bell } from '../../assets/svg';
-import CaptionTypo from './typography/CaptionTypo';
-import SubheadlineTypo from './typography/SubheadlineTypo';
+
+import { icon_bell } from '@assets/svg';
+import CaptionTypo from '@/components/typography/CaptionTypo';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
 
 type GroupType = '루틴' | '즐겨찾기' | '북마크';
 

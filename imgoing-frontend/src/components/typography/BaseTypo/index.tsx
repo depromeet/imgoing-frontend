@@ -1,6 +1,6 @@
 import { TextProps } from 'react-native';
 import styled from 'styled-components/native';
-import { ColorScheme, typoStyle } from '../../../constants';
+import { ColorScheme, typoStyle } from '@/constants';
 
 type TypoHeight = {
   en: string;

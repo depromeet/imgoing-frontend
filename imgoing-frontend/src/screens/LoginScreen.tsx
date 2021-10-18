@@ -2,10 +2,11 @@ import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 import { NavigationScreenProp } from 'react-navigation';
-import imgoingLogo from '../../assets/svg/imgoingLogo';
-import kakaoLogin from '../../assets/svg/kakaoLogin';
-import CaptionTypo from '../components/typography/CaptionTypo';
-import SubheadlineTypo from '../components/typography/SubheadlineTypo';
+
+import imgoingLogo from '@assets/svg/imgoingLogo';
+import kakaoLogin from '@assets/svg/kakaoLogin';
+import CaptionTypo from '@/components/typography/CaptionTypo';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
 
 interface LoginProps {
   navigation: NavigationScreenProp<any, any>;

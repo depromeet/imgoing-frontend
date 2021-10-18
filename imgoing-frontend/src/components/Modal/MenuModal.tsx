@@ -1,6 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components/native';
-import CalloutTypo from '../typography/CalloutTypo';
+
+import CalloutTypo from '@/components/typography/CalloutTypo';
 
 interface ModalProps {
   isModalVisible: boolean;
