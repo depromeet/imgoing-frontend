@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { StyleProp, TextProps, TextStyle } from 'react-native';
 import styled from 'styled-components/native';
 import { ColorScheme, typoStyle } from '../../../constants';
 
@@ -15,7 +16,7 @@ export interface OwnProps {
   fontSize: string;
 }
 
-export interface TypoProps {
+export interface TypoProps extends TextProps {
   children: React.ReactNode;
   en?: boolean;
   bold?: boolean;

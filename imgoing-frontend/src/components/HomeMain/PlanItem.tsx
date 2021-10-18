@@ -6,8 +6,6 @@ import CalloutTypo from '../typography/CalloutTypo';
 import CaptionTypo from '../typography/CaptionTypo';
 import ContentTypo from '../typography/ContentTypo';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
-import DeleteModal from './DeleteModal';
-import MenuModal from './MenuModal';
 import { icon_menu_rounded, icon_open, icon_pin } from '../../../assets/svg';
 import { colors } from '../../constants';
 interface PlanItemProps {
@@ -159,16 +157,6 @@ const PlanItem = (props: PlanItemProps) => {
             </Emoji>
             <ContentTypo color={'black'}>편의점 들러서 물 사기</ContentTypo>
           </Row>
-          <MenuModal
-            isModalVisible={isModalVisible}
-            setIsModalVisible={setIsModalVisible}
-            isDeleteModalVisible={isDeleteModalVisible}
-            setIsDeleteModalVisible={setIsDeleteModalVisible}
-          />
-          <DeleteModal
-            isDeleteModalVisible={isDeleteModalVisible}
-            setIsDeleteModalVisible={setIsDeleteModalVisible}
-          />
         </DetailView>
       )}
     </PlanItemView>

@@ -8,4 +8,5 @@ export type NavigatorParamList = {
   Main: undefined;
   PlanEdit: undefined;
   PlanAdd: undefined;
+  Login: undefined;
 };
