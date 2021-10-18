@@ -8,9 +8,15 @@ const typoHeight = {
 };
 
 const BodyTypo = (props: TypoProps) => {
-  const { children, en, bold, color } = props;
+  const { children, en, bold, color, ...restProps } = props;
   return (
-    <BaseTypo fontSize="20px" typoHeight={typoHeight} en={en} bold={bold} color={color}>
+    <BaseTypo
+      fontSize="20px"
+      typoHeight={typoHeight}
+      en={en}
+      bold={bold}
+      color={color}
+      {...restProps}>
       {children}
     </BaseTypo>
   );

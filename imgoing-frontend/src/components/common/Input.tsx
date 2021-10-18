@@ -9,34 +9,35 @@ interface InputProps extends TextInputProps {
   title?: string;
 }
 
-interface OwnProps{
+interface OwnProps {
   isFocus: boolean;
 }
 
 const StyledInput = styled(TextInput)<OwnProps & InputProps>`
   width: 100%;
   height: 50px;
-  margin-top: ${({title}) => title && 16}px;
-  background: ${({theme}) => theme.colors.white};
-  border: 2px solid ${({theme, isFocus}) => isFocus ? theme.colors.blue : theme.colors.black}; 
+  margin-top: ${({ title }) => title && 14};
+  background: ${({ theme }) => theme.colors.white};
+  border: 2px solid ${({ theme, isFocus }) => (isFocus ? theme.colors.blue : theme.colors.black)};
   border-radius: 4px;
   font-size: 16px;
   padding: 13px 16px 14px 16px;
-`
-const InputWrapper = styled.View``
-
+`;
+const InputWrapper = styled.View``;
 
 const Input = (props: InputProps) => {
+  const { style, ...restProps } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
   return (
-    <InputWrapper>
-      { props.title && <SubheadlineTypo color="grayHeavy">{props.title}</SubheadlineTypo> }
-      <StyledInput 
-        isFocus={isFocus} 
+    <InputWrapper style={style}>
+      {props.title && <SubheadlineTypo color="grayHeavy">{props.title}</SubheadlineTypo>}
+      <StyledInput
+        isFocus={isFocus}
         placeholderTextColor={colors.grayHeavy}
-        onFocus={() => setFocus(true)} 
-        onBlur={() => setFocus(false)} 
-        {...props} />
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+        {...restProps}
+      />
     </InputWrapper>
   );
 };
