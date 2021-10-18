@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-// import GlobalProvider from './src/contexts/GlobalProvider';
 import { ThemeProvider } from 'styled-components/native';
-import { colors } from './src/constants';
 import * as Font from 'expo-font';
+import { Provider } from 'react-redux';
+
 import Navigator from './src/navigation/Navigator';
+import { colors } from './src/constants';
+import { store } from './src/modules/store';
 
 export default function App() {
   const [state, setState] = useState(false);
@@ -23,7 +25,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={{ colors: colors }}>
-      <Navigator />
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
     </ThemeProvider>
   );
 }
