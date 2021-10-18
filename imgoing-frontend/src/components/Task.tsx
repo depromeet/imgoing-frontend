@@ -8,14 +8,14 @@ import SubheadlineTypo from './typography/SubheadlineTypo';
 
 type GroupType = '루틴' | '즐겨찾기' | '북마크';
 
-interface RoutineProps {
+interface TaskProps {
   minutes: number;
   title: string;
   defaultNotification: boolean;
   group?: GroupType;
 }
 
-const RoutineView = styled.View`
+const TaskView = styled.View`
   height: 50px;
   border: 2px solid ${({ theme }) => theme.colors.black};
   display: flex;
@@ -60,7 +60,7 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
   };
 })``;
 
-const Routine = (props: RoutineProps) => {
+const Task = (props: TaskProps) => {
   const { title, minutes, group, defaultNotification } = props;
   const [isNotification, setNotification] = useState<boolean>(defaultNotification);
   useEffect(() => {
@@ -69,7 +69,7 @@ const Routine = (props: RoutineProps) => {
   return (
     <>
       <TouchableHighlight onPress={() => alert('test')}>
-        <RoutineView>
+        <TaskView>
           {group && (
             <>
               <GroupTagView>
@@ -87,10 +87,10 @@ const Routine = (props: RoutineProps) => {
             xml={isNotification ? icon_bell.set : icon_bell.unset}
             fill={'black'}
           />
-        </RoutineView>
+        </TaskView>
       </TouchableHighlight>
     </>
   );
 };
 
-export default Routine;
+export default Task;
