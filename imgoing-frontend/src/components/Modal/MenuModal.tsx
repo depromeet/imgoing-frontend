@@ -1,20 +1,14 @@
 import React from 'react';
-import { Modal } from 'react-native';
+import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/native';
+import { setModal } from '../../modules/slices/modal';
 import CalloutTypo from '../typography/CalloutTypo';
-
-interface ModalProps {
-  isModalVisible: boolean;
-  setIsModalVisible: (value: boolean) => void;
-  isDeleteModalVisible: boolean;
-  setIsDeleteModalVisible: (value: boolean) => void;
-}
 
 interface ModalButtonProps {
   first?: boolean;
 }
 
-const ModalView = styled.TouchableOpacity`
+const ModalView = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
@@ -39,8 +33,10 @@ const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
 `;
 
 const MenuModal = () => {
+  const dispatch = useDispatch();
+
   return (
-    <ModalView onPress={() => console.log('pressed')}>
+    <ModalView>
       <ModalButton first onPress={() => console.log('pressed')}>
         <CalloutTypo color={'black'}>고정하기</CalloutTypo>
       </ModalButton>
@@ -49,7 +45,7 @@ const MenuModal = () => {
       </ModalButton>
       <ModalButton
         onPress={() => {
-          console.log('pressed');
+          dispatch(setModal('delete'));
         }}>
         <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
       </ModalButton>
