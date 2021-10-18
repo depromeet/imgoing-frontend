@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { icon_plus } from '../../assets/svg';
 import Input from '../components/common/Input';
 import RectangleButton from '../components/common/RectangleButton';
-import Routine from '../components/Routine';
+import Task from '../components/Task';
 import SubheadlineTypo from '../components/typography/SubheadlineTypo';
 import BottomButtonLayout from '../layouts/BottomButtonLayout';
 
@@ -37,12 +37,12 @@ const EditScreen = () => {
           />
           <SubheadlineTypo color="grayHeavy">어떤 준비가 필요할까요?</SubheadlineTypo>
           <RectangleButton leftIcon={icon_plus}>등록해 주세요</RectangleButton>
-          <Routine
+          <Task
             minutes={120}
             defaultNotification={true}
             title="옷 갈아입기 옷 갈아입기 옷 갈아입기..adadadadadadadadaddad"
           />
-          <Routine
+          <Task
             minutes={120}
             defaultNotification={true}
             title="옷 갈아입기 옷 갈아입기 옷 갈아입기..adadadadadadadadaddad"

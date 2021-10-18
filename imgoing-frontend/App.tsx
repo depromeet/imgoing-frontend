@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import Navigator from './src/navigation/Navigator';
 import { colors } from './src/constants';
 import { store } from './src/modules/store';
+import ModalContainer from './src/components/Modal';
 
 export default function App() {
   const [state, setState] = useState(false);
@@ -26,6 +27,7 @@ export default function App() {
   return (
     <ThemeProvider theme={{ colors: colors }}>
       <Provider store={store}>
+        <ModalContainer />
         <Navigator />
       </Provider>
     </ThemeProvider>
