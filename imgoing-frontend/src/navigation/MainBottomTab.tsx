@@ -5,7 +5,7 @@ import { BottomTabParamList, NavigatorParamList } from '../types/Route';
 import { SvgXml } from 'react-native-svg';
 
 import SettingScreen from '../screens/SettingsScreen';
-import MainScreen from '../screens/MainScreen';
+import HomeScreen from '../screens/HomeScreen';
 import { icon_home, icon_homeDot, icon_menu, icon_menuDot } from '../../assets/svg';
 import { colors } from '../constants';
 
