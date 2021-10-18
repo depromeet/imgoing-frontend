@@ -10,6 +10,7 @@ import { colors } from '../constants';
 import PlanAddScreen from '../screens/PlanAddScreen';
 import AuthLoadingScreen from '../screens/AuthLoadingScreen';
 import MainBottomTab from './MainBottomTab';
+import LoginScreen from '../screens/LoginScreen';
 
 const Stack = createStackNavigator<NavigatorParamList>();
 
@@ -47,6 +48,13 @@ const Stacks = () => {
           headerStyle: {
             shadowColor: 'transparent',
           },
+        }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
