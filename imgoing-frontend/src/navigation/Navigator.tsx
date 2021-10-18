@@ -16,15 +16,15 @@ const Stack = createStackNavigator<NavigatorParamList>();
 
 const Stacks = () => {
   return (
-    <Stack.Navigator initialRouteName="AuthLoadingScreen">
+    <Stack.Navigator initialRouteName='AuthLoadingScreen'>
       <Stack.Screen
-        name="AuthLoadingScreen"
+        name='AuthLoadingScreen'
         component={AuthLoadingScreen}
         options={{ headerShown: true }}
       />
-      <Stack.Screen name="Main" component={MainBottomTab} options={{ headerShown: false }} />
+      <Stack.Screen name='Main' component={MainBottomTab} options={{ headerShown: false }} />
       <Stack.Screen
-        name="PlanEdit"
+        name='PlanEdit'
         component={PlanEditScreen}
         options={{
           title: '편집하기',
@@ -37,7 +37,7 @@ const Stacks = () => {
         }}
       />
       <Stack.Screen
-        name="PlanAdd"
+        name='PlanAdd'
         component={PlanAddScreen}
         options={{
           title: '',
@@ -51,7 +51,7 @@ const Stacks = () => {
         }}
       />
       <Stack.Screen
-        name="Login"
+        name='Login'
         component={LoginScreen}
         options={{
           headerShown: false,

@@ -2,9 +2,9 @@ import 'styled-components';
 import { ColorScheme } from '../constants';
 
 type StyledTheme = {
-    colors: ColorScheme
-  }
-  
+  colors: ColorScheme;
+};
+
 declare module 'styled-components' {
-    export interface DefaultTheme extends StyledTheme {}
+  export interface DefaultTheme extends StyledTheme {}
 }

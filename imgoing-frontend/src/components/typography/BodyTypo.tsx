@@ -11,7 +11,7 @@ const BodyTypo = (props: TypoProps) => {
   const { children, en, bold, color, ...restProps } = props;
   return (
     <BaseTypo
-      fontSize="20px"
+      fontSize='20px'
       typoHeight={typoHeight}
       en={en}
       bold={bold}

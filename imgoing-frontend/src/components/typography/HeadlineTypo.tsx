@@ -10,7 +10,7 @@ const HeadlineTypo = (props: TypoProps) => {
   const { children, en, bold, color, ...restProps } = props;
   return (
     <BaseTypo
-      fontSize="24px"
+      fontSize='24px'
       typoHeight={typoHeight}
       en={en}
       bold={bold}

@@ -10,7 +10,7 @@ const CaptionTypo = (props: TypoProps) => {
   const { children, en, bold, color, ...restProps } = props;
   return (
     <BaseTypo
-      fontSize="11px"
+      fontSize='11px'
       typoHeight={typoHeight}
       en={en}
       bold={bold}

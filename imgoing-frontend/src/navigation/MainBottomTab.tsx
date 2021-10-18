@@ -13,9 +13,9 @@ const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 const MainBottomTab = () => {
   return (
-    <BottomTab.Navigator initialRouteName="Home">
+    <BottomTab.Navigator initialRouteName='Home'>
       <BottomTab.Screen
-        name="Home"
+        name='Home'
         component={HomeScreen}
         options={{
           headerShown: false,
@@ -28,7 +28,7 @@ const MainBottomTab = () => {
         }}
       />
       <BottomTab.Screen
-        name="Settings"
+        name='Settings'
         component={SettingScreen}
         options={{
           headerShown: false,

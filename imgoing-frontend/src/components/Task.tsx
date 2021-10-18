@@ -79,7 +79,7 @@ const Task = (props: TaskProps) => {
             </>
           )}
           <SubheadlineTypo>{minutes}분</SubheadlineTypo>
-          <Title numberOfLines={1} color="grayHeavy">
+          <Title numberOfLines={1} color='grayHeavy'>
             {title}
           </Title>
           <SvgXml

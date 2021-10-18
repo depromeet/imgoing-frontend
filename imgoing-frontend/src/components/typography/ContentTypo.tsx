@@ -10,7 +10,7 @@ const ContentTypo = (props: TypoProps) => {
   const { children, en, bold, color, ...restProps } = props;
   return (
     <BaseTypo
-      fontSize="13px"
+      fontSize='13px'
       typoHeight={typoHeight}
       en={en}
       bold={bold}

@@ -23,7 +23,7 @@ const RectangleButton = (props: RectangleButtonProps) => {
   return (
     <StyledButton {...restProps}>
       {leftIcon && <SvgXml style={{ marginRight: 8 }} xml={leftIcon} fill={colors.blue}></SvgXml>}
-      <SubheadlineTypo bold color="blue">
+      <SubheadlineTypo bold color='blue'>
         {children}
       </SubheadlineTypo>
     </StyledButton>

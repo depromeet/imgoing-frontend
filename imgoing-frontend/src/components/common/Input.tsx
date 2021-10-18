@@ -30,7 +30,7 @@ const Input = (props: InputProps) => {
   const [isFocus, setFocus] = useState<boolean>(false);
   return (
     <InputWrapper style={style}>
-      {props.title && <SubheadlineTypo color="grayHeavy">{props.title}</SubheadlineTypo>}
+      {props.title && <SubheadlineTypo color='grayHeavy'>{props.title}</SubheadlineTypo>}
       <StyledInput
         isFocus={isFocus}
         placeholderTextColor={colors.grayHeavy}

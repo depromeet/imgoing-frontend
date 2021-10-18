@@ -10,7 +10,7 @@ const CalloutTypo = (props: TypoProps) => {
   const { children, en, bold, color, ...restProps } = props;
   return (
     <BaseTypo
-      fontSize="16px"
+      fontSize='16px'
       typoHeight={typoHeight}
       en={en}
       bold={bold}
