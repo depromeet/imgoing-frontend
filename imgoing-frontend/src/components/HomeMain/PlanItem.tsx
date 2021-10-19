@@ -4,11 +4,11 @@ import styled from 'styled-components/native';
 
 import { useDispatch } from 'react-redux';
 
-import { icon_contract, icon_expand, icon_moreHorizCircle, icon_pin } from '../../../assets/svg';
+import { icon_contract, icon_expand, icon_moreHorizCircle, icon_pin } from 'assets/svg';
 import kakaoMap from 'assets/svg/kakaoMap';
-import { colors } from '../../constants';
-import { setModal } from '@/modules/slices/modal';
-import { CalloutTypo, CaptionTypo, ContentTypo, SubheadlineTypo } from '@/components/typography';
+import { colors } from 'constant/index';
+import { setModal } from 'modules/slices/modal';
+import { CalloutTypo, CaptionTypo, ContentTypo, SubheadlineTypo } from 'components/typography';
 
 interface PlanItemProps {
   data: {};

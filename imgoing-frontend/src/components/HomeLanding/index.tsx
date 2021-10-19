@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-import { CalloutTypo, FootnoteTypo } from '@/components/typography';
+import { CalloutTypo, FootnoteTypo } from 'components/typography';
 import { SvgXml } from 'react-native-svg';
 // import NotificationBar from './NotificationBar';
 
-import landingCharacter from '@assets/svg/landingCharacter';
-import RoundButton from '@/components/common/RoundButton';
+import landingCharacter from 'assets/svg/landingCharacter';
+import RoundButton from 'components/common/RoundButton';
 
 const ImgView = styled.View`
   width: 100%;

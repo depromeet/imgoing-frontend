@@ -3,8 +3,8 @@ import { TouchableHighlightProps } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
-import { icon_bell } from '@assets/svg';
-import { CaptionTypo, SubheadlineTypo } from '@/components/typography';
+import { icon_bell } from 'assets/svg';
+import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 
 type GroupType = '루틴' | '즐겨찾기' | '북마크';
 

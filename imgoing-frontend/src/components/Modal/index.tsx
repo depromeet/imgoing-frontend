@@ -3,7 +3,7 @@ import { Modal } from 'react-native';
 import styled from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { ModalType, removeModal } from '@/modules/slices/modal';
+import { ModalType, removeModal } from 'modules/slices/modal';
 import MenuModal from './MenuModal';
 import DeleteModal from './DeleteModal';
 

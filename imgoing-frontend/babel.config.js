@@ -32,7 +32,6 @@ module.exports = function (api) {
           ],
           alias: {
             assets: ['./assets'],
-            environments: ['./environments'],
           },
         },
       ],

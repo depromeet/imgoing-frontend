@@ -1,5 +1,5 @@
 import 'styled-components';
-import { ColorScheme } from '@/constants';
+import { ColorScheme } from 'constant/index';
 
 type StyledTheme = {
   colors: ColorScheme;

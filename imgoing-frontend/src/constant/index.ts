@@ -1,4 +1,4 @@
-export const typoStyle = {
+const typoStyle = {
   ko: {
     R: 400,
     B: 500,
@@ -9,7 +9,7 @@ export const typoStyle = {
   },
 };
 
-export const colors = {
+const colors = {
   black: '#313338',
   white: '#FFFFFF',
   blue: '#0045B0',
@@ -21,4 +21,8 @@ export const colors = {
   grayLight: '#F7F8F9',
 };
 
-export type ColorScheme = typeof colors;
+type ColorScheme = typeof colors;
+
+export { typoStyle, colors };
+
+export type { ColorScheme };

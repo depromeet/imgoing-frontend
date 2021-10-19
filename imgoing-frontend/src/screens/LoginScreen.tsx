@@ -3,9 +3,9 @@ import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 import { NavigationScreenProp } from 'react-navigation';
 
-import imgoingLogo from '@assets/svg/imgoingLogo';
-import kakaoLogin from '@assets/svg/kakaoLogin';
-import { CaptionTypo, SubheadlineTypo } from '@/components/typography';
+import imgoingLogo from 'assets/svg/imgoingLogo';
+import kakaoLogin from 'assets/svg/kakaoLogin';
+import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 
 interface LoginProps {
   navigation: NavigationScreenProp<any, any>;

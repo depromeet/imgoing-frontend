@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/native';
 
-import { CalloutTypo } from '@/components/typography';
-import { setModal } from '@/modules/slices/modal';
+import { CalloutTypo } from 'components/typography';
+import { setModal } from 'modules/slices/modal';
 
 interface ModalButtonProps {
   first?: boolean;

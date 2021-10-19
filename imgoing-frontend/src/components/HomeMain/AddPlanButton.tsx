@@ -2,9 +2,9 @@ import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled, { css } from 'styled-components/native';
 
-import { icon_plus } from '@assets/svg';
-import { colors } from '@/constants';
-import { SubheadlineTypo } from '@/components/typography';
+import { icon_plus } from 'assets/svg';
+import { colors } from 'constant/index';
+import { SubheadlineTypo } from 'components/typography';
 
 interface ButtonProps {
   children: React.ReactNode;
