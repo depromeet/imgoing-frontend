@@ -17,7 +17,7 @@ interface OwnProps {
 const StyledInput = styled(TextInput)<OwnProps & InputProps>`
   width: 100%;
   height: 50px;
-  margin-top: ${({ title }) => title && 14};
+  margin-top: ${({ title }) => title && 14}px;
   background: ${({ theme }) => theme.colors.white};
   border: 2px solid ${({ theme, isFocus }) => (isFocus ? theme.colors.blue : theme.colors.black)};
   border-radius: 4px;
