@@ -1,9 +1,11 @@
 import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled, { css } from 'styled-components/native';
-import { icon_plus } from '../../../assets/svg';
-import SubheadlineTypo from '../typography/SubheadlineTypo';
-import { colors } from '../../constants';
+
+import { icon_plus } from '@assets/svg';
+import { colors } from '@/constants';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+
 interface ButtonProps {
   children: React.ReactNode;
   onPress: () => void;
@@ -44,9 +46,9 @@ const IconButton = (props: ButtonProps) => {
   return (
     <StyledButton {...props}>
       {props.full ? (
-        <SvgXml xml={icon_plus} width="20px" fill={colors.white} />
+        <SvgXml xml={icon_plus} width='20px' fill={colors.white} />
       ) : (
-        <SvgXml xml={icon_plus} width="24px" fill={colors.white} />
+        <SvgXml xml={icon_plus} width='24px' fill={colors.white} />
       )}
       {props.full && (
         <>

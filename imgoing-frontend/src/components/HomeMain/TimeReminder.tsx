@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import SubheadlineTypo from '../typography/SubheadlineTypo';
-import TitleTypo from '../typography/TitleTypo';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import TitleTypo from '@/components/typography/TitleTypo';
 
 const TitleView = styled.View`
   padding: 50px 0 50px 0;

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
-import kakaoMap from '../../../assets/svg/kakaoMap';
-import CalloutTypo from '../typography/CalloutTypo';
-import CaptionTypo from '../typography/CaptionTypo';
-import ContentTypo from '../typography/ContentTypo';
-import SubheadlineTypo from '../typography/SubheadlineTypo';
-import { icon_menu_rounded, icon_open, icon_pin } from '../../../assets/svg';
-import { colors } from '../../constants';
+
+import { icon_menu_rounded, icon_open, icon_pin } from '@assets/svg';
+import kakaoMap from '@assets/svg/kakaoMap';
+import { colors } from '@/constants';
+import CalloutTypo from '@/components/typography/CalloutTypo';
+import CaptionTypo from '@/components/typography/CaptionTypo';
+import ContentTypo from '@/components/typography/ContentTypo';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+
 interface PlanItemProps {
   data: {};
 }
@@ -100,18 +102,18 @@ const PlanItem = (props: PlanItemProps) => {
         </SubheadlineTypo>
         {/* 고정여부에 따라 변경 */}
         <Pin>
-          <SvgXml xml={icon_pin.fill} width="100%" height="16px" fill={colors.blue} />
+          <SvgXml xml={icon_pin.fill} width='100%' height='16px' fill={colors.blue} />
         </Pin>
         {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
         <OpenMenuButton onPress={() => setIsModalVisible(true)}>
-          <SvgXml xml={icon_menu_rounded} width="100%" height="22px" fill={colors.blue} />
+          <SvgXml xml={icon_menu_rounded} width='100%' height='22px' fill={colors.blue} />
         </OpenMenuButton>
         {/* 확장여부에 따라 내용 표시 변경 */}
         <ExpandButton>
           {!toggleExpanded ? (
-            <SvgXml xml={icon_open.down} width="100%" height="16px" fill={colors.blue} />
+            <SvgXml xml={icon_open.down} width='100%' height='16px' fill={colors.blue} />
           ) : (
-            <SvgXml xml={icon_open.up} width="100%" height="16px" fill={colors.blue} />
+            <SvgXml xml={icon_open.up} width='100%' height='16px' fill={colors.blue} />
           )}
         </ExpandButton>
       </ExpandableBar>
@@ -139,7 +141,7 @@ const PlanItem = (props: PlanItemProps) => {
           </Row>
           {/* 지도 연결 필요 */}
           <KaKaoMapButton activeOpacity={0.7}>
-            <SvgXml xml={kakaoMap} width="100%" height="32px" />
+            <SvgXml xml={kakaoMap} width='100%' height='32px' />
           </KaKaoMapButton>
           <Row>
             <Emoji>

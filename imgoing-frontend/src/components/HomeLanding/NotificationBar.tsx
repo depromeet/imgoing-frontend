@@ -1,10 +1,10 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
-import { icon_close } from '../../../assets/svg';
-import { colors, ColorScheme } from '../../constants';
-import FootnoteTypo from '../typography/FootnoteTypo';
+
+import { icon_close } from '@assets/svg';
+import { colors, ColorScheme } from '@/constants';
+import FootnoteTypo from '@/components/typography/FootnoteTypo';
 
 interface NotificationBarProps {
   setIsVisible: (value: boolean) => void;
@@ -50,7 +50,7 @@ const NotificationBar = (props: NotificationBarProps) => {
         <ShortcutButtonText>바로 가기</ShortcutButtonText>
       </ShortcutButton>
       <CloseButton onPress={() => setIsVisible(false)}>
-        <SvgXml xml={icon_close} width="100%" height="16px" fill={colors.blue} />
+        <SvgXml xml={icon_close} width='100%' height='16px' fill={colors.blue} />
       </CloseButton>
     </NotificationBarWrapper>
   );
