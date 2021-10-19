@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import { useDispatch } from 'react-redux';
+
 import CalloutTypo from '@/components/typography/CalloutTypo';
 import CaptionTypo from '@/components/typography/CaptionTypo';
 import ContentTypo from '@/components/typography/ContentTypo';
 import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import { setModal } from '@/modules/slices/modal';
 
 interface PlanItemProps {
   data: {};
@@ -70,8 +73,8 @@ const KaKaoMapImage = styled.Image``;
 
 const PlanItem = (props: PlanItemProps) => {
   const [toggleExpanded, setToggleExpanded] = useState<boolean>(false);
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   return (
     <PlanItemView
@@ -93,8 +96,16 @@ const PlanItem = (props: PlanItemProps) => {
         {/* 고정여부에 따라 변경 */}
         <ImageView source={require('../@assets/images/pin.png')} />
         {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
+<<<<<<< HEAD
+        <OpenMenuButton
+          onPress={() => {
+            dispatch(setModal('menu'));
+          }}>
+          <IconImage source={require('../../../assets/images/menu.png')} />
+=======
         <OpenMenuButton onPress={() => setIsModalVisible(true)}>
           <IconImage source={require('../@assets/images/menu.png')} />
+>>>>>>> c256b9992c71e4b3495169f3952af12e124b6609
         </OpenMenuButton>
         {/* 확장여부에 따라 내용 표시 변경 */}
         <ExpandButton>
