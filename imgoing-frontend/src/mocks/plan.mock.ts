@@ -1,4 +1,4 @@
-import { Destination, Plan, Task } from '@/types';
+import { Destination, Plan, Task } from 'types';
 
 const tasks: Task[] = [
   {

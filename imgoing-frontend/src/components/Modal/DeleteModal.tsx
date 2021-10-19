@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { useDispatch } from 'react-redux';
 
-import { removeModal } from '@/modules/slices/modal';
-import RoundButton from '@/components/common/RoundButton';
-import { CalloutTypo, ContentTypo } from '@/components/typography';
+import { removeModal } from 'modules/slices/modal';
+import RoundButton from 'components/common/RoundButton';
+import { CalloutTypo, ContentTypo } from 'components/typography';
 
 const ModalView = styled.View`
   background: ${(props) => props.theme.colors.white};

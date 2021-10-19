@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 
 import ModalContainer from 'components/Modal';
 import Navigator from 'navigation/Navigator';
-import { colors } from 'constants/';
+import { colors } from 'constant/index';
 import { store } from 'modules/store';
 
 export default function App() {

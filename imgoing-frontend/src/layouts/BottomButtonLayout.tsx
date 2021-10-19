@@ -2,7 +2,7 @@ import React from 'react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { KeyboardAvoidingView, NativeModules, Platform } from 'react-native';
 import styled from 'styled-components/native';
-import RoundButton from '@/components/common/RoundButton';
+import RoundButton from 'components/common/RoundButton';
 import { useState, useEffect } from 'react';
 
 interface BottomButtonLayoutProps {

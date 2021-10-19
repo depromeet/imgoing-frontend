@@ -3,14 +3,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
 
-import { icon_arrowLeft } from '@assets/svg';
-import { NavigatorParamList } from '@/types/Route';
-import { colors } from '@/constants';
-import PlanEditScreen from '@/screens/PlanEditScreen';
-import PlanAddScreen from '@/screens/PlanAddScreen';
-import LoginScreen from '@/screens/LoginScreen';
-import AuthLoadingScreen from '@/screens/AuthLoadingScreen';
-import MainBottomTab from '@/navigation/MainBottomTab';
+import { icon_arrowLeft } from 'assets/svg';
+import { NavigatorParamList } from 'types/Route';
+import { colors } from 'constant/index';
+import PlanEditScreen from 'screens/PlanEditScreen';
+import PlanAddScreen from 'screens/PlanAddScreen';
+import LoginScreen from 'screens/LoginScreen';
+import AuthLoadingScreen from 'screens/AuthLoadingScreen';
+import MainBottomTab from 'navigation/MainBottomTab';
 
 const Stack = createStackNavigator<NavigatorParamList>();
 

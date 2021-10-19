@@ -2,7 +2,7 @@ import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled, { css } from 'styled-components';
 
-import { SubheadlineTypo } from '@/components/typography';
+import { SubheadlineTypo } from 'components/typography';
 
 interface ButtonProps {
   children: React.ReactNode;

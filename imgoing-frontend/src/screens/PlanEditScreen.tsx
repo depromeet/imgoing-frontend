@@ -2,12 +2,12 @@ import React from 'react';
 import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 
-import { icon_plus } from '@assets/svg';
-import Input from '@/components/common/Input';
-import RectangleButton from '@/components/common/RectangleButton';
-import Task from '@/components/Task';
-import { SubheadlineTypo } from '@/components/typography';
-import BottomButtonLayout from '@/layouts/BottomButtonLayout';
+import { icon_plus } from 'assets/svg';
+import Input from 'components/common/Input';
+import RectangleButton from 'components/common/RectangleButton';
+import Task from 'components/Task';
+import { SubheadlineTypo } from 'components/typography';
+import BottomButtonLayout from 'layouts/BottomButtonLayout';
 
 const EditView = styled.View`
   padding: 0 15px;
