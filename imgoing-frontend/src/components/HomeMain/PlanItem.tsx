@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import CalloutTypo from '../typography/CalloutTypo';
-import CaptionTypo from '../typography/CaptionTypo';
-import ContentTypo from '../typography/ContentTypo';
-import SubheadlineTypo from '../typography/SubheadlineTypo';
 import { useDispatch } from 'react-redux';
-import { setModal } from '../../modules/slices/modal';
+
+import CalloutTypo from '@/components/typography/CalloutTypo';
+import CaptionTypo from '@/components/typography/CaptionTypo';
+import ContentTypo from '@/components/typography/ContentTypo';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import { setModal } from '@/modules/slices/modal';
+
 interface PlanItemProps {
   data: {};
 }
@@ -92,20 +94,25 @@ const PlanItem = (props: PlanItemProps) => {
           11:12
         </SubheadlineTypo>
         {/* 고정여부에 따라 변경 */}
-        <ImageView source={require('../../../assets/images/pin.png')} />
+        <ImageView source={require('../@assets/images/pin.png')} />
         {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
+<<<<<<< HEAD
         <OpenMenuButton
           onPress={() => {
             dispatch(setModal('menu'));
           }}>
           <IconImage source={require('../../../assets/images/menu.png')} />
+=======
+        <OpenMenuButton onPress={() => setIsModalVisible(true)}>
+          <IconImage source={require('../@assets/images/menu.png')} />
+>>>>>>> c256b9992c71e4b3495169f3952af12e124b6609
         </OpenMenuButton>
         {/* 확장여부에 따라 내용 표시 변경 */}
         <ExpandButton>
           {!toggleExpanded ? (
-            <ImageView source={require('../../../assets/images/down.png')} />
+            <ImageView source={require('../@assets/images/down.png')} />
           ) : (
-            <ImageView source={require('../../../assets/images/up.png')} />
+            <ImageView source={require('../@assets/images/up.png')} />
           )}
         </ExpandButton>
       </ExpandableBar>
@@ -116,23 +123,23 @@ const PlanItem = (props: PlanItemProps) => {
       {toggleExpanded && (
         <DetailView>
           <Row>
-            <IconImage source={require('../../../assets/images/⏳.png')} />
+            <IconImage source={require('../@assets/images/⏳.png')} />
             <ContentTypo color={'black'}>준비 40분 소요</ContentTypo>
           </Row>
           <Row>
-            <IconImage source={require('../../../assets/images/📍.png')} />
+            <IconImage source={require('../@assets/images/📍.png')} />
             <ContentTypo color={'black'}>홍대입구역 2번 출구</ContentTypo>
           </Row>
           {/* 지도 연결 필요 */}
           <KaKaoMapButton activeOpacity={0.7}>
-            <KaKaoMapImage source={require('../../../assets/images/kakaomap.png')} />
+            <KaKaoMapImage source={require('../@assets/images/kakaomap.png')} />
           </KaKaoMapButton>
           <Row>
-            <IconImage source={require('../../../assets/images/🎒️.png')} />
+            <IconImage source={require('../@assets/images/🎒️.png')} />
             <ContentTypo color={'black'}>보조 배터리, 고데기</ContentTypo>
           </Row>
           <Row>
-            <IconImage source={require('../../../assets/images/✏️.png')} />
+            <IconImage source={require('../@assets/images/✏️.png')} />
             <ContentTypo color={'black'}>편의점 들러서 물 사기</ContentTypo>
           </Row>
         </DetailView>

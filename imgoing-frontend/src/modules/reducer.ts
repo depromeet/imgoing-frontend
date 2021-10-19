@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import users from './slices/user';
-import modal from './slices/modal';
+
+import users from '@/modules/slices/user';
+import modal from '@/modules/slices/modal';
 
 const reducer = combineReducers({
   users,

@@ -1,8 +1,8 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
-import { ColorScheme } from '../../constants';
-import FootnoteTypo from '../typography/FootnoteTypo';
+import { ColorScheme } from '@/constants';
+import FootnoteTypo from '@/components/typography/FootnoteTypo';
 
 interface NotificationBarProps {
   setIsVisible: (value: boolean) => void;
@@ -45,7 +45,7 @@ const NotificationBar = (props: NotificationBarProps) => {
         <ShortcutButton>바로 가기</ShortcutButton>
       </TouchableOpacity>
       <TouchableOpacity onPress={() => setIsVisible(false)}>
-        <CloseButton source={require('../../../assets/images/close_button.png')} />
+        <CloseButton source={require('../@assets/images/close_button.png')} />
       </TouchableOpacity>
     </NotificationBarWrapper>
   );
