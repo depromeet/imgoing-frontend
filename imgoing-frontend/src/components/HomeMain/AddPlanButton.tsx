@@ -40,7 +40,7 @@ const Gap = styled.View`
   width: 4px;
 `;
 
-const IconButton = (props: ButtonProps) => {
+const AddPlanButton = (props: ButtonProps) => {
   return (
     <StyledButton {...props}>
       {props.full ? (
@@ -60,4 +60,4 @@ const IconButton = (props: ButtonProps) => {
   );
 };
 
-export default IconButton;
+export default AddPlanButton;
