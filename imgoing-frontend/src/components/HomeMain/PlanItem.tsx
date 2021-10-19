@@ -6,7 +6,7 @@ import CalloutTypo from '../typography/CalloutTypo';
 import CaptionTypo from '../typography/CaptionTypo';
 import ContentTypo from '../typography/ContentTypo';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
-import { icon_menu_rounded, icon_open, icon_pin } from '../../../assets/svg';
+import { icon_contract, icon_expand, icon_moreHorizCircle, icon_pin } from '../../../assets/svg';
 import { colors } from '../../constants';
 interface PlanItemProps {
   data: {};
@@ -104,14 +104,14 @@ const PlanItem = (props: PlanItemProps) => {
         </Pin>
         {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
         <OpenMenuButton onPress={() => setIsModalVisible(true)}>
-          <SvgXml xml={icon_menu_rounded} width="100%" height="22px" fill={colors.blue} />
+          <SvgXml xml={icon_moreHorizCircle} width="100%" height="22px" fill={colors.black} />
         </OpenMenuButton>
         {/* 확장여부에 따라 내용 표시 변경 */}
         <ExpandButton>
           {!toggleExpanded ? (
-            <SvgXml xml={icon_open.down} width="100%" height="16px" fill={colors.blue} />
+            <SvgXml xml={icon_expand} width="100%" height="16px" fill={colors.black} />
           ) : (
-            <SvgXml xml={icon_open.up} width="100%" height="16px" fill={colors.blue} />
+            <SvgXml xml={icon_contract} width="100%" height="16px" fill={colors.black} />
           )}
         </ExpandButton>
       </ExpandableBar>
