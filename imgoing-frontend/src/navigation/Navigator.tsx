@@ -2,8 +2,9 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import { SvgXml } from 'react-native-svg';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
-import { icon_arrowLeft } from 'assets/svg';
+import { icon_arrowLeft, icon_close } from 'assets/svg';
 import { NavigatorParamList } from 'types/Route';
 import { colors } from 'constant/index';
 import PlanEditScreen from 'screens/PlanEditScreen';
@@ -39,16 +40,35 @@ const Stacks = () => {
       <Stack.Screen
         name='PlanAdd'
         component={PlanAddScreen}
-        options={{
-          title: '',
+        options={({ navigation }) => ({
+          title: '스케줄 등록',
           headerShown: true,
           headerTitleAlign: 'left',
-          headerBackImage: () => <SvgXml xml={icon_arrowLeft} fill={colors.black} />,
-          headerBackTitle: 'back',
+          headerRight: () => {
+            return (
+              <SvgXml
+                xml={icon_close}
+                style={{ marginRight: 16 }}
+                fill={colors.black}
+                onPressOut={() => navigation.goBack()}
+              />
+            );
+          },
+          headerLeft: () => {
+            return (
+              <SvgXml
+                xml={icon_arrowLeft}
+                style={{ marginLeft: 16 }}
+                fill={colors.black}
+                onPressOut={() => console.log('back')}
+              />
+            );
+          },
           headerStyle: {
+            height: getStatusBarHeight() + 54,
             shadowColor: 'transparent',
           },
-        }}
+        })}
       />
       <Stack.Screen
         name='Login'
