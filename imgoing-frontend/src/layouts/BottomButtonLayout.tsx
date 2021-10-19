@@ -1,9 +1,9 @@
-import React from 'react';
-import { LinearGradient } from 'expo-linear-gradient';
+import React, { useState, useEffect } from 'react';
 import { KeyboardAvoidingView, NativeModules, Platform } from 'react-native';
 import styled from 'styled-components/native';
+import { LinearGradient } from 'expo-linear-gradient';
+
 import RoundButton from 'components/common/RoundButton';
-import { useState, useEffect } from 'react';
 
 interface BottomButtonLayoutProps {
   children: React.ReactNode;
@@ -33,15 +33,12 @@ const GradientOverlay = styled(LinearGradient)`
   z-index: -1;
 `;
 
-const BottomLayoutView = styled.View`
-  position: relative;
-`;
-
 const { StatusBarManager } = NativeModules;
 
 const BottomButtonLayout = (props: BottomButtonLayoutProps) => {
   const [statusBarHeight, setStatusBarHeight] = useState(0);
   const { children, text, onPress } = props;
+
   useEffect(() => {
     Platform.OS == 'ios'
       ? StatusBarManager.getHeight((statusBarFrameData: any) => {
@@ -50,25 +47,23 @@ const BottomButtonLayout = (props: BottomButtonLayoutProps) => {
       : null;
   }, []);
 
-  useEffect(() => {}, []);
   return (
     <KeyboardAvoidingView
+      style={{ flex: 1 }}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       keyboardVerticalOffset={statusBarHeight + 44}>
-      <BottomLayoutView>
-        {children}
-        <BottomView>
-          <ButtonView>
-            <RoundButton onPress={onPress}>{text}</RoundButton>
-          </ButtonView>
-          <GradientOverlay
-            colors={[
-              'rgba(255,255,255,0)',
-              'rgba(255,255,255,1)',
-              'rgba(255,255,255,1)',
-            ]}></GradientOverlay>
-        </BottomView>
-      </BottomLayoutView>
+      {children}
+      <BottomView>
+        <ButtonView>
+          <RoundButton onPress={onPress}>{text}</RoundButton>
+        </ButtonView>
+        <GradientOverlay
+          colors={[
+            'rgba(255,255,255,0)',
+            'rgba(255,255,255,1)',
+            'rgba(255,255,255,1)',
+          ]}></GradientOverlay>
+      </BottomView>
     </KeyboardAvoidingView>
   );
 };
