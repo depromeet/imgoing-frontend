@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
+import { useDispatch } from 'react-redux';
 
 import { icon_contract, icon_expand, icon_moreHorizCircle, icon_pin } from '../../../assets/svg';
 import kakaoMap from '../../../assets/svg/kakaoMap';
 import { colors } from '../../constants';
+import { setModal } from '@/modules/slices/modal';
 import CalloutTypo from '../typography/CalloutTypo';
 import CaptionTypo from '../typography/CaptionTypo';
 import ContentTypo from '../typography/ContentTypo';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
+
 
 interface PlanItemProps {
   data: {};
@@ -80,8 +83,8 @@ const KaKaoMapButton = styled.TouchableOpacity`
 
 const PlanItem = (props: PlanItemProps) => {
   const [toggleExpanded, setToggleExpanded] = useState<boolean>(false);
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
-  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   return (
     <PlanItemView
