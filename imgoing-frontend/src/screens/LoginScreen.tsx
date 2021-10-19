@@ -5,8 +5,7 @@ import { NavigationScreenProp } from 'react-navigation';
 
 import imgoingLogo from '@assets/svg/imgoingLogo';
 import kakaoLogin from '@assets/svg/kakaoLogin';
-import CaptionTypo from '@/components/typography/CaptionTypo';
-import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import { CaptionTypo, SubheadlineTypo } from '@/components/typography';
 
 interface LoginProps {
   navigation: NavigationScreenProp<any, any>;

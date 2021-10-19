@@ -2,9 +2,9 @@ import React from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
+import { FootnoteTypo } from '@/components/typography';
 import { icon_close } from '@assets/svg';
 import { colors, ColorScheme } from '@/constants';
-import FootnoteTypo from '@/components/typography/FootnoteTypo';
 
 interface NotificationBarProps {
   setIsVisible: (value: boolean) => void;

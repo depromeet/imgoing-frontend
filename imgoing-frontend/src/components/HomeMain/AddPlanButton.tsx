@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components/native';
 
 import { icon_plus } from '@assets/svg';
 import { colors } from '@/constants';
-import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import { SubheadlineTypo } from '@/components/typography';
 
 interface ButtonProps {
   children: React.ReactNode;

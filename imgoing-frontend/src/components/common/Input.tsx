@@ -3,7 +3,7 @@ import React from 'react';
 import { TextInput, TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
 
-import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import { SubheadlineTypo } from '@/components/typography';
 import { colors } from '@/constants';
 
 interface InputProps extends TextInputProps {

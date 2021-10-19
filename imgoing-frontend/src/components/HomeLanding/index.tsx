@@ -1,11 +1,11 @@
 import React from 'react';
-import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
+
+import { CalloutTypo, FootnoteTypo } from '@/components/typography';
+import { SvgXml } from 'react-native-svg';
 // import NotificationBar from './NotificationBar';
 
 import landingCharacter from '@assets/svg/landingCharacter';
-import FootnoteTypo from '@/components/typography/FootnoteTypo';
-import CalloutTypo from '@/components/typography/CalloutTypo';
 import RoundButton from '@/components/common/RoundButton';
 
 const ImgView = styled.View`
