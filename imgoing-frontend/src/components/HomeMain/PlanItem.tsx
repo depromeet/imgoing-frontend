@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import CalloutTypo from '@/components/typography/CalloutTypo';
-import CaptionTypo from '@/components/typography/CaptionTypo';
-import ContentTypo from '@/components/typography/ContentTypo';
-import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+
+import { CalloutTypo, CaptionTypo, ContentTypo, SubheadlineTypo } from '@/components/typography';
 
 interface PlanItemProps {
   data: {};

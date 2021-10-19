@@ -1,7 +1,7 @@
 import React from 'react';
-import CalloutTypo from '@/components/typography/CalloutTypo';
 import styled from 'styled-components/native';
-import FootnoteTypo from '@/components/typography/FootnoteTypo';
+
+import { CalloutTypo, FootnoteTypo } from '@/components/typography';
 // import NotificationBar from './NotificationBar';
 import RoundButton from '@/components/common/RoundButton';
 

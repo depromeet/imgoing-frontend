@@ -1,8 +1,9 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
+
 import { ColorScheme } from '@/constants';
-import FootnoteTypo from '@/components/typography/FootnoteTypo';
+import { FootnoteTypo } from '@/components/typography';
 
 interface NotificationBarProps {
   setIsVisible: (value: boolean) => void;

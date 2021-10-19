@@ -1,7 +1,8 @@
 import React from 'react';
 import { Image } from 'react-native';
 import styled, { css } from 'styled-components/native';
-import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+
+import { SubheadlineTypo } from '@/components/typography';
 
 interface ButtonProps {
   children: React.ReactNode;

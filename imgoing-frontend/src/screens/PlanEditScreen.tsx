@@ -6,7 +6,7 @@ import { icon_plus } from '@assets/svg';
 import Input from '@/components/common/Input';
 import RectangleButton from '@/components/common/RectangleButton';
 import Task from '@/components/Task';
-import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import { SubheadlineTypo } from '@/components/typography';
 import BottomButtonLayout from '@/layouts/BottomButtonLayout';
 
 const EditView = styled.View`
