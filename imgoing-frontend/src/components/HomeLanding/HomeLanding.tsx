@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import CalloutTypo from '../typography/CalloutTypo';
-import styled from 'styled-components/native';
-import FootnoteTypo from '../typography/FootnoteTypo';
-// import NotificationBar from './NotificationBar';
-import RoundButton from '../common/RoundButton';
+import React from 'react';
 import { SvgXml } from 'react-native-svg';
-import landingCharacter from '../../../assets/svg/landingCharacter';
+import styled from 'styled-components/native';
+// import NotificationBar from './NotificationBar';
+
+import landingCharacter from '@assets/svg/landingCharacter';
+import FootnoteTypo from '@/components/typography/FootnoteTypo';
+import CalloutTypo from '@/components/typography/CalloutTypo';
+import RoundButton from '@/components/common/RoundButton';
 
 const ImgView = styled.View`
   width: 100%;
@@ -47,7 +48,7 @@ const HomeLanding = () => {
   return (
     <>
       <ImgView>
-        <SvgXml xml={landingCharacter} width="100%" height="180px" />
+        <SvgXml xml={landingCharacter} width='100%' height='180px' />
       </ImgView>
       <CalloutTypoView>
         <CalloutTypo bold>만나서 반가워요. 암고잉과</CalloutTypo>

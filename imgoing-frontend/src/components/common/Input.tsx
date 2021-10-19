@@ -2,8 +2,9 @@ import { useState } from 'react';
 import React from 'react';
 import { TextInput, TextInputProps } from 'react-native';
 import styled from 'styled-components/native';
-import SubheadlineTypo from '../typography/SubheadlineTypo';
-import { colors } from '../../constants';
+
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
+import { colors } from '@/constants';
 
 interface InputProps extends TextInputProps {
   title?: string;
@@ -30,7 +31,7 @@ const Input = (props: InputProps) => {
   const [isFocus, setFocus] = useState<boolean>(false);
   return (
     <InputWrapper style={style}>
-      {props.title && <SubheadlineTypo color="grayHeavy">{props.title}</SubheadlineTypo>}
+      {props.title && <SubheadlineTypo color='grayHeavy'>{props.title}</SubheadlineTypo>}
       <StyledInput
         isFocus={isFocus}
         placeholderTextColor={colors.grayHeavy}

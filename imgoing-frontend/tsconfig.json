@@ -7,6 +7,12 @@
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "noImplicitAny": true,
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@assets/*": ["assets/*"],
+      "@environments": ["environments"]
+    },
     "typeRoots": ["./src/types", "./node_modules/@types"]
   }
 }

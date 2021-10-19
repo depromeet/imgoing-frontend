@@ -1,9 +1,10 @@
 import React from 'react';
 import { NavigationScreenProp } from 'react-navigation';
 import styled from 'styled-components/native';
-import HomeLanding from '../components/HomeLanding/HomeLanding';
-import HomeMain from '../components/HomeMain/HomeMain';
-import PLANS from '../mock/plan.mock';
+
+import HomeLanding from '@/components/HomeLanding/HomeLanding';
+import HomeMain from '@/components/HomeMain/HomeMain';
+import PLANS from '@/mocks/plan.mock';
 
 interface MainProps {
   navigation: NavigationScreenProp<any, any>;
