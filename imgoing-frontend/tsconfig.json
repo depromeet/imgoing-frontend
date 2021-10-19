@@ -7,10 +7,21 @@
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
     "noImplicitAny": true,
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@assets/*": ["./assets/*"],
-      "@environments": ["./environments"]
+      "assets/*": ["./assets/*"],
+      "components/*": ["./src/components/*"],
+      "contexts/*": ["./src/contexts/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "layouts/*": ["./src/layouts/*"],
+      "mocks/*": ["./src/mocks/*"],
+      "modules/*": ["./src/modules/*"],
+      "navigation/*": ["./src/navigation/*"],
+      "screens/*": ["./src/screens/*"],
+      "types/*": ["./src/types/*"],
+      "utils/*": ["./src/utils/*"],
+      "constant/*": ["./src/constant/*"],
+      "environments": ["./src/environments"]
     },
     "typeRoots": ["./src/types", "./node_modules/@types"]
   }
