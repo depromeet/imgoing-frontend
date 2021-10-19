@@ -12,7 +12,6 @@ import CaptionTypo from '../typography/CaptionTypo';
 import ContentTypo from '../typography/ContentTypo';
 import SubheadlineTypo from '../typography/SubheadlineTypo';
 
-
 interface PlanItemProps {
   data: {};
 }
@@ -108,7 +107,7 @@ const PlanItem = (props: PlanItemProps) => {
           <SvgXml xml={icon_pin.fill} width='100%' height='16px' fill={colors.blue} />
         </Pin>
         {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
-        <OpenMenuButton onPress={() => setIsModalVisible(true)}>
+        <OpenMenuButton onPress={() => dispatch(setModal('menu'))}>
           <SvgXml xml={icon_moreHorizCircle} width='100%' height='22px' fill={colors.black} />
         </OpenMenuButton>
         {/* 확장여부에 따라 내용 표시 변경 */}
