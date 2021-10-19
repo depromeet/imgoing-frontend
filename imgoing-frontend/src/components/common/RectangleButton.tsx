@@ -2,8 +2,9 @@ import React from 'react';
 import { TouchableOpacityProps } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
-import { colors } from '../../constants';
-import SubheadlineTypo from '../typography/SubheadlineTypo';
+
+import { colors } from '@/constants';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
 
 interface RectangleButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
@@ -23,7 +24,7 @@ const RectangleButton = (props: RectangleButtonProps) => {
   return (
     <StyledButton {...restProps}>
       {leftIcon && <SvgXml style={{ marginRight: 8 }} xml={leftIcon} fill={colors.blue}></SvgXml>}
-      <SubheadlineTypo bold color="blue">
+      <SubheadlineTypo bold color='blue'>
         {children}
       </SubheadlineTypo>
     </StyledButton>

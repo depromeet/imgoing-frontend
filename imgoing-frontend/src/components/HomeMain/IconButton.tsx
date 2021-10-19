@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
 import styled, { css } from 'styled-components/native';
-import SubheadlineTypo from '../typography/SubheadlineTypo';
+import SubheadlineTypo from '@/components/typography/SubheadlineTypo';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -43,7 +43,7 @@ const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'full'>>`
 const IconButton = (props: ButtonProps) => {
   return (
     <StyledButton {...props}>
-      <Image source={require('../../../assets/images/plus.png')} />
+      <Image source={require('../@assets/images/plus.png')} />
       {props.full && (
         <>
           <Gap />
