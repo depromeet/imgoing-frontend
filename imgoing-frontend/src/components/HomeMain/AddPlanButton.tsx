@@ -1,7 +1,9 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 import styled, { css } from 'styled-components/native';
 
+import { icon_plus } from '@assets/svg';
+import { colors } from '@/constants';
 import { SubheadlineTypo } from '@/components/typography';
 
 interface ButtonProps {
@@ -9,10 +11,6 @@ interface ButtonProps {
   onPress: () => void;
   full?: boolean;
 }
-
-const Gap = styled.View`
-  width: 4px;
-`;
 
 const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'full'>>`
   position: absolute;
@@ -40,11 +38,18 @@ const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'full'>>`
     `;
   }}
 `;
+const Gap = styled.View`
+  width: 4px;
+`;
 
-const IconButton = (props: ButtonProps) => {
+const AddPlanButton = (props: ButtonProps) => {
   return (
     <StyledButton {...props}>
-      <Image source={require('../@assets/images/plus.png')} />
+      {props.full ? (
+        <SvgXml xml={icon_plus} width='20px' fill={colors.white} />
+      ) : (
+        <SvgXml xml={icon_plus} width='24px' fill={colors.white} />
+      )}
       {props.full && (
         <>
           <Gap />
@@ -57,4 +62,4 @@ const IconButton = (props: ButtonProps) => {
   );
 };
 
-export default IconButton;
+export default AddPlanButton;

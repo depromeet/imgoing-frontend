@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavigationScreenProp } from 'react-navigation';
-import IconButton from './IconButton';
+import AddPlanButton from './AddPlanButton';
 import PlanList from './PlanList';
 import TimeReminder from './TimeReminder';
 
@@ -18,7 +18,7 @@ const HomeMain = (props: HomeMainProps) => {
       <PlanList />
       {/* 시간 지나면 바뀌도록 애니메이션 넣어야 함 */}
       {/* 현재는 full prop 넣으면 전체 표시하도록 하였음. */}
-      <IconButton onPress={() => navigation.navigate('PlanAdd')}>일정 등록하기</IconButton>
+      <AddPlanButton onPress={() => navigation.navigate('PlanAdd')}>일정 등록하기</AddPlanButton>
     </>
   );
 };

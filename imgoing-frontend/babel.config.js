@@ -31,9 +31,8 @@ module.exports = function (api) {
             '.json',
           ],
           alias: {
-            '@/*': ['src/*'],
-            '@assets/*': ['assets/*'],
-            '@environments': ['environments'],
+            assets: ['./assets'],
+            environments: ['./environments'],
           },
         },
       ],

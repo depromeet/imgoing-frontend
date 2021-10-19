@@ -2,19 +2,19 @@ import React from 'react';
 import styled from 'styled-components/native';
 
 import { CalloutTypo, FootnoteTypo } from '@/components/typography';
+import { SvgXml } from 'react-native-svg';
 // import NotificationBar from './NotificationBar';
+
+import landingCharacter from '@assets/svg/landingCharacter';
 import RoundButton from '@/components/common/RoundButton';
 
-const ImgView = styled.Image`
-  height: 180px;
-  width: 260px;
-  margin-top: 119px;
-  margin-bottom: 40.99px;
+const ImgView = styled.View`
+  width: 100%;
+  margin-bottom: 40px;
 `;
 
 const CalloutTypoView = styled.View`
   align-items: center;
-  height: 46px;
   width: 100%;
   margin-bottom: 16px;
 `;
@@ -22,14 +22,12 @@ const CalloutTypoView = styled.View`
 const FootnoteTypoView = styled.View`
   align-items: center;
   width: 100%;
-  height: 34px;
   margin-bottom: 108px;
 `;
 
 const ButtonView = styled.View`
   flex-direction: row;
   justify-content: center;
-  height: 50px;
   width: 100%;
   margin-bottom: 24px;
 `;
@@ -49,7 +47,9 @@ const HomeLanding = () => {
 
   return (
     <>
-      <ImgView source={require('../@assets/images/landing.png')} />
+      <ImgView>
+        <SvgXml xml={landingCharacter} width='100%' height='180px' />
+      </ImgView>
       <CalloutTypoView>
         <CalloutTypo bold>만나서 반가워요. 암고잉과</CalloutTypo>
         <CalloutTypo bold>첫 번째 일정을 등록해 볼까요?</CalloutTypo>

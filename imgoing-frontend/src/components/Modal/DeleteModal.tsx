@@ -1,15 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { useDispatch } from 'react-redux';
 
+import { removeModal } from '@/modules/slices/modal';
 import RoundButton from '@/components/common/RoundButton';
 import { CalloutTypo, ContentTypo } from '@/components/typography';
 
-interface ModalProps {
-  isDeleteModalVisible: boolean;
-  setIsDeleteModalVisible: (value: boolean) => void;
-}
-
-const ModalView = styled.TouchableOpacity`
+const ModalView = styled.View`
   background: ${(props) => props.theme.colors.white};
   width: 320px;
   height: 170px;
@@ -32,6 +29,8 @@ const Gap = styled.View`
 `;
 
 const DeleteModal = () => {
+  const dispatch = useDispatch();
+
   return (
     <ModalView>
       <CalloutTypo bold color={'black'}>
@@ -46,7 +45,7 @@ const DeleteModal = () => {
         <RoundButton
           blank
           onPress={() => {
-            console.log('pressed');
+            dispatch(removeModal());
           }}>
           아니요
         </RoundButton>
