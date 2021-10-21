@@ -1,17 +1,22 @@
 import React from 'react';
-import { Text } from 'react-native';
 import styled from 'styled-components/native';
+
+import ProgressBar from 'components/PlanAdd/ProgressBar';
+import BottomButtonLayout from 'layouts/BottomButtonLayout';
+import UserInput from 'components/PlanAdd/UserInput';
 
 const Wrapper = styled.View`
   flex: 1;
-  align-items: center;
-  justify-content: center;
+  background-color: white;
 `;
 
 const PlanAddScreen = () => {
   return (
     <Wrapper>
-      <Text>PlanAddScreen</Text>
+      <BottomButtonLayout text='다음' onPress={() => {}}>
+        <ProgressBar />
+        <UserInput />
+      </BottomButtonLayout>
     </Wrapper>
   );
 };
