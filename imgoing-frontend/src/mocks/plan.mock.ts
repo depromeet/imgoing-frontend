@@ -77,28 +77,34 @@ const destinations: Destination[] = [
 
 const PLANS: Plan[] = [
   {
+    id: 1,
     name: '유나랑 영풍문고 앞에서 만나서 이번주 작업하기',
     arrival_at: '2021-10-09 08:40',
     destination: destinations[0],
     memo: '편의점 들러서 물 사기',
     items: '보조 배터리, 고데기',
     tasks: [tasks[0], tasks[1]],
+    isPinned: true,
   },
   {
+    id: 2,
     name: '건대입구에서 만나서 모각코하기',
     arrival_at: '2021-10-11 13:40',
     destination: destinations[1],
     memo: '비타민 챙겨먹고 출발',
     items: '충전기, 노트북',
     tasks: [tasks[6], tasks[7]],
+    isPinned: false,
   },
   {
+    id: 3,
     name: '업무 미팅 가기',
     arrival_at: '2021-10-15 09:00',
     destination: destinations[2],
     memo: '다이어리 챙겨가기',
     items: '우산, 노트북',
     tasks: [tasks[3], tasks[4], tasks[5]],
+    isPinned: true,
   },
 ];
 
