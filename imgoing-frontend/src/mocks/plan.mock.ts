@@ -79,7 +79,7 @@ const PLANS: Plan[] = [
   {
     id: 1,
     name: '유나랑 영풍문고 앞에서 만나서 이번주 작업하기',
-    arrival_at: '2021-10-09 08:40',
+    arrival_at: '2021-10-26 08:40',
     destination: destinations[0],
     memo: '편의점 들러서 물 사기',
     items: '보조 배터리, 고데기',
@@ -89,7 +89,7 @@ const PLANS: Plan[] = [
   {
     id: 2,
     name: '건대입구에서 만나서 모각코하기',
-    arrival_at: '2021-10-11 13:40',
+    arrival_at: '2021-10-25 13:40',
     destination: destinations[1],
     memo: '비타민 챙겨먹고 출발',
     items: '충전기, 노트북',
@@ -99,7 +99,7 @@ const PLANS: Plan[] = [
   {
     id: 3,
     name: '업무 미팅 가기',
-    arrival_at: '2021-10-15 09:00',
+    arrival_at: '2021-10-22 09:00',
     destination: destinations[2],
     memo: '다이어리 챙겨가기',
     items: '우산, 노트북',
