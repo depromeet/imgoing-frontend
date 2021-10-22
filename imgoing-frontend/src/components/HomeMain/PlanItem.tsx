@@ -1,18 +1,16 @@
 import React, { useState } from 'react';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
-
 import { useDispatch } from 'react-redux';
+import moment from 'moment';
 
 import { icon_contract, icon_expand, icon_moreHorizCircle, icon_pin } from 'assets/svg';
 import kakaoMap from 'assets/svg/kakaoMap';
 import { colors } from 'constant/index';
 import { setModal } from 'modules/slices/modal';
-import { CalloutTypo, CaptionTypo, ContentTypo, SubheadlineTypo } from 'components/typography';
-
-interface PlanItemProps {
-  data: {};
-}
+import { CalloutTypo, CaptionTypo, SubheadlineTypo } from 'components/typography';
+import { Plan, Task } from 'types/index';
+import PlanItemDetail from './PlanItemDetail';
 
 const PlanItemView = styled.TouchableOpacity`
   width: 100%;
@@ -57,16 +55,6 @@ const TitleView = styled.View`
   width: 260px;
 `;
 
-const Emoji = styled.View`
-  margin-right: 12px;
-`;
-
-const Row = styled.View`
-  flex-direction: row;
-  padding: 6px 0 6px 0;
-  align-items: center;
-`;
-
 const DetailView = styled.View`
   padding: 16px 0 16px 0;
   margin-left: 40px;
@@ -78,10 +66,27 @@ const KaKaoMapButton = styled.TouchableOpacity`
   margin-left: 28px;
 `;
 
-const PlanItem = (props: PlanItemProps) => {
+// 추후 시간관련 함수들을 util로 빼는것도 좋을듯합니다.
+const getStandByTime = (tasks: Task[]): string => {
+  let totalDuration = 0;
+  tasks.forEach((task) => {
+    totalDuration += task.duration;
+  });
+  return totalDuration > 60
+    ? `${parseInt((totalDuration / 60).toString())}시간 ${totalDuration % 60}`
+    : totalDuration.toString();
+};
+
+const PlanItem = ({ item }: { item: Plan }) => {
+  const { arrival_at, destination, items, memo, name, tasks, isPinned, id } = item;
   const [toggleExpanded, setToggleExpanded] = useState<boolean>(false);
 
   const dispatch = useDispatch();
+
+  const arrivalDate = moment(arrival_at);
+  const checkAMPM = arrivalDate.format('A');
+  const arrivalTime = arrivalDate.format('hh:mm');
+  const standByTime = getStandByTime(tasks);
 
   return (
     <PlanItemView
@@ -94,18 +99,20 @@ const PlanItem = (props: PlanItemProps) => {
         {/* 시간에 따라 변경 */}
         <TimeTag>
           <CaptionTypo bold en color={'white'}>
-            PM
+            {checkAMPM}
           </CaptionTypo>
         </TimeTag>
         <SubheadlineTypo bold en color={'black'}>
-          11:12
+          {arrivalTime}
         </SubheadlineTypo>
         {/* 고정여부에 따라 변경 */}
-        <Pin>
-          <SvgXml xml={icon_pin.fill} width='100%' height='16px' fill={colors.blue} />
-        </Pin>
+        {isPinned && (
+          <Pin>
+            <SvgXml xml={icon_pin.fill} width='100%' height='16px' fill={colors.blue} />
+          </Pin>
+        )}
         {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
-        <OpenMenuButton onPress={() => dispatch(setModal('menu'))}>
+        <OpenMenuButton onPress={() => dispatch(setModal({ modalType: 'menu', id: id }))}>
           <SvgXml xml={icon_moreHorizCircle} width='100%' height='22px' fill={colors.black} />
         </OpenMenuButton>
         {/* 확장여부에 따라 내용 표시 변경 */}
@@ -118,47 +125,18 @@ const PlanItem = (props: PlanItemProps) => {
         </ExpandButton>
       </ExpandableBar>
       <TitleView>
-        <CalloutTypo color={'grayHeavy'}>유나랑 영풍문고 앞에서 만나서 이번주 작업하기</CalloutTypo>
+        <CalloutTypo color={'grayHeavy'}>{name}</CalloutTypo>
       </TitleView>
-      {/* 컴포넌트화 고려 */}
       {toggleExpanded && (
         <DetailView>
-          <Row>
-            <Emoji>
-              <CalloutTypo bold color={'grayHeavy'}>
-                ⏳
-              </CalloutTypo>
-            </Emoji>
-            <ContentTypo color={'black'}>준비 40분 소요</ContentTypo>
-          </Row>
-          <Row>
-            <Emoji>
-              <CalloutTypo bold color={'grayHeavy'}>
-                📍
-              </CalloutTypo>
-            </Emoji>
-            <ContentTypo color={'black'}>홍대입구역 2번 출구</ContentTypo>
-          </Row>
+          <PlanItemDetail emoji={`⏳`} content={`준비 ${standByTime}분 소요`} />
+          <PlanItemDetail emoji={`📍`} content={destination.dest_name} />
           {/* 지도 연결 필요 */}
           <KaKaoMapButton activeOpacity={0.7}>
             <SvgXml xml={kakaoMap} width='100%' height='32px' />
           </KaKaoMapButton>
-          <Row>
-            <Emoji>
-              <CalloutTypo bold color={'grayHeavy'}>
-                🎒️
-              </CalloutTypo>
-            </Emoji>
-            <ContentTypo color={'black'}>보조 배터리, 고데기</ContentTypo>
-          </Row>
-          <Row>
-            <Emoji>
-              <CalloutTypo bold color={'grayHeavy'}>
-                ✏️
-              </CalloutTypo>
-            </Emoji>
-            <ContentTypo color={'black'}>편의점 들러서 물 사기</ContentTypo>
-          </Row>
+          <PlanItemDetail emoji={`🎒️`} content={items} />
+          <PlanItemDetail emoji={`✏️`} content={memo} />
         </DetailView>
       )}
     </PlanItemView>
