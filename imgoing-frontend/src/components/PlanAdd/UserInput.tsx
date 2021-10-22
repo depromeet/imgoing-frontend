@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View } from 'react-native';
 import styled from 'styled-components/native';
 
@@ -6,7 +6,8 @@ import { AddingPlanStepsType } from 'types/index';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
 import { icon_openRight, icon_plus } from 'assets/svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { resetStep } from 'modules/slices/stepOfAddingPlan';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -53,6 +54,11 @@ const Step7 = () => {
 
 const UserInput = () => {
   const stepOfAddingPlan = useSelector((state) => state.stepOfAddingPlan);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!stepOfAddingPlan.step) dispatch(resetStep());
+  }, [stepOfAddingPlan.step]);
 
   const currentStep = (step: keyof AddingPlanStepsType | null) => {
     switch (step) {
@@ -75,7 +81,7 @@ const UserInput = () => {
     }
   };
 
-  return <Wrapper>{stepOfAddingPlan.step && currentStep(stepOfAddingPlan.step)}</Wrapper>;
+  return <Wrapper>{currentStep(stepOfAddingPlan.step)}</Wrapper>;
 };
 
 export default UserInput;
