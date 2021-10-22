@@ -96,7 +96,6 @@ const PlanItem = ({ item }: { item: Plan }) => {
       }}>
       {/* 추후 컴포넌트화 고려 */}
       <ExpandableBar>
-        {/* 시간에 따라 변경 */}
         <TimeTag>
           <CaptionTypo bold en color={'white'}>
             {checkAMPM}
@@ -105,17 +104,14 @@ const PlanItem = ({ item }: { item: Plan }) => {
         <SubheadlineTypo bold en color={'black'}>
           {arrivalTime}
         </SubheadlineTypo>
-        {/* 고정여부에 따라 변경 */}
         {isPinned && (
           <Pin>
             <SvgXml xml={icon_pin.fill} width='100%' height='16px' fill={colors.blue} />
           </Pin>
         )}
-        {/* 현재 toggleExpanded === false 일 때, 모달 안열리는 문제 존재 */}
         <OpenMenuButton onPress={() => dispatch(setModal({ modalType: 'menu', id: id }))}>
           <SvgXml xml={icon_moreHorizCircle} width='100%' height='22px' fill={colors.black} />
         </OpenMenuButton>
-        {/* 확장여부에 따라 내용 표시 변경 */}
         <ExpandButton>
           {!toggleExpanded ? (
             <SvgXml xml={icon_expand} width='100%' height='16px' fill={colors.black} />
