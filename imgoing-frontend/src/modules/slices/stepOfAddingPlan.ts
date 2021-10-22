@@ -84,8 +84,11 @@ export const stepOfAddingPlan = createSlice({
 
       return nextState;
     },
+    resetStep: () => {
+      return addingPlanState;
+    },
   },
 });
 
-export const { setStep } = stepOfAddingPlan.actions;
+export const { setStep, resetStep } = stepOfAddingPlan.actions;
 export default stepOfAddingPlan.reducer;
