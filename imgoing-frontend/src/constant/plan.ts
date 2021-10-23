@@ -1,7 +1,7 @@
 // 이름 -> 출발지 -> 목적지 -> 도착 시간 -> 필수품 -> 일정 상세 -> 준비 항목
-import { PlanStepInfo } from 'types/index';
+import { AddingPlanStepsType, PlanStepInfo } from 'types/index';
 
-const planStepInfo: PlanStepInfo = {
+export const planStepInfo: PlanStepInfo = {
   setTitle: {
     prevStep: null,
     nextStep: 'setDeparture',
@@ -46,4 +46,4 @@ const planStepInfo: PlanStepInfo = {
   },
 };
 
-export { planStepInfo };
+export const firstStep = 'setTitle' as keyof AddingPlanStepsType | null;
