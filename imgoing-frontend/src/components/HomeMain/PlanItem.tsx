@@ -85,7 +85,7 @@ const PlanItem = ({ item }: { item: Plan }) => {
 
   const arrivalDate = moment(arrival_at);
   const checkAMPM = arrivalDate.format('A');
-  const arrivalTime = arrivalDate.format('hh:mm');
+  const arrivalTime = arrivalDate.format('MM/DD hh:mm');
   const standByTime = getStandByTime(tasks);
 
   return (
