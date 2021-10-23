@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavigationScreenProp } from 'react-navigation';
-import AddPlanButton from './AddPlanButton';
-import PlanList from './PlanList';
+
 import TimeReminder from './TimeReminder';
+import PlanList from './PlanList';
+import AddPlanButton from './AddPlanButton';
 
 interface HomeMainProps {
   navigation: NavigationScreenProp<any, any>;
@@ -11,7 +12,6 @@ interface HomeMainProps {
 const HomeMain = (props: HomeMainProps) => {
   const { navigation } = props;
 
-  useEffect(() => {}, []);
   return (
     <>
       <TimeReminder />

@@ -1,10 +1,12 @@
 export interface Plan {
+  id: number;
   name: string;
   arrival_at: string;
   destination: Destination;
   memo: string;
   items: string;
   tasks: Task[];
+  isPinned: boolean;
 }
 
 export interface Task {

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { removeModal } from 'modules/slices/modal';
 import RoundButton from 'components/common/RoundButton';
 import { CalloutTypo, ContentTypo } from 'components/typography';
+import { removePlan } from 'modules/slices/plan';
 
 const ModalView = styled.View`
   background: ${(props) => props.theme.colors.white};
@@ -24,12 +25,14 @@ const TextRow = styled.View`
 const Row = styled.View`
   flex-direction: row;
 `;
+
 const Gap = styled.View`
   width: 12px;
 `;
 
 const DeleteModal = () => {
   const dispatch = useDispatch();
+  const modal = useSelector((state) => state.modal);
 
   return (
     <ModalView>
@@ -53,7 +56,8 @@ const DeleteModal = () => {
         <RoundButton
           blank
           onPress={() => {
-            console.log('pressed');
+            dispatch(removeModal());
+            dispatch(removePlan(Number(modal?.id)));
           }}>
           삭제하기
         </RoundButton>

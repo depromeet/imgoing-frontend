@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Modal } from 'react-native';
 import styled from 'styled-components/native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import { ModalType, removeModal } from 'modules/slices/modal';
+import { ModalType } from 'modules/slices/modal';
 import MenuModal from './MenuModal';
 import DeleteModal from './DeleteModal';
 
@@ -11,7 +11,7 @@ type Modals = {
   [key in ModalType]: React.ReactNode;
 };
 
-const ContentsWrapper = styled.TouchableOpacity`
+const ContentsWrapper = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
@@ -22,7 +22,6 @@ const ContentsWrapper = styled.TouchableOpacity`
 
 const ModalContainer = () => {
   const modal = useSelector((state) => state.modal);
-  const dispatch = useDispatch();
   useEffect(() => {
     console.log(modal);
   }, [modal]);
@@ -34,9 +33,10 @@ const ModalContainer = () => {
 
   return (
     <>
+      {/* ContentsWrapper를 바깥으로 빼도록 리팩토링 필요 */}
       {modal && (
         <Modal animationType={'slide'} transparent={true}>
-          <ContentsWrapper onPress={() => dispatch(removeModal())}>{modals[modal]}</ContentsWrapper>
+          <ContentsWrapper>{modals[modal.modalType]}</ContentsWrapper>
         </Modal>
       )}
     </>

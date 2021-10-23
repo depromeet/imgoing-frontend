@@ -1,10 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavigationScreenProp } from 'react-navigation';
 import styled from 'styled-components/native';
 
 import HomeLanding from 'components/HomeLanding';
 import HomeMain from 'components/HomeMain';
-import PLANS from 'mocks/plan.mock';
 
 interface MainProps {
   navigation: NavigationScreenProp<any, any>;
@@ -19,7 +19,8 @@ const Wrapper = styled.SafeAreaView`
 `;
 
 const MainScreen = (props: MainProps) => {
-  return <Wrapper>{PLANS ? <HomeMain navigation={props.navigation} /> : <HomeLanding />}</Wrapper>;
+  const plan = useSelector((state) => state.plan);
+  return <Wrapper>{plan ? <HomeMain navigation={props.navigation} /> : <HomeLanding />}</Wrapper>;
 };
 
 export default MainScreen;
