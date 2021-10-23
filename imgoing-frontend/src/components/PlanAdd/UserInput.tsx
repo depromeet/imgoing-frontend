@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 import styled from 'styled-components/native';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { icon_openRight, icon_plus } from 'assets/svg';
 import { AddingPlanStepsType } from 'types/index';
+import { PLAN_STEP_TITLES } from 'constant/plan';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
-import { icon_openRight, icon_plus } from 'assets/svg';
-import { useDispatch, useSelector } from 'react-redux';
 import { resetStep } from 'modules/slices/stepOfAddingPlan';
 
 const Wrapper = styled.View`
@@ -62,19 +63,19 @@ const UserInput = () => {
 
   const currentStep = (step: keyof AddingPlanStepsType | null) => {
     switch (step) {
-      case 'setTitle':
+      case PLAN_STEP_TITLES.SET_TITLE:
         return <Step1 />;
-      case 'setDeparture':
+      case PLAN_STEP_TITLES.SET_DEPARTURE:
         return <Step2 />;
-      case 'setArrival':
+      case PLAN_STEP_TITLES.SET_ARRIVAL:
         return <Step3 />;
-      case 'setArrivalTime':
+      case PLAN_STEP_TITLES.SET_ARRIVALTIME:
         return <Step4 />;
-      case 'setItem':
+      case PLAN_STEP_TITLES.SET_ITEM:
         return <Step5 />;
-      case 'setDetails':
+      case PLAN_STEP_TITLES.SET_DETAILS:
         return <Step6 />;
-      case 'setTask':
+      case PLAN_STEP_TITLES.SET_TASK:
         return <Step7 />;
       default:
         return <Text>done</Text>;
