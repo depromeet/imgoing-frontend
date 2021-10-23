@@ -38,8 +38,8 @@ const MenuModal = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const navigatePlanEdit = () => {
-    navigation.navigate('PlanEdit');
     dispatch(removeModal());
+    navigation.navigate('PlanEdit');
   };
   const modal = useSelector((state) => state.modal);
 
