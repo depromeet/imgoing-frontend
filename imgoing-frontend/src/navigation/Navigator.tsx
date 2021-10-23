@@ -11,7 +11,7 @@ import { AddingPlanStepsType } from 'types/index';
 import { colors } from 'constant/index';
 import { firstStep, planStepInfo } from 'constant/plan';
 import store from 'modules/store';
-import { setStep, resetStep } from 'modules/slices/stepOfAddingPlan';
+import { setStep } from 'modules/slices/stepOfAddingPlan';
 import PlanEditScreen from 'screens/PlanEditScreen';
 import PlanAddScreen from 'screens/PlanAddScreen';
 import LoginScreen from 'screens/LoginScreen';
@@ -87,7 +87,7 @@ const Stacks = () => {
                 onPressOut={() => {
                   step === (firstStep as string)
                     ? navigation.goBack()
-                    : dispatch(setStep({ type: 'prev', userInput: { title: 'title' } }));
+                    : dispatch(setStep({ type: 'prev', userInput: {} }));
                 }}
               />
             );

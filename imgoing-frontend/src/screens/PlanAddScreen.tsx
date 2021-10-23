@@ -7,6 +7,7 @@ import BottomButtonLayout from 'layouts/BottomButtonLayout';
 import UserInput from 'components/PlanAdd/UserInput';
 import { resetStep, setStep } from 'modules/slices/stepOfAddingPlan';
 import { NavigationScreenProp } from 'react-navigation';
+import { AddPlanContentsType } from 'types/index';
 
 interface PlanAddScreenProps {
   navigation: NavigationScreenProp<any, any>;
@@ -18,14 +19,15 @@ const Wrapper = styled.View`
 `;
 
 const PlanAddScreen = (props: PlanAddScreenProps) => {
-  const contents = useRef<object>({});
+  const contents = useRef<AddPlanContentsType | null>(null);
   const dispatch = useDispatch();
 
-  const setContents = (newContent: object) => {
+  const setContents = (newContent: AddPlanContentsType) => {
     contents.current = newContent;
   };
 
   const onPress = () => {
+    if (!contents.current) return;
     dispatch(setStep({ type: 'next', userInput: contents.current }));
   };
 

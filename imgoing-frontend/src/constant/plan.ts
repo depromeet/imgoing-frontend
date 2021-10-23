@@ -13,6 +13,15 @@ export const PLAN_STEP_TITLES: {
   SET_TASK: 'setTask',
 };
 
+export type addingPlanStepKeys =
+  | 'setTitle'
+  | 'setDeparture'
+  | 'setArrival'
+  | 'setArrivalTime'
+  | 'setItem'
+  | 'setDetails'
+  | 'setTask';
+
 export const planStepInfo: PlanStepInfo = {
   setTitle: {
     prevStep: null,
