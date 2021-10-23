@@ -1,9 +1,11 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components/native';
 
 import { CalloutTypo } from 'components/typography';
-import { setModal } from 'modules/slices/modal';
+import { removeModal, setModal } from 'modules/slices/modal';
+import { useNavigation } from '@react-navigation/native';
+import { togglePlanPin } from 'modules/slices/plan';
 
 interface ModalButtonProps {
   first?: boolean;
@@ -15,7 +17,6 @@ const ModalView = styled.View`
   width: 100%;
   justify-content: flex-end;
   align-items: center;
-  background: rgba(0, 0, 0, 0.4);
 `;
 
 const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
@@ -35,18 +36,29 @@ const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
 
 const MenuModal = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const navigatePlanEdit = () => {
+    dispatch(removeModal());
+    navigation.navigate('PlanEdit');
+  };
+  const modal = useSelector((state) => state.modal);
 
   return (
     <ModalView>
-      <ModalButton first onPress={() => console.log('pressed')}>
+      <ModalButton
+        first
+        onPress={() => {
+          dispatch(removeModal());
+          dispatch(togglePlanPin(Number(modal?.id)));
+        }}>
         <CalloutTypo color={'black'}>고정하기</CalloutTypo>
       </ModalButton>
-      <ModalButton onPress={() => console.log('pressed')}>
+      <ModalButton onPress={navigatePlanEdit}>
         <CalloutTypo color={'black'}>편집하기</CalloutTypo>
       </ModalButton>
       <ModalButton
         onPress={() => {
-          dispatch(setModal('delete'));
+          dispatch(setModal({ modalType: 'delete', id: modal?.id }));
         }}>
         <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
       </ModalButton>

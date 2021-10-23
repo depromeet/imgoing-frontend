@@ -1,7 +1,10 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
+import moment from 'moment';
 
 import { SubheadlineTypo, TitleTypo } from 'components/typography';
+import { Plan } from 'types/index';
 
 const TitleView = styled.View`
   padding: 50px 0 50px 0;
@@ -12,16 +15,39 @@ const Gap = styled.View`
   height: 6px;
 `;
 
+const getNearPlan = (plans: Plan[]): Plan => {
+  return plans
+    .filter((plan) => moment(plan.arrival_at) >= moment())
+    .reduce((prev, current) => {
+      return prev.arrival_at < current.arrival_at ? prev : current;
+    });
+};
+
+const getRemainingTime = (minutes: number): string => {
+  // 하루보다 더 많은 시간이 남았을 경우
+  if (minutes / 60 > 24) {
+    return `${parseInt((minutes / 1440).toString())}일 ${parseInt(
+      ((minutes / 60) % (minutes / 1440)).toString(),
+    )}시간 ${minutes % 60}분`;
+  }
+  // 24시간 이내로 남았을 경우
+  return `${parseInt((minutes / 60).toString())}시간 ${minutes % 60}분`;
+};
+
 const TimeReminder = () => {
+  const plans = useSelector((state) => state.plan);
+  const nearPlan = getNearPlan(plans);
+  const nearTime = moment(nearPlan.arrival_at).diff(moment(), 'minutes');
+  const remainingTime = getRemainingTime(nearTime);
+
   return (
     <TitleView>
       <SubheadlineTypo bold color={'grayHeavy'}>
         준비 시작까지
       </SubheadlineTypo>
       <Gap />
-      {/* 데이터 받아서 계산하여 표시 필요 */}
       <TitleTypo bold color={'blue'}>
-        🔥24시간 59분
+        🔥{remainingTime}
       </TitleTypo>
       <Gap />
       <TitleTypo bold color={'black'}>
