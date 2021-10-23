@@ -53,6 +53,14 @@ type setDetailsType = {
 type setTaskType = {
   tasks: Task[];
 };
+export type AddPlanContentsType =
+  | setTitleType
+  | setDepartureType
+  | setArrivalType
+  | setArrivalTimeType
+  | setItemType
+  | setDetailsType
+  | setTaskType;
 export interface AddingPlanSteps {
   setTitle: setTitleType;
   setDeparture: setDepartureType;
