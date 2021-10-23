@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import * as Font from 'expo-font';
 import { Provider } from 'react-redux';
-
-import ModalContainer from 'components/Modal';
 import Navigator from 'navigation/Navigator';
 import { colors } from 'constant/index';
 import { store } from 'modules/store';
@@ -27,7 +25,6 @@ export default function App() {
   return (
     <ThemeProvider theme={{ colors: colors }}>
       <Provider store={store}>
-        <ModalContainer />
         <Navigator />
       </Provider>
     </ThemeProvider>

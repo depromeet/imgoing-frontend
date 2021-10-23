@@ -3,7 +3,8 @@ import { useDispatch } from 'react-redux';
 import styled, { css } from 'styled-components/native';
 
 import { CalloutTypo } from 'components/typography';
-import { setModal } from 'modules/slices/modal';
+import { removeModal, setModal } from 'modules/slices/modal';
+import { useNavigation } from '@react-navigation/native';
 
 interface ModalButtonProps {
   first?: boolean;
@@ -35,13 +36,17 @@ const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
 
 const MenuModal = () => {
   const dispatch = useDispatch();
-
+  const navigation = useNavigation();
+  const navigatePlanEdit = () => {
+    navigation.navigate('PlanEdit');
+    dispatch(removeModal());
+  };
   return (
     <ModalView>
       <ModalButton first onPress={() => console.log('pressed')}>
         <CalloutTypo color={'black'}>고정하기</CalloutTypo>
       </ModalButton>
-      <ModalButton onPress={() => console.log('pressed')}>
+      <ModalButton onPress={navigatePlanEdit}>
         <CalloutTypo color={'black'}>편집하기</CalloutTypo>
       </ModalButton>
       <ModalButton
