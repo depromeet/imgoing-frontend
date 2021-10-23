@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components/native';
 
 import { CalloutTypo } from 'components/typography';
 import { removeModal, setModal } from 'modules/slices/modal';
+import { useNavigation } from '@react-navigation/native';
 import { togglePlanPin } from 'modules/slices/plan';
 
 interface ModalButtonProps {
@@ -35,6 +36,11 @@ const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
 
 const MenuModal = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const navigatePlanEdit = () => {
+    dispatch(removeModal());
+    navigation.navigate('PlanEdit');
+  };
   const modal = useSelector((state) => state.modal);
 
   return (
@@ -47,7 +53,7 @@ const MenuModal = () => {
         }}>
         <CalloutTypo color={'black'}>고정하기</CalloutTypo>
       </ModalButton>
-      <ModalButton onPress={() => console.log('pressed')}>
+      <ModalButton onPress={navigatePlanEdit}>
         <CalloutTypo color={'black'}>편집하기</CalloutTypo>
       </ModalButton>
       <ModalButton

@@ -12,6 +12,7 @@ import PlanAddScreen from 'screens/PlanAddScreen';
 import LoginScreen from 'screens/LoginScreen';
 import AuthLoadingScreen from 'screens/AuthLoadingScreen';
 import MainBottomTab from 'navigation/MainBottomTab';
+import ModalContainer from 'components/Modal';
 
 const Stack = createStackNavigator<NavigatorParamList>();
 
@@ -27,15 +28,22 @@ const Stacks = () => {
       <Stack.Screen
         name='PlanEdit'
         component={PlanEditScreen}
-        options={{
+        options={({ navigation }) => ({
           title: '편집하기',
           headerShown: true,
           headerTitleAlign: 'left',
-          headerLeft: () => <>{/*SVG 로드 설정 후 제작*/}</>,
+          headerLeft: () => (
+            <SvgXml
+              xml={icon_arrowLeft}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
           headerStyle: {
             shadowColor: 'transparent',
           },
-        }}
+        })}
       />
       <Stack.Screen
         name='PlanAdd'
@@ -84,6 +92,7 @@ const Stacks = () => {
 export default () => {
   return (
     <NavigationContainer>
+      <ModalContainer />
       <Stacks />
     </NavigationContainer>
   );
