@@ -39,7 +39,7 @@ export const planStepInfo: PlanStepInfo = {
     percentage: 78,
   },
   setTask: {
-    prevStep: 'setTask',
+    prevStep: 'setDetails',
     nextStep: null,
     title: '준비 항목 등록',
     percentage: 87,
