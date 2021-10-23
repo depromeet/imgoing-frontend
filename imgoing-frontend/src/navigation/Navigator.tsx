@@ -69,10 +69,6 @@ const Stacks = () => {
           headerShown: true,
           headerTitleAlign: 'left',
           headerRight: () => {
-            useEffect(() => {
-              dispatch(resetStep());
-            }, []);
-
             return (
               <SvgXml
                 xml={icon_close}
@@ -83,12 +79,6 @@ const Stacks = () => {
             );
           },
           headerLeft: () => {
-            useEffect(() => {
-              if (step === (firstStep as string)) {
-                dispatch(resetStep());
-              }
-            }, []);
-
             return (
               <SvgXml
                 xml={icon_arrowLeft}
