@@ -1,19 +1,24 @@
 import React from 'react';
-import styled from 'styled-components/native';
+import { FlatList, ListRenderItem } from 'react-native';
+import { useSelector } from 'react-redux';
+
+import { Plan } from 'types/index';
 import PlanItem from './PlanItem';
 
-const FlatListView = styled.FlatList`
-  width: 90%;
-`;
-// 임시 데이터 생성
-const dummyScheduleData = [{}, {}, {}];
-
 const PlanList = () => {
+  const plan = useSelector((state) => state.plan);
+  const pinnedPlan = plan.filter((item) => item.isPinned);
+  const unPinnedPlan = plan.filter((item) => !item.isPinned);
+  const integratedPlan = pinnedPlan.concat(unPinnedPlan);
+
+  const renderItem: ListRenderItem<Plan> = ({ item }) => <PlanItem item={item} />;
+
   return (
-    <FlatListView
-      data={dummyScheduleData}
-      renderItem={(item) => <PlanItem data={item} />}
-      keyExtractor={(item, index) => index.toString()}
+    <FlatList<Plan>
+      style={{ width: '90%' }}
+      data={integratedPlan}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => item.id.toString()}
     />
   );
 };
