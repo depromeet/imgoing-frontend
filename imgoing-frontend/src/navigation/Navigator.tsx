@@ -9,7 +9,7 @@ import { icon_arrowLeft, icon_close } from 'assets/svg';
 import { NavigatorParamList } from 'types/Route';
 import { AddingPlanStepsType } from 'types/index';
 import { colors } from 'constant/index';
-import { firstStep } from 'constant/plan';
+import { firstStep, planStepInfo } from 'constant/plan';
 import store from 'modules/store';
 import { setStep, resetStep } from 'modules/slices/stepOfAddingPlan';
 import PlanEditScreen from 'screens/PlanEditScreen';
@@ -65,7 +65,7 @@ const Stacks = () => {
         name='PlanAdd'
         component={PlanAddScreen}
         options={({ navigation }) => ({
-          title: '스케줄 등록',
+          title: step ? planStepInfo[step].title : 'title',
           headerShown: true,
           headerTitleAlign: 'left',
           headerRight: () => {
