@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacityProps } from 'react-native';
+import { StyleSheet, TouchableOpacityProps } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
@@ -9,6 +9,7 @@ import { SubheadlineTypo } from 'components/typography';
 interface RectangleButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
   leftIcon?: string;
+  rightIcon?: string;
 }
 
 const StyledButton = styled.TouchableOpacity`
@@ -19,14 +20,27 @@ const StyledButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
+
+const styles = StyleSheet.create({
+  leftstyle: {
+    padding: 13,
+    justifyContent: 'center',
+  },
+  rightstyle: {
+    padding: 13,
+    justifyContent: 'space-between',
+  },
+});
+
 const RectangleButton = (props: RectangleButtonProps) => {
-  const { children, leftIcon, ...restProps } = props;
+  const { children, leftIcon, rightIcon, ...restProps } = props;
   return (
-    <StyledButton {...restProps}>
-      {leftIcon && <SvgXml style={{ marginRight: 8 }} xml={leftIcon} fill={colors.blue}></SvgXml>}
+    <StyledButton {...restProps} style={leftIcon ? styles.leftstyle : styles.rightstyle}>
+      {leftIcon && <SvgXml style={{ marginRight: 8 }} xml={leftIcon} fill={colors.blue} />}
       <SubheadlineTypo bold color='blue'>
         {children}
       </SubheadlineTypo>
+      {rightIcon && <SvgXml xml={rightIcon} fill={colors.blue} />}
     </StyledButton>
   );
 };

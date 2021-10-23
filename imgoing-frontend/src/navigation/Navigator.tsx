@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 import { SvgXml } from 'react-native-svg';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
@@ -12,11 +13,38 @@ import PlanAddScreen from 'screens/PlanAddScreen';
 import LoginScreen from 'screens/LoginScreen';
 import AuthLoadingScreen from 'screens/AuthLoadingScreen';
 import MainBottomTab from 'navigation/MainBottomTab';
+import { resetStep } from 'modules/slices/stepOfAddingPlan';
 import ModalContainer from 'components/Modal';
 
 const Stack = createStackNavigator<NavigatorParamList>();
 
 const Stacks = () => {
+  // const step = useSelector(
+  //   (state) => state.stepOfAddingPlan.step
+  // );
+  const dispatch = useDispatch();
+
+  const onHeaderRightPress = (navigation: any) => {
+    return (
+      <SvgXml
+        xml={icon_close}
+        style={{ marginRight: 16 }}
+        fill={colors.black}
+        onPressOut={() => navigation.goBack()}
+      />
+    );
+  };
+  const onHeaderLeftPress = (navigation: any) => {
+    return (
+      <SvgXml
+        xml={icon_arrowLeft}
+        style={{ marginLeft: 16 }}
+        fill={colors.black}
+        onPressOut={() => navigation.goBack()}
+      />
+    );
+  };
+
   return (
     <Stack.Navigator initialRouteName='AuthLoadingScreen'>
       <Stack.Screen
@@ -52,26 +80,8 @@ const Stacks = () => {
           title: '스케줄 등록',
           headerShown: true,
           headerTitleAlign: 'left',
-          headerRight: () => {
-            return (
-              <SvgXml
-                xml={icon_close}
-                style={{ marginRight: 16 }}
-                fill={colors.black}
-                onPressOut={() => navigation.goBack()}
-              />
-            );
-          },
-          headerLeft: () => {
-            return (
-              <SvgXml
-                xml={icon_arrowLeft}
-                style={{ marginLeft: 16 }}
-                fill={colors.black}
-                onPressOut={() => console.log('back')}
-              />
-            );
-          },
+          headerRight: () => onHeaderRightPress(navigation),
+          headerLeft: () => onHeaderLeftPress(navigation),
           headerStyle: {
             height: getStatusBarHeight() + 54,
             shadowColor: 'transparent',

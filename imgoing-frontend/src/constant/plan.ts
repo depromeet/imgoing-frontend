@@ -1,26 +1,49 @@
-interface AddingPlanSteps {
-  setName: undefined;
-  setArrival: undefined;
-  setArrivalTime: undefined;
-  setItem: undefined;
-  setDetails: undefined;
-  setTask: undefined;
-}
+// 이름 -> 출발지 -> 목적지 -> 도착 시간 -> 필수품 -> 일정 상세 -> 준비 항목
+import { PlanStepInfo } from 'types/index';
 
-type PlanStepInfo = {
-  [key in keyof AddingPlanSteps]: {
-    nextStep: keyof AddingPlanSteps | null;
-    title: string;
-  };
+const planStepInfo: PlanStepInfo = {
+  setTitle: {
+    prevStep: null,
+    nextStep: 'setDeparture',
+    title: '스케줄 등록',
+    percentage: 0,
+  },
+  setDeparture: {
+    prevStep: 'setTitle',
+    nextStep: 'setArrival',
+    title: '출발지 입력',
+    percentage: 42,
+  },
+  setArrival: {
+    prevStep: 'setDeparture',
+    nextStep: 'setArrivalTime',
+    title: '목적지 입력',
+    percentage: 42,
+  },
+  setArrivalTime: {
+    prevStep: 'setArrival',
+    nextStep: 'setItem',
+    title: '도착 시간 입력',
+    percentage: 54,
+  },
+  setItem: {
+    prevStep: 'setArrivalTime',
+    nextStep: 'setDetails',
+    title: '필수품 등록',
+    percentage: 62,
+  },
+  setDetails: {
+    prevStep: 'setItem',
+    nextStep: 'setTask',
+    title: '일정 상세',
+    percentage: 78,
+  },
+  setTask: {
+    prevStep: 'setTask',
+    nextStep: null,
+    title: '준비 항목 등록',
+    percentage: 87,
+  },
 };
 
-const PlanStepInfo: PlanStepInfo = {
-  setName: { nextStep: 'setArrival', title: '스케줄 등록' },
-  setArrival: { nextStep: 'setArrivalTime', title: '목적지 입력' },
-  setArrivalTime: { nextStep: 'setItem', title: '도착 시간 입력' },
-  setItem: { nextStep: 'setDetails', title: '필수품 등록' },
-  setDetails: { nextStep: 'setTask', title: '일정 상세' },
-  setTask: { nextStep: null, title: '준비 항목 등록' },
-};
-
-export { PlanStepInfo };
+export { planStepInfo };
