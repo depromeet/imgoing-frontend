@@ -85,6 +85,9 @@ export type PlanStepInfo = {
     nextStep: keyof AddingPlanStepsType | null;
     prevStep: keyof AddingPlanStepsType | null;
     title: string;
-    percentage: number;
+    progressbar: {
+      sentence: string;
+      percentage: number;
+    };
   };
 };
