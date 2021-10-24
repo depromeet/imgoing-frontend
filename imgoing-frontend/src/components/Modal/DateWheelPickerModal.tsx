@@ -1,18 +1,10 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import styled, { css } from 'styled-components/native';
-import { useNavigation } from '@react-navigation/native';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
-import { CalloutTypo } from 'components/typography';
-import { removeModal, setModal } from 'modules/slices/modal';
-import { togglePlanPin } from 'modules/slices/plan';
 import WheelPicker from 'components/common/WheelPicker';
 import RoundButton from 'components/common/RoundButton';
-
-interface ModalButtonProps {
-  first?: boolean;
-}
 
 const ModalView = styled.View`
   display: flex;

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { ModalType } from 'modules/slices/modal';
 import MenuModal from './MenuModal';
 import DeleteModal from './DeleteModal';
+import DateWheelPickerModal from './DateWheelPickerModal';
 
 type Modals = {
   [key in ModalType]: React.ReactNode;
@@ -29,6 +30,7 @@ const ModalContainer = () => {
   const modals: Modals = {
     delete: <DeleteModal />,
     menu: <MenuModal />,
+    datePicker: <DateWheelPickerModal />,
   };
 
   return (
