@@ -25,6 +25,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-dotenv": "^3.2.0",
     "react-native-gesture-handler": "^1.10.3",
+    "react-native-iphone-x-helper": "^1.3.1",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-status-bar-height": "^2.6.0",
