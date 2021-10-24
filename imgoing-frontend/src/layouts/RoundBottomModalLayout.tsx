@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 import RoundButton from 'components/common/RoundButton';
+import { BodyTypo } from 'components/typography';
 
 interface Props {
   children?: React.ReactNode;
@@ -9,6 +10,7 @@ interface Props {
     onPress: () => void;
     buttonName: string;
   };
+  title?: string;
 }
 
 const ModalView = styled.View`
@@ -26,13 +28,22 @@ const ModalContainer = styled.View`
   padding: 12px 20px ${getBottomSpace()}px 20px;
 `;
 
+const ButtonWrapper = styled.View`
+  margin-top: 12px;
+`;
+
 const RoundBottomModalLayout = (props: Props) => {
-  const { children, button } = props;
+  const { children, button, title } = props;
   return (
     <ModalView>
       <ModalContainer>
+        {title && <BodyTypo bold>{title}</BodyTypo>}
         {children}
-        {button && <RoundButton onPress={button.onPress}>{button.buttonName}</RoundButton>}
+        {button && (
+          <ButtonWrapper>
+            <RoundButton onPress={button.onPress}>{button.buttonName}</RoundButton>
+          </ButtonWrapper>
+        )}
       </ModalContainer>
     </ModalView>
   );

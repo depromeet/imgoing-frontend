@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 
 import WheelPicker from 'components/common/WheelPicker';
-import RoundButton from 'components/common/RoundButton';
 import { removeModal } from 'modules/slices/modal';
 import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 
@@ -11,7 +10,6 @@ const PickerContainer = styled.View`
   display: flex;
   height: 180px;
   flex-direction: row;
-  margin-bottom: 12px;
 `;
 
 const Picker = styled.View`
@@ -23,7 +21,8 @@ const DateWheelPickerModal = () => {
   const dispatch = useDispatch();
 
   return (
-    <RoundBottomModalLayout>
+    <RoundBottomModalLayout
+      button={{ onPress: () => dispatch(removeModal()), buttonName: '선택 완료' }}>
       <PickerContainer>
         <Picker>
           <WheelPicker
@@ -51,7 +50,6 @@ const DateWheelPickerModal = () => {
           />
         </Picker>
       </PickerContainer>
-      <RoundButton onPress={() => dispatch(removeModal())}>선택 완료</RoundButton>
     </RoundBottomModalLayout>
   );
 };
