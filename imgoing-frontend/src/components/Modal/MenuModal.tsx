@@ -11,7 +11,7 @@ interface ModalButtonProps {
   first?: boolean;
 }
 
-const ModalView = styled.View`
+const ModalView = styled.Pressable`
   display: flex;
   height: 100%;
   width: 100%;
@@ -44,7 +44,10 @@ const MenuModal = () => {
   const modal = useSelector((state) => state.modal);
 
   return (
-    <ModalView>
+    <ModalView
+      onPress={() => {
+        dispatch(removeModal());
+      }}>
       <ModalButton
         first
         onPress={() => {
