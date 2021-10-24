@@ -1,3 +1,4 @@
+import React from 'react';
 import { CalloutTypo } from 'components/typography';
 import { StyleProp, ViewStyle } from 'react-native';
 import Picker from 'react-native-wheel-scrollview-picker';
@@ -25,6 +26,7 @@ const WheelPicker = (props: WheelPickerProps) => {
       dataSource={dataSource}
       selectedIndex={selectedIndex}
       onValueChange={onValueChange}
+      wrapperColor={'#ffffff'}
       renderItem={(data, _index, isSelected) =>
         isSelected ? (
           <CalloutTypo bold color='black'>
