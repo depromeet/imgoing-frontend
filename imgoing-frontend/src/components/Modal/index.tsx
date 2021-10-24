@@ -7,6 +7,7 @@ import { ModalType } from 'modules/slices/modal';
 import MenuModal from './MenuModal';
 import DeleteModal from './DeleteModal';
 import DateWheelPickerModal from './DateWheelPickerModal';
+import AddTaskModal from './AddTaskModal';
 
 type Modals = {
   [key in ModalType]: React.ReactNode;
@@ -31,6 +32,7 @@ const ModalContainer = () => {
     delete: <DeleteModal />,
     menu: <MenuModal />,
     datePicker: <DateWheelPickerModal />,
+    addTask: <AddTaskModal />,
   };
 
   return (
