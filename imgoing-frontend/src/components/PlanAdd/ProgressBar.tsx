@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dimensions } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
+import { AddingPlanStepsType } from 'types/index';
 import Goal from 'assets/svg/Goal';
-import { CalloutTypo } from 'components/typography';
+import { planStepInfo } from 'constant/plan';
+import store from 'modules/store';
 import Bar from './Bar';
+import { CalloutTypo } from 'components/typography';
 
 const progressBarWidth = Dimensions.get('window').width * 0.55;
 
@@ -22,12 +25,22 @@ const GoalIcon = styled.View`
 `;
 
 const ProgressBar = () => {
+  const [step, setStepState] = useState<keyof AddingPlanStepsType | null>(
+    store.getState().stepOfAddingPlan.step,
+  );
+
+  useEffect(() => {
+    store.subscribe(() => {
+      setStepState(store.getState().stepOfAddingPlan.step);
+    });
+  }, []);
+
   return (
     <Wrapper>
       <CalloutTypo color={'blue'} bold style={{ marginTop: 10 }}>
-        얼마 안 남았어요
+        {step && planStepInfo[step].progressbar.sentence}
       </CalloutTypo>
-      <Bar />
+      <Bar percentage={step ? planStepInfo[step].progressbar.percentage : 0} />
       <GoalIcon>
         <SvgXml xml={Goal} />
       </GoalIcon>

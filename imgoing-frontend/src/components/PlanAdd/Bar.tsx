@@ -44,8 +44,9 @@ const BarDone = styled.View`
   position: absolute;
 `;
 
-const Bar = () => {
-  const percentage = 0.87;
+const Bar = (props: { percentage: number }) => {
+  const { percentage } = props;
+
   return (
     <BarWrapper>
       <Done percentage={percentage} />
