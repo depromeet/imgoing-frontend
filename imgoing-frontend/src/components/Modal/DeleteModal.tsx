@@ -30,6 +30,10 @@ const Gap = styled.View`
   width: 12px;
 `;
 
+const ModalButton = styled(RoundButton)`
+  width: 145px;
+`;
+
 const DeleteModal = () => {
   const dispatch = useDispatch();
   const modal = useSelector((state) => state.modal);
@@ -45,22 +49,24 @@ const DeleteModal = () => {
         <ContentTypo color={'red'}>복구할 수 없어요</ContentTypo>
       </TextRow>
       <Row>
-        <RoundButton
+        <ModalButton
           blank
           onPress={() => {
+            console.log('pressd');
             dispatch(removeModal());
           }}>
           아니요
-        </RoundButton>
+        </ModalButton>
         <Gap />
-        <RoundButton
+        <ModalButton
           blank
           onPress={() => {
+            console.log('pressd');
             dispatch(removeModal());
             dispatch(removePlan(Number(modal?.id)));
           }}>
           삭제하기
-        </RoundButton>
+        </ModalButton>
       </Row>
     </ModalView>
   );

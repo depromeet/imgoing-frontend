@@ -1,6 +1,5 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import styled, { css } from 'styled-components';
+import styled, { css } from 'styled-components/native';
 
 import { SubheadlineTypo } from 'components/typography';
 
@@ -11,7 +10,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const StyledButton = styled(TouchableOpacity)<Pick<ButtonProps, 'blank' | 'disabled'>>`
+const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'blank' | 'disabled'>>`
   display: flex;
   justify-content: center;
   align-items: center;
