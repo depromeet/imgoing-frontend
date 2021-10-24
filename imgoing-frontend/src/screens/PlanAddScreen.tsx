@@ -90,7 +90,7 @@ const PlanAddScreen = () => {
   return (
     <Wrapper>
       <BottomButtonLayout text='다음' onPress={onPress}>
-        <ProgressBar />
+        {step && <ProgressBar step={step} />}
         <UserInput setInputText={setInputText} />
       </BottomButtonLayout>
     </Wrapper>

@@ -88,19 +88,8 @@ const GoalIcon = styled.View`
   right: 0;
 `;
 
-const ProgressBar = () => {
-  const [step, setStepState] = useState<keyof AddingPlanStepsType | null>(
-    store.getState().stepOfAddingPlan.step,
-  );
-  if (!step) return null;
-
+const ProgressBar = ({ step }: { step: keyof AddingPlanStepsType }) => {
   const { percentage, sentence } = planStepInfo[step].progressbar;
-
-  useEffect(() => {
-    store.subscribe(() => {
-      setStepState(store.getState().stepOfAddingPlan.step);
-    });
-  }, []);
 
   return (
     <Wrapper>
