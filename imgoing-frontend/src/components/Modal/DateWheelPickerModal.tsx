@@ -1,28 +1,17 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
-import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 import WheelPicker from 'components/common/WheelPicker';
 import RoundButton from 'components/common/RoundButton';
 import { removeModal } from 'modules/slices/modal';
-
-const ModalView = styled.View`
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: flex-end;
-  /* align-items: center; */
-`;
+import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 
 const PickerContainer = styled.View`
   display: flex;
-  flex-direction: row;
   height: 180px;
-  padding: 12px 28px 0 28px;
-  background-color: white;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  flex-direction: row;
+  margin-bottom: 12px;
 `;
 
 const Picker = styled.View`
@@ -30,16 +19,11 @@ const Picker = styled.View`
   padding: 0 16px;
 `;
 
-const ButtonView = styled.View`
-  background-color: white;
-  padding: 12px 20px ${getBottomSpace()}px 20px;
-`;
-
 const DateWheelPickerModal = () => {
   const dispatch = useDispatch();
 
   return (
-    <ModalView>
+    <RoundBottomModalLayout>
       <PickerContainer>
         <Picker>
           <WheelPicker
@@ -67,10 +51,8 @@ const DateWheelPickerModal = () => {
           />
         </Picker>
       </PickerContainer>
-      <ButtonView>
-        <RoundButton onPress={() => dispatch(removeModal())}>선택 완료</RoundButton>
-      </ButtonView>
-    </ModalView>
+      <RoundButton onPress={() => dispatch(removeModal())}>선택 완료</RoundButton>
+    </RoundBottomModalLayout>
   );
 };
 
