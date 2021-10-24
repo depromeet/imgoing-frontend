@@ -26,12 +26,13 @@ const getNearPlan = (plans: Plan[]): Plan => {
 const getRemainingTime = (minutes: number): string => {
   // 하루보다 더 많은 시간이 남았을 경우
   if (minutes / 60 > 24) {
-    return `${parseInt((minutes / 1440).toString())}일 ${parseInt(
-      ((minutes / 60) % (minutes / 1440)).toString(),
-    )}시간 ${minutes % 60}분`;
+    return `${parseInt((minutes / 1440).toString())}일`;
+  } else if (minutes / 60 < 1) {
+    return `${minutes % 60}분`;
+  } else {
+    return `${parseInt((minutes / 60).toString())}시간 ${minutes % 60}분`;
   }
   // 24시간 이내로 남았을 경우
-  return `${parseInt((minutes / 60).toString())}시간 ${minutes % 60}분`;
 };
 
 const TimeReminder = () => {
