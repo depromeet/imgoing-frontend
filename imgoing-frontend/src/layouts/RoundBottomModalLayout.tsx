@@ -1,6 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
+import RoundButton from 'components/common/RoundButton';
+
+interface Props {
+  children?: React.ReactNode;
+  button?: {
+    onPress: () => void;
+    buttonName: string;
+  };
+}
 
 const ModalView = styled.View`
   display: flex;
@@ -17,10 +26,14 @@ const ModalContainer = styled.View`
   padding: 12px 20px ${getBottomSpace()}px 20px;
 `;
 
-const RoundBottomModalLayout = (props: { children?: React.ReactNode }) => {
+const RoundBottomModalLayout = (props: Props) => {
+  const { children, button } = props;
   return (
     <ModalView>
-      <ModalContainer>{props.children}</ModalContainer>
+      <ModalContainer>
+        {children}
+        {button && <RoundButton onPress={button.onPress}>{button.buttonName}</RoundButton>}
+      </ModalContainer>
     </ModalView>
   );
 };
