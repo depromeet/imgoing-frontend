@@ -1,7 +1,7 @@
-import React, { Dispatch, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavigationScreenProp } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 
 import { icon_openRight, icon_plus } from 'assets/svg';
 import { AddingPlanStepsType } from 'types/index';
@@ -11,7 +11,6 @@ import RectangleButton from 'components/common/RectangleButton';
 import { setModal } from 'modules/slices/modal';
 
 interface UserInputProps {
-  navigation: NavigationScreenProp<any, any>;
   setInputText: (text: string) => void;
 }
 
@@ -87,8 +86,9 @@ const Step7 = () => {
 };
 
 const UserInput = (props: UserInputProps) => {
-  const { navigation, setInputText } = props;
+  const { setInputText } = props;
   const step = useSelector((state) => state.stepOfAddingPlan.step);
+  const navigation = useNavigation();
 
   const currentStep = (step: keyof AddingPlanStepsType | null) => {
     switch (step) {

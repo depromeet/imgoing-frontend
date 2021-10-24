@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import ProgressBar from 'components/PlanAdd/ProgressBar';
 import BottomButtonLayout from 'layouts/BottomButtonLayout';
@@ -11,16 +12,13 @@ import { AddingPlanStepsType, AddPlanContentsType } from 'types/index';
 import store from 'modules/store';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 
-interface PlanAddScreenProps {
-  navigation: NavigationScreenProp<any, any>;
-}
-
 const Wrapper = styled.View`
   flex: 1;
   background-color: white;
 `;
 
-const PlanAddScreen = (props: PlanAddScreenProps) => {
+const PlanAddScreen = () => {
+  const navigation = useNavigation();
   const contents = {} as { [key: string]: AddPlanContentsType };
   const [inputText, setInputText] = useState<string>('');
 
@@ -93,7 +91,7 @@ const PlanAddScreen = (props: PlanAddScreenProps) => {
     <Wrapper>
       <BottomButtonLayout text='다음' onPress={onPress}>
         <ProgressBar />
-        <UserInput navigation={props.navigation} setInputText={setInputText} />
+        <UserInput setInputText={setInputText} />
       </BottomButtonLayout>
     </Wrapper>
   );
