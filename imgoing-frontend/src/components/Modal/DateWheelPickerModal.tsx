@@ -5,6 +5,7 @@ import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 import WheelPicker from 'components/common/WheelPicker';
 import RoundButton from 'components/common/RoundButton';
+import { removeModal } from 'modules/slices/modal';
 
 const ModalView = styled.View`
   display: flex;
@@ -67,7 +68,7 @@ const DateWheelPickerModal = () => {
         </Picker>
       </PickerContainer>
       <ButtonView>
-        <RoundButton onPress={() => console.log('clicked')}>선택 완료</RoundButton>
+        <RoundButton onPress={() => dispatch(removeModal())}>선택 완료</RoundButton>
       </ButtonView>
     </ModalView>
   );

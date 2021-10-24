@@ -1,6 +1,6 @@
 import React, { Dispatch, useState } from 'react';
 import styled from 'styled-components/native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavigationScreenProp } from 'react-navigation';
 
 import { icon_openRight, icon_plus } from 'assets/svg';
@@ -8,6 +8,7 @@ import { AddingPlanStepsType } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
+import { setModal } from 'modules/slices/modal';
 
 interface UserInputProps {
   navigation: NavigationScreenProp<any, any>;
@@ -48,7 +49,17 @@ const Step3 = () => {
 };
 
 const Step4 = () => {
-  return <EditInput title='도착 시간을 입력해 주세요' placeholder='날짜 / 시간 입력하기' />;
+  const dispatch = useDispatch();
+  return (
+    <EditInput
+      onTouchEnd={() => {
+        dispatch(setModal({ modalType: 'datePicker' }));
+      }}
+      editable={false}
+      title='도착 시간을 입력해 주세요'
+      placeholder='날짜 / 시간 입력하기'
+    />
+  );
 };
 
 const Step5 = ({ setInputText }: { setInputText: (text: string) => void }) => {
