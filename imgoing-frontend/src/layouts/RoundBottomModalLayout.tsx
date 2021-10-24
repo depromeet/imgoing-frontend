@@ -37,7 +37,11 @@ const RoundBottomModalLayout = (props: Props) => {
   return (
     <ModalView>
       <ModalContainer>
-        {title && <BodyTypo bold>{title}</BodyTypo>}
+        {title && (
+          <BodyTypo bold style={{ marginBottom: 16 }}>
+            {title}
+          </BodyTypo>
+        )}
         {children}
         {button && (
           <ButtonWrapper>

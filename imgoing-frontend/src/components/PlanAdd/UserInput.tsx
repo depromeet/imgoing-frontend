@@ -82,7 +82,16 @@ const Step6 = ({ setInputText }: { setInputText: (text: string) => void }) => {
 };
 
 const Step7 = () => {
-  return <RectangleButton leftIcon={icon_plus}>등록해 주세요</RectangleButton>;
+  const dispatch = useDispatch();
+  return (
+    <RectangleButton
+      leftIcon={icon_plus}
+      onPressOut={() => {
+        dispatch(setModal({ modalType: 'addTask' }));
+      }}>
+      등록해 주세요
+    </RectangleButton>
+  );
 };
 
 const UserInput = (props: UserInputProps) => {

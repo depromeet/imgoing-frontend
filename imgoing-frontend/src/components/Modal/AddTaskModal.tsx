@@ -47,15 +47,18 @@ const step: {
   [key in LevelType]: {
     title: string;
     component: React.ReactNode;
+    buttonName: string;
   };
 } = {
   1: {
     title: '준비 항목 추가',
     component: <Step1 />,
+    buttonName: '소요 시간 입력하기',
   },
   2: {
     title: '소요 시간 입력',
     component: <Step2 />,
+    buttonName: '등록하기',
   },
 };
 
@@ -79,7 +82,7 @@ const AddTaskModal = () => {
       title={step[level].title}
       button={{
         onPress,
-        buttonName: '선택 완료',
+        buttonName: step[level].buttonName,
       }}>
       {step[level].component}
     </RoundBottomModalLayout>
