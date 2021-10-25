@@ -20,7 +20,7 @@ const Wrapper = styled.SafeAreaView`
 
 const MainScreen = (props: MainProps) => {
   const plan = useSelector((state) => state.plan);
-  return <Wrapper>{plan ? <HomeMain navigation={props.navigation} /> : <HomeLanding />}</Wrapper>;
+  return <Wrapper>{plan ? <HomeMain /> : <HomeLanding />}</Wrapper>;
 };
 
 export default MainScreen;

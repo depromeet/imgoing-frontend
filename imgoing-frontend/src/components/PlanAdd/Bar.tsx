@@ -3,28 +3,18 @@ import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 import { colors } from 'constant/index';
-import { BodyTypo } from 'components/typography';
+import { BodyTypo, CalloutTypo } from 'components/typography';
 
 const progressBarWidth = Dimensions.get('window').width * 0.55;
 
 const BarWrapper = styled.View`
+  position: absolute;
   width: ${progressBarWidth}px;
   height: 10px;
   justify-content: center;
   border-radius: 100px;
   background-color: ${colors.grayLight};
-  margin-top: 45px;
-`;
-
-const Point = styled.View<{ percentage: number }>`
-  width: 38px;
-  height: 38px;
-  border-radius: 100px;
-  border: 2px solid #0045b0;
-  left: ${({ percentage }) => progressBarWidth * percentage - 19}px;
-  background-color: ${colors.white};
-  justify-content: center;
-  align-items: center;
+  margin-top: 30px;
 `;
 
 const Done = styled.View<{ percentage: number }>`
@@ -33,6 +23,26 @@ const Done = styled.View<{ percentage: number }>`
   border-radius: 100px;
   background-color: ${colors.blue};
   position: absolute;
+`;
+
+const ProgressPoint = styled.View<{ percentage: number }>`
+  display: flex;
+  left: ${({ percentage }) => progressBarWidth * percentage - 19}px;
+  flex-direction: column;
+`;
+
+const Sentence = styled(CalloutTypo)`
+  height: 30px;
+`;
+
+const Point = styled.View`
+  width: 38px;
+  height: 38px;
+  border-radius: 100px;
+  border: 2px solid #0045b0;
+  background-color: ${colors.white};
+  justify-content: center;
+  align-items: center;
 `;
 
 const BarDone = styled.View`
@@ -44,15 +54,21 @@ const BarDone = styled.View`
   position: absolute;
 `;
 
-const Bar = () => {
-  const percentage = 0.87;
+const Bar = (props: { percentage: number; sentence: string }) => {
+  const { percentage, sentence } = props;
+
   return (
     <BarWrapper>
       <Done percentage={percentage} />
       <BarDone />
-      <Point percentage={percentage}>
-        <BodyTypo>🚀</BodyTypo>
-      </Point>
+      <ProgressPoint percentage={percentage}>
+        <Sentence color={'blue'} bold style={{ marginTop: 10 }}>
+          {sentence}
+        </Sentence>
+        <Point>
+          <BodyTypo>🚀</BodyTypo>
+        </Point>
+      </ProgressPoint>
     </BarWrapper>
   );
 };

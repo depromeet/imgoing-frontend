@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ModalType = 'delete' | 'menu';
+export type ModalType = 'delete' | 'menu' | 'datePicker' | 'addTask';
 
 export interface ModalPayload {
   modalType: ModalType;
