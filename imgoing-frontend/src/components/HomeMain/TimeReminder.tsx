@@ -7,7 +7,8 @@ import { SubheadlineTypo, TitleTypo } from 'components/typography';
 import { Plan } from 'types/index';
 
 const TitleView = styled.View`
-  padding: 50px 0 50px 0;
+  padding-bottom: 15%;
+  padding-top: 10%;
   align-items: center;
 `;
 
