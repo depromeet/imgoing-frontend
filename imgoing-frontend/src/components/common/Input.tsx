@@ -1,13 +1,26 @@
 import { useState } from 'react';
 import React from 'react';
-import { TextInput, TextInputProps } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  TextInput,
+  TextInputChangeEventData,
+  TextInputProps,
+} from 'react-native';
 import styled from 'styled-components/native';
 
 import { SubheadlineTypo } from 'components/typography';
 import { colors } from 'constant/index';
 
-interface InputProps extends TextInputProps {
+export type InputChangeEventType<
+  T = {
+    name: string;
+  },
+> = NativeSyntheticEvent<TextInputChangeEventData> & T;
+
+export interface InputProps extends Omit<TextInputProps, 'onChange'> {
   title?: string;
+  name?: string;
+  onChange?: (e: InputChangeEventType) => void;
 }
 
 interface OwnProps {
@@ -26,7 +39,7 @@ const StyledInput = styled(TextInput)<OwnProps & InputProps>`
 const InputWrapper = styled.View``;
 
 const Input = (props: InputProps) => {
-  const { style, ...restProps } = props;
+  const { style, onChange, name, ...restProps } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
   return (
     <InputWrapper style={style}>
@@ -37,6 +50,8 @@ const Input = (props: InputProps) => {
       )}
       <StyledInput
         isFocus={isFocus}
+        name={name}
+        onChange={(e) => onChange && onChange({ ...e, name: String(name) })}
         placeholderTextColor={colors.grayHeavy}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
