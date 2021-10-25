@@ -11,6 +11,7 @@ import { setModal } from 'modules/slices/modal';
 import { CalloutTypo, CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { Plan, Task } from 'types/index';
 import PlanItemDetail from './PlanItemDetail';
+import { setIdentify } from 'modules/slices/identify';
 
 const PlanItemView = styled.TouchableOpacity`
   width: 100%;
@@ -109,7 +110,11 @@ const PlanItem = ({ item }: { item: Plan }) => {
             <SvgXml xml={icon_pin.fill} width='100%' height='16px' fill={colors.blue} />
           </Pin>
         )}
-        <OpenMenuButton onPress={() => dispatch(setModal({ modalType: 'menu', id: id }))}>
+        <OpenMenuButton
+          onPress={() => {
+            dispatch(setModal({ modalType: 'menu' }));
+            dispatch(setIdentify({ type: 'plan', id: id }));
+          }}>
           <SvgXml xml={icon_moreHorizCircle} width='100%' height='22px' fill={colors.black} />
         </OpenMenuButton>
         <ExpandButton>

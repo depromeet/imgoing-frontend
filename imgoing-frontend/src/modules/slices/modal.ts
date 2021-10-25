@@ -4,7 +4,6 @@ export type ModalType = 'delete' | 'menu' | 'datePicker' | 'addTask';
 
 export interface ModalPayload {
   modalType: ModalType;
-  id?: number;
 }
 
 export const modal = createSlice({
