@@ -18,21 +18,15 @@ const Gap = styled.View`
 
 const getNearPlan = (plans: Plan[]): Plan | null => {
   const upcomingPlan = plans.filter((plan) => moment(plan.arrival_at) >= moment());
-  if (upcomingPlan.length > 0) {
-    return upcomingPlan.reduce((prev, current) => {
-      return prev.arrival_at < current.arrival_at ? prev : current;
-    });
-  } else {
-    return null;
-  }
+  return upcomingPlan.length
+    ? upcomingPlan.reduce((prev, current) =>
+        prev.arrival_at < current.arrival_at ? prev : current,
+      )
+    : null;
 };
 
 const getNearTime = (plan: Plan | null): number | null => {
-  if (plan) {
-    return moment(plan.arrival_at).diff(moment(), 'minutes');
-  } else {
-    return null;
-  }
+  return plan ? moment(plan.arrival_at).diff(moment(), 'minutes') : null;
 };
 
 const getRemainingTime = (minutes: number | null): string => {
@@ -41,12 +35,10 @@ const getRemainingTime = (minutes: number | null): string => {
       return `${parseInt((minutes / 1440).toString())}일`;
     } else if (minutes / 60 < 1) {
       return `${minutes % 60}분`;
-    } else {
-      return `${parseInt((minutes / 60).toString())}시간 ${minutes % 60}분`;
     }
-  } else {
-    return `0분`;
+    return `${parseInt((minutes / 60).toString())}시간 ${minutes % 60}분`;
   }
+  return `0분`;
 };
 
 const TimeReminder = () => {
