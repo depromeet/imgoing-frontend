@@ -9,7 +9,7 @@ import kakaoMap from 'assets/svg/kakaoMap';
 import { colors } from 'constant/index';
 import { setModal } from 'modules/slices/modal';
 import { CalloutTypo, CaptionTypo, SubheadlineTypo } from 'components/typography';
-import { Plan, Task } from 'types/index';
+import { Plan, TaskType } from 'types/index';
 import PlanItemDetail from './PlanItemDetail';
 
 const PlanItemView = styled.TouchableOpacity`
@@ -67,7 +67,7 @@ const KaKaoMapButton = styled.TouchableOpacity`
 `;
 
 // 추후 시간관련 함수들을 util로 빼는것도 좋을듯합니다.
-const getStandByTime = (tasks: Task[]): string => {
+const getStandByTime = (tasks: TaskType[]): string => {
   let totalDuration = 0;
   tasks.forEach((task) => {
     totalDuration += task.duration;

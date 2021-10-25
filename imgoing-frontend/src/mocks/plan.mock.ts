@@ -1,6 +1,6 @@
-import { Destination, Plan, Task } from 'types/index';
+import { Destination, Plan, TaskType } from 'types/index';
 
-const tasks: Task[] = [
+export const tasks: TaskType[] = [
   {
     name: '아침 식사',
     duration: 30,
