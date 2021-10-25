@@ -16,30 +16,43 @@ const Gap = styled.View`
   height: 6px;
 `;
 
-const getNearPlan = (plans: Plan[]): Plan => {
-  return plans
-    .filter((plan) => moment(plan.arrival_at) >= moment())
-    .reduce((prev, current) => {
+const getNearPlan = (plans: Plan[]): Plan | null => {
+  const upcomingPlan = plans.filter((plan) => moment(plan.arrival_at) >= moment());
+  if (upcomingPlan.length > 0) {
+    return upcomingPlan.reduce((prev, current) => {
       return prev.arrival_at < current.arrival_at ? prev : current;
     });
+  } else {
+    return null;
+  }
 };
 
-const getRemainingTime = (minutes: number): string => {
-  // 하루보다 더 많은 시간이 남았을 경우
-  if (minutes / 60 > 24) {
-    return `${parseInt((minutes / 1440).toString())}일`;
-  } else if (minutes / 60 < 1) {
-    return `${minutes % 60}분`;
+const getNearTime = (plan: Plan | null): number | null => {
+  if (plan) {
+    return moment(plan.arrival_at).diff(moment(), 'minutes');
   } else {
-    return `${parseInt((minutes / 60).toString())}시간 ${minutes % 60}분`;
+    return null;
   }
-  // 24시간 이내로 남았을 경우
+};
+
+const getRemainingTime = (minutes: number | null): string => {
+  if (minutes) {
+    if (minutes / 60 > 24) {
+      return `${parseInt((minutes / 1440).toString())}일`;
+    } else if (minutes / 60 < 1) {
+      return `${minutes % 60}분`;
+    } else {
+      return `${parseInt((minutes / 60).toString())}시간 ${minutes % 60}분`;
+    }
+  } else {
+    return `0분`;
+  }
 };
 
 const TimeReminder = () => {
   const plans = useSelector((state) => state.plan);
   const nearPlan = getNearPlan(plans);
-  const nearTime = moment(nearPlan.arrival_at).diff(moment(), 'minutes');
+  const nearTime = getNearTime(nearPlan);
   const remainingTime = getRemainingTime(nearTime);
 
   return (
