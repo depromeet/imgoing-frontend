@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 
-import KaKoMap from '@/components/KaKaoMap';
+import KaKaoMap from '@/components/KaKaoMap';
 import Input from '@/components/Input';
 import Button from '@/components/Button';
 import { Place } from '@/types';
@@ -77,7 +77,7 @@ const MainPage = () => {
       <Search>
         <SearchInput placeholder="장소를 입력하세요" ref={inputRef} isValueEmpty={!keyword} onKeyUp={onKeyUp} />
       </Search>
-      <KaKoMap keyword={keyword} info={info} setInfo={setInfo} />
+      <KaKaoMap keyword={keyword} info={info} setInfo={setInfo} />
       <ButtonWrapper>
         <Button onClick={onPressed}>검색</Button>
       </ButtonWrapper>

@@ -10,7 +10,7 @@ interface KaKaoMapProps {
   setInfo: (state: Place) => void;
 }
 
-const KaKoMap = (props: KaKaoMapProps) => {
+const KaKaoMap = (props: KaKaoMapProps) => {
   const { keyword, info, setInfo } = props;
 
   const [markers, setMarkers] = useState<Place[]>([]);
@@ -73,4 +73,4 @@ const KaKoMap = (props: KaKaoMapProps) => {
   );
 };
 
-export default KaKoMap;
+export default KaKaoMap;
