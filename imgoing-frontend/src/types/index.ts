@@ -4,7 +4,7 @@ export interface Task {
   isBookmarked: boolean;
   notification: boolean;
 }
-
+// TODO: Destination 타입 변경해야 함
 export interface Destination {
   dest_name: string;
   dest_lat: number;
@@ -22,10 +22,11 @@ export interface Plan {
   isPinned: boolean;
 }
 
-type setTitleType = {
+export type setTitleType = {
   title: string;
 };
-type setDepartureType = {
+// TODO: Destination 타입 이렇게 변경해야 할 듯
+export type setLocationType = {
   name: string;
   address: string;
   coordinate: {
@@ -33,57 +34,68 @@ type setDepartureType = {
     lng: number | undefined;
   };
 };
-type setArrivalType = {
-  name: string;
-  address: string;
-  coordinate: {
-    lat: number | undefined;
-    lng: number | undefined;
-  };
-};
-type setArrivalTimeType = {
+export type setArrivalTimeType = {
   date: string;
 };
-type setItemType = {
+export type setItemType = {
   items: string;
 };
-type setDetailsType = {
-  contents: string;
+export type setDetailsType = {
+  details: string;
 };
-type setTaskType = {
+export type setTaskType = {
   tasks: Task[];
 };
 export type AddPlanContentsType =
   | setTitleType
-  | setDepartureType
-  | setArrivalType
+  | setLocationType
   | setArrivalTimeType
   | setItemType
   | setDetailsType
   | setTaskType;
 export interface AddingPlanSteps {
   setTitle: setTitleType;
-  setDeparture: setDepartureType;
-  setArrival: setArrivalType;
+  setDeparture: setLocationType;
+  setArrival: setLocationType;
   setArrivalTime: setArrivalTimeType;
   setItem: setItemType;
   setDetails: setDetailsType;
   setTask: setTaskType;
 }
-export interface AddingPlanStepsType {
-  setTitle: undefined;
-  setDeparture: undefined;
-  setArrival: undefined;
-  setArrivalTime: undefined;
-  setItem: undefined;
-  setDetails: undefined;
-  setTask: undefined;
-}
+
+export type AddingPlanUserInputsType = {
+  title?: string;
+  departure?: {
+    name: string;
+    address: string;
+    coordinate: {
+      lat: number | undefined;
+      lng: number | undefined;
+    };
+  };
+  arrival?: {
+    name: string;
+    address: string;
+    coordinate: {
+      lat: number | undefined;
+      lng: number | undefined;
+    };
+  };
+  arrivalDateTime?: string;
+  items?: string;
+  details?: string;
+  tasks?: Task[];
+};
+
+export type AddingPlanStateType = {
+  step: keyof AddingPlanSteps | null;
+  userInputs: AddingPlanUserInputsType;
+};
 
 export type PlanStepInfo = {
-  [key in keyof AddingPlanStepsType]: {
-    nextStep: keyof AddingPlanStepsType | null;
-    prevStep: keyof AddingPlanStepsType | null;
+  [key in keyof AddingPlanSteps]: {
+    nextStep: keyof AddingPlanSteps | null;
+    prevStep: keyof AddingPlanSteps | null;
     title: string;
     progressbar: {
       sentence: string;

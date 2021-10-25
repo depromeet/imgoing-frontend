@@ -1,25 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { AddingPlanStepsType, AddPlanContentsType } from 'types/index';
+import { AddingPlanStateType, AddingPlanSteps, AddingPlanUserInputsType } from 'types/index';
 import { firstStep, planStepInfo } from 'constant/plan';
 
-type AddingPlanType = {
-  step: keyof AddingPlanStepsType | null;
-  userInputs: { [key: string]: AddPlanContentsType };
-};
-
 type payloadType = {
-  type: 'next' | 'prev';
-  userInput: { [key: string]: AddPlanContentsType };
+  type: 'next' | 'prev' | null;
+  userInput: AddingPlanUserInputsType;
 };
 
-const addingPlanState: AddingPlanType = {
+const addingPlanState: AddingPlanStateType = {
   step: firstStep,
   userInputs: {
-    setTitle: {
-      title: '',
-    },
-    setDeparture: {
+    title: '',
+    departure: {
       name: '',
       address: '',
       coordinate: {
@@ -27,7 +20,7 @@ const addingPlanState: AddingPlanType = {
         lng: undefined,
       },
     },
-    setArrival: {
+    arrival: {
       name: '',
       address: '',
       coordinate: {
@@ -35,18 +28,10 @@ const addingPlanState: AddingPlanType = {
         lng: undefined,
       },
     },
-    setArrivalTime: {
-      date: '',
-    },
-    setItem: {
-      items: '',
-    },
-    setDetails: {
-      contents: '',
-    },
-    setTask: {
-      tasks: [],
-    },
+    arrivalDateTime: '',
+    items: '',
+    details: '',
+    tasks: [],
   },
 };
 
@@ -57,14 +42,14 @@ export const stepOfAddingPlan = createSlice({
     setStep: (state, action: PayloadAction<payloadType>) => {
       if (!state.step) return;
 
-      let nextStep: keyof AddingPlanStepsType | null = state.step;
+      let nextStep: keyof AddingPlanSteps | null = state.step;
       if (action.payload.type === 'next') {
         const next = planStepInfo[state.step].nextStep;
         if (!next) {
           // TODO : reset State + 일정 등록 완료 + 등록 API 호출
         }
         nextStep = next;
-      } else {
+      } else if (action.payload.type === 'prev') {
         const prev = planStepInfo[state.step].prevStep;
         if (!prev) {
           // TODO : reset State + Stack창 닫기
