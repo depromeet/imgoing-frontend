@@ -38,7 +38,7 @@ const RoundBottomModalLayout = (props: Props) => {
     <ModalView>
       <ModalContainer>
         {title && (
-          <BodyTypo bold style={{ marginBottom: 16 }}>
+          <BodyTypo bold style={{ marginBottom: 16, marginTop: 8 }}>
             {title}
           </BodyTypo>
         )}
