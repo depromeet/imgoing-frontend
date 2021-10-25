@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SvgXml } from 'react-native-svg';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 import { icon_arrowLeft, icon_close } from 'assets/svg';
 import { NavigatorParamList } from 'types/Route';
-import { AddingPlanStepsType } from 'types/index';
 import { colors } from 'constant/index';
 import { firstStep, planStepInfo } from 'constant/plan';
-import store from 'modules/store';
 import { setStep } from 'modules/slices/stepOfAddingPlan';
 import PlanEditScreen from 'screens/PlanEditScreen';
 import PlanAddScreen from 'screens/PlanAddScreen';
@@ -23,15 +21,7 @@ const Stack = createStackNavigator<NavigatorParamList>();
 
 const Stacks = () => {
   const dispatch = useDispatch();
-  const [step, setStepState] = useState<keyof AddingPlanStepsType | null>(
-    store.getState().stepOfAddingPlan.step,
-  );
-
-  useEffect(() => {
-    store.subscribe(() => {
-      setStepState(store.getState().stepOfAddingPlan.step);
-    });
-  }, []);
+  const step = useSelector((state) => state.stepOfAddingPlan.step);
 
   return (
     <Stack.Navigator initialRouteName='AuthLoadingScreen'>

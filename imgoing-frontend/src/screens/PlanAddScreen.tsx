@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 import ProgressBar from 'components/PlanAdd/ProgressBar';
 import BottomButtonLayout from 'layouts/BottomButtonLayout';
 import UserInput from 'components/PlanAdd/UserInput';
-import { resetStep, setStep } from 'modules/slices/stepOfAddingPlan';
-import { NavigationScreenProp } from 'react-navigation';
-import { AddingPlanStepsType, AddPlanContentsType } from 'types/index';
-import store from 'modules/store';
+import { AddPlanContentsType } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
+import { setStep } from 'modules/slices/stepOfAddingPlan';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -18,16 +16,22 @@ const Wrapper = styled.View`
 `;
 
 const PlanAddScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
+
   const contents = {} as { [key: string]: AddPlanContentsType };
   const [inputText, setInputText] = useState<string>('');
-
-  const dispatch = useDispatch();
-  const [step, setStepState] = useState<keyof AddingPlanStepsType | null>(
-    store.getState().stepOfAddingPlan.step,
-  );
+  const step = useSelector((state) => state.stepOfAddingPlan.step);
 
   const onPress = () => {
+    if (step === PLAN_STEP_TITLES.SET_TASK) {
+      contents.setTask = {
+        tasks: [],
+      };
+      navigation.goBack();
+      return;
+    }
+
     switch (step) {
       case PLAN_STEP_TITLES.SET_TITLE:
         contents.setTitle = {
@@ -69,23 +73,9 @@ const PlanAddScreen = () => {
           items: inputText,
         };
         break;
-      case PLAN_STEP_TITLES.SET_TASK:
-        contents.setTask = {
-          tasks: [],
-        };
-        break;
-      default:
-        break;
     }
     dispatch(setStep({ type: 'next', userInput: contents }));
   };
-
-  useEffect(() => {
-    store.subscribe(() => {
-      setStepState(store.getState().stepOfAddingPlan.step);
-    });
-    dispatch(resetStep());
-  }, []);
 
   return (
     <Wrapper>
