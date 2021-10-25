@@ -1,8 +1,8 @@
 // 이름 -> 출발지 -> 목적지 -> 도착 시간 -> 필수품 -> 일정 상세 -> 준비 항목
-import { AddingPlanStepsType, PlanStepInfo } from 'types/index';
+import { AddingPlanSteps, PlanStepInfo } from 'types/index';
 
 export const PLAN_STEP_TITLES: {
-  [key: string]: keyof AddingPlanStepsType;
+  [key: string]: keyof AddingPlanSteps;
 } = {
   SET_TITLE: 'setTitle',
   SET_DEPARTURE: 'setDeparture',
@@ -88,4 +88,4 @@ export const planStepInfo: PlanStepInfo = {
   },
 };
 
-export const firstStep = PLAN_STEP_TITLES.SET_TITLE as keyof AddingPlanStepsType | null;
+export const firstStep = PLAN_STEP_TITLES.SET_TITLE as keyof AddingPlanSteps | null;
