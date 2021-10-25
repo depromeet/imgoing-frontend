@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 import { icon_openRight, icon_plus } from 'assets/svg';
-import { AddingPlanStepsType } from 'types/index';
+import { AddingPlanSteps } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
@@ -34,16 +34,42 @@ const Step1 = ({ setInputText }: { setInputText: (text: string) => void }) => {
 };
 
 const Step2 = () => {
-  const [departure, setDeparture] = useState<string>();
+  const departure = useSelector((state) => state.stepOfAddingPlan.userInputs.departure?.name);
+  const dispatch = useDispatch();
+
   return (
-    <RectangleButton rightIcon={icon_openRight}>{departure ?? '출발지 설정하기'}</RectangleButton>
+    <RectangleButton
+      onPressOut={() =>
+        dispatch(
+          setModal({
+            modalType: 'setLocation',
+            props: { type: 'setLocation/departure' },
+          }),
+        )
+      }
+      rightIcon={icon_openRight}>
+      {departure || '출발지 설정하기'}
+    </RectangleButton>
   );
 };
 
 const Step3 = () => {
-  const [destination, setDestination] = useState<string>();
+  const arrival = useSelector((state) => state.stepOfAddingPlan.userInputs.arrival?.name);
+  const dispatch = useDispatch();
+
   return (
-    <RectangleButton rightIcon={icon_openRight}>{destination ?? '목적지 설정하기'}</RectangleButton>
+    <RectangleButton
+      onPressOut={() =>
+        dispatch(
+          setModal({
+            modalType: 'setLocation',
+            props: { type: 'setLocation/arrival' },
+          }),
+        )
+      }
+      rightIcon={icon_openRight}>
+      {arrival || '목적지 설정하기'}
+    </RectangleButton>
   );
 };
 
@@ -99,7 +125,7 @@ const UserInput = (props: UserInputProps) => {
   const step = useSelector((state) => state.stepOfAddingPlan.step);
   const navigation = useNavigation();
 
-  const currentStep = (step: keyof AddingPlanStepsType | null) => {
+  const currentStep = (step: keyof AddingPlanSteps | null) => {
     switch (step) {
       case PLAN_STEP_TITLES.SET_TITLE:
         return <Step1 setInputText={setInputText} />;
