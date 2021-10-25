@@ -1,19 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { AddingPlanStepsType, AddingPlanSteps } from 'types/index';
-import { planStepInfo } from 'constant/plan';
+import { AddingPlanStepsType, AddPlanContentsType } from 'types/index';
+import { firstStep, planStepInfo } from 'constant/plan';
 
 type AddingPlanType = {
   step: keyof AddingPlanStepsType | null;
-  userInputs: AddingPlanSteps;
+  userInputs: { [key: string]: AddPlanContentsType };
 };
 
 type payloadType = {
   type: 'next' | 'prev';
-  userInput: object; // 해결 불가...
+  userInput: { [key: string]: AddPlanContentsType };
 };
-
-const firstStep = 'setTitle' as keyof AddingPlanStepsType | null;
 
 const addingPlanState: AddingPlanType = {
   step: firstStep,

@@ -53,6 +53,14 @@ type setDetailsType = {
 type setTaskType = {
   tasks: Task[];
 };
+export type AddPlanContentsType =
+  | setTitleType
+  | setDepartureType
+  | setArrivalType
+  | setArrivalTimeType
+  | setItemType
+  | setDetailsType
+  | setTaskType;
 export interface AddingPlanSteps {
   setTitle: setTitleType;
   setDeparture: setDepartureType;
@@ -77,6 +85,9 @@ export type PlanStepInfo = {
     nextStep: keyof AddingPlanStepsType | null;
     prevStep: keyof AddingPlanStepsType | null;
     title: string;
-    percentage: number;
+    progressbar: {
+      sentence: string;
+      percentage: number;
+    };
   };
 };
