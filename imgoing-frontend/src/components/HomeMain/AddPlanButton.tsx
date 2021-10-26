@@ -14,11 +14,10 @@ interface ButtonProps {
 
 const StyledButton = styled.TouchableOpacity<Pick<ButtonProps, 'full'>>`
   position: absolute;
-  top: 95%;
+  top: 90%;
   flex-direction: row;
   text-align: center;
   border-radius: 100px;
-  margin-bottom: 15px;
   align-items: center;
   justify-content: center;
   background: ${(props) => props.theme.colors.blue};
