@@ -4,6 +4,12 @@ export interface TaskType {
   isBookmarked: boolean;
   notification: boolean;
 }
+
+export interface BookmarkType {
+  name: string;
+  duration: number;
+  notification: boolean;
+}
 // TODO: Destination 타입 변경해야 함
 export interface Destination {
   dest_name: string;
