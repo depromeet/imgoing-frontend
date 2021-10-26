@@ -79,15 +79,17 @@ const Step3 = () => {
 };
 
 const Step4 = () => {
+  const time = useSelector((state) => state.stepOfAddingPlan.userInputs.arrivalDateTime);
   const dispatch = useDispatch();
+
   return (
     <EditInput
       onTouchEnd={() => {
         dispatch(setModal({ modalType: 'datePicker' }));
       }}
-      editable={false}
       title='도착 시간을 입력해 주세요'
       placeholder='날짜 / 시간 입력하기'
+      value={time?.slice(0, time.length - 3) || ''}
     />
   );
 };
