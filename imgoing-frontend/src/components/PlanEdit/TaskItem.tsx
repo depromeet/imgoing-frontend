@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { TouchableHighlightProps } from 'react-native';
+import React, { useState } from 'react';
+import { StyleProp, TouchableHighlightProps, ViewStyle } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
 import { icon_bell } from 'assets/svg';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
+import { Task } from 'types/index';
 
 type GroupType = '루틴' | '즐겨찾기' | '북마크';
 
-interface TaskProps {
-  minutes: number;
-  title: string;
-  defaultNotification: boolean;
+interface TaskProps extends Task {
+  style?: StyleProp<ViewStyle>;
   group?: GroupType;
 }
 
@@ -60,15 +59,12 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
   };
 })``;
 
-const Task = (props: TaskProps) => {
-  const { title, minutes, group, defaultNotification } = props;
-  const [isNotification, setNotification] = useState<boolean>(defaultNotification);
-  useEffect(() => {
-    console.log(isNotification);
-  }, [isNotification]);
+const TaskItem = (props: TaskProps) => {
+  const { name, duration, group, notification, style } = props;
+  const [isNotification, setNotification] = useState<boolean>(notification);
   return (
     <>
-      <TouchableHighlight onPress={() => alert('test')}>
+      <TouchableHighlight style={style} onPress={() => alert('test')}>
         <TaskView>
           {group && (
             <>
@@ -78,9 +74,9 @@ const Task = (props: TaskProps) => {
               <Bar></Bar>
             </>
           )}
-          <SubheadlineTypo>{minutes}분</SubheadlineTypo>
+          <SubheadlineTypo>{duration}분</SubheadlineTypo>
           <Title numberOfLines={1} color='grayHeavy'>
-            {title}
+            {name}
           </Title>
           <SvgXml
             onPress={() => setNotification(!isNotification)}
@@ -93,4 +89,4 @@ const Task = (props: TaskProps) => {
   );
 };
 
-export default Task;
+export default TaskItem;
