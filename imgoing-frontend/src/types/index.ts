@@ -10,7 +10,7 @@ export interface BookmarkType {
   duration: number;
   notification: boolean;
 }
-// TODO: Destination 타입 변경해야 함
+
 export interface Destination {
   dest_name: string;
   dest_lat: number;
@@ -31,7 +31,7 @@ export interface Plan {
 export type setTitleType = {
   title: string;
 };
-// TODO: Destination 타입 이렇게 변경해야 할 듯
+
 export type setLocationType = {
   name: string;
   address: string;
