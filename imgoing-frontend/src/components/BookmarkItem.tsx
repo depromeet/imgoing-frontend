@@ -7,6 +7,7 @@ import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { BookmarkType } from 'types/index';
 import { colors } from 'constant/index';
 import { icon_plus } from 'assets/svg';
+import store from 'modules/store';
 
 interface BookmarkItemProps extends BookmarkType {
   id: number;
@@ -55,7 +56,10 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 
 const BookmarkItem = (props: BookmarkItemProps) => {
   const { name, duration, id, selectedItems, setSelectedItem } = props;
-  const [selected, toggleSelected] = useState<boolean>(false);
+  const tasksState = store.getState().stepOfAddingPlan.userInputs.tasks;
+  const [selected, toggleSelected] = useState<boolean>(
+    tasksState ? !!tasksState.filter((task) => task.id === id).length : false,
+  );
 
   const onPress = () => {
     setSelectedItem(selected ? selectedItems.filter((key) => id !== key) : [...selectedItems, id]);
