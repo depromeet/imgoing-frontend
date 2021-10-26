@@ -4,6 +4,7 @@ import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
 import { icon_bell } from 'assets/svg';
+import { colors } from 'constant/index';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 
 type GroupType = '루틴' | '즐겨찾기' | '북마크';
@@ -12,18 +13,20 @@ interface TaskProps {
   minutes: number;
   title: string;
   defaultNotification: boolean;
+  isBookmarked: boolean;
   group?: GroupType;
 }
 
 const TaskView = styled.View`
   height: 50px;
-  border: 2px solid ${({ theme }) => theme.colors.black};
+  border: 2px solid ${({ theme }) => theme.colors.grayLight};
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   border-radius: 4px;
   padding: 0 12px 0 16px;
+  margin-top: 16px;
 `;
 
 const Title = styled(SubheadlineTypo)`
@@ -61,7 +64,7 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 })``;
 
 const Task = (props: TaskProps) => {
-  const { title, minutes, group, defaultNotification } = props;
+  const { title, minutes, group, defaultNotification, isBookmarked } = props;
   const [isNotification, setNotification] = useState<boolean>(defaultNotification);
   useEffect(() => {
     console.log(isNotification);
@@ -70,14 +73,22 @@ const Task = (props: TaskProps) => {
     <>
       <TouchableHighlight onPress={() => alert('test')}>
         <TaskView>
-          {group && (
+          {isBookmarked && (
+            <>
+              <GroupTagView>
+                <GroupTag bold>{'루틴'}</GroupTag>
+              </GroupTagView>
+              <Bar></Bar>
+            </>
+          )}
+          {/* {group && (
             <>
               <GroupTagView>
                 <GroupTag bold>{group}</GroupTag>
               </GroupTagView>
               <Bar></Bar>
             </>
-          )}
+          )} */}
           <SubheadlineTypo>{minutes}분</SubheadlineTypo>
           <Title numberOfLines={1} color='grayHeavy'>
             {title}
@@ -85,7 +96,7 @@ const Task = (props: TaskProps) => {
           <SvgXml
             onPress={() => setNotification(!isNotification)}
             xml={isNotification ? icon_bell.set : icon_bell.unset}
-            fill={'black'}
+            fill={colors.black}
           />
         </TaskView>
       </TouchableHighlight>
