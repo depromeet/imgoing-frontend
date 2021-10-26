@@ -36,7 +36,7 @@ const ContentsWrapper = styled.View`
 `;
 
 const ButtonWrapper = styled.View`
-  margin-top: 12px;
+  margin: 12px 0 20px 0;
 `;
 
 const RoundBottomModalLayout = (props: Props) => {
