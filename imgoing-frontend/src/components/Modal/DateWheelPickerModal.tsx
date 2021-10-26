@@ -59,7 +59,6 @@ const getArrivalDateTime = (timeString: string, date: string[]) => {
     .replaceAll(' ', '')
     .split(/(시|분)/g)
     .map((i) => i.toString());
-  console.log(timeString, timeString.replaceAll(' ', '').split(/(시|분)/g));
 
   return `${date[0]}-${date[1]}-${date[2]} ${hour.padEnd(2, '0')}:${miniutes.padEnd(2, '0')}:00`;
 };
@@ -75,7 +74,6 @@ const DateWheelPickerModal = () => {
 
   const onTimeChange = (value: string | number) => {
     selectedTime.current = value as string;
-    console.log(selectedTime.current);
   };
 
   const onPress = () => {

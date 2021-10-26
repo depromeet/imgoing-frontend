@@ -63,9 +63,6 @@ const PlanAddScreen = () => {
       case PLAN_STEP_TITLES.SET_TITLE:
         contents.title = inputText.current.title;
         break;
-      case PLAN_STEP_TITLES.SET_ARRIVALTIME:
-        contents.arrivalDateTime = '2021-09-09 12:12:12';
-        break;
       case PLAN_STEP_TITLES.SET_ITEM:
         contents.items = inputText.current.items;
         break;
