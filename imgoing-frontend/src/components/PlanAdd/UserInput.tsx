@@ -9,7 +9,7 @@ import { AddingPlanSteps } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
-import Task from 'components/Task';
+import TaskItem from 'components/TaskItem';
 import { SubheadlineTypo } from 'components/typography';
 import LinkButton from 'components/common/LinkButton';
 import { setModal } from 'modules/slices/modal';
@@ -131,11 +131,12 @@ const Step7 = () => {
       <ScrollView>
         {tasks &&
           tasks.map((task, idx) => (
-            <Task
+            <TaskItem
+              id={task.id}
               key={idx}
-              minutes={task.duration}
-              title={task.name}
-              defaultNotification={task.notification}
+              duration={task.duration}
+              name={task.name}
+              notification={task.notification}
               isBookmarked={task.isBookmarked}
             />
           ))}

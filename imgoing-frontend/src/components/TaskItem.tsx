@@ -1,20 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { TouchableHighlightProps } from 'react-native';
+import React, { useState } from 'react';
+import { StyleProp, TouchableHighlightProps, ViewStyle } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
 import { icon_bell } from 'assets/svg';
 import { colors } from 'constant/index';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
+import { TaskType } from 'types/index';
 
-type GroupType = '루틴' | '즐겨찾기' | '북마크';
-
-interface TaskProps {
-  minutes: number;
-  title: string;
-  defaultNotification: boolean;
-  isBookmarked: boolean;
-  group?: GroupType;
+interface TaskProps extends TaskType {
+  style?: StyleProp<ViewStyle>;
 }
 
 const TaskView = styled.View`
@@ -63,15 +58,12 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
   };
 })``;
 
-const Task = (props: TaskProps) => {
-  const { title, minutes, group, defaultNotification, isBookmarked } = props;
-  const [isNotification, setNotification] = useState<boolean>(defaultNotification);
-  useEffect(() => {
-    console.log(isNotification);
-  }, [isNotification]);
+const TaskItem = (props: TaskProps) => {
+  const { name, duration, isBookmarked, notification, style } = props;
+  const [isNotification, setNotification] = useState<boolean>(notification);
   return (
     <>
-      <TouchableHighlight onPress={() => alert('test')}>
+      <TouchableHighlight style={style} onPress={() => alert('test')}>
         <TaskView>
           {isBookmarked && (
             <>
@@ -81,17 +73,9 @@ const Task = (props: TaskProps) => {
               <Bar></Bar>
             </>
           )}
-          {/* {group && (
-            <>
-              <GroupTagView>
-                <GroupTag bold>{group}</GroupTag>
-              </GroupTagView>
-              <Bar></Bar>
-            </>
-          )} */}
-          <SubheadlineTypo>{minutes}분</SubheadlineTypo>
+          <SubheadlineTypo>{duration}분</SubheadlineTypo>
           <Title numberOfLines={1} color='grayHeavy'>
-            {title}
+            {name}
           </Title>
           <SvgXml
             onPress={() => setNotification(!isNotification)}
@@ -104,4 +88,4 @@ const Task = (props: TaskProps) => {
   );
 };
 
-export default Task;
+export default TaskItem;

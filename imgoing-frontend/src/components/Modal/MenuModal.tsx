@@ -6,6 +6,7 @@ import { CalloutTypo } from 'components/typography';
 import { removeModal, setModal } from 'modules/slices/modal';
 import { useNavigation } from '@react-navigation/native';
 import { togglePlanPin } from 'modules/slices/plan';
+import { setIdentify } from 'modules/slices/identify';
 
 interface ModalButtonProps {
   first?: boolean;
@@ -37,12 +38,11 @@ const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
 const MenuModal = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const identify = useSelector((state) => state.identify);
   const navigatePlanEdit = () => {
     dispatch(removeModal());
     navigation.navigate('PlanEdit');
   };
-  const modal = useSelector((state) => state.modal);
-
   return (
     <ModalView
       onPress={() => {
@@ -52,7 +52,7 @@ const MenuModal = () => {
         first
         onPress={() => {
           dispatch(removeModal());
-          dispatch(togglePlanPin(Number(modal?.id)));
+          dispatch(togglePlanPin(Number(identify?.id)));
         }}>
         <CalloutTypo color={'black'}>고정하기</CalloutTypo>
       </ModalButton>
@@ -61,7 +61,7 @@ const MenuModal = () => {
       </ModalButton>
       <ModalButton
         onPress={() => {
-          dispatch(setModal({ modalType: 'delete', id: modal?.id }));
+          dispatch(setModal({ modalType: 'delete' }));
         }}>
         <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
       </ModalButton>

@@ -17,8 +17,13 @@ export const plan = createSlice({
     removePlan: (state, action: PayloadAction<number>) => {
       return state.filter((item) => item.id !== action.payload);
     },
+    updatePlan: (state, action: PayloadAction<Plan>) => {
+      return state.map((item) => {
+        return item.id === action.payload.id ? action.payload : item;
+      });
+    },
   },
 });
 
-export const { addPlan, togglePlanPin, removePlan } = plan.actions;
+export const { addPlan, togglePlanPin, removePlan, updatePlan } = plan.actions;
 export default plan.reducer;
