@@ -40,7 +40,11 @@ const Step2 = ({
   return (
     <PickerContainer>
       <Picker>
-        <WheelPicker dataSource={getDurationArr()} onValueChange={onValueChange} />
+        <WheelPicker
+          dataSource={getDurationArr()}
+          onValueChange={onValueChange}
+          selectedIndex={1}
+        />
       </Picker>
     </PickerContainer>
   );
@@ -69,7 +73,7 @@ const AddTaskModal = () => {
   const tasks = useSelector((state) => state.stepOfAddingPlan.userInputs.tasks);
   const [level, setLevel] = useState<LevelType>(1);
   const [input, setInputText] = useState<string>('');
-  const [duration, setDuration] = useState<string | number>('');
+  const [duration, setDuration] = useState<string | number>(getDurationArr()[1]);
 
   const task = useRef<TaskType>({
     name: '',
