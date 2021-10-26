@@ -2,54 +2,63 @@ import { Destination, Plan, TaskType } from 'types/index';
 
 export const tasks: TaskType[] = [
   {
+    id: 0,
     name: '아침 식사',
     duration: 30,
     isBookmarked: true,
     notification: true,
   },
   {
+    id: 1,
     name: '고양이 밥주기',
     duration: 5,
     isBookmarked: true,
     notification: true,
   },
   {
+    id: 2,
     name: '샤워하기',
     duration: 30,
     isBookmarked: true,
     notification: false,
   },
   {
+    id: 3,
     name: '서점 들리기',
     duration: 60,
     isBookmarked: false,
     notification: true,
   },
   {
+    id: 4,
     name: '백화점 들리기',
     duration: 90,
     isBookmarked: false,
     notification: true,
   },
   {
+    id: 5,
     name: '엄마한테 전화하기',
     duration: 10,
     isBookmarked: false,
     notification: true,
   },
   {
+    id: 6,
     name: '아빠한테 전화하기',
     duration: 15,
     isBookmarked: false,
     notification: true,
   },
   {
+    id: 7,
     name: '점심 식사',
     duration: 30,
     isBookmarked: true,
     notification: true,
   },
   {
+    id: 8,
     name: '저녁 식사',
     duration: 30,
     isBookmarked: true,
