@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-
-import { CalloutTypo, FootnoteTypo } from 'components/typography';
 import { SvgXml } from 'react-native-svg';
-// import NotificationBar from './NotificationBar';
 
+// import NotificationBar from './NotificationBar';
+import { CalloutTypo, FootnoteTypo } from 'components/typography';
 import landingCharacter from 'assets/svg/landingCharacter';
 import RoundButton from 'components/common/RoundButton';
 
@@ -36,6 +35,10 @@ const Gap = styled.View`
   width: 12px;
 `;
 
+const HomeLandingButton = styled(RoundButton)`
+  width: 154px;
+`;
+
 // const NotificationBarView = styled.View`
 //   width: 100%;
 //   position: absolute;
@@ -63,11 +66,11 @@ const HomeLanding = () => {
         </FootnoteTypo>
       </FootnoteTypoView>
       <ButtonView>
-        <RoundButton onPress={() => {}} blank>
+        <HomeLandingButton onPress={() => {}} blank>
           가이드 보기
-        </RoundButton>
+        </HomeLandingButton>
         <Gap />
-        <RoundButton onPress={() => {}}>일정 등록하기</RoundButton>
+        <HomeLandingButton onPress={() => {}}>일정 등록하기</HomeLandingButton>
       </ButtonView>
       {/* 설정 페이지 없을 땐 비활성화 */}
       {/* <NotificationBarView>

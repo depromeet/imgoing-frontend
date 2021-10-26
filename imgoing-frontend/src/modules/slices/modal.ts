@@ -1,9 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ModalType = 'delete' | 'menu' | 'datePicker' | 'addTask';
+export type ModalType = 'delete' | 'menu' | 'datePicker' | 'addTask' | 'setLocation';
 
 export interface ModalPayload {
   modalType: ModalType;
+  id?: number;
+  props?: {
+    type: string;
+  };
 }
 
 export const modal = createSlice({

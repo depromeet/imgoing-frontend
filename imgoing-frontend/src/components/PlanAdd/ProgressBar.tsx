@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
-import { AddingPlanStepsType } from 'types/index';
+import { AddingPlanSteps } from 'types/index';
 import Goal from 'assets/svg/Goal';
 import { planStepInfo } from 'constant/plan';
 import store from 'modules/store';
@@ -88,7 +88,7 @@ const GoalIcon = styled.View`
   right: 0;
 `;
 
-const ProgressBar = ({ step }: { step: keyof AddingPlanStepsType }) => {
+const ProgressBar = ({ step }: { step: keyof AddingPlanSteps }) => {
   const { percentage, sentence } = planStepInfo[step].progressbar;
 
   return (
