@@ -9,6 +9,8 @@ import UserInput from 'components/PlanAdd/UserInput';
 import { AddingPlanUserInputsType } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import { setStep } from 'modules/slices/stepOfAddingPlan';
+import { addPlan } from 'modules/slices/plan';
+import store from 'modules/store';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -25,21 +27,30 @@ const PlanAddScreen = () => {
 
   const onPress = () => {
     if (step === PLAN_STEP_TITLES.SET_TASK) {
-      contents.tasks = [];
-      // plan store에 추가
+      const data = store.getState().stepOfAddingPlan.userInputs;
+      dispatch(
+        addPlan({
+          id: 100,
+          name: data.title || '',
+          arrival_at: data.arrivalDateTime || '',
+          destination: {
+            dest_name: data.departure!.name,
+            dest_lat: data.departure?.coordinate.lat || 0,
+            dest_lng: data.departure?.coordinate.lng || 0,
+          },
+          memo: data.details || '',
+          items: data.items || '',
+          tasks: data.tasks || [],
+          isPinned: false,
+        }),
+      );
       navigation.goBack();
       return;
     }
 
     switch (step) {
       case PLAN_STEP_TITLES.SET_TITLE:
-        contents = {
-          title: inputText,
-        };
-        break;
-      case PLAN_STEP_TITLES.SET_DEPARTURE:
-        break;
-      case PLAN_STEP_TITLES.SET_ARRIVAL:
+        contents.title = inputText;
         break;
       case PLAN_STEP_TITLES.SET_ARRIVALTIME:
         contents.arrivalDateTime = '2021-09-09 12:12:12';

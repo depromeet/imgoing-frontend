@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import RoundButton from 'components/common/RoundButton';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 interface BottomButtonLayoutProps {
   children: React.ReactNode;
@@ -15,7 +16,7 @@ const BottomView = styled.View`
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 90px;
+  height: ${90 + getStatusBarHeight()}px;
   display: flex;
   justify-content: center;
 `;
@@ -58,11 +59,8 @@ const BottomButtonLayout = (props: BottomButtonLayoutProps) => {
           <RoundButton onPress={onPress}>{text}</RoundButton>
         </ButtonView>
         <GradientOverlay
-          colors={[
-            'rgba(255,255,255,0)',
-            'rgba(255,255,255,1)',
-            'rgba(255,255,255,1)',
-          ]}></GradientOverlay>
+          colors={['rgba(255,255,255,0)', 'rgba(255,255,255,1)', 'rgba(255,255,255,1)']}
+        />
       </BottomView>
     </KeyboardAvoidingView>
   );

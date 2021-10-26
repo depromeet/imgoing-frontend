@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Destination, Plan } from 'types/index';
 import { updatePlan } from 'modules/slices/plan';
 import EditInputList from 'components/PlanEdit/EditInputList';
-import TaskItem from 'components/PlanEdit/TaskItem';
+import TaskItem from 'components/TaskItem';
 
 const EditView = styled.View`
   padding: 0 15px;

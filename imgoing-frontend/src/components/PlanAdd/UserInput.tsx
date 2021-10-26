@@ -1,4 +1,5 @@
 import React from 'react';
+import { ScrollView, View } from 'react-native';
 import styled from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -8,7 +9,11 @@ import { AddingPlanSteps } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
+import TaskItem from 'components/TaskItem';
+import { SubheadlineTypo } from 'components/typography';
+import LinkButton from 'components/common/LinkButton';
 import { setModal } from 'modules/slices/modal';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 
 interface UserInputProps {
   setInputText: (text: string) => void;
@@ -109,14 +114,45 @@ const Step6 = ({ setInputText }: { setInputText: (text: string) => void }) => {
 
 const Step7 = () => {
   const dispatch = useDispatch();
+  const tasks = useSelector((state) => state.stepOfAddingPlan.userInputs.tasks);
+
   return (
-    <RectangleButton
-      leftIcon={icon_plus}
-      onPressOut={() => {
-        dispatch(setModal({ modalType: 'addTask' }));
-      }}>
-      등록해 주세요
-    </RectangleButton>
+    <>
+      <SubheadlineTypo color='grayHeavy' style={{ paddingLeft: 2, marginBottom: 14 }}>
+        어떤 준비가 필요할까요?
+      </SubheadlineTypo>
+      <RectangleButton
+        leftIcon={icon_plus}
+        onPressOut={() => {
+          dispatch(setModal({ modalType: 'addTask' }));
+        }}>
+        등록해 주세요
+      </RectangleButton>
+      <ScrollView>
+        {tasks &&
+          tasks.map((task, idx) => (
+            <TaskItem
+              id={task.id}
+              key={idx}
+              duration={task.duration}
+              name={task.name}
+              notification={task.notification}
+              isBookmarked={task.isBookmarked}
+            />
+          ))}
+        <View
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            paddingBottom: 90 + getStatusBarHeight(),
+            paddingTop: 20,
+          }}>
+          <LinkButton onPress={() => dispatch(setModal({ modalType: 'loadBookmark' }))}>
+            불러 오기
+          </LinkButton>
+        </View>
+      </ScrollView>
+    </>
   );
 };
 

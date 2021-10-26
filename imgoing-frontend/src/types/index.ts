@@ -1,10 +1,17 @@
-export interface Task {
+export interface TaskType {
+  id: number;
   name: string;
   duration: number;
   isBookmarked: boolean;
   notification: boolean;
 }
-// TODO: Destination 타입 변경해야 함
+
+export interface BookmarkType {
+  name: string;
+  duration: number;
+  notification: boolean;
+}
+
 export interface Destination {
   dest_name: string;
   dest_lat: number;
@@ -18,14 +25,14 @@ export interface Plan {
   destination: Destination;
   memo: string;
   items: string;
-  tasks: Task[];
+  tasks: TaskType[];
   isPinned: boolean;
 }
 
 export type setTitleType = {
   title: string;
 };
-// TODO: Destination 타입 이렇게 변경해야 할 듯
+
 export type setLocationType = {
   name: string;
   address: string;
@@ -44,7 +51,7 @@ export type setDetailsType = {
   details: string;
 };
 export type setTaskType = {
-  tasks: Task[];
+  tasks: TaskType[];
 };
 export type AddPlanContentsType =
   | setTitleType
@@ -84,7 +91,7 @@ export type AddingPlanUserInputsType = {
   arrivalDateTime?: string;
   items?: string;
   details?: string;
-  tasks?: Task[];
+  tasks?: TaskType[];
 };
 
 export type AddingPlanStateType = {
