@@ -10,6 +10,7 @@ interface BottomButtonLayoutProps {
   children: React.ReactNode;
   text: string;
   onPress: () => void;
+  disabled?: boolean;
 }
 
 const BottomView = styled.View`
@@ -38,7 +39,7 @@ const { StatusBarManager } = NativeModules;
 
 const BottomButtonLayout = (props: BottomButtonLayoutProps) => {
   const [statusBarHeight, setStatusBarHeight] = useState(0);
-  const { children, text, onPress } = props;
+  const { children, text, onPress, disabled } = props;
 
   useEffect(() => {
     Platform.OS == 'ios'
@@ -56,7 +57,9 @@ const BottomButtonLayout = (props: BottomButtonLayoutProps) => {
       {children}
       <BottomView>
         <ButtonView>
-          <RoundButton onPress={onPress}>{text}</RoundButton>
+          <RoundButton onPress={onPress} disabled={disabled}>
+            {text}
+          </RoundButton>
         </ButtonView>
         <GradientOverlay
           colors={['rgba(255,255,255,0)', 'rgba(255,255,255,1)', 'rgba(255,255,255,1)']}

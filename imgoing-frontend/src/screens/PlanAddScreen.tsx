@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -20,6 +20,12 @@ const Wrapper = styled.View`
 const PlanAddScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const step = useSelector((state) => state.stepOfAddingPlan.step);
+  const { departure, arrival, arrivalDateTime } = useSelector(
+    (state) => state.stepOfAddingPlan.userInputs,
+  );
+
+  const [disabled, setDisabled] = useState<boolean>(true);
 
   let contents = {} as AddingPlanUserInputsType;
   const inputText = useRef<inputTextType>({
@@ -32,9 +38,10 @@ const PlanAddScreen = () => {
       ...inputText.current,
       [type]: text,
     };
+    if (step === PLAN_STEP_TITLES.SET_TITLE && type === 'title') {
+      setDisabled(!text);
+    }
   };
-
-  const step = useSelector((state) => state.stepOfAddingPlan.step);
 
   const onPress = () => {
     if (step === PLAN_STEP_TITLES.SET_TASK) {
@@ -73,9 +80,23 @@ const PlanAddScreen = () => {
     dispatch(setStep({ type: 'next', userInput: contents }));
   };
 
+  useEffect(() => {
+    if (step === PLAN_STEP_TITLES.SET_TITLE) {
+      setDisabled(!inputText.current.title);
+    } else if (
+      (step === PLAN_STEP_TITLES.SET_DEPARTURE && !(departure && departure.name)) ||
+      (step === PLAN_STEP_TITLES.SET_ARRIVAL && !(arrival && arrival.name)) ||
+      (step === PLAN_STEP_TITLES.SET_ARRIVALTIME && !arrivalDateTime)
+    ) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [step, departure, arrival, arrivalDateTime, inputText.current.title]);
+
   return (
     <Wrapper>
-      <BottomButtonLayout text='다음' onPress={onPress}>
+      <BottomButtonLayout text='다음' onPress={onPress} disabled={disabled}>
         {step && <ProgressBar step={step} />}
         <UserInput setInputText={setInputText} />
       </BottomButtonLayout>
