@@ -52,7 +52,6 @@ const DeleteModal = () => {
         <ModalButton
           blank
           onPress={() => {
-            console.log('pressd');
             dispatch(removeModal());
           }}>
           아니요
@@ -61,7 +60,6 @@ const DeleteModal = () => {
         <ModalButton
           blank
           onPress={() => {
-            console.log('pressd');
             dispatch(removeModal());
             dispatch(removePlan(Number(identify?.id)));
           }}>
