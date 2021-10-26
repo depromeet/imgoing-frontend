@@ -29,22 +29,20 @@ const PlanAddScreen = () => {
     if (step === PLAN_STEP_TITLES.SET_TASK) {
       const data = store.getState().stepOfAddingPlan.userInputs;
       dispatch(
-        addPlan([
-          {
-            id: 100,
-            name: data.title || '',
-            arrival_at: data.arrivalDateTime || '',
-            destination: {
-              dest_name: data.departure!.name,
-              dest_lat: data.departure?.coordinate.lat || 0,
-              dest_lng: data.departure?.coordinate.lng || 0,
-            },
-            memo: data.details || '',
-            items: data.items || '',
-            tasks: data.tasks || [],
-            isPinned: false,
+        addPlan({
+          id: 100,
+          name: data.title || '',
+          arrival_at: data.arrivalDateTime || '',
+          destination: {
+            dest_name: data.departure!.name,
+            dest_lat: data.departure?.coordinate.lat || 0,
+            dest_lng: data.departure?.coordinate.lng || 0,
           },
-        ]),
+          memo: data.details || '',
+          items: data.items || '',
+          tasks: data.tasks || [],
+          isPinned: false,
+        }),
       );
       navigation.goBack();
       return;
