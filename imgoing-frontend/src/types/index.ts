@@ -110,3 +110,9 @@ export type PlanStepInfo = {
     };
   };
 };
+
+export interface inputTextType {
+  title: string;
+  items: string;
+  details: string;
+}

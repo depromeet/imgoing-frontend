@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 
 import { icon_openRight, icon_plus } from 'assets/svg';
-import { AddingPlanSteps } from 'types/index';
+import { AddingPlanSteps, inputTextType } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
@@ -14,9 +14,10 @@ import { SubheadlineTypo } from 'components/typography';
 import LinkButton from 'components/common/LinkButton';
 import { setModal } from 'modules/slices/modal';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+import store from 'modules/store';
 
 interface UserInputProps {
-  setInputText: (text: string) => void;
+  setInputText: ({ type, text }: { type: keyof inputTextType; text: string }) => void;
 }
 
 const Wrapper = styled.View`
@@ -28,12 +29,13 @@ const EditInput = styled(Input)`
   margin-bottom: 40px;
 `;
 
-const Step1 = ({ setInputText }: { setInputText: (text: string) => void }) => {
+const Step1 = ({ setInputText }: UserInputProps) => {
   return (
     <EditInput
       title='스케줄 이름을 입력해 주세요'
       placeholder='스케줄 이름 입력하기'
-      onChangeText={setInputText}
+      onChangeText={(text) => setInputText({ type: 'title', text })}
+      defaultValue={store.getState().stepOfAddingPlan.userInputs.title || ''}
     />
   );
 };
@@ -94,22 +96,24 @@ const Step4 = () => {
   );
 };
 
-const Step5 = ({ setInputText }: { setInputText: (text: string) => void }) => {
+const Step5 = ({ setInputText }: UserInputProps) => {
   return (
     <EditInput
       title='외출 시 필요한 물품이 있나요'
       placeholder='필요한 물품 입력하기'
-      onChangeText={setInputText}
+      onChangeText={(text) => setInputText({ type: 'items', text })}
+      defaultValue={store.getState().stepOfAddingPlan.userInputs.items || ''}
     />
   );
 };
 
-const Step6 = ({ setInputText }: { setInputText: (text: string) => void }) => {
+const Step6 = ({ setInputText }: UserInputProps) => {
   return (
     <EditInput
       title='일정에 대한 상세 내용을 알려주세요'
       placeholder='상세 내용 입력하기'
-      onChangeText={setInputText}
+      onChangeText={(text) => setInputText({ type: 'details', text })}
+      defaultValue={store.getState().stepOfAddingPlan.userInputs.details || ''}
     />
   );
 };
