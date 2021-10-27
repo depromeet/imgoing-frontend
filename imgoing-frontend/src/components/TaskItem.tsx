@@ -24,7 +24,6 @@ const TaskView = styled.View`
   justify-content: space-between;
   border-radius: 4px;
   padding: 0 12px 0 16px;
-  margin-top: 16px;
 `;
 
 const Title = styled(SubheadlineTypo)`
@@ -56,8 +55,8 @@ const Bar = styled.View`
 
 const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightProps>((props) => {
   return {
-    underlayColor: props.theme.colors.grayLight,
-    activeOpacity: 0.6,
+    underlayColor: props.theme.colors.white,
+    activeOpacity: 0.7,
   };
 })``;
 
@@ -69,7 +68,7 @@ const TaskItem = (props: TaskProps) => {
   }, [isNotification]);
   return (
     <>
-      <TouchableHighlight style={style} onPress={() => alert('test')}>
+      <TouchableHighlight style={[{ marginTop: 16 }, style]} onPress={() => alert('test')}>
         <TaskView>
           {isBookmarked && (
             <>
