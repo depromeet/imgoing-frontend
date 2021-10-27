@@ -94,7 +94,7 @@ const SetLocationModal = () => {
   return (
     <RoundBottomModalLayout title={'장소 입력하기'} style={{ paddingLeft: 0, paddingRight: 0 }}>
       <View style={{ height: 650 }}>
-        <WebView source={{ uri: 'https://eunseong.loca.lt' }} onMessage={onMessage} />
+        <WebView source={{ uri: 'https://imgoing-frontend.vercel.app/' }} onMessage={onMessage} />
       </View>
     </RoundBottomModalLayout>
   );
