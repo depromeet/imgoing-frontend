@@ -3,6 +3,7 @@ import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
+import { useNavigation } from '@react-navigation/native';
 
 import { icon_contract, icon_expand, icon_moreHorizCircle, icon_pin } from 'assets/svg';
 import kakaoMap from 'assets/svg/kakaoMap';
@@ -83,6 +84,7 @@ const PlanItem = ({ item }: { item: Plan }) => {
   const [toggleExpanded, setToggleExpanded] = useState<boolean>(false);
 
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   const arrivalDate = moment(arrival_at);
   const checkAMPM = arrivalDate.format('A');
@@ -132,8 +134,15 @@ const PlanItem = ({ item }: { item: Plan }) => {
         <DetailView>
           <PlanItemDetail emoji={`⏳`} content={`준비 ${standByTime}분 소요`} />
           <PlanItemDetail emoji={`📍`} content={destination.dest_name} />
-          {/* 지도 연결 필요 */}
-          <KaKaoMapButton activeOpacity={0.7}>
+          <KaKaoMapButton
+            activeOpacity={0.7}
+            onPress={() => {
+              navigation.navigate('KakaoRoute', {
+                dest_nm: destination.dest_name,
+                dest_lat: destination.dest_lat,
+                dest_lng: destination.dest_lng,
+              });
+            }}>
             <SvgXml xml={kakaoMap} width='100%' height='32px' />
           </KaKaoMapButton>
           {items && <PlanItemDetail emoji={`🎒️`} content={items} />}
