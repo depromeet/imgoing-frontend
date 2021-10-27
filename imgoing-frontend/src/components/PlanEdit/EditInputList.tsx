@@ -28,6 +28,8 @@ const EditInputList = (props: EditInputListProps) => {
       name: 'destination',
       title: '목적지를 입력해 주세요',
       placeholder: '목적지 설정하기',
+      editable: false,
+      onTouchEnd: () => dispatch(setModal({ modalType: 'setLocation' })),
       value: data.destination.dest_name,
     },
     {

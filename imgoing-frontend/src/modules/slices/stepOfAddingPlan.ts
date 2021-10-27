@@ -67,6 +67,7 @@ export const stepOfAddingPlan = createSlice({
 
       return nextState;
     },
+
     resetStep: () => {
       return addingPlanState;
     },

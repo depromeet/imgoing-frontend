@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleProp, TouchableHighlightProps, ViewStyle } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
@@ -7,9 +7,12 @@ import { icon_bell } from 'assets/svg';
 import { colors } from 'constant/index';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { TaskType } from 'types/index';
+import { useDispatch } from 'react-redux';
+import { setStep } from 'modules/slices/stepOfAddingPlan';
 
 interface TaskProps extends TaskType {
   style?: StyleProp<ViewStyle>;
+  onToggle?: (id: number, isToggle: boolean) => void;
 }
 
 const TaskView = styled.View`
@@ -59,8 +62,11 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 })``;
 
 const TaskItem = (props: TaskProps) => {
-  const { name, duration, isBookmarked, notification, style } = props;
+  const { name, duration, isBookmarked, notification, style, id, onToggle } = props;
   const [isNotification, setNotification] = useState<boolean>(notification);
+  useEffect(() => {
+    onToggle && onToggle(id, isNotification);
+  }, [isNotification]);
   return (
     <>
       <TouchableHighlight style={style} onPress={() => alert('test')}>
