@@ -36,7 +36,7 @@ const ModalButton = styled(RoundButton)`
 
 const DeleteModal = () => {
   const dispatch = useDispatch();
-  const modal = useSelector((state) => state.modal);
+  const identify = useSelector((state) => state.identify);
 
   return (
     <ModalView>
@@ -52,7 +52,6 @@ const DeleteModal = () => {
         <ModalButton
           blank
           onPress={() => {
-            console.log('pressd');
             dispatch(removeModal());
           }}>
           아니요
@@ -61,9 +60,8 @@ const DeleteModal = () => {
         <ModalButton
           blank
           onPress={() => {
-            console.log('pressd');
             dispatch(removeModal());
-            dispatch(removePlan(Number(modal?.id)));
+            dispatch(removePlan(Number(identify?.id)));
           }}>
           삭제하기
         </ModalButton>
