@@ -22,7 +22,7 @@ const ModalView = styled.View`
   justify-content: flex-end;
 `;
 
-const ModalContainer = styled.View`
+const ModalContainer = styled.Pressable`
   display: flex;
   background-color: white;
   border-top-left-radius: 16px;

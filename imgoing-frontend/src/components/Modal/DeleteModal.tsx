@@ -7,7 +7,7 @@ import RoundButton from 'components/common/RoundButton';
 import { CalloutTypo, ContentTypo } from 'components/typography';
 import { removePlan } from 'modules/slices/plan';
 
-const ModalView = styled.View`
+const ModalView = styled.Pressable`
   background: ${(props) => props.theme.colors.white};
   width: 320px;
   height: 170px;
