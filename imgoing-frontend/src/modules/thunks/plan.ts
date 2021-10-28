@@ -90,10 +90,10 @@ export const editPlan = createAsyncThunk('edit/plan', async (editedPlan: Plan, t
   }
 });
 
-export const deletePlan = createAsyncThunk('delete/plan', async (planId: number, thunkAPI) => {
+export const removePlan = createAsyncThunk('delete/plan', async (planId: number, thunkAPI) => {
   try {
     const { data, status } = await planRequest({ url: `/${planId}`, method: 'DELETE' });
-    return true;
+    return planId;
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error?.response?.data);
   }
