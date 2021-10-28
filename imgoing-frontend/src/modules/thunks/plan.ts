@@ -4,7 +4,7 @@ import { Plan, planRemainingTime } from 'types/index';
 import { planRequest } from 'utils/request';
 
 const PlanToReq = (plan: Plan) => ({
-  arrivalAt: plan.arrivalAt,
+  arrivalAt: new Date(plan.arrivalAt), // TODO: api 수정되면 string으로만 전달(Date 객체 X)
   arrivalLat: plan.arrival.lat,
   arrivalLng: plan.arrival.lng,
   arrivalName: plan.arrival.name,
@@ -68,12 +68,11 @@ export const getPlanList = createAsyncThunk('get/plan', async (_, thunkAPI) => {
 
 export const addPlan = createAsyncThunk('add/plan', async (newPlan: Plan, thunkAPI) => {
   try {
-    const res = await planRequest({
+    const { data, status } = await planRequest({
       method: 'POST',
-      data: newPlan,
+      data: PlanToReq(newPlan),
     });
-    const { data, status } = res.data;
-    return PlanToReq(data);
+    return ResToPlan(data.data);
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error?.response?.data);
   }
