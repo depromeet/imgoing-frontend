@@ -28,15 +28,15 @@ const EditInputList = (props: EditInputListProps) => {
       name: 'destination',
       title: '목적지를 입력해 주세요',
       placeholder: '목적지 설정하기',
-      value: data.destination.dest_name,
+      value: data.arrival.name,
     },
     {
-      name: 'arrival_at',
+      name: 'arrivalAt',
       title: '도착 시간을 입력해 주세요',
       placeholder: '날짜 / 시간 설정하기',
       editable: false,
       onTouchEnd: () => dispatch(setModal({ modalType: 'datePicker' })),
-      value: data.arrival_at,
+      value: data.arrivalAt,
     },
     {
       name: 'items',

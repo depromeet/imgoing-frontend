@@ -76,6 +76,7 @@ const AddTaskModal = () => {
   const [duration, setDuration] = useState<string | number>(getDurationArr()[1]);
 
   const task = useRef<TaskType>({
+    id: -1,
     name: '',
     duration: 0,
     isBookmarked: false,
