@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { getPlanList, addPlan, removePlan } from 'modules/thunks/plan';
+import { getPlanList, addPlan, removePlan, updatePlan } from 'modules/thunks/plan';
 import { Plan } from 'types/index';
 
 type ErrorType = { message: string; status: string; statusCode: number };
@@ -11,11 +11,6 @@ export const plan = createSlice({
     togglePlanPin: (state, action: PayloadAction<number>) => {
       return state.map((item) => {
         return item.id === action.payload ? { ...item, isPinned: !item.isPinned } : item;
-      });
-    },
-    updatePlan: (state, action: PayloadAction<Plan>) => {
-      return state.map((item) => {
-        return item.id === action.payload.id ? action.payload : item;
       });
     },
   },
@@ -41,6 +36,17 @@ export const plan = createSlice({
         console.error('[ERROR] ', statusCode, message);
       });
     builder
+      .addCase(updatePlan.fulfilled, (state, { payload }) =>
+        [...state.filter((plan) => plan.id != payload.id), payload].sort((a, b) =>
+          a.arrivalAt < b.arrivalAt ? -1 : a.arrivalAt > b.arrivalAt ? 1 : 0,
+        ),
+      )
+      .addCase(updatePlan.rejected, (state, { payload }) => {
+        const { message, status, statusCode } = payload as ErrorType;
+        // TODO: 에러 처리
+        console.error('[ERROR] ', statusCode, message);
+      });
+    builder
       .addCase(removePlan.fulfilled, (state, { payload }) =>
         state.filter((plan) => plan.id !== payload),
       )
@@ -52,5 +58,5 @@ export const plan = createSlice({
   },
 });
 
-export const { togglePlanPin, updatePlan } = plan.actions;
+export const { togglePlanPin } = plan.actions;
 export default plan.reducer;

@@ -78,13 +78,13 @@ export const addPlan = createAsyncThunk('add/plan', async (newPlan: Plan, thunkA
   }
 });
 
-export const editPlan = createAsyncThunk('edit/plan', async (editedPlan: Plan, thunkAPI) => {
+export const updatePlan = createAsyncThunk('edit/plan', async (editedPlan: Plan, thunkAPI) => {
   try {
     const { data, status } = await planRequest({
       method: 'PUT',
-      data: editedPlan,
+      data: PlanToReq(editedPlan),
     });
-    return PlanToReq(data.data);
+    return ResToPlan(data.data);
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error?.response?.data);
   }

@@ -10,7 +10,7 @@ import BottomButtonLayout from 'layouts/BottomButtonLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import { Location, Plan } from 'types/index';
-import { updatePlan } from 'modules/slices/plan';
+import { updatePlan } from 'modules/thunks/plan';
 import EditInputList from 'components/PlanEdit/EditInputList';
 import TaskItem from 'components/TaskItem';
 
