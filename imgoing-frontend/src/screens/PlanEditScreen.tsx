@@ -9,7 +9,7 @@ import { SubheadlineTypo } from 'components/typography';
 import BottomButtonLayout from 'layouts/BottomButtonLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { Destination, Plan } from 'types/index';
+import { Location, Plan } from 'types/index';
 import { updatePlan } from 'modules/slices/plan';
 import EditInputList from 'components/PlanEdit/EditInputList';
 import TaskItem from 'components/TaskItem';
@@ -34,12 +34,12 @@ const EditScreen = () => {
       {
         /* 아래 부분은 일단 임시로 두었습니다. */
       }
-      const destination: Destination = {
-        dest_name: e.nativeEvent.text,
-        dest_lat: 37.5093176,
-        dest_lng: 127.0576216,
+      const destination: Location = {
+        name: e.nativeEvent.text,
+        lat: 37.5093176,
+        lng: 127.0576216,
       };
-      setData({ ...data, destination: destination });
+      setData({ ...data, arrival: destination });
     } else {
       setData({ ...data, [e.name]: e.nativeEvent.text });
     }
