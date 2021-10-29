@@ -5,11 +5,11 @@ import styled from 'styled-components/native';
 
 import { icon_bell } from 'assets/svg';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
-import { Task } from 'types/index';
+import { TaskType } from 'types/index';
 
 type GroupType = '루틴' | '즐겨찾기' | '북마크';
 
-interface TaskProps extends Task {
+interface TaskProps extends TaskType {
   style?: StyleProp<ViewStyle>;
   group?: GroupType;
 }

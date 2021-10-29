@@ -9,7 +9,7 @@ import UserInput from 'components/PlanAdd/UserInput';
 import { AddingPlanUserInputsType, inputTextType } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import { setStep } from 'modules/slices/stepOfAddingPlan';
-import { addPlan } from 'modules/slices/plan';
+import { addPlan } from 'modules/thunks/plan';
 import store from 'modules/store';
 
 const Wrapper = styled.View`
@@ -48,13 +48,18 @@ const PlanAddScreen = () => {
       const data = store.getState().stepOfAddingPlan.userInputs;
       dispatch(
         addPlan({
-          id: 100,
+          id: -1,
           name: data.title || '',
-          arrival_at: data.arrivalDateTime || '',
-          destination: {
-            dest_name: data.departure!.name,
-            dest_lat: data.departure?.coordinate.lat || 0,
-            dest_lng: data.departure?.coordinate.lng || 0,
+          arrivalAt: data.arrivalDateTime || '',
+          arrival: {
+            name: data.arrival!.name,
+            lat: data.arrival?.coordinate.lat || 0,
+            lng: data.arrival?.coordinate.lng || 0,
+          },
+          departure: {
+            name: data.departure!.name,
+            lat: data.departure?.coordinate.lat || 0,
+            lng: data.departure?.coordinate.lng || 0,
           },
           memo: data.details || '',
           items: data.items || '',
