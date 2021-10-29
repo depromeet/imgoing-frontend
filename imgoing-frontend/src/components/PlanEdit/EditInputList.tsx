@@ -4,6 +4,9 @@ import { setModal } from 'modules/slices/modal';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
 import { Plan } from 'types/index';
+import RectangleButton from 'components/common/RectangleButton';
+import { icon_openRight } from 'assets/svg';
+import { SubheadlineTypo } from 'components/typography';
 
 interface EditInputListProps {
   data: Plan;
@@ -14,10 +17,14 @@ const EditInput = styled(Input)`
   margin-bottom: 40px;
 `;
 
+const Gap = styled.View<{ height: number }>`
+  height: ${(props) => props.height}px;
+`;
+
 const EditInputList = (props: EditInputListProps) => {
   const dispatch = useDispatch();
   const { data, onChange } = props;
-  const planEditInputs: InputProps[] = [
+  const planEditInputs: (InputProps & { component?: JSX.Element })[] = [
     {
       name: 'name',
       title: '스케줄 이름을 입력해 주세요',
@@ -25,12 +32,18 @@ const EditInputList = (props: EditInputListProps) => {
       value: data.name,
     },
     {
-      name: 'destination',
-      title: '목적지를 입력해 주세요',
-      placeholder: '목적지 설정하기',
-      editable: false,
-      onTouchEnd: () => dispatch(setModal({ modalType: 'setLocation' })),
-      value: data.destination.dest_name,
+      component: (
+        <>
+          <SubheadlineTypo color='grayHeavy'>목적지를 설정해 주세요</SubheadlineTypo>
+          <Gap height={10} />
+          <RectangleButton
+            onPress={() => dispatch(setModal({ modalType: 'setLocation' }))}
+            rightIcon={icon_openRight}>
+            {data.destination.dest_name || '목저지 설정하기'}
+          </RectangleButton>
+          <Gap height={40} />
+        </>
+      ),
     },
     {
       name: 'arrival_at',
@@ -55,9 +68,13 @@ const EditInputList = (props: EditInputListProps) => {
   ];
   return (
     <>
-      {planEditInputs.map((i, index) => (
-        <EditInput key={index} {...i} onChange={onChange} />
-      ))}
+      {planEditInputs.map((item, index) =>
+        item.component ? (
+          <React.Fragment key={index}>{item.component}</React.Fragment>
+        ) : (
+          <EditInput key={index} {...item} onChange={onChange} />
+        ),
+      )}
     </>
   );
 };
