@@ -87,6 +87,7 @@ const EditScreen = () => {
   }, [userInputs.tasks]);
   return (
     <BottomButtonLayout
+      disabled={!data.name}
       text='적용하기'
       onPress={() => {
         navigation.navigate('Main');
