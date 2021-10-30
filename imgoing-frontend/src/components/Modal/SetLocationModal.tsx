@@ -73,7 +73,8 @@ const SetLocationModal = () => {
 
   // 웹뷰 -> 앱
   const onMessage = (e: any) => {
-    if (!e.nativeEvent.data) return;
+    if (!e.nativeEvent.data || e.nativeEvent.data === 'undefined' || e.nativeEvent.data === 'null')
+      return;
 
     const data: setLocationType = JSON.parse(e.nativeEvent.data);
     place.current = data;

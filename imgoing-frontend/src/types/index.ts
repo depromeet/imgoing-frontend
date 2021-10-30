@@ -12,21 +12,32 @@ export interface BookmarkType {
   notification: boolean;
 }
 
-export interface Destination {
-  dest_name: string;
-  dest_lat: number;
-  dest_lng: number;
+export interface Location {
+  name: string;
+  lat: number;
+  lng: number;
 }
 
 export interface Plan {
   id: number;
   name: string;
-  arrival_at: string;
-  destination: Destination;
+  arrivalAt: string;
+  arrival: Location;
+  departure: Location;
   memo: string;
   items: string;
   tasks: TaskType[];
   isPinned: boolean;
+}
+
+export interface planRemainingTime {
+  recentPlanArrivalAt: string;
+  remainingTime: {
+    hours: number;
+    minutes: number;
+  };
+  routeAverageTimeAsMins: number;
+  totalReadyTimeAsMins: number;
 }
 
 export type setTitleType = {

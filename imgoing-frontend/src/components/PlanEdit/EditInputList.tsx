@@ -46,12 +46,12 @@ const EditInputList = (props: EditInputListProps) => {
       ),
     },
     {
-      name: 'arrival_at',
+      name: 'arrivalAt',
       title: '도착 시간을 입력해 주세요',
       placeholder: '날짜 / 시간 설정하기',
       editable: false,
       onTouchEnd: () => dispatch(setModal({ modalType: 'datePicker' })),
-      value: data.arrival_at,
+      value: data.arrivalAt,
     },
     {
       name: 'items',

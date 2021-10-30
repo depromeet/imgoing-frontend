@@ -79,12 +79,12 @@ const getStandByTime = (tasks: TaskType[]): string => {
 };
 
 const PlanItem = ({ item }: { item: Plan }) => {
-  const { arrival_at, destination, items, memo, name, tasks, isPinned, id } = item;
+  const { arrivalAt, arrival, items, memo, name, tasks, isPinned, id } = item;
   const [toggleExpanded, setToggleExpanded] = useState<boolean>(false);
 
   const dispatch = useDispatch();
 
-  const arrivalDate = moment(arrival_at);
+  const arrivalDate = moment(arrivalAt);
   const checkAMPM = arrivalDate.format('A');
   const arrivalTime = arrivalDate.format('MM/DD hh:mm');
   const standByTime = getStandByTime(tasks);
@@ -131,7 +131,7 @@ const PlanItem = ({ item }: { item: Plan }) => {
       {toggleExpanded && (
         <DetailView>
           <PlanItemDetail emoji={`⏳`} content={`준비 ${standByTime}분 소요`} />
-          <PlanItemDetail emoji={`📍`} content={destination.dest_name} />
+          <PlanItemDetail emoji={`📍`} content={arrival.name} />
           {/* 지도 연결 필요 */}
           <KaKaoMapButton activeOpacity={0.7}>
             <SvgXml xml={kakaoMap} width='100%' height='32px' />
