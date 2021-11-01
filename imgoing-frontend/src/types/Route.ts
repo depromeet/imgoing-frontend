@@ -9,5 +9,9 @@ export type NavigatorParamList = {
   PlanEdit: undefined;
   PlanAdd: undefined;
   Login: undefined;
-  KakaoRoute: undefined;
+  KakaoRoute: {
+    dest_nm: string;
+    dest_lat: number;
+    dest_lng: number;
+  };
 };
