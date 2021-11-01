@@ -6,6 +6,7 @@ import { SvgXml } from 'react-native-svg';
 import { CalloutTypo, FootnoteTypo } from 'components/typography';
 import landingCharacter from 'assets/svg/landingCharacter';
 import RoundButton from 'components/common/RoundButton';
+import { useNavigation } from '@react-navigation/native';
 
 const ImgView = styled.View`
   width: 100%;
@@ -46,6 +47,7 @@ const HomeLandingButton = styled(RoundButton)`
 // `;
 
 const HomeLanding = () => {
+  const navigation = useNavigation();
   // const [isVisible, setIsVisible] = useState<boolean>(true);
 
   return (
@@ -70,7 +72,9 @@ const HomeLanding = () => {
           가이드 보기
         </HomeLandingButton>
         <Gap />
-        <HomeLandingButton onPress={() => {}}>일정 등록하기</HomeLandingButton>
+        <HomeLandingButton onPress={() => navigation.navigate('PlanAdd')}>
+          일정 등록하기
+        </HomeLandingButton>
       </ButtonView>
       {/* 설정 페이지 없을 땐 비활성화 */}
       {/* <NotificationBarView>

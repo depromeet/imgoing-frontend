@@ -17,16 +17,14 @@ const Gap = styled.View`
 `;
 
 const getNearPlan = (plans: Plan[]): Plan | null => {
-  const upcomingPlan = plans.filter((plan) => moment(plan.arrival_at) >= moment());
+  const upcomingPlan = plans.filter((plan) => moment(plan.arrivalAt) >= moment());
   return upcomingPlan.length
-    ? upcomingPlan.reduce((prev, current) =>
-        prev.arrival_at < current.arrival_at ? prev : current,
-      )
+    ? upcomingPlan.reduce((prev, current) => (prev.arrivalAt < current.arrivalAt ? prev : current))
     : null;
 };
 
 const getNearTime = (plan: Plan | null): number | null => {
-  return plan ? moment(plan.arrival_at).diff(moment(), 'minutes') : null;
+  return plan ? moment(plan.arrivalAt).diff(moment(), 'minutes') : null;
 };
 
 const getRemainingTime = (minutes: number | null): string => {

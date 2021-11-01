@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeModal } from 'modules/slices/modal';
 import RoundButton from 'components/common/RoundButton';
 import { CalloutTypo, ContentTypo } from 'components/typography';
-import { removePlan } from 'modules/slices/plan';
+import { removePlan } from 'modules/thunks/plan';
 
 const ModalView = styled.Pressable`
   background: ${(props) => props.theme.colors.white};

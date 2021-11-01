@@ -80,13 +80,13 @@ const getStandByTime = (tasks: TaskType[]): string => {
 };
 
 const PlanItem = ({ item }: { item: Plan }) => {
-  const { arrival_at, destination, items, memo, name, tasks, isPinned, id } = item;
+  const { arrivalAt, arrival, items, memo, name, tasks, isPinned, id } = item;
   const [toggleExpanded, setToggleExpanded] = useState<boolean>(false);
 
   const dispatch = useDispatch();
   const navigation = useNavigation();
 
-  const arrivalDate = moment(arrival_at);
+  const arrivalDate = moment(arrivalAt);
   const checkAMPM = arrivalDate.format('A');
   const arrivalTime = arrivalDate.format('MM/DD hh:mm');
   const standByTime = getStandByTime(tasks);
@@ -133,14 +133,14 @@ const PlanItem = ({ item }: { item: Plan }) => {
       {toggleExpanded && (
         <DetailView>
           <PlanItemDetail emoji={`⏳`} content={`준비 ${standByTime}분 소요`} />
-          <PlanItemDetail emoji={`📍`} content={destination.dest_name} />
+          <PlanItemDetail emoji={`📍`} content={arrival.name} />
           <KaKaoMapButton
             activeOpacity={0.7}
             onPress={() => {
               navigation.navigate('KakaoRoute', {
-                dest_nm: destination.dest_name,
-                dest_lat: destination.dest_lat,
-                dest_lng: destination.dest_lng,
+                dest_nm: arrival.name,
+                dest_lat: arrival.lat,
+                dest_lng: arrival.lng,
               });
             }}>
             <SvgXml xml={kakaoMap} width='100%' height='32px' />
