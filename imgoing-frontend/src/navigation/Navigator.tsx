@@ -24,9 +24,9 @@ const Stacks = () => {
   const step = useSelector((state) => state.stepOfAddingPlan.step);
 
   return (
-    <Stack.Navigator initialRouteName='AuthLoadingScreen'>
+    <Stack.Navigator initialRouteName='AuthLoading'>
       <Stack.Screen
-        name='AuthLoadingScreen'
+        name='AuthLoading'
         component={AuthLoadingScreen}
         options={{ headerShown: true }}
       />
