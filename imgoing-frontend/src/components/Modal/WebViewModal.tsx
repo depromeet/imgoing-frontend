@@ -2,10 +2,12 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Dimensions, View } from 'react-native';
 import WebView from 'react-native-webview';
+import { useNavigation } from '@react-navigation/native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import ENV from 'environments';
+import { NavigatorParams } from 'types/Route';
 import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 import axios from 'axios';
 import { request } from 'utils/request';
@@ -14,6 +16,7 @@ import { removeModal } from 'modules/slices/modal';
 const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${ENV.kakaoClientId}&redirect_uri=${ENV.redirectUrl}`;
 
 const WebViewModal = () => {
+  const navigation = useNavigation<NavigatorParams>();
   const dispatch = useDispatch();
 
   const onMessage = async (e: any) => {
@@ -59,6 +62,7 @@ const WebViewModal = () => {
 
     if (status === 'OK') {
       await AsyncStorage.setItem('accessToken', data);
+      navigation.navigate('Main');
     } else {
       // TODO 에러 처리
     }
