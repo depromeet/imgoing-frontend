@@ -1,10 +1,12 @@
+import { StackNavigationProp } from '@react-navigation/stack';
+
 export type BottomTabParamList = {
   Home: undefined;
   Settings: undefined;
 };
 
 export type NavigatorParamList = {
-  AuthLoadingScreen: undefined;
+  AuthLoading: undefined;
   Main: undefined;
   PlanEdit: undefined;
   PlanAdd: undefined;
@@ -15,3 +17,5 @@ export type NavigatorParamList = {
     dest_lng: number;
   };
 };
+
+export type NavigatorParams = StackNavigationProp<NavigatorParamList>;

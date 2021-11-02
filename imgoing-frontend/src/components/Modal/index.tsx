@@ -10,6 +10,7 @@ import DateWheelPickerModal from './DateWheelPickerModal';
 import AddTaskModal from './AddTaskModal';
 import SetLocationModal from './SetLocationModal';
 import LoadBookmarkModal from './LoadBookmarkModal';
+import WebViewModal from './WebViewModal';
 
 type Modals = {
   [key in ModalType]: React.ReactNode;
@@ -39,6 +40,7 @@ const ModalContainer = () => {
     addTask: <AddTaskModal />,
     setLocation: <SetLocationModal />,
     loadBookmark: <LoadBookmarkModal />,
+    webview: <WebViewModal />,
   };
 
   return (

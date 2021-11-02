@@ -6,7 +6,8 @@ export type ModalType =
   | 'datePicker'
   | 'addTask'
   | 'setLocation'
-  | 'loadBookmark';
+  | 'loadBookmark'
+  | 'webview';
 
 export interface ModalPayload {
   modalType: ModalType;

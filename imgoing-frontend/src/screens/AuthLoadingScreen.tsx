@@ -2,17 +2,15 @@ import React, { useEffect } from 'react';
 import { Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components/native';
-import { NavigationScreenProp } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
+import { NavigatorParams } from 'types/Route';
 
-interface AuthLoadingProps {
-  navigation: NavigationScreenProp<any, any>;
-}
+const AuthLoadingScreen = () => {
+  const navigation = useNavigation<NavigatorParams>();
 
-const AuthLoadingScreen = (props: AuthLoadingProps) => {
   const getUserToken = async () => {
-    const token = await AsyncStorage.getItem('userToken');
-    // props.navigation.navigate(token ? 'App' : 'Auth');
-    props.navigation.navigate('Login');
+    const token = await AsyncStorage.getItem('accessToken');
+    navigation.navigate(token ? 'Main' : 'Login');
   };
 
   useEffect(() => {
