@@ -6,6 +6,8 @@ import { NavigationScreenProp } from 'react-navigation';
 import imgoingLogo from 'assets/svg/imgoingLogo';
 import kakaoLogin from 'assets/svg/kakaoLogin';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
+import { useDispatch } from 'react-redux';
+import { setModal } from 'modules/slices/modal';
 
 interface LoginProps {
   navigation: NavigationScreenProp<any, any>;
@@ -35,6 +37,8 @@ const KaKaoLoginButton = styled.TouchableOpacity`
 
 const LoginScreen = (props: LoginProps) => {
   const { navigation } = props;
+  const dispatch = useDispatch();
+
   return (
     <Wrapper>
       <SvgXml xml={imgoingLogo} width='100%' height='46px' />
@@ -46,7 +50,7 @@ const LoginScreen = (props: LoginProps) => {
       <KaKaoLoginButton
         activeOpacity={0.7}
         onPress={() => {
-          navigation.navigate('Main');
+          dispatch(setModal({ modalType: 'webview' }));
         }}>
         <SvgXml xml={kakaoLogin} width='100%' height='50px' />
       </KaKaoLoginButton>

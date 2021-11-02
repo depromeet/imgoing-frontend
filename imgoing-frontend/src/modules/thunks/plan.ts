@@ -4,7 +4,7 @@ import { Plan, planRemainingTime } from 'types/index';
 import { planRequest } from 'utils/request';
 
 const PlanToReq = (plan: Plan) => ({
-  arrivalAt: new Date(plan.arrivalAt), // TODO: api 수정되면 string으로만 전달(Date 객체 X)
+  arrivalAt: plan.arrivalAt,
   arrivalLat: plan.arrival.lat,
   arrivalLng: plan.arrival.lng,
   arrivalName: plan.arrival.name,
@@ -15,7 +15,6 @@ const PlanToReq = (plan: Plan) => ({
   departureName: plan.departure.name,
   memo: plan.memo,
   name: plan.name,
-  id: plan.id || 0,
   task: plan.tasks.map((task) => ({
     isBookmarked: task.isBookmarked,
     name: task.name,
