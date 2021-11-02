@@ -16,6 +16,7 @@ import LoginScreen from 'screens/LoginScreen';
 import AuthLoadingScreen from 'screens/AuthLoadingScreen';
 import MainBottomTab from 'navigation/MainBottomTab';
 import ModalContainer from 'components/Modal';
+import KakaoRouteScreen from 'screens/KakaoRouteScreen';
 
 const Stack = createStackNavigator<NavigatorParamList>();
 
@@ -94,6 +95,27 @@ const Stacks = () => {
         options={{
           headerShown: false,
         }}
+      />
+      <Stack.Screen
+        name='KakaoRoute'
+        component={KakaoRouteScreen}
+        options={({ navigation }) => ({
+          title: '카카오 길찾기',
+          headerShown: true,
+          headerTitleAlign: 'left',
+          headerLeft: () => {
+            return (
+              <SvgXml
+                xml={icon_arrowLeft}
+                style={{ marginLeft: 16 }}
+                fill={colors.black}
+                onPressOut={() => {
+                  navigation.goBack();
+                }}
+              />
+            );
+          },
+        })}
       />
     </Stack.Navigator>
   );
