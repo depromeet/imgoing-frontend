@@ -60,7 +60,7 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 })``;
 
 const TaskItem = (props: TaskProps) => {
-  const { name, duration, group, notification, style } = props;
+  const { name, time, group, notification, style } = props;
   const [isNotification, setNotification] = useState<boolean>(notification);
   return (
     <>
@@ -74,7 +74,7 @@ const TaskItem = (props: TaskProps) => {
               <Bar></Bar>
             </>
           )}
-          <SubheadlineTypo>{duration}분</SubheadlineTypo>
+          <SubheadlineTypo>{time}분</SubheadlineTypo>
           <Title numberOfLines={1} color='grayHeavy'>
             {name}
           </Title>

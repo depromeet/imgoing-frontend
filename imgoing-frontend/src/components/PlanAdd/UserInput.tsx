@@ -140,7 +140,7 @@ const Step7 = () => {
             <TaskItem
               id={task.id}
               key={idx}
-              duration={task.duration}
+              time={task.time}
               name={task.name}
               notification={task.notification}
               isBookmarked={task.isBookmarked}
