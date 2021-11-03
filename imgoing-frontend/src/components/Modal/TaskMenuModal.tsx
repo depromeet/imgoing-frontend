@@ -44,7 +44,7 @@ const TaskMenuModal = () => {
 
   const deleteTask = () => {
     dispatch(removeModal());
-    if (identify?.type !== 'task' || !identify.id) {
+    if (identify?.type !== 'task') {
       // TODO : 삭제에 실패하였습니다 - 토스트 메세지
       return;
     }
