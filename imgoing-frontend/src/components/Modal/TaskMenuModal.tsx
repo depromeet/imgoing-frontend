@@ -6,8 +6,8 @@ import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 import { CalloutTypo } from 'components/typography';
 import store from 'modules/store';
 import { removeModal } from 'modules/slices/modal';
-import { removeTask } from 'modules/slices/stepOfAddingPlan';
-import { createBookmark, deleteBookmark } from 'modules/thunks/bookmark';
+import { removeTask, setBookmark } from 'modules/slices/stepOfAddingPlan';
+import { createBookmark } from 'modules/thunks/bookmark';
 
 interface ModalButtonProps {
   first?: boolean;
@@ -55,12 +55,13 @@ const TaskMenuModal = () => {
     return;
   }
 
-  const toggleBookmark = () => {
+  const onPressSetBookmark = () => {
     dispatch(removeModal());
-    dispatch(!task.isBookmarked ? createBookmark(task) : deleteBookmark(task.id));
+    dispatch(createBookmark(task));
+    dispatch(setBookmark(task.id));
   };
 
-  const deleteTask = () => {
+  const onPressDeleteTask = () => {
     dispatch(removeModal());
     dispatch(removeTask(identify.id));
   };
@@ -68,11 +69,11 @@ const TaskMenuModal = () => {
   return (
     <RoundBottomModalLayout>
       {!task.isBookmarked && (
-        <ModalButton onPress={toggleBookmark}>
+        <ModalButton onPress={onPressSetBookmark}>
           <CalloutTypo color={'black'}>북마크로 등록하기</CalloutTypo>
         </ModalButton>
       )}
-      <ModalButton onPress={deleteTask}>
+      <ModalButton onPress={onPressDeleteTask}>
         <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
       </ModalButton>
     </RoundBottomModalLayout>
