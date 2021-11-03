@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { TouchableHighlightProps } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
@@ -7,7 +7,6 @@ import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { BookmarkType } from 'types/index';
 import { colors } from 'constant/index';
 import { icon_plus } from 'assets/svg';
-import store from 'modules/store';
 
 interface BookmarkItemProps extends BookmarkType {
   id: number;
@@ -56,10 +55,7 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 
 const BookmarkItem = (props: BookmarkItemProps) => {
   const { name, time, id, selectedItems, setSelectedItem } = props;
-  const tasksState = store.getState().stepOfAddingPlan.userInputs.tasks;
-  const [selected, toggleSelected] = useState<boolean>(
-    tasksState ? !!tasksState.filter((task) => task.id === id).length : false,
-  );
+  const [selected, toggleSelected] = useState<boolean>(false);
 
   const onPress = () => {
     setSelectedItem(selected ? selectedItems.filter((key) => id !== key) : [...selectedItems, id]);
