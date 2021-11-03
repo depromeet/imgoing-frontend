@@ -72,7 +72,7 @@ const KaKaoMapButton = styled.TouchableOpacity`
 const getStandByTime = (tasks: TaskType[]): string => {
   let totalDuration = 0;
   tasks.forEach((task) => {
-    totalDuration += task.duration;
+    totalDuration += task.time;
   });
   return totalDuration > 60
     ? `${parseInt((totalDuration / 60).toString())}시간 ${totalDuration % 60}`

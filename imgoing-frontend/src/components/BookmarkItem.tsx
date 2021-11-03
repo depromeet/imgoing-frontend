@@ -55,7 +55,7 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 })``;
 
 const BookmarkItem = (props: BookmarkItemProps) => {
-  const { name, duration, id, selectedItems, setSelectedItem } = props;
+  const { name, time, id, selectedItems, setSelectedItem } = props;
   const tasksState = store.getState().stepOfAddingPlan.userInputs.tasks;
   const [selected, toggleSelected] = useState<boolean>(
     tasksState ? !!tasksState.filter((task) => task.id === id).length : false,
@@ -76,7 +76,7 @@ const BookmarkItem = (props: BookmarkItemProps) => {
             </CaptionTypo>
           </Tag>
           <Bar></Bar>
-          <SubheadlineTypo>{duration}분</SubheadlineTypo>
+          <SubheadlineTypo>{time}분</SubheadlineTypo>
           <Title numberOfLines={1} color='grayHeavy'>
             {name}
           </Title>

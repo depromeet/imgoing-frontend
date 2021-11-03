@@ -78,7 +78,7 @@ const AddTaskModal = () => {
   const task = useRef<TaskType>({
     id: -1,
     name: '',
-    duration: 0,
+    time: 0,
     isBookmarked: false,
     notification: false,
   });
@@ -95,7 +95,7 @@ const AddTaskModal = () => {
       case 2:
         task.current = {
           ...task.current,
-          duration: +duration.toString().split('분')[0],
+          time: +duration.toString().split('분')[0],
         };
 
         dispatch(

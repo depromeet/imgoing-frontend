@@ -18,7 +18,7 @@ const PlanToReq = (plan: Plan) => ({
   task: plan.tasks.map((task) => ({
     isBookmarked: task.isBookmarked,
     name: task.name,
-    time: task.duration,
+    time: task.time,
   })),
 });
 

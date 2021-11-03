@@ -47,7 +47,7 @@ const LoadBookmarkModal = () => {
             <BookmarkItem
               key={task.id}
               id={task.id}
-              duration={task.duration}
+              time={task.time}
               name={task.name}
               notification={task.notification}
               setSelectedItem={setSelectedItem}

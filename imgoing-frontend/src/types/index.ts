@@ -1,14 +1,14 @@
 export interface TaskType {
   id: number;
   name: string;
-  duration: number;
+  time: number;
   isBookmarked: boolean;
   notification: boolean;
 }
 
 export interface BookmarkType {
   name: string;
-  duration: number;
+  time: number;
   notification: boolean;
 }
 
