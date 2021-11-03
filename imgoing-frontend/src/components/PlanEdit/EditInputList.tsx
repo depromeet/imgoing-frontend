@@ -61,7 +61,7 @@ const EditInputList = (props: EditInputListProps) => {
               )
             }
             rightIcon={icon_openRight}>
-            {data.departure.name || '목저지 설정하기'}
+            {data.departure.name || '목적지 설정하기'}
           </RectangleButton>
           <Gap height={40} />
         </>

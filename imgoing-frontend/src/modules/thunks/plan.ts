@@ -81,7 +81,7 @@ export const updatePlan = createAsyncThunk('edit/plan', async (editedPlan: Plan,
   try {
     const { data, status } = await planRequest({
       method: 'PUT',
-      data: PlanToReq(editedPlan),
+      data: { ...PlanToReq(editedPlan), id: editedPlan.id },
     });
     return ResToPlan(data.data);
   } catch (error: any) {

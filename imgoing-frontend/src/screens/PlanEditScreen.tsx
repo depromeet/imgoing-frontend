@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
 import styled from 'styled-components/native';
-
 import { icon_plus } from 'assets/svg';
 import { InputChangeEventType } from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
@@ -9,13 +8,12 @@ import { SubheadlineTypo } from 'components/typography';
 import BottomButtonLayout from 'layouts/BottomButtonLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { Location, Plan } from 'types/index';
+import { Plan } from 'types/index';
 import { updatePlan } from 'modules/thunks/plan';
 import EditInputList from 'components/PlanEdit/EditInputList';
 import TaskItem from 'components/TaskItem';
 import { resetStep } from 'modules/slices/stepOfAddingPlan';
 import { setModal } from 'modules/slices/modal';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import LinkButton from 'components/common/LinkButton';
 
 const EditView = styled.View`
@@ -35,17 +33,7 @@ const EditScreen = () => {
   const [data, setData] = useState<Plan>(plan);
 
   const onChangeHandler = (e: InputChangeEventType) => {
-    if (e.name === 'destination') {
-      {
-        /* 아래 부분은 일단 임시로 두었습니다. */
-      }
-      const destination: Location = {
-        name: e.nativeEvent.text,
-        lat: 37.5093176,
-        lng: 127.0576216,
-      };
-      setData({ ...data, arrival: destination });
-    } else {
+    if (e.name !== 'destination') {
       setData({ ...data, [e.name]: e.nativeEvent.text });
     }
   };
@@ -59,6 +47,11 @@ const EditScreen = () => {
     });
   };
 
+  const onSubmit = () => {
+    navigation.navigate('Main');
+    identify?.id && dispatch(updatePlan({ ...data, id: identify.id }));
+  };
+
   useEffect(() => {
     dispatch(resetStep());
     return () => {
@@ -67,17 +60,27 @@ const EditScreen = () => {
   }, []);
 
   useEffect(() => {
-    const destination = {
-      dest_name: String(userInputs.arrival?.name),
-      dest_lat: 0,
-      dest_lng: 0,
+    const departure = {
+      lat: userInputs.departure?.coordinate.lat || 0,
+      lng: userInputs.departure?.coordinate.lng || 0,
+      name: userInputs.departure?.name || '',
     };
-    userInputs.arrival?.name && setData({ ...data, destination: destination });
+    userInputs.departure?.name && setData({ ...data, departure: departure });
+  }, [userInputs.departure]);
+
+  useEffect(() => {
+    console.log('test', userInputs.arrival);
+    const arrival = {
+      lat: userInputs.arrival?.coordinate.lat || 0,
+      lng: userInputs.arrival?.coordinate.lng || 0,
+      name: userInputs.arrival?.name || '',
+    };
+    userInputs.arrival?.name && setData({ ...data, arrival: arrival });
   }, [userInputs.arrival]);
 
   useEffect(() => {
     userInputs.arrivalDateTime &&
-      setData({ ...data, arrival_at: String(userInputs.arrivalDateTime) });
+      setData({ ...data, arrivalAt: String(userInputs.arrivalDateTime) });
   }, [userInputs.arrivalDateTime]);
 
   useEffect(() => {
@@ -85,15 +88,9 @@ const EditScreen = () => {
     tasks && tasks.length > 0 && setData({ ...data, tasks: [...data.tasks, ...tasks] });
     dispatch(resetStep());
   }, [userInputs.tasks]);
+
   return (
-    <BottomButtonLayout
-      disabled={!data.name}
-      text='적용하기'
-      onPress={() => {
-        navigation.navigate('Main');
-        dispatch(updatePlan(data));
-        dispatch(resetStep());
-      }}>
+    <BottomButtonLayout disabled={!data.name} text='적용하기' onPress={onSubmit}>
       <ScrollView style={{ backgroundColor: 'white' }}>
         <EditView>
           <EditInputList data={data} onChange={onChangeHandler} />
