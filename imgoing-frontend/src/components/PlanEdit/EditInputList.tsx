@@ -34,22 +34,44 @@ const EditInputList = (props: EditInputListProps) => {
     {
       component: (
         <>
-          <SubheadlineTypo color='grayHeavy'>목적지를 설정해 주세요</SubheadlineTypo>
+          <SubheadlineTypo color='grayHeavy'>출발지를 설정해 주세요</SubheadlineTypo>
           <Gap height={10} />
           <RectangleButton
-            onPress={() => dispatch(setModal({ modalType: 'setLocation' }))}
+            onPress={() =>
+              dispatch(
+                setModal({ modalType: 'setLocation', props: { type: 'setLocation/arrival' } }),
+              )
+            }
             rightIcon={icon_openRight}>
-            {data.destination.dest_name || '목저지 설정하기'}
+            {data.arrival.name || '출발지 설정하기'}
           </RectangleButton>
           <Gap height={40} />
         </>
       ),
     },
     {
+      component: (
+        <>
+          <SubheadlineTypo color='grayHeavy'>목적지를 설정해 주세요</SubheadlineTypo>
+          <Gap height={10} />
+          <RectangleButton
+            onPress={() =>
+              dispatch(
+                setModal({ modalType: 'setLocation', props: { type: 'setLocation/departure' } }),
+              )
+            }
+            rightIcon={icon_openRight}>
+            {data.departure.name || '목적지 설정하기'}
+          </RectangleButton>
+          <Gap height={40} />
+        </>
+      ),
+    },
+
+    {
       name: 'arrivalAt',
       title: '도착 시간을 입력해 주세요',
       placeholder: '날짜 / 시간 설정하기',
-      editable: false,
       onTouchEnd: () => dispatch(setModal({ modalType: 'datePicker' })),
       value: data.arrivalAt,
     },
