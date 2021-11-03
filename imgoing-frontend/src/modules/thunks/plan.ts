@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 import { Plan, planRemainingTime } from 'types/index';
-import { planRequest } from 'utils/request';
+import { request } from 'utils/request';
 
 const PlanToReq = (plan: Plan) => ({
   arrivalAt: plan.arrivalAt,
@@ -46,7 +46,7 @@ const ResToPlan = (res: any): Plan => {
 
 export const getPlan = createAsyncThunk('get/plan', async (planId: number, thunkAPI) => {
   try {
-    const res = await planRequest({
+    const res = await request('plan', {
       url: `/${planId}`,
     });
     const { data, status } = res;
@@ -58,7 +58,7 @@ export const getPlan = createAsyncThunk('get/plan', async (planId: number, thunk
 
 export const getPlanList = createAsyncThunk('get/plan', async (_, thunkAPI) => {
   try {
-    const { data, status } = await planRequest();
+    const { data, status } = await request('plan');
     return data.data.map(ResToPlan);
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error?.response?.data);
@@ -67,7 +67,7 @@ export const getPlanList = createAsyncThunk('get/plan', async (_, thunkAPI) => {
 
 export const addPlan = createAsyncThunk('add/plan', async (newPlan: Plan, thunkAPI) => {
   try {
-    const { data, status } = await planRequest({
+    const { data, status } = await request('plan', {
       method: 'POST',
       data: PlanToReq(newPlan),
     });
@@ -79,7 +79,7 @@ export const addPlan = createAsyncThunk('add/plan', async (newPlan: Plan, thunkA
 
 export const updatePlan = createAsyncThunk('edit/plan', async (editedPlan: Plan, thunkAPI) => {
   try {
-    const { data, status } = await planRequest({
+    const { data, status } = await request('plan', {
       method: 'PUT',
       data: { ...PlanToReq(editedPlan), id: editedPlan.id },
     });
@@ -91,7 +91,7 @@ export const updatePlan = createAsyncThunk('edit/plan', async (editedPlan: Plan,
 
 export const removePlan = createAsyncThunk('delete/plan', async (planId: number, thunkAPI) => {
   try {
-    const { data, status } = await planRequest({ url: `/${planId}`, method: 'DELETE' });
+    const { data, status } = await request('plan', { url: `/${planId}`, method: 'DELETE' });
     return planId;
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error?.response?.data);
@@ -100,7 +100,7 @@ export const removePlan = createAsyncThunk('delete/plan', async (planId: number,
 
 export const getRemainingTime = createAsyncThunk('get/remainingTime', async (_, thunkAPI) => {
   try {
-    const res = await planRequest({
+    const res = await request('plan', {
       url: 'remaining/time',
     });
     const { data, status } = res.data;

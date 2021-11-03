@@ -10,7 +10,7 @@ import ENV from 'environments';
 import { NavigatorParams } from 'types/Route';
 import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 import axios from 'axios';
-import { request } from 'utils/request';
+import { baseRequest } from 'utils/request';
 import { removeModal } from 'modules/slices/modal';
 
 const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${ENV.kakaoClientId}&redirect_uri=${ENV.redirectUrl}`;
@@ -52,7 +52,7 @@ const WebViewModal = () => {
 
     const {
       data: { data, status },
-    } = await request({
+    } = await baseRequest({
       url: '/auth',
       method: 'post',
       data: {
