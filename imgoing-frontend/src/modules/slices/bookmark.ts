@@ -1,35 +1,36 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { createBookmark, deleteBookmark, getBookmarkList } from 'modules/thunks/bookmark';
-import { BookmarkType, ErrorType, TaskType } from 'types/index';
+import { BookmarkType, ErrorType } from 'types/index';
 
 export const bookmark = createSlice({
   name: 'plan',
   initialState: [] as BookmarkType[],
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(getBookmarkList.fulfilled, (state, { payload }) => [...payload])
-      .addCase(getBookmarkList.rejected, (state, { payload }) => {
-        const { message, status, statusCode } = payload as ErrorType;
-        // TODO: 에러 처리
-        console.error('[ERROR] ', statusCode, message);
-      });
-    builder
-      .addCase(createBookmark.fulfilled, (state, { payload }) => [...state, payload])
-      .addCase(createBookmark.rejected, (state, { payload }) => {
-        const { message, status, statusCode } = payload as ErrorType;
-        // TODO: 에러 처리
-        console.error('[ERROR] ', statusCode, message);
-      });
-    builder
-      .addCase(deleteBookmark.fulfilled, (state, { payload }) =>
-        state.filter((bookmark) => bookmark.id !== payload),
-      )
-      .addCase(deleteBookmark.rejected, (state, { payload }) => {
-        const { message, status, statusCode } = payload as ErrorType;
-        // TODO: 에러 처리
-        console.error('[ERROR] ', statusCode, message);
-      });
+  extraReducers: {
+    [getBookmarkList.fulfilled.type]: (_state, { payload }: PayloadAction<BookmarkType[]>) => [
+      ...payload,
+    ],
+    [getBookmarkList.rejected.type]: (state, { payload }: PayloadAction<ErrorType>) => {
+      const { message, status, statusCode } = payload;
+      // TODO: 에러 처리
+      console.error('[ERROR] ', statusCode, message);
+    },
+    [createBookmark.fulfilled.type]: (state, { payload }: PayloadAction<BookmarkType>) => [
+      ...state,
+      payload,
+    ],
+    [createBookmark.rejected.type]: (state, { payload }: PayloadAction<ErrorType>) => {
+      const { message, status, statusCode } = payload;
+      // TODO: 에러 처리
+      console.error('[ERROR] ', statusCode, message);
+    },
+    [deleteBookmark.fulfilled.type]: (state, { payload }: PayloadAction<number>) =>
+      state.filter((bookmark) => bookmark.id !== payload),
+    [deleteBookmark.rejected.type]: (state, { payload }: PayloadAction<ErrorType>) => {
+      const { message, status, statusCode } = payload;
+      // TODO: 에러 처리
+      console.error('[ERROR] ', statusCode, message);
+    },
   },
 });
 
