@@ -70,13 +70,13 @@ const step: {
 
 const AddTaskModal = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.stepOfAddingPlan.userInputs.tasks);
+  const tasks = useSelector((state) => state.stepOfAddingPlan.userInputs.tasks) || [];
   const [level, setLevel] = useState<LevelType>(1);
   const [input, setInputText] = useState<string>('');
   const [duration, setDuration] = useState<string | number>(getDurationArr()[1]);
 
   const task = useRef<TaskType>({
-    id: -1,
+    id: tasks.length,
     name: '',
     time: 0,
     isBookmarked: false,
