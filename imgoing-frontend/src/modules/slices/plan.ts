@@ -12,47 +12,41 @@ export const plan = createSlice({
       });
     },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(getPlanList.pending, (state, action) => {
-        // TODO: 로딩 처리
-      })
-      .addCase(getPlanList.fulfilled, (state, { payload }) => [...payload])
-      .addCase(getPlanList.rejected, (state, { payload }) => {
-        const { message, status, statusCode } = payload as ErrorType;
-        // TODO: 에러 처리
-        console.error('[ERROR] ', statusCode, message);
-      });
-    builder
-      .addCase(addPlan.pending, (state, action) => {
-        // TODO: 로딩 처리
-      })
-      .addCase(addPlan.fulfilled, (state, { payload }) => [...state, payload])
-      .addCase(addPlan.rejected, (state, { payload }) => {
-        const { message, status, statusCode } = payload as ErrorType;
-        // TODO: 에러 처리
-        console.error('[ERROR] ', statusCode, message);
-      });
-    builder
-      .addCase(updatePlan.fulfilled, (state, { payload }) =>
-        [...state.filter((plan) => plan.id != payload.id), payload].sort((a, b) =>
-          a.arrivalAt < b.arrivalAt ? -1 : a.arrivalAt > b.arrivalAt ? 1 : 0,
-        ),
-      )
-      .addCase(updatePlan.rejected, (state, { payload }) => {
-        const { message, status, statusCode } = payload as ErrorType;
-        // TODO: 에러 처리
-        console.error('[ERROR] ', statusCode, message);
-      });
-    builder
-      .addCase(removePlan.fulfilled, (state, { payload }) =>
-        state.filter((plan) => plan.id !== payload),
-      )
-      .addCase(removePlan.rejected, (state, { payload }) => {
-        const { message, status, statusCode } = payload as ErrorType;
-        // TODO: 에러 처리
-        console.error('[ERROR] ', statusCode, message);
-      });
+  extraReducers: {
+    [getPlanList.pending.type]: (state) => {
+      // TODO: 로딩 처리
+    },
+    [getPlanList.fulfilled.type]: (_state, { payload }: PayloadAction<Plan[]>) => [...payload],
+    [getPlanList.rejected.type]: (state, { payload }: PayloadAction<ErrorType>) => {
+      const { message, status, statusCode } = payload;
+      // TODO: 에러 처리
+      console.error('[ERROR] ', statusCode, message);
+    },
+    [addPlan.pending.type]: (state) => {
+      // TODO: 로딩 처리
+    },
+    [addPlan.fulfilled.type]: (state, { payload }: PayloadAction<Plan>) => [...state, payload],
+    [addPlan.rejected.type]: (state, { payload }: PayloadAction<ErrorType>) => {
+      const { message, status, statusCode } = payload;
+      // TODO: 에러 처리
+      console.error('[ERROR] ', statusCode, message);
+    },
+    [updatePlan.fulfilled.type]: (state, { payload }: PayloadAction<Plan>) =>
+      [...state.filter((plan) => plan.id != payload.id), payload].sort((a, b) =>
+        a.arrivalAt < b.arrivalAt ? -1 : a.arrivalAt > b.arrivalAt ? 1 : 0,
+      ),
+    [updatePlan.rejected.type]: (state, { payload }: PayloadAction<ErrorType>) => {
+      const { message, status, statusCode } = payload;
+      // TODO: 에러 처리
+      console.error('[ERROR] ', statusCode, message);
+    },
+    [removePlan.fulfilled.type]: (state, { payload }: PayloadAction<number>) =>
+      state.filter((plan) => plan.id !== payload),
+    [removePlan.rejected.type]: (state, { payload }: PayloadAction<ErrorType>) => {
+      const { message, status, statusCode } = payload;
+      // TODO: 에러 처리
+      console.error('[ERROR] ', statusCode, message);
+    },
   },
 });
 

@@ -8,7 +8,8 @@ import { colors } from 'constant/index';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { TaskType } from 'types/index';
 import { useDispatch } from 'react-redux';
-import { setStep } from 'modules/slices/stepOfAddingPlan';
+import { setModal } from 'modules/slices/modal';
+import { setIdentify } from 'modules/slices/identify';
 
 interface TaskProps extends TaskType {
   style?: StyleProp<ViewStyle>;
@@ -61,14 +62,21 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 })``;
 
 const TaskItem = (props: TaskProps) => {
+  const dispatch = useDispatch();
   const { name, time, isBookmarked, notification, style, id, onToggle } = props;
   const [isNotification, setNotification] = useState<boolean>(notification);
+
   useEffect(() => {
     onToggle && onToggle(id, isNotification);
   }, [isNotification]);
   return (
     <>
-      <TouchableHighlight style={[{ marginTop: 16 }, style]} onPress={() => alert('test')}>
+      <TouchableHighlight
+        style={[{ marginTop: 16 }, style]}
+        onPress={() => {
+          dispatch(setModal({ modalType: 'taskMenu' }));
+          dispatch(setIdentify({ type: 'task', id: id }));
+        }}>
         <TaskView>
           {isBookmarked && (
             <>

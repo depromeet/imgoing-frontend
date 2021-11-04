@@ -64,15 +64,34 @@ export const stepOfAddingPlan = createSlice({
           ...action.payload.userInput,
         },
       };
-
       return nextState;
     },
-
-    resetStep: () => {
-      return addingPlanState;
-    },
+    resetStep: () => addingPlanState,
+    removeTask: (state, { payload }: PayloadAction<number>) => ({
+      ...state,
+      userInputs: {
+        ...state.userInputs,
+        tasks: state.userInputs.tasks && [
+          ...state.userInputs.tasks.filter((task) => task.id !== payload),
+        ],
+      },
+    }),
+    setBookmark: (state, { payload }: PayloadAction<number>) => ({
+      ...state,
+      userInputs: {
+        ...state.userInputs,
+        tasks: state.userInputs.tasks && [
+          ...state.userInputs.tasks.slice(0, payload),
+          {
+            ...state.userInputs.tasks[payload],
+            isBookmarked: true,
+          },
+          ...state.userInputs.tasks.slice(payload + 1),
+        ],
+      },
+    }),
   },
 });
 
-export const { setStep, resetStep } = stepOfAddingPlan.actions;
+export const { setStep, resetStep, removeTask, setBookmark } = stepOfAddingPlan.actions;
 export default stepOfAddingPlan.reducer;

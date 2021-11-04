@@ -7,7 +7,8 @@ export type ModalType =
   | 'addTask'
   | 'setLocation'
   | 'loadBookmark'
-  | 'webview';
+  | 'webview'
+  | 'taskMenu';
 
 export interface ModalPayload {
   modalType: ModalType;

@@ -70,13 +70,14 @@ const step: {
 
 const AddTaskModal = () => {
   const dispatch = useDispatch();
-  const tasks = useSelector((state) => state.stepOfAddingPlan.userInputs.tasks);
+  const tasks = useSelector((state) => state.stepOfAddingPlan.userInputs.tasks) || [];
   const [level, setLevel] = useState<LevelType>(1);
   const [input, setInputText] = useState<string>('');
   const [duration, setDuration] = useState<string | number>(getDurationArr()[1]);
+  const nextTaskId = tasks.reduce((max, task) => (task.id > max ? task.id : max), 0) + 1;
 
   const task = useRef<TaskType>({
-    id: -1,
+    id: nextTaskId,
     name: '',
     time: 0,
     isBookmarked: false,

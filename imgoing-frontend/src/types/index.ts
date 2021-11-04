@@ -7,8 +7,10 @@ export interface TaskType {
 }
 
 export interface BookmarkType {
+  id: number;
   name: string;
   time: number;
+  isBookmarked: true;
   notification: boolean;
 }
 
