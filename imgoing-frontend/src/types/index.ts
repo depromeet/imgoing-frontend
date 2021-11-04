@@ -1,3 +1,5 @@
+export type GenericType<T> = T;
+
 export interface TaskType {
   id: number;
   name: string;
