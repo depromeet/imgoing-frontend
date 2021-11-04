@@ -8,6 +8,7 @@ import store from 'modules/store';
 import { removeModal } from 'modules/slices/modal';
 import { removeTask, setBookmark } from 'modules/slices/stepOfAddingPlan';
 import { createBookmark } from 'modules/thunks/bookmark';
+import { showToastMessage } from 'utils/toast';
 
 interface ModalButtonProps {
   first?: boolean;
@@ -35,16 +36,14 @@ const TaskMenuModal = () => {
   const tasks = store.getState().stepOfAddingPlan.userInputs.tasks || null;
   if (identify?.type !== 'task' || !tasks) {
     dispatch(removeModal());
-    // TODO : 없는 준비 항목이에요 - 토스트 메세지
-    console.log('없는 준비 항목이에요');
+    showToastMessage('없는 준비 항목이에요');
     return;
   }
 
   const task = tasks.find((task) => task.id === identify.id);
   if (!task) {
     dispatch(removeModal());
-    // TODO : 없는 준비 항목이에요 - 토스트 메세지
-    console.log('없는 준비 항목이에요');
+    showToastMessage('없는 준비 항목이에요');
     return;
   }
 
@@ -52,11 +51,13 @@ const TaskMenuModal = () => {
     dispatch(removeModal());
     dispatch(createBookmark(task));
     dispatch(setBookmark(task.id));
+    showToastMessage('북마크로 등록되었습니다');
   };
 
   const onPressDeleteTask = () => {
     dispatch(removeModal());
     dispatch(removeTask(identify.id));
+    showToastMessage('항목이 삭제되었습니다');
   };
 
   return (

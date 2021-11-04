@@ -8,6 +8,7 @@ import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 import WheelPicker from 'components/common/WheelPicker';
 import Input from 'components/common/Input';
 import { setStep } from 'modules/slices/stepOfAddingPlan';
+import { showToastMessage } from 'utils/toast';
 
 const PickerContainer = styled.View`
   display: flex;
@@ -106,6 +107,7 @@ const AddTaskModal = () => {
           }),
         );
         dispatch(removeModal());
+        showToastMessage('항목이 추가되었습니다');
         break;
     }
   };
