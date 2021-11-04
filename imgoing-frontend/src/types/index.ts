@@ -127,3 +127,5 @@ export interface inputTextType {
   items: string;
   details: string;
 }
+
+export type ErrorType = { message: string; status: string; statusCode: number };

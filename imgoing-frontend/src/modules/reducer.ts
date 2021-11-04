@@ -5,6 +5,7 @@ import modal from 'modules/slices/modal';
 import stepOfAddingPlan from './slices/stepOfAddingPlan';
 import plan from 'modules/slices/plan';
 import identify from 'modules/slices/identify';
+import bookmark from 'modules/slices/bookmark';
 
 const reducer = combineReducers({
   users,
@@ -12,6 +13,7 @@ const reducer = combineReducers({
   stepOfAddingPlan,
   plan,
   identify,
+  bookmark,
 });
 
 export type ReducerType = ReturnType<typeof reducer>;

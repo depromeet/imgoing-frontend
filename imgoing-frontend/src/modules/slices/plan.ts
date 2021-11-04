@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { getPlanList, addPlan, removePlan, updatePlan } from 'modules/thunks/plan';
-import { Plan } from 'types/index';
-
-type ErrorType = { message: string; status: string; statusCode: number };
+import { ErrorType, Plan } from 'types/index';
 
 export const plan = createSlice({
   name: 'plan',

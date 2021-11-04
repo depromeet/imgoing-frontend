@@ -1,12 +1,23 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { SvgXml } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 // import NotificationBar from './NotificationBar';
-import { CalloutTypo, FootnoteTypo } from 'components/typography';
 import landingCharacter from 'assets/svg/landingCharacter';
+import { CalloutTypo, FootnoteTypo } from 'components/typography';
 import RoundButton from 'components/common/RoundButton';
-import { useNavigation } from '@react-navigation/native';
+import { NavigatorParams } from 'types/Route';
+import { resetStep } from 'modules/slices/stepOfAddingPlan';
+
+const Wrapper = styled.View`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+`;
 
 const ImgView = styled.View`
   width: 100%;
@@ -25,19 +36,10 @@ const FootnoteTypoView = styled.View`
   margin-bottom: 108px;
 `;
 
-const ButtonView = styled.View`
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 24px;
-`;
-
-const Gap = styled.View`
-  width: 12px;
-`;
-
 const HomeLandingButton = styled(RoundButton)`
-  width: 154px;
+  margin-bottom: 24px;
+  width: 70%;
+  max-width: 300px;
 `;
 
 // const NotificationBarView = styled.View`
@@ -47,11 +49,11 @@ const HomeLandingButton = styled(RoundButton)`
 // `;
 
 const HomeLanding = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigatorParams>();
   // const [isVisible, setIsVisible] = useState<boolean>(true);
 
   return (
-    <>
+    <Wrapper>
       <ImgView>
         <SvgXml xml={landingCharacter} width='100%' height='180px' />
       </ImgView>
@@ -67,15 +69,9 @@ const HomeLanding = () => {
           도착해 보세요! 더 이상 지각 걱정은 필요 없어요.
         </FootnoteTypo>
       </FootnoteTypoView>
-      <ButtonView>
-        <HomeLandingButton onPress={() => {}} blank>
-          가이드 보기
-        </HomeLandingButton>
-        <Gap />
-        <HomeLandingButton onPress={() => navigation.navigate('PlanAdd')}>
-          일정 등록하기
-        </HomeLandingButton>
-      </ButtonView>
+      <HomeLandingButton onPress={() => navigation.navigate('PlanAdd')}>
+        일정 등록하기
+      </HomeLandingButton>
       {/* 설정 페이지 없을 땐 비활성화 */}
       {/* <NotificationBarView>
         {isVisible && (
@@ -87,7 +83,7 @@ const HomeLanding = () => {
           />
         )}
       </NotificationBarView> */}
-    </>
+    </Wrapper>
   );
 };
 
