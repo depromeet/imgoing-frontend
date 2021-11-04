@@ -12,6 +12,7 @@ export interface BookmarkType {
   time: number;
   isBookmarked: true;
   notification: boolean;
+  taskId: number;
 }
 
 export interface Location {
