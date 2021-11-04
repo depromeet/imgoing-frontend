@@ -21,19 +21,12 @@ const ModalView = styled.Pressable`
   align-items: center;
 `;
 
-const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
+const ModalButton = styled.TouchableOpacity`
   width: 100%;
   height: 60px;
   background: ${(props) => props.theme.colors.white};
   justify-content: center;
   align-items: center;
-  ${(props) => {
-    if (props.first)
-      return css`
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
-      `;
-  }}
 `;
 
 const TaskMenuModal = () => {
