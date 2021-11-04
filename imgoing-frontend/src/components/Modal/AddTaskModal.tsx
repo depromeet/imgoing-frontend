@@ -74,7 +74,7 @@ const AddTaskModal = () => {
   const [level, setLevel] = useState<LevelType>(1);
   const [input, setInputText] = useState<string>('');
   const [duration, setDuration] = useState<string | number>(getDurationArr()[1]);
-  const nextTaskId = tasks.reduce((max, task) => (task.id > max ? task.id : max), tasks[0].id) + 1;
+  const nextTaskId = tasks.reduce((max, task) => (task.id > max ? task.id : max), 0) + 1;
 
   const task = useRef<TaskType>({
     id: nextTaskId,
