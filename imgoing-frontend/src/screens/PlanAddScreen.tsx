@@ -8,7 +8,7 @@ import BottomButtonLayout from 'layouts/BottomButtonLayout';
 import UserInput from 'components/PlanAdd/UserInput';
 import { AddingPlanUserInputsType, inputTextType } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
-import { setStep } from 'modules/slices/stepOfAddingPlan';
+import { resetStep, setStep } from 'modules/slices/stepOfAddingPlan';
 import { addPlan } from 'modules/thunks/plan';
 import store from 'modules/store';
 
@@ -67,6 +67,7 @@ const PlanAddScreen = () => {
           isPinned: false,
         }),
       );
+      dispatch(resetStep());
       navigation.goBack();
       return;
     }
