@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { TouchableHighlightProps } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
@@ -7,6 +8,9 @@ import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { BookmarkType } from 'types/index';
 import { colors } from 'constant/index';
 import { icon_plus } from 'assets/svg';
+import { deleteBookmark } from 'modules/thunks/bookmark';
+import { removeBookmark } from 'modules/slices/stepOfAddingPlan';
+import { showToastMessage } from 'utils/toast';
 
 interface BookmarkItemProps extends BookmarkType {
   id: number;
@@ -54,14 +58,13 @@ const TouchableHighlight = styled.TouchableHighlight.attrs<TouchableHighlightPro
 })``;
 
 const BookmarkItem = (props: BookmarkItemProps) => {
-  const { name, time, id, selectedItems, setSelectedItem } = props;
+  const { name, time, id, taskId, selectedItems, setSelectedItem } = props;
   const [selected, toggleSelected] = useState<boolean>(false);
-
+  const dispatch = useDispatch();
   const onPress = () => {
     setSelectedItem(selected ? selectedItems.filter((key) => id !== key) : [...selectedItems, id]);
     toggleSelected(!selected);
   };
-
   return (
     <>
       <TouchableHighlight onPress={onPress} style={{ marginTop: 16 }}>
@@ -77,7 +80,11 @@ const BookmarkItem = (props: BookmarkItemProps) => {
             {name}
           </Title>
           <Tag
-            onTouchEndCapture={() => console.log('삭제!')}
+            onTouchEndCapture={() => {
+              dispatch(deleteBookmark(id));
+              dispatch(removeBookmark(taskId));
+              showToastMessage('북마크가 삭제되었습니다');
+            }}
             style={{ borderColor: colors.grayMedium, borderWidth: 2, marginRight: 10 }}>
             <CaptionTypo color={'black'} bold>
               {'삭제'}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { removeModal } from 'modules/slices/modal';
 import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
@@ -11,7 +11,7 @@ import BookmarkItem from 'components/BookmarkItem';
 const LoadBookmarkModal = () => {
   const dispatch = useDispatch();
   const tasks = store.getState().stepOfAddingPlan.userInputs.tasks || [];
-  const bookmarks = store.getState().bookmark || [];
+  const bookmarks = useSelector((state) => state.bookmark);
   const [selectedItems, setSelectedItem] = useState<number[]>([]);
 
   const onPress = () => {
@@ -41,6 +41,7 @@ const LoadBookmarkModal = () => {
           <BookmarkItem
             key={bookmark.id}
             id={bookmark.id}
+            taskId={bookmark.taskId}
             time={bookmark.time}
             name={bookmark.name}
             notification={bookmark.notification}

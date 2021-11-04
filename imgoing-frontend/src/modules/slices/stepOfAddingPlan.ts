@@ -92,8 +92,25 @@ export const stepOfAddingPlan = createSlice({
           ),
       },
     }),
+    removeBookmark: (state, { payload }: PayloadAction<number>) => ({
+      ...state,
+      userInputs: {
+        ...state.userInputs,
+        tasks:
+          state.userInputs.tasks &&
+          state.userInputs.tasks.map((task) =>
+            task.id === payload
+              ? {
+                  ...task,
+                  isBookmarked: false,
+                }
+              : task,
+          ),
+      },
+    }),
   },
 });
 
-export const { setStep, resetStep, removeTask, setBookmark } = stepOfAddingPlan.actions;
+export const { setStep, resetStep, removeTask, setBookmark, removeBookmark } =
+  stepOfAddingPlan.actions;
 export default stepOfAddingPlan.reducer;
