@@ -6,6 +6,7 @@ import WheelPicker from 'components/common/WheelPicker';
 import { removeModal } from 'modules/slices/modal';
 import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 import { setStep } from 'modules/slices/stepOfAddingPlan';
+import { Platform } from 'react-native';
 
 const PickerContainer = styled.View`
   display: flex;
@@ -20,19 +21,25 @@ const Picker = styled.View`
 
 const day = ['일', '월', '화', '수', '목', '금', '토'];
 
+const getLocaleDate = (date: Date): [string, string, string] => {
+  const localeDateString = date.toLocaleDateString();
+  let [todayYear, todayMonth, todayDate] = ['', '', ''];
+
+  if (Platform.OS === 'android') [todayMonth, todayDate, todayYear] = localeDateString.split('/');
+  else [todayYear, todayMonth, todayDate] = localeDateString.replace(/\s/g, '').split('.');
+
+  return [todayYear, todayMonth, todayDate];
+};
+
 const getDateFromToday = (year = 0, month = 0, date = 0): string[] => {
-  const [todayYear, todayMonth, todayDate] = new Date()
-    .toLocaleDateString()
-    .replaceAll(' ', '')
-    .split('.');
+  console.log(new Date(), new Date().toLocaleDateString());
+
+  const [todayYear, todayMonth, todayDate] = getLocaleDate(new Date());
 
   if (year === 0 && month === 0 && date === 0) return [todayYear, todayMonth, todayDate];
 
   const newDate = new Date(+todayYear + year, +todayMonth - 1 + month, +todayDate + date);
-  return [
-    ...newDate.toLocaleDateString().replaceAll(' ', '').split('.').slice(0, 3),
-    day[newDate.getDay()],
-  ];
+  return [...getLocaleDate(newDate), day[newDate.getDay()]];
 };
 
 const getDateList = (): string[] => {
@@ -55,8 +62,10 @@ const getTimeList = (duration = 30): string[] => {
 };
 
 const getArrivalDateTime = (timeString: string, date: string[]) => {
+  console.log(timeString);
+
   const [hour, , miniutes, _]: string[] = timeString
-    .replaceAll(' ', '')
+    .replace(/\s/g, '')
     .split(/(시|분)/g)
     .map((i) => i.toString());
 
