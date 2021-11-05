@@ -12,9 +12,10 @@ import { Plan } from 'types/index';
 import { updatePlan } from 'modules/thunks/plan';
 import EditInputList from 'components/PlanEdit/EditInputList';
 import TaskItem from 'components/TaskItem';
-import { resetStep } from 'modules/slices/stepOfAddingPlan';
+import { resetStep, setStep } from 'modules/slices/stepOfAddingPlan';
 import { setModal } from 'modules/slices/modal';
 import LinkButton from 'components/common/LinkButton';
+import { tasks } from 'mocks/plan.mock';
 
 const EditView = styled.View`
   padding: 0 15px;
@@ -31,6 +32,7 @@ const EditScreen = () => {
   const plan = plans.filter((item) => item.id === identify?.id)[0];
   const { userInputs } = useSelector((state) => state.stepOfAddingPlan);
   const [data, setData] = useState<Plan>(plan);
+  const [id] = useState<number>(identify?.id || 0);
 
   const onChangeHandler = (e: InputChangeEventType) => {
     if (e.name !== 'destination') {
@@ -48,12 +50,22 @@ const EditScreen = () => {
   };
 
   const onSubmit = () => {
+    const _data = {
+      ...data,
+      tasks: userInputs.tasks || [],
+    };
+    identify?.id && dispatch(updatePlan({ ..._data, id: id }));
     navigation.navigate('Main');
-    identify?.id && dispatch(updatePlan({ ...data, id: identify.id }));
   };
 
   useEffect(() => {
     dispatch(resetStep());
+    dispatch(
+      setStep({
+        type: null,
+        userInput: { tasks: plan.tasks },
+      }),
+    );
     return () => {
       dispatch(resetStep());
     };
@@ -69,7 +81,6 @@ const EditScreen = () => {
   }, [userInputs.departure]);
 
   useEffect(() => {
-    console.log('test', userInputs.arrival);
     const arrival = {
       lat: userInputs.arrival?.coordinate.lat || 0,
       lng: userInputs.arrival?.coordinate.lng || 0,
@@ -82,12 +93,6 @@ const EditScreen = () => {
     userInputs.arrivalDateTime &&
       setData({ ...data, arrivalAt: String(userInputs.arrivalDateTime) });
   }, [userInputs.arrivalDateTime]);
-
-  useEffect(() => {
-    const tasks = userInputs.tasks;
-    tasks && tasks.length > 0 && setData({ ...data, tasks: [...data.tasks, ...tasks] });
-    dispatch(resetStep());
-  }, [userInputs.tasks]);
 
   return (
     <BottomButtonLayout disabled={!data.name} text='적용하기' onPress={onSubmit}>
@@ -112,9 +117,17 @@ const EditScreen = () => {
               불러 오기
             </LinkButton>
           </View>
-          {data.tasks.map((i, index) => (
-            <TaskItem onToggle={onToggle} key={index} {...i} />
-          ))}
+          {userInputs.tasks &&
+            userInputs.tasks.map((task, index) => (
+              <TaskItem
+                id={task.id}
+                key={index}
+                time={task.time}
+                name={task.name}
+                notification={task.notification}
+                isBookmarked={task.isBookmarked}
+              />
+            ))}
         </EditView>
       </ScrollView>
     </BottomButtonLayout>
