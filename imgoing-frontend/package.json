@@ -35,7 +35,7 @@
     "react-native-svg": "12.1.1",
     "react-native-web": "~0.13.12",
     "react-native-webview": "11.6.2",
-    "react-native-wheel-scrollview-picker": "^1.2.2",
+    "react-native-wheel-scrollview-picker": "https://github.com/eun-seong/react-native-wheel-scrollview-picker.git",
     "react-navigation": "^4.4.4",
     "react-navigation-stack": "^2.10.4",
     "react-query": "^3.27.0",
