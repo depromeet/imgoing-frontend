@@ -6,6 +6,7 @@ import { removeModal } from 'modules/slices/modal';
 import RoundButton from 'components/common/RoundButton';
 import { CalloutTypo, ContentTypo } from 'components/typography';
 import { removePlan } from 'modules/thunks/plan';
+import { showToastMessage } from 'utils/toast';
 
 const ModalView = styled.Pressable`
   background: ${(props) => props.theme.colors.white};
@@ -62,6 +63,7 @@ const DeleteModal = () => {
           onPress={() => {
             dispatch(removeModal());
             dispatch(removePlan(Number(identify?.id)));
+            showToastMessage('스케줄이 삭제되었습니다');
           }}>
           삭제하기
         </ModalButton>

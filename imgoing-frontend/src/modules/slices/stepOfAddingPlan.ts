@@ -92,14 +92,16 @@ export const stepOfAddingPlan = createSlice({
       ...state,
       userInputs: {
         ...state.userInputs,
-        tasks: state.userInputs.tasks && [
-          ...state.userInputs.tasks.slice(0, payload),
-          {
-            ...state.userInputs.tasks[payload],
-            isBookmarked: true,
-          },
-          ...state.userInputs.tasks.slice(payload + 1),
-        ],
+        tasks:
+          state.userInputs.tasks &&
+          state.userInputs.tasks.map((task) =>
+            task.id === payload
+              ? {
+                  ...task,
+                  isBookmarked: true,
+                }
+              : task,
+          ),
       },
     }),
   },

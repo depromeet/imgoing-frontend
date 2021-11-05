@@ -145,8 +145,8 @@ const PlanItem = ({ item }: { item: Plan }) => {
             }}>
             <SvgXml xml={kakaoMap} width='100%' height='32px' />
           </KaKaoMapButton>
-          {items && <PlanItemDetail emoji={`🎒️`} content={items} />}
-          {memo && <PlanItemDetail emoji={`✏️`} content={memo} />}
+          {items.length > 0 && <PlanItemDetail emoji={`🎒️`} content={items} />}
+          {memo.length > 0 && <PlanItemDetail emoji={`✏️`} content={memo} />}
         </DetailView>
       )}
     </PlanItemView>
