@@ -1,6 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { AddingPlanStateType, AddingPlanSteps, AddingPlanUserInputsType } from 'types/index';
+import {
+  AddingPlanStateType,
+  AddingPlanSteps,
+  AddingPlanUserInputsType,
+  TaskType,
+} from 'types/index';
 import { firstStep, planStepInfo } from 'constant/plan';
 
 type payloadType = {
@@ -67,6 +72,13 @@ export const stepOfAddingPlan = createSlice({
       return nextState;
     },
     resetStep: () => addingPlanState,
+    setTask: (state, { payload }: PayloadAction<TaskType[]>) => ({
+      ...state,
+      userInputs: {
+        ...state.userInputs,
+        tasks: payload,
+      },
+    }),
     removeTask: (state, { payload }: PayloadAction<number>) => ({
       ...state,
       userInputs: {
@@ -95,5 +107,5 @@ export const stepOfAddingPlan = createSlice({
   },
 });
 
-export const { setStep, resetStep, removeTask, setBookmark } = stepOfAddingPlan.actions;
+export const { setStep, resetStep, setTask, removeTask, setBookmark } = stepOfAddingPlan.actions;
 export default stepOfAddingPlan.reducer;
