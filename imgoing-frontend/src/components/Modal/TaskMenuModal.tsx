@@ -37,14 +37,14 @@ const TaskMenuModal = () => {
   if (identify?.type !== 'task' || !tasks) {
     dispatch(removeModal());
     showToastMessage('없는 준비 항목이에요');
-    return;
+    return null;
   }
 
   const task = tasks.find((task) => task.id === identify.id);
   if (!task) {
     dispatch(removeModal());
     showToastMessage('없는 준비 항목이에요');
-    return;
+    return null;
   }
 
   const onPressSetBookmark = () => {
