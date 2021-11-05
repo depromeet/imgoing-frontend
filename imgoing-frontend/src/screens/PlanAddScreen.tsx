@@ -67,6 +67,7 @@ const PlanAddScreen = () => {
           isPinned: false,
         }),
       );
+      dispatch(resetStep());
       navigation.goBack();
       return;
     }
