@@ -60,7 +60,8 @@ const ModalContainer = () => {
         <>
           <Modal
             animationType={'slide'}
-            transparent={true}
+            transparent
+            statusBarTranslucent
             onRequestClose={() => dispatch(removeModal())}>
             <ModalView>
               <Background onTouchEnd={() => dispatch(removeModal())} />
