@@ -44,6 +44,7 @@ const LoadBookmarkModal = () => {
             taskId={bookmark.taskId}
             time={bookmark.time}
             name={bookmark.name}
+            isBookmarked={bookmark.isBookmarked}
             notification={bookmark.notification}
             setSelectedItem={setSelectedItem}
             selectedItems={selectedItems}
