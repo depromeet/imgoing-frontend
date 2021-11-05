@@ -11,6 +11,7 @@ import { PLAN_STEP_TITLES } from 'constant/plan';
 import { resetStep, setStep } from 'modules/slices/stepOfAddingPlan';
 import { addPlan } from 'modules/thunks/plan';
 import store from 'modules/store';
+import { showToastMessage } from 'utils/toast';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -69,6 +70,7 @@ const PlanAddScreen = () => {
       );
       dispatch(resetStep());
       navigation.goBack();
+      showToastMessage('스케줄이 등록되었습니다');
       return;
     }
 

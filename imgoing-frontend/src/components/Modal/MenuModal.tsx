@@ -6,7 +6,7 @@ import { CalloutTypo } from 'components/typography';
 import { removeModal, setModal } from 'modules/slices/modal';
 import { useNavigation } from '@react-navigation/native';
 import { togglePlanPin } from 'modules/slices/plan';
-import { setIdentify } from 'modules/slices/identify';
+import { showToastMessage } from 'utils/toast';
 
 interface ModalButtonProps {
   first?: boolean;
@@ -39,6 +39,13 @@ const MenuModal = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const identify = useSelector((state) => state.identify);
+  const targetPlan = useSelector((state) =>
+    state.plan.find((element) => {
+      return element.id === identify?.id;
+    }),
+  );
+  const pinStatus = targetPlan?.isPinned;
+  const toastContent = pinStatus ? '고정이 해제되었습니다' : '일정이 고정되었습니다';
   const navigatePlanEdit = () => {
     dispatch(removeModal());
     navigation.navigate('PlanEdit');
@@ -53,6 +60,7 @@ const MenuModal = () => {
         onPress={() => {
           dispatch(removeModal());
           dispatch(togglePlanPin(Number(identify?.id)));
+          showToastMessage(toastContent);
         }}>
         <CalloutTypo color={'black'}>고정하기</CalloutTypo>
       </ModalButton>

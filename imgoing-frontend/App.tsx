@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import * as Font from 'expo-font';
 import { Provider } from 'react-redux';
+import { RootSiblingParent } from 'react-native-root-siblings';
+
 import Navigator from 'navigation/Navigator';
 import { colors } from 'constant/index';
 import { store } from 'modules/store';
@@ -25,7 +27,9 @@ export default function App() {
   return (
     <ThemeProvider theme={{ colors: colors }}>
       <Provider store={store}>
-        <Navigator />
+        <RootSiblingParent>
+          <Navigator />
+        </RootSiblingParent>
       </Provider>
     </ThemeProvider>
   );
