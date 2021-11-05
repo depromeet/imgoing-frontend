@@ -2,8 +2,9 @@ import React from 'react';
 import styled, { css } from 'styled-components/native';
 
 import { SubheadlineTypo } from 'components/typography';
+import { TouchableOpacityProps } from 'react-native';
 
-interface ButtonProps {
+interface ButtonProps extends TouchableOpacityProps {
   children: React.ReactNode;
   onPress: () => void;
   blank?: boolean;
