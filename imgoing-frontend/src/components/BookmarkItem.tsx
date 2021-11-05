@@ -9,7 +9,7 @@ import { BookmarkType } from 'types/index';
 import { colors } from 'constant/index';
 import { icon_plus } from 'assets/svg';
 import { deleteBookmark } from 'modules/thunks/bookmark';
-import { removeBookmark } from 'modules/slices/stepOfAddingPlan';
+import { setBookmark } from 'modules/slices/stepOfAddingPlan';
 import { showToastMessage } from 'utils/toast';
 
 interface BookmarkItemProps extends BookmarkType {
@@ -61,6 +61,7 @@ const BookmarkItem = (props: BookmarkItemProps) => {
   const { name, time, id, taskId, selectedItems, setSelectedItem } = props;
   const [selected, toggleSelected] = useState<boolean>(false);
   const dispatch = useDispatch();
+
   const onPress = () => {
     setSelectedItem(selected ? selectedItems.filter((key) => id !== key) : [...selectedItems, id]);
     toggleSelected(!selected);
@@ -82,7 +83,7 @@ const BookmarkItem = (props: BookmarkItemProps) => {
           <Tag
             onTouchEndCapture={() => {
               dispatch(deleteBookmark(id));
-              dispatch(removeBookmark(taskId));
+              dispatch(setBookmark({ id: taskId, isBookmarked: false }));
               showToastMessage('북마크가 삭제되었습니다');
             }}
             style={{ borderColor: colors.grayMedium, borderWidth: 2, marginRight: 10 }}>

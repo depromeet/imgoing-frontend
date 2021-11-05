@@ -50,7 +50,7 @@ const TaskMenuModal = () => {
   const onPressSetBookmark = () => {
     dispatch(removeModal());
     dispatch(createBookmark(task));
-    dispatch(setBookmark(task.id));
+    dispatch(setBookmark({ id: task.id, isBookmarked: true }));
     showToastMessage('북마크로 등록되었습니다');
   };
 
