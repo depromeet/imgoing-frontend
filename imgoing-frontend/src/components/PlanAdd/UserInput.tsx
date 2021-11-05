@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { Keyboard, View } from 'react-native';
 import styled from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -89,6 +89,7 @@ const Step4 = () => {
   return (
     <EditInput
       onTouchEnd={() => {
+        () => Keyboard.dismiss();
         dispatch(setModal({ modalType: 'datePicker' }));
       }}
       title='도착 시간을 입력해 주세요'
