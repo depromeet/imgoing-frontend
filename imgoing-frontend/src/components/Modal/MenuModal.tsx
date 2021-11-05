@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components/native';
+import { useNavigation } from '@react-navigation/native';
 
+import { NavigatorParams } from 'types/Route';
 import { CalloutTypo } from 'components/typography';
 import { removeModal, setModal } from 'modules/slices/modal';
-import { useNavigation } from '@react-navigation/native';
 import { togglePlanPin } from 'modules/slices/plan';
 import { showToastMessage } from 'utils/toast';
+import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 
 interface ModalButtonProps {
   first?: boolean;
@@ -23,21 +25,14 @@ const ModalView = styled.Pressable`
 const ModalButton = styled.TouchableOpacity<Pick<ModalButtonProps, 'first'>>`
   width: 100%;
   height: 60px;
-  background: ${(props) => props.theme.colors.white};
+  background-color: ${(props) => props.theme.colors.white};
   justify-content: center;
   align-items: center;
-  ${(props) => {
-    if (props.first)
-      return css`
-        border-top-left-radius: 16px;
-        border-top-right-radius: 16px;
-      `;
-  }}
 `;
 
 const MenuModal = () => {
   const dispatch = useDispatch();
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigatorParams>();
   const identify = useSelector((state) => state.identify);
   const targetPlan = useSelector((state) =>
     state.plan.find((element) => {
@@ -51,10 +46,7 @@ const MenuModal = () => {
     navigation.navigate('PlanEdit');
   };
   return (
-    <ModalView
-      onPress={() => {
-        dispatch(removeModal());
-      }}>
+    <RoundBottomModalLayout>
       <ModalButton
         first
         onPress={() => {
@@ -74,7 +66,7 @@ const MenuModal = () => {
         }}>
         <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
       </ModalButton>
-    </ModalView>
+    </RoundBottomModalLayout>
   );
 };
 
