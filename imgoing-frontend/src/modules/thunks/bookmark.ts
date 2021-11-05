@@ -9,8 +9,8 @@ const BookmarkToReq = (task: TaskType) => ({
   time: task.time,
 });
 
-const ResToBookmark = (res: any, newTask: TaskType): BookmarkType => ({
-  taskId: newTask.id,
+const ResToBookmark = (res: any, newTaskId: number): BookmarkType => ({
+  taskId: newTaskId,
   id: res.id,
   name: res.name,
   time: res.time,
@@ -37,8 +37,7 @@ export const createBookmark = createAsyncThunk(
         method: 'POST',
         data: BookmarkToReq(newTask),
       });
-      console.log('after await', data.data);
-      return ResToBookmark(data.data, newTask);
+      return ResToBookmark(data.data, newTask.id);
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error?.response?.data);
     }
