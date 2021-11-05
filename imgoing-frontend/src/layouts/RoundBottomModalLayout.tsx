@@ -17,16 +17,10 @@ interface Props extends ViewProps {
   title?: string;
 }
 
-const ModalView = styled.View`
+const ModalContainer = styled.View`
   display: flex;
-  height: 100%;
   width: 100%;
-  justify-content: flex-end;
-`;
-
-const ModalContainer = styled.Pressable`
-  display: flex;
-  background-color: white;
+  background-color: ${colors.white};
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
   padding-bottom: ${getBottomSpace()}px;
@@ -52,7 +46,7 @@ const ButtonWrapper = styled.View`
 const RoundBottomModalLayout = (props: Props) => {
   const { children, button, title, style, ...restProps } = props;
   return (
-    <ModalView>
+    <>
       <ModalContainer>
         <Bar />
         {title && (
@@ -73,7 +67,7 @@ const RoundBottomModalLayout = (props: Props) => {
           )}
         </ContentsWrapper>
       </ModalContainer>
-    </ModalView>
+    </>
   );
 };
 

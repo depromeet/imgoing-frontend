@@ -17,13 +17,22 @@ type Modals = {
   [key in ModalType]: React.ReactNode;
 };
 
-const ContentsWrapper = styled.Pressable`
+const ModalView = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  background: rgba(0, 0, 0, 0.4);
+`;
+
+const Background = styled.View`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  justify-content: flex-start;
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const ModalContainer = () => {
@@ -48,14 +57,18 @@ const ModalContainer = () => {
   return (
     <>
       {modal && (
-        <Modal animationType={'slide'} transparent={true}>
-          <ContentsWrapper
-            onPress={() => {
-              dispatch(removeModal());
-            }}>
-            {modals[modal.modalType]}
-          </ContentsWrapper>
-        </Modal>
+        <>
+          <Modal
+            animationType={'slide'}
+            transparent
+            statusBarTranslucent
+            onRequestClose={() => dispatch(removeModal())}>
+            <ModalView>
+              <Background onTouchEnd={() => dispatch(removeModal())} />
+              {modals[modal.modalType]}
+            </ModalView>
+          </Modal>
+        </>
       )}
     </>
   );
