@@ -6,7 +6,7 @@ import {
   TextInputChangeEventData,
   TextInputProps,
 } from 'react-native';
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
 import { SubheadlineTypo } from 'components/typography';
 import { colors } from 'constant/index';
@@ -20,6 +20,7 @@ export type InputChangeEventType<
 export interface InputProps extends Omit<TextInputProps, 'onChange'> {
   title?: string;
   name?: string;
+  long?: boolean;
   onChange?: (e: InputChangeEventType) => void;
 }
 
@@ -29,17 +30,25 @@ interface OwnProps {
 
 const StyledInput = styled(TextInput)<OwnProps & InputProps>`
   width: 100%;
-  height: 50px;
   background: ${({ theme }) => theme.colors.white};
   border: 2px solid ${({ theme, isFocus }) => (isFocus ? theme.colors.blue : theme.colors.black)};
   border-radius: 4px;
   font-size: 16px;
   padding: 13px 16px 14px 16px;
+  ${(props) => {
+    if (props.long)
+      return css`
+        height: 150px;
+      `;
+    return css`
+      height: 50px;
+    `;
+  }}
 `;
 const InputWrapper = styled.View``;
 
 const Input = (props: InputProps) => {
-  const { style, onChange, name, ...restProps } = props;
+  const { style, onChange, name, long, ...restProps } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
   return (
     <InputWrapper style={style}>
@@ -49,6 +58,7 @@ const Input = (props: InputProps) => {
         </SubheadlineTypo>
       )}
       <StyledInput
+        long={long}
         isFocus={isFocus}
         name={name}
         onChange={(e) => onChange && onChange({ ...e, name: String(name) })}
