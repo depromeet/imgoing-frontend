@@ -56,7 +56,7 @@ const WordCount = styled.View`
 const Input = (props: InputProps) => {
   const { style, onChange, name, long, ...restProps } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
-  const [wordCount, setWordCount] = useState(0);
+  const [wordCount, setWordCount] = useState<number>(0);
 
   return (
     <InputWrapper style={style}>

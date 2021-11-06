@@ -86,6 +86,9 @@ const EditInputList = (props: EditInputListProps) => {
       title: '일정에 대한 상세 내용을 알려주세요',
       placeholder: '일정에 대한 상세 내용 입력하기',
       value: data.memo,
+      long: true,
+      maxLength: 100,
+      multiline: true,
     },
   ];
   return (
