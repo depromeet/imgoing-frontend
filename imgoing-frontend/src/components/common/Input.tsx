@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import styled, { css } from 'styled-components/native';
 
-import { SubheadlineTypo } from 'components/typography';
+import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { colors } from 'constant/index';
 
 export type InputChangeEventType<
@@ -45,11 +45,19 @@ const StyledInput = styled(TextInput)<OwnProps & InputProps>`
     `;
   }}
 `;
+
 const InputWrapper = styled.View``;
+
+const WordCount = styled.View`
+  align-items: flex-end;
+  padding: 5px;
+`;
 
 const Input = (props: InputProps) => {
   const { style, onChange, name, long, ...restProps } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
+  const [wordCount, setWordCount] = useState(0);
+
   return (
     <InputWrapper style={style}>
       {props.title && (
@@ -61,12 +69,23 @@ const Input = (props: InputProps) => {
         long={long}
         isFocus={isFocus}
         name={name}
-        onChange={(e) => onChange && onChange({ ...e, name: String(name) })}
+        onChange={(e) => {
+          setWordCount(e.nativeEvent.text.length);
+          onChange && onChange({ ...e, name: String(name) });
+        }}
         placeholderTextColor={colors.grayHeavy}
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
+        style={long && { textAlignVertical: 'top' }}
         {...restProps}
       />
+      {long && (
+        <WordCount>
+          <CaptionTypo color={wordCount < 100 ? 'black' : 'red'}>
+            {wordCount}/{props.maxLength}
+          </CaptionTypo>
+        </WordCount>
+      )}
     </InputWrapper>
   );
 };
