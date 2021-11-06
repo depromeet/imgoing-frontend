@@ -48,7 +48,7 @@ const StyledInput = styled(TextInput)<OwnProps & InputProps>`
 
 const InputWrapper = styled.View``;
 
-const WordCount = styled.View`
+const WordCountView = styled.View`
   align-items: flex-end;
   padding: 5px;
 `;
@@ -80,11 +80,11 @@ const Input = (props: InputProps) => {
         {...restProps}
       />
       {long && (
-        <WordCount>
+        <WordCountView>
           <CaptionTypo color={wordCount < 100 ? 'black' : 'red'}>
             {wordCount}/{props.maxLength}
           </CaptionTypo>
-        </WordCount>
+        </WordCountView>
       )}
     </InputWrapper>
   );
