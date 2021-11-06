@@ -12,10 +12,10 @@ import { Plan } from 'types/index';
 import { updatePlan } from 'modules/thunks/plan';
 import EditInputList from 'components/PlanEdit/EditInputList';
 import TaskItem from 'components/TaskItem';
-import { resetStep, setStep } from 'modules/slices/stepOfAddingPlan';
+import { resetStep, setStep, setTask } from 'modules/slices/stepOfAddingPlan';
 import { setModal } from 'modules/slices/modal';
 import LinkButton from 'components/common/LinkButton';
-import { tasks } from 'mocks/plan.mock';
+import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 
 const EditView = styled.View`
   padding: 0 15px;
@@ -94,6 +94,19 @@ const EditScreen = () => {
       setData({ ...data, arrivalAt: String(userInputs.arrivalDateTime) });
   }, [userInputs.arrivalDateTime]);
 
+  const renderItem = ({ item, drag, isActive }: RenderItemParams<TaskType>) => (
+    <TaskItem
+      id={item.id}
+      key={item.id}
+      time={item.time}
+      name={item.name}
+      notification={item.notification}
+      isBookmarked={item.isBookmarked}
+      onLongPress={drag}
+      disabled={isActive}
+    />
+  );
+
   return (
     <BottomButtonLayout disabled={!data.name} text='적용하기' onPress={onSubmit}>
       <ScrollView style={{ backgroundColor: 'white' }}>
@@ -117,7 +130,15 @@ const EditScreen = () => {
               불러 오기
             </LinkButton>
           </View>
-          {userInputs.tasks &&
+          {userInputs.tasks && (
+            <DraggableFlatList
+              data={userInputs.tasks}
+              onDragEnd={({ data }) => dispatch(setTask(data))}
+              keyExtractor={(item) => item.id.toString()}
+              renderItem={renderItem}
+            />
+          )}
+          {/* {userInputs.tasks &&
             userInputs.tasks.map((task, index) => (
               <TaskItem
                 id={task.id}
@@ -127,7 +148,7 @@ const EditScreen = () => {
                 notification={task.notification}
                 isBookmarked={task.isBookmarked}
               />
-            ))}
+            ))} */}
         </EditView>
       </ScrollView>
     </BottomButtonLayout>
