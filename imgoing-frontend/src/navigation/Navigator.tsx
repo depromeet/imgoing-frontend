@@ -31,7 +31,11 @@ const Stacks = () => {
         component={AuthLoadingScreen}
         options={{ headerShown: true }}
       />
-      <Stack.Screen name='Main' component={MainBottomTab} options={{ headerShown: false }} />
+      <Stack.Screen
+        name='Main'
+        component={MainBottomTab}
+        options={{ headerShown: false, gestureEnabled: false }}
+      />
       <Stack.Screen
         name='PlanEdit'
         component={PlanEditScreen}
