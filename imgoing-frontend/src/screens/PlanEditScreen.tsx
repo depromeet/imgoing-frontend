@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, View } from 'react-native';
+import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 import styled from 'styled-components/native';
 import { icon_plus } from 'assets/svg';
 import { InputChangeEventType } from 'components/common/Input';
@@ -15,7 +16,6 @@ import TaskItem from 'components/TaskItem';
 import { resetStep, setStep, setTask } from 'modules/slices/stepOfAddingPlan';
 import { setModal } from 'modules/slices/modal';
 import LinkButton from 'components/common/LinkButton';
-import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 
 const EditView = styled.View`
   padding: 0 15px;
@@ -138,17 +138,6 @@ const EditScreen = () => {
               renderItem={renderItem}
             />
           )}
-          {/* {userInputs.tasks &&
-            userInputs.tasks.map((task, index) => (
-              <TaskItem
-                id={task.id}
-                key={index}
-                time={task.time}
-                name={task.name}
-                notification={task.notification}
-                isBookmarked={task.isBookmarked}
-              />
-            ))} */}
         </EditView>
       </ScrollView>
     </BottomButtonLayout>
