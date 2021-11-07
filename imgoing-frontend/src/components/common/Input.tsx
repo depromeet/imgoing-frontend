@@ -35,15 +35,7 @@ const StyledInput = styled(TextInput)<OwnProps & InputProps>`
   border-radius: 4px;
   font-size: 16px;
   padding: 13px 16px 14px 16px;
-  ${(props) => {
-    if (props.long)
-      return css`
-        height: 150px;
-      `;
-    return css`
-      height: 50px;
-    `;
-  }}
+  height: ${(props) => (props.long ? 150 : 50)}px;
 `;
 
 const InputWrapper = styled.View``;
@@ -54,9 +46,9 @@ const WordCountView = styled.View`
 `;
 
 const Input = (props: InputProps) => {
-  const { style, onChange, name, long, ...restProps } = props;
+  const { style, onChange, name, long, value, ...restProps } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
-  const [wordCount, setWordCount] = useState<number>(0);
+  const [wordCount, setWordCount] = useState<number>(value?.length || 0);
 
   return (
     <InputWrapper style={style}>
@@ -77,6 +69,7 @@ const Input = (props: InputProps) => {
         onFocus={() => setFocus(true)}
         onBlur={() => setFocus(false)}
         style={long && { textAlignVertical: 'top' }}
+        value={value}
         {...restProps}
       />
       {long && (
