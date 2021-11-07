@@ -113,7 +113,11 @@ const Step5 = ({ setInputText }: UserInputProps) => {
 const Step6 = ({ setInputText }: UserInputProps) => {
   return (
     <EditInput
+      long
       title='일정에 대한 상세 내용을 알려주세요'
+      maxLength={100}
+      multiline
+      numberOfLines={4}
       placeholder='상세 내용 입력하기'
       onChangeText={(text) => setInputText({ type: 'details', text })}
       defaultValue={store.getState().stepOfAddingPlan.userInputs.details || ''}
