@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Text } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
-
 import { NavigatorParams } from 'types/Route';
 import { getBookmarkList } from 'modules/thunks/bookmark';
+import { ResToPlan } from 'modules/thunks/plan';
+import { request } from 'utils/request';
+import { initPlan } from 'modules/slices/plan';
 
 const Wrapper = styled.View`
   flex: 1;
@@ -30,13 +32,15 @@ const AuthLoadingScreen = () => {
 
   useEffect(() => {
     if (accessToken === undefined) return;
-
     if (accessToken === null) {
       navigation.navigate('Login');
     } else {
-      // TODO : plan 조회
       dispatch(getBookmarkList());
-      navigation.navigate('Main');
+      (async () => {
+        const { data } = await request('plan');
+        dispatch(initPlan(data.data.map(ResToPlan)));
+        navigation.navigate('Main');
+      })();
     }
   }, [accessToken]);
 
