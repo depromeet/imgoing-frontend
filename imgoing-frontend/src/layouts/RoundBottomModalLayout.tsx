@@ -20,6 +20,7 @@ interface Props extends ViewProps {
 const ModalContainer = styled.View`
   display: flex;
   width: 100%;
+  margin-top: auto;
   background-color: ${colors.white};
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
@@ -46,28 +47,24 @@ const ButtonWrapper = styled.View`
 const RoundBottomModalLayout = (props: Props) => {
   const { children, button, title, style, ...restProps } = props;
   return (
-    <>
-      <ModalContainer>
-        <Bar />
-        {title && (
-          <BodyTypo
-            bold
-            style={{ marginBottom: 16, marginTop: 8, marginLeft: 20, marginRight: 20 }}>
-            {title}
-          </BodyTypo>
+    <ModalContainer>
+      <Bar />
+      {title && (
+        <BodyTypo bold style={{ marginBottom: 16, marginTop: 8, marginLeft: 20, marginRight: 20 }}>
+          {title}
+        </BodyTypo>
+      )}
+      <ContentsWrapper style={style}>
+        {children}
+        {button && (
+          <ButtonWrapper>
+            <RoundButton onPress={button.onPress} disabled={button.disabled}>
+              {button.buttonName}
+            </RoundButton>
+          </ButtonWrapper>
         )}
-        <ContentsWrapper style={style}>
-          {children}
-          {button && (
-            <ButtonWrapper>
-              <RoundButton onPress={button.onPress} disabled={button.disabled}>
-                {button.buttonName}
-              </RoundButton>
-            </ButtonWrapper>
-          )}
-        </ContentsWrapper>
-      </ModalContainer>
-    </>
+      </ContentsWrapper>
+    </ModalContainer>
   );
 };
 
