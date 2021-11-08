@@ -21,7 +21,7 @@ const ModalView = styled.View`
   display: flex;
   height: 100%;
   width: 100%;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 `;
 
