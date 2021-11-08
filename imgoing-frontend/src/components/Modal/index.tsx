@@ -59,7 +59,7 @@ const ModalContainer = () => {
       {modal && (
         <>
           <Modal
-            animationType={'slide'}
+            animationType={modal.fade ? 'fade' : 'slide'}
             transparent
             statusBarTranslucent
             onRequestClose={() => dispatch(removeModal())}>
