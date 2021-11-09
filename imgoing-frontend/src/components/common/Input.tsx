@@ -59,6 +59,7 @@ const Input = (props: InputProps) => {
       )}
       <StyledInput
         long={long}
+        blurOnSubmit={true}
         isFocus={isFocus}
         name={name}
         onChange={(e) => {
