@@ -13,11 +13,13 @@ export default function App() {
 
   async function loadResource() {
     try {
-      await SplashScreen.preventAutoHideAsync();
-      await Font.loadAsync({
-        NotoSansKR: require('assets/fonts/NotoSansKR-Regular.ttf'),
-        Roboto: require('assets/fonts/Roboto-Regular.ttf'),
-      });
+      await Promise.all([
+        SplashScreen.preventAutoHideAsync(),
+        Font.loadAsync({
+          NotoSansKR: require('assets/fonts/NotoSansKR-Regular.ttf'),
+          Roboto: require('assets/fonts/Roboto-Regular.ttf'),
+        }),
+      ]);
     } catch (e) {
       console.warn(e);
     } finally {
