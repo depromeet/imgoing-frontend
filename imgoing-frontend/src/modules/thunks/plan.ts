@@ -15,11 +15,20 @@ const PlanToReq = (plan: Plan) => ({
   departureName: plan.departure.name,
   memo: plan.memo,
   name: plan.name,
-  task: plan.tasks.map((task) => ({
-    isBookmarked: task.isBookmarked,
-    name: task.name,
-    time: task.time,
-  })),
+  task: plan.tasks.map((task) =>
+    task.isBookmarked
+      ? {
+          id: task.id,
+          isBookmarked: task.isBookmarked,
+          name: task.name,
+          time: task.time,
+        }
+      : {
+          isBookmarked: task.isBookmarked,
+          name: task.name,
+          time: task.time,
+        },
+  ),
 });
 
 const ResToPlan = (res: any): Plan => {
@@ -79,10 +88,12 @@ export const addPlan = createAsyncThunk('add/plan', async (newPlan: Plan, thunkA
 
 export const updatePlan = createAsyncThunk('edit/plan', async (editedPlan: Plan, thunkAPI) => {
   try {
+    console.log({ ...PlanToReq(editedPlan), id: editedPlan.id });
     const { data, status } = await request('plan', {
       method: 'PUT',
       data: { ...PlanToReq(editedPlan), id: editedPlan.id },
     });
+
     return ResToPlan(data.data);
   } catch (error: any) {
     return thunkAPI.rejectWithValue(error?.response?.data);
