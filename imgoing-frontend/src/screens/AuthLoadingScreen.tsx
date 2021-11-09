@@ -13,6 +13,9 @@ import { initPlan } from 'modules/slices/plan';
 const Wrapper = styled.View`
   flex: 1;
   align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: white;
   justify-content: center;
 `;
 
@@ -44,11 +47,7 @@ const AuthLoadingScreen = () => {
     }
   }, [accessToken]);
 
-  return (
-    <Wrapper>
-      <Text>AuthLoading</Text>
-    </Wrapper>
-  );
+  return <Wrapper />;
 };
 
 export default AuthLoadingScreen;
