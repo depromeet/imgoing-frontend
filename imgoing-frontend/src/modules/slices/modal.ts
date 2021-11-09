@@ -12,7 +12,7 @@ export type ModalType =
 
 export interface ModalPayload {
   modalType: ModalType;
-  id?: number;
+  fade?: boolean;
   props?: {
     type: string;
   };

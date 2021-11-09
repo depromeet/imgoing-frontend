@@ -62,7 +62,7 @@ const MenuModal = () => {
       <ModalButton
         onPress={() => {
           dispatch(removeModal());
-          dispatch(setModal({ modalType: 'delete' }));
+          dispatch(setModal({ modalType: 'delete', fade: true }));
         }}>
         <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
       </ModalButton>
