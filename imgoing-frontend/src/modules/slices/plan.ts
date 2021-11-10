@@ -6,6 +6,9 @@ export const plan = createSlice({
   name: 'plan',
   initialState: [] as Plan[],
   reducers: {
+    initPlan: (_state, action: PayloadAction<Plan[]>) => {
+      return action.payload;
+    },
     togglePlanPin: (state, action: PayloadAction<number>) => {
       return state.map((item) => {
         return item.id === action.payload ? { ...item, isPinned: !item.isPinned } : item;
@@ -50,5 +53,5 @@ export const plan = createSlice({
   },
 });
 
-export const { togglePlanPin } = plan.actions;
+export const { togglePlanPin, initPlan } = plan.actions;
 export default plan.reducer;

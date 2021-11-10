@@ -9,13 +9,14 @@ import { SubheadlineTypo } from 'components/typography';
 import BottomButtonLayout from 'layouts/BottomButtonLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { Plan } from 'types/index';
+import { Plan, TaskType } from 'types/index';
 import { updatePlan } from 'modules/thunks/plan';
 import EditInputList from 'components/PlanEdit/EditInputList';
 import TaskItem from 'components/TaskItem';
 import { resetStep, setStep, setTask } from 'modules/slices/stepOfAddingPlan';
 import { setModal } from 'modules/slices/modal';
 import LinkButton from 'components/common/LinkButton';
+import { NavigatorParams } from 'types/Route';
 
 const EditView = styled.View`
   padding: 0 15px;
@@ -25,7 +26,7 @@ const EditView = styled.View`
 `;
 
 const EditScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigatorParams>();
   const dispatch = useDispatch();
   const plans = useSelector((state) => state.plan);
   const identify = useSelector((state) => state.identify);

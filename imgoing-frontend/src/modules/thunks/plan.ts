@@ -22,7 +22,7 @@ const PlanToReq = (plan: Plan) => ({
   })),
 });
 
-const ResToPlan = (res: any): Plan => {
+export const ResToPlan = (res: any): Plan => {
   return {
     id: res.id,
     name: res.name,

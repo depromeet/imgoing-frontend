@@ -4,7 +4,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { SvgXml } from 'react-native-svg';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-
 import { icon_arrowLeft, icon_close } from 'assets/svg';
 import { NavigatorParamList } from 'types/Route';
 import { colors } from 'constant/index';
@@ -29,12 +28,12 @@ const Stacks = () => {
       <Stack.Screen
         name='AuthLoading'
         component={AuthLoadingScreen}
-        options={{ headerShown: true }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name='Main'
         component={MainBottomTab}
-        options={{ headerShown: false, gestureEnabled: false }}
+        options={{ headerShown: false, gestureEnabled: false, animationEnabled: false }}
       />
       <Stack.Screen
         name='PlanEdit'
