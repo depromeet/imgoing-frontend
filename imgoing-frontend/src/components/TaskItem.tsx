@@ -79,14 +79,14 @@ const TaskItem = (props: TaskProps) => {
           dispatch(setIdentify({ type: 'task', id: id }));
         }}>
         <TaskView>
-          {isBookmarked && (
+          {/* {isBookmarked && (
             <>
               <GroupTagView>
                 <GroupTag bold>{'루틴'}</GroupTag>
               </GroupTagView>
               <Bar></Bar>
             </>
-          )}
+          )} */}
           <SubheadlineTypo>{time}분</SubheadlineTypo>
           <Title numberOfLines={1} color='grayHeavy'>
             {name}

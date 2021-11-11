@@ -121,7 +121,7 @@ const EditScreen = () => {
             leftIcon={icon_plus}>
             등록해 주세요
           </RectangleButton>
-          <View
+          {/* <View
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -130,7 +130,7 @@ const EditScreen = () => {
             <LinkButton onPress={() => dispatch(setModal({ modalType: 'loadBookmark' }))}>
               불러 오기
             </LinkButton>
-          </View>
+          </View> */}
           {userInputs.tasks && (
             <DraggableFlatList
               data={userInputs.tasks}

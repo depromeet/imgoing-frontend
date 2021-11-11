@@ -1,12 +1,11 @@
 import React from 'react';
-import { Keyboard, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import styled from 'styled-components/native';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import DraggableFlatList, { RenderItemParams } from 'react-native-draggable-flatlist';
 
 import { icon_openRight, icon_plus } from 'assets/svg';
-import { AddingPlanSteps, inputTextType, TaskType } from 'types/index';
+import { AddingPlanSteps, inputTextType } from 'types/index';
 import { PLAN_STEP_TITLES } from 'constant/plan';
 import Input from 'components/common/Input';
 import RectangleButton from 'components/common/RectangleButton';
@@ -16,7 +15,6 @@ import LinkButton from 'components/common/LinkButton';
 import { setModal } from 'modules/slices/modal';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import store from 'modules/store';
-import { setTask } from 'modules/slices/stepOfAddingPlan';
 
 interface UserInputProps {
   setInputText: ({ type, text }: { type: keyof inputTextType; text: string }) => void;
@@ -89,7 +87,6 @@ const Step4 = () => {
   return (
     <EditInput
       onTouchEnd={() => {
-        () => Keyboard.dismiss();
         dispatch(setModal({ modalType: 'datePicker' }));
       }}
       title='도착 시간을 입력해 주세요'
@@ -113,11 +110,7 @@ const Step5 = ({ setInputText }: UserInputProps) => {
 const Step6 = ({ setInputText }: UserInputProps) => {
   return (
     <EditInput
-      long
       title='일정에 대한 상세 내용을 알려주세요'
-      maxLength={100}
-      multiline
-      numberOfLines={4}
       placeholder='상세 내용 입력하기'
       onChangeText={(text) => setInputText({ type: 'details', text })}
       defaultValue={store.getState().stepOfAddingPlan.userInputs.details || ''}
@@ -128,19 +121,6 @@ const Step6 = ({ setInputText }: UserInputProps) => {
 const Step7 = () => {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.stepOfAddingPlan.userInputs.tasks);
-
-  const renderItem = ({ item, drag, isActive }: RenderItemParams<TaskType>) => (
-    <TaskItem
-      id={item.id}
-      key={item.id}
-      time={item.time}
-      name={item.name}
-      notification={item.notification}
-      isBookmarked={item.isBookmarked}
-      onLongPress={drag}
-      disabled={isActive}
-    />
-  );
 
   return (
     <>
@@ -154,25 +134,30 @@ const Step7 = () => {
         }}>
         등록해 주세요
       </RectangleButton>
-      {tasks && (
-        <DraggableFlatList
-          data={tasks}
-          onDragEnd={({ data }) => dispatch(setTask(data))}
-          keyExtractor={(item) => item.id.toString()}
-          renderItem={renderItem}
-        />
-      )}
-      <View
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          paddingBottom: 90 + getStatusBarHeight(),
-          paddingTop: 20,
-        }}>
-        <LinkButton onPress={() => dispatch(setModal({ modalType: 'loadBookmark' }))}>
-          불러 오기
-        </LinkButton>
-      </View>
+      <ScrollView>
+        {tasks &&
+          tasks.map((task, idx) => (
+            <TaskItem
+              id={task.id}
+              key={idx}
+              time={task.time}
+              name={task.name}
+              notification={task.notification}
+              isBookmarked={task.isBookmarked}
+            />
+          ))}
+        <View
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            paddingBottom: 90 + getStatusBarHeight(),
+            paddingTop: 20,
+          }}>
+          {/* <LinkButton onPress={() => dispatch(setModal({ modalType: 'loadBookmark' }))}>
+            불러 오기
+          </LinkButton> */}
+        </View>
+      </ScrollView>
     </>
   );
 };
