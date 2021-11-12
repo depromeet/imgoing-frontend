@@ -62,11 +62,11 @@ const TaskMenuModal = () => {
 
   return (
     <RoundBottomModalLayout>
-      {!task.isBookmarked && (
+      {/* {!task.isBookmarked && (
         <ModalButton onPress={onPressSetBookmark}>
           <CalloutTypo color={'black'}>북마크로 등록하기</CalloutTypo>
         </ModalButton>
-      )}
+      )} */}
       <ModalButton onPress={onPressDeleteTask}>
         <CalloutTypo color={'black'}>삭제하기</CalloutTypo>
       </ModalButton>
