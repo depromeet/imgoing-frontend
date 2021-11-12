@@ -162,7 +162,7 @@ const Step7 = () => {
           renderItem={renderItem}
         />
       )}
-      <View
+      {/* <View
         style={{
           display: 'flex',
           alignItems: 'center',
@@ -172,7 +172,7 @@ const Step7 = () => {
         <LinkButton onPress={() => dispatch(setModal({ modalType: 'loadBookmark' }))}>
           불러 오기
         </LinkButton>
-      </View>
+      </View> */}
     </>
   );
 };
