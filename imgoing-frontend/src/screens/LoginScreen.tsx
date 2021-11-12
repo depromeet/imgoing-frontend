@@ -55,8 +55,16 @@ const LoginScreen = (props: LoginProps) => {
         <SvgXml xml={kakaoLogin} width='100%' height='50px' />
       </KaKaoLoginButton>
       <TextView>
-        <CaptionTypo color={'grayHeavy'}>계정 생성 시 암고잉의 개인정보 수집 방침 및</CaptionTypo>
-        <CaptionTypo color={'grayHeavy'}>이용약관에 동의하게 됩니다.</CaptionTypo>
+        <CaptionTypo
+          color={'grayHeavy'}
+          onPress={() => dispatch(setModal({ modalType: 'webviewPolicy' }))}>
+          계정 생성 시 암고잉의 개인정보 수집 방침 및
+        </CaptionTypo>
+        <CaptionTypo
+          color={'grayHeavy'}
+          onPress={() => dispatch(setModal({ modalType: 'webviewAgreement' }))}>
+          이용약관에 동의하게 됩니다.
+        </CaptionTypo>
       </TextView>
     </Wrapper>
   );
