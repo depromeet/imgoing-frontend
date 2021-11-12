@@ -39,10 +39,6 @@ const ModalContainer = () => {
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(modal);
-  }, [modal]);
-
   const modals: Modals = {
     delete: <DeleteModal />,
     menu: <MenuModal />,
@@ -61,7 +57,7 @@ const ModalContainer = () => {
           <Modal
             animationType={modal.fade ? 'fade' : 'slide'}
             transparent
-            statusBarTranslucent
+            statusBarTranslucent={modal.modalType !== 'addTask'}
             onRequestClose={() => dispatch(removeModal())}>
             <ModalView>
               <Background onTouchEnd={() => dispatch(removeModal())} />

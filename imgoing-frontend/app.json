@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "imgoing-frontend",
-    "slug": "imgoing-frontend",
+    "name": "암고잉",
+    "slug": "imgoing",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,6 +20,7 @@
     },
     "android": {
       "package": "com.dpm.imgoing",
+      "versionCode": 3,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
