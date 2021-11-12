@@ -12,6 +12,8 @@ import SetLocationModal from './SetLocationModal';
 import LoadBookmarkModal from './LoadBookmarkModal';
 import WebViewModal from './WebViewModal';
 import TaskMenuModal from './TaskMenuModal';
+import WebViewAgreement from './WebViewAgreement';
+import WebViewPolicy from './WebViewPolicy';
 
 type Modals = {
   [key in ModalType]: React.ReactNode;
@@ -47,6 +49,8 @@ const ModalContainer = () => {
     setLocation: <SetLocationModal />,
     loadBookmark: <LoadBookmarkModal />,
     webview: <WebViewModal />,
+    webviewAgreement: <WebViewAgreement />,
+    webviewPolicy: <WebViewPolicy />,
     taskMenu: <TaskMenuModal />,
   };
 
