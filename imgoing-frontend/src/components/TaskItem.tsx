@@ -3,7 +3,7 @@ import { StyleProp, TouchableHighlightProps, ViewStyle } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 import styled from 'styled-components/native';
 
-import { icon_bell } from 'assets/svg';
+import { icon_dehaze } from 'assets/svg';
 import { colors } from 'constant/index';
 import { CaptionTypo, SubheadlineTypo } from 'components/typography';
 import { GenericType, TaskType } from 'types/index';
@@ -91,11 +91,7 @@ const TaskItem = (props: TaskProps) => {
           <Title numberOfLines={1} color='grayHeavy'>
             {name}
           </Title>
-          <SvgXml
-            onPress={() => setNotification(!isNotification)}
-            xml={isNotification ? icon_bell.set : icon_bell.unset}
-            fill={colors.black}
-          />
+          <SvgXml xml={icon_dehaze} fill={colors.black} />
         </TaskView>
       </TouchableHighlight>
     </>
