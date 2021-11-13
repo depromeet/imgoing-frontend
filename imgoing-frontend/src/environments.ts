@@ -1,9 +1,9 @@
-import { BASE_URL, KAKAO_AUTH_REST_API_ID, AUTH_REDIRECT_URL } from '@env';
+import { DEV_BASE_URL, PROD_BASE_URL, KAKAO_AUTH_REST_API_ID } from '@env';
 
 const ENV = {
-  apiUrl: BASE_URL,
+  apiUrl: __DEV__ ? DEV_BASE_URL : PROD_BASE_URL,
   kakaoClientId: KAKAO_AUTH_REST_API_ID,
-  redirectUrl: AUTH_REDIRECT_URL,
+  redirectUrl: `${__DEV__ ? DEV_BASE_URL : PROD_BASE_URL}/auth`,
 };
 
 export default ENV;
