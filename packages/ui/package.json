@@ -1,0 +1,15 @@
+{
+  "name": "ui",
+  "main": "./src/index.ts",
+  "version": "1.0.0",
+  "peerDependencies": {
+    "react": "16.13.1",
+    "react-native": "0.64.3"
+  },
+  "devDependencies": {
+    "@types/styled-components-react-native": "^5.1.1",
+    "react": "16.13.1",
+    "react-native": "0.64.3",
+    "styled-components": "^5.3.1"
+  }
+}
