@@ -10,7 +10,7 @@ import DateWheelPickerModal from './DateWheelPickerModal';
 import AddTaskModal from './AddTaskModal';
 import SetLocationModal from './SetLocationModal';
 import LoadBookmarkModal from './LoadBookmarkModal';
-import WebViewModal from './WebViewModal';
+import WebViewLoginModal from './WebViewLoginModal';
 import TaskMenuModal from './TaskMenuModal';
 import WebViewAgreement from './WebViewAgreement';
 import WebViewPolicy from './WebViewPolicy';
@@ -48,7 +48,7 @@ const ModalContainer = () => {
     addTask: <AddTaskModal />,
     setLocation: <SetLocationModal />,
     loadBookmark: <LoadBookmarkModal />,
-    webview: <WebViewModal />,
+    webview: <WebViewLoginModal />,
     webviewAgreement: <WebViewAgreement />,
     webviewPolicy: <WebViewPolicy />,
     taskMenu: <TaskMenuModal />,
