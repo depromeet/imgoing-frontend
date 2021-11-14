@@ -10,12 +10,15 @@ import ENV from 'environments';
 import { NavigatorParams } from 'types/Route';
 import RoundBottomModalLayout from 'layouts/RoundBottomModalLayout';
 import axios from 'axios';
-import { baseRequest } from 'utils/request';
+import { baseRequest, request } from 'utils/request';
 import { removeModal } from 'modules/slices/modal';
+import { getBookmarkList } from 'modules/thunks/bookmark';
+import { initPlan } from 'modules/slices/plan';
+import { ResToPlan } from 'modules/thunks/plan';
 
 const kakaoAuthUrl = `https://kauth.kakao.com/oauth/authorize?response_type=code&client_id=${ENV.kakaoClientId}&redirect_uri=${ENV.redirectUrl}`;
 
-const WebViewModal = () => {
+const WebViewLoginModal = () => {
   const navigation = useNavigation<NavigatorParams>();
   const dispatch = useDispatch();
 
@@ -50,21 +53,24 @@ const WebViewModal = () => {
         .join('&'),
     });
 
-    const {
-      data: { data, status },
-    } = await baseRequest({
-      url: '/auth',
-      method: 'post',
-      data: {
-        accessToken: access_token,
-      },
-    });
+    try {
+      const {
+        data: { data },
+      } = await baseRequest({
+        url: '/auth',
+        method: 'post',
+        data: {
+          accessToken: access_token,
+        },
+      });
 
-    if (status === 'OK') {
       await AsyncStorage.setItem('accessToken', data);
+      dispatch(getBookmarkList());
+      const planData = await request('plan');
+      dispatch(initPlan(planData.data.data.map(ResToPlan)));
       navigation.navigate('Main');
-    } else {
-      // TODO 에러 처리
+    } catch (error) {
+      navigation.navigate('Login');
     }
   };
 
@@ -83,4 +89,4 @@ const WebViewModal = () => {
   );
 };
 
-export default WebViewModal;
+export default WebViewLoginModal;
