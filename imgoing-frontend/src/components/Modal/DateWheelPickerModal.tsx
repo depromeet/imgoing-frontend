@@ -32,8 +32,6 @@ const getLocaleDate = (date: Date): [string, string, string] => {
 };
 
 const getDateFromToday = (year = 0, month = 0, date = 0): string[] => {
-  console.log(new Date(), new Date().toLocaleDateString());
-
   const [todayYear, todayMonth, todayDate] = getLocaleDate(new Date());
 
   if (year === 0 && month === 0 && date === 0) return [todayYear, todayMonth, todayDate];
@@ -62,14 +60,12 @@ const getTimeList = (duration = 30): string[] => {
 };
 
 const getArrivalDateTime = (timeString: string, date: string[]) => {
-  console.log(timeString);
-
   const [hour, , miniutes, _]: string[] = timeString
     .replace(/\s/g, '')
     .split(/(시|분)/g)
     .map((i) => i.toString());
 
-  return `${date[0]}-${date[1].padStart(2, '0')}-${date[2].padStart(2, '0')} ${hour.padStart(
+  return `20${date[0]}-${date[1].padStart(2, '0')}-${date[2].padStart(2, '0')} ${hour.padStart(
     2,
     '0',
   )}:${miniutes.padStart(2, '0')}:00`;
