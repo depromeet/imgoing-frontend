@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
+import * as SplashScreen from 'expo-splash-screen';
+
 import { NavigatorParams } from 'types/Route';
 import { getBookmarkList } from 'modules/thunks/bookmark';
 import { ResToPlan } from 'modules/thunks/plan';
@@ -31,20 +32,26 @@ const AuthLoadingScreen = () => {
 
   useEffect(() => {
     getUserToken();
+    SplashScreen.hideAsync();
   }, []);
 
   useEffect(() => {
     if (accessToken === undefined) return;
     if (accessToken === null) {
       navigation.navigate('Login');
-    } else {
-      dispatch(getBookmarkList());
-      (async () => {
+      return;
+    }
+
+    (async () => {
+      try {
+        dispatch(getBookmarkList());
         const { data } = await request('plan');
         dispatch(initPlan(data.data.map(ResToPlan)));
         navigation.navigate('Main');
-      })();
-    }
+      } catch (error) {
+        navigation.navigate('Login');
+      }
+    })();
   }, [accessToken]);
 
   return <Wrapper />;
