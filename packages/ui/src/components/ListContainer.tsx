@@ -1,10 +1,10 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
 
 interface ListContainerProps {
   text: string;
   subText?: string;
-  onClick?: () => void;
+  onClick?: (e: GestureResponderEvent) => void;
   children?: JSX.Element;
 }
 
