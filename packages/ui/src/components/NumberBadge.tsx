@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-interface NotificationProps {
-  type: NotificationType;
+interface NumberBadgeProps {
+  type: NumberBadgeType;
   count: number;
 }
 
-type NotificationType = 'alert' | 'normal' | 'reverse';
+type NumberBadgeType = 'alert' | 'normal' | 'reverse';
 
 const colorScheme = {
   alert: {
@@ -23,7 +23,7 @@ const colorScheme = {
   },
 };
 
-export const Notification = (props: NotificationProps) => {
+export const NumberBadge = (props: NumberBadgeProps) => {
   const { type = 'normal', count } = props;
   const color = colorScheme[type];
   return (
