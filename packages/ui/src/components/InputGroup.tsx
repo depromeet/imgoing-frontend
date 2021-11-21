@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import { InputChangeEventType } from '.';
 
 type InputGroup = {
   name?: string;
+  visiableName?: string;
   placeholder?: string;
 };
 
@@ -16,6 +17,7 @@ interface InputGroupProps {
 export const InputGroup = (props: InputGroupProps) => {
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [focusName, setFocusName] = useState<string>('');
+  const refArray = useRef<Array<TextInput | null>>([]);
   const { name, items, onChange } = props;
 
   const onFocusHandler = (name: string, focus: boolean) => {
@@ -25,13 +27,18 @@ export const InputGroup = (props: InputGroupProps) => {
 
   const renderItem = (item: InputGroup, index: number) => (
     <View style={styles.inputWrapper} key={index}>
-      <Text style={{ color: item.name === focusName ? '#3485FF' : '#999EAA' }}>{item.name}</Text>
+      <Text style={{ color: item.name === focusName ? '#3485FF' : '#999EAA' }}>
+        {item.visiableName}
+      </Text>
       <TextInput
+        ref={(element) => (refArray.current[index] = element)}
+        onSubmitEditing={() => refArray.current[index + 1]?.focus()}
         style={styles.textInput}
         onChange={(e) => onChange && onChange({ ...e, name: String(item.name) })}
         onFocus={() => onFocusHandler(item.name || '', true)}
         onBlur={() => onFocusHandler('', false)}
-        placeholder={item.placeholder}></TextInput>
+        placeholder={item.placeholder}
+      />
     </View>
   );
 
