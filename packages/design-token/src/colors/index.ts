@@ -10,3 +10,6 @@ export const colors = {
   grayDark: '#999EAA',
   grayBackground: '#F7F7F7',
 };
+
+export type ColorScheme = typeof colors;
+export type ColorNames = keyof ColorScheme;

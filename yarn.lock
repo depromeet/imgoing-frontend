@@ -2643,7 +2643,7 @@ __metadata:
     "@babel/core": ^7.12.9
     "@types/react": ~17.0.21
     "@types/react-native": ~0.64.12
-    colors: "workspace:1.0.0"
+    design-token: "workspace:1.0.0"
     expo: ~43.0.2
     expo-status-bar: ~1.1.0
     expo-yarn-workspaces: ^1.6.0
@@ -3822,12 +3822,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"colors@workspace:1.0.0, colors@workspace:packages/colors":
-  version: 0.0.0-use.local
-  resolution: "colors@workspace:packages/colors"
-  languageName: unknown
-  linkType: soft
-
 "command-exists@npm:^1.2.8":
   version: 1.2.9
   resolution: "command-exists@npm:1.2.9"
@@ -4560,6 +4554,12 @@ __metadata:
   checksum: 1ec2eedd7ed6bd61dd5e0519fd4c96124e93bb22de8a9d211b02d63e5dd152824853d919bb2090f965cc0e3eb9c515950a9836b332020d810f9c71feb0fd7df4
   languageName: node
   linkType: hard
+
+"design-token@workspace:1.0.0, design-token@workspace:packages/design-token":
+  version: 0.0.0-use.local
+  resolution: "design-token@workspace:packages/design-token"
+  languageName: unknown
+  linkType: soft
 
 "destroy@npm:~1.0.4":
   version: 1.0.4
@@ -11641,7 +11641,7 @@ __metadata:
   resolution: "ui@workspace:packages/ui"
   dependencies:
     "@types/styled-components-react-native": ^5.1.1
-    colors: "workspace:1.0.0"
+    design-token: "workspace:1.0.0"
     react: 16.13.1
     react-native: 0.64.3
     styled-components: ^5.3.1
