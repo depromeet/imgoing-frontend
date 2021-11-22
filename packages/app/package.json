@@ -10,6 +10,7 @@
     "postinstall": "expo-yarn-workspaces postinstall"
   },
   "dependencies": {
+    "design-token": "workspace:1.0.0",
     "expo": "~43.0.2",
     "expo-status-bar": "~1.1.0",
     "react": "17.0.1",
