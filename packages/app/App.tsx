@@ -8,7 +8,7 @@ import { useFonts } from 'expo-font';
 import store from 'modules/store';
 import RootNavigation from 'navigation/RootNavigation';
 import { Test } from 'ui';
-import { colors } from 'constant';
+import { colors } from 'design-token';
 
 export default function App() {
   const [loaded] = useFonts({
@@ -17,6 +17,7 @@ export default function App() {
   });
 
   if (!loaded) {
+    // TODO 예외처리: 다른 대체 폰트로 사용
     return null;
   }
 
