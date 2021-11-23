@@ -1,5 +1,8 @@
 import React from 'react';
-import { GestureResponderEvent, Pressable, StyleSheet, Text, View } from 'react-native';
+import { GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
+
+import { colors } from 'design-token';
+import { Text } from 'ui';
 
 interface ListContainerProps {
   text: string;
@@ -14,12 +17,16 @@ export const ListContainer = (props: ListContainerProps) => {
   return (
     <Pressable style={[styles.wrapper, { paddingVertical: wrapperPadding }]} onPress={onClick}>
       <View style={styles.mainContainer}>
-        <Text style={styles.text}>{text}</Text>
+        <Text style={styles.text} fontType='BOLD_16' color={colors.black}>
+          {text}
+        </Text>
         {children && <View style={styles.children}>{children}</View>}
       </View>
       {subText && (
         <View style={styles.subtextContainer}>
-          <Text style={styles.subtext}>{subText}</Text>
+          <Text fontType='REGULAR_12' color={colors.grayDark}>
+            {subText}
+          </Text>
         </View>
       )}
     </Pressable>
@@ -30,8 +37,6 @@ const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
     width: '95%',
-    paddingHorizontal: 20,
-    backgroundColor: '#ffffff',
     justifyContent: 'center',
     alignItems: 'flex-start',
     flexDirection: 'column',
@@ -50,17 +55,7 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 5,
-    fontWeight: '700',
-    fontSize: 16,
-    lineHeight: 19.2,
-    color: '#333A44',
     width: 244,
     marginVertical: 10,
-  },
-  subtext: {
-    color: '#999EAA',
-    fontSize: 12,
-    lineHeight: 14.4,
-    fontWeight: '400',
   },
 });

@@ -1,8 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import { colors } from 'design-token';
+import { Text } from 'ui';
 
 interface SectionListProps {
-  title: string;
+  title?: string;
   children: JSX.Element[];
 }
 
@@ -10,26 +13,24 @@ export const SectionList = (props: SectionListProps) => {
   const { children, title } = props;
   return (
     <View style={styles.wrapper}>
-      <View style={styles.titleBar}>
-        <Text style={styles.title}>{title}</Text>
-      </View>
+      {title && (
+        <View style={styles.titleBar}>
+          <Text fontType='REGULAR_12' color={colors.grayDark}>
+            {title}
+          </Text>
+        </View>
+      )}
       {children}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: { paddingHorizontal: 20 },
   titleBar: {
     width: '100%',
     height: 32,
     justifyContent: 'center',
     paddingLeft: 20,
-  },
-  title: {
-    color: '#999EAA',
-    fontSize: 12,
-    lineHeight: 14.4,
-    fontWeight: '400',
   },
 });
