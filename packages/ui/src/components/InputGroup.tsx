@@ -1,8 +1,8 @@
 import { colors } from 'design-token';
-import React, { useRef, useState } from 'react';
-import { StyleSheet, TextInput, View } from 'react-native';
 import { InputChangeEventType } from '.';
 import { Text } from './Text';
+import React, { useRef, useState } from 'react';
+import { StyleSheet, TextInput, View } from 'react-native';
 
 type InputGroup = {
   name?: string;
@@ -59,13 +59,8 @@ export const InputGroup = (props: InputGroupProps) => {
 };
 
 const styles = StyleSheet.create({
-  groupName: {
-    color: '#333A44',
-    paddingLeft: 16,
-    paddingRight: 16,
-  },
   inputListWrapper: {
-    backgroundColor: '#FBFBFB',
+    backgroundColor: colors.grayLight,
     width: '100%',
     borderWidth: 2,
     borderRadius: 16,
