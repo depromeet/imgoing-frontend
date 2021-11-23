@@ -1,18 +1,22 @@
+import { ColorNames, colors } from 'design-token';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Text } from './Text';
 
 interface TextBadgeProps {
   text: string;
-  backgroundColor?: string;
-  textColor?: string;
+  backgroundColor?: ColorNames;
+  textColor?: ColorNames;
 }
 
 export const TextBadge = (props: TextBadgeProps) => {
-  const { text, backgroundColor = '#E2EEFF', textColor = '#3485FF' } = props;
+  const { text, backgroundColor = 'grayMedium', textColor = 'blue' } = props;
   return (
-    <View style={{ ...styles.wrapper, backgroundColor }}>
+    <View style={{ ...styles.wrapper, backgroundColor: colors[backgroundColor] }}>
       {/** Typography 추가되면 Text를 Caption으로 변경 필요 */}
-      <Text style={{ fontSize: 11, fontWeight: 'bold', color: textColor }}>{text}</Text>
+      <Text fontType='BOLD_11' color={colors[backgroundColor]}>
+        {text}
+      </Text>
     </View>
   );
 };
