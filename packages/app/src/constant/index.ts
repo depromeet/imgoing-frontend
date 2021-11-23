@@ -1,0 +1,1 @@
+export const GUIDELINE_BASE_WIDTH = 375;
