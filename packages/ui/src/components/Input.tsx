@@ -7,6 +7,7 @@ import {
   TextInputProps,
   View,
 } from 'react-native';
+import { colors } from 'design-token';
 
 export type InputChangeEventType<
   T = {
@@ -23,7 +24,7 @@ interface InputProps {
 export const Input = (props: InputProps) => {
   const { name, onChange, placeholder } = props;
   const [isFocus, setFocus] = useState<boolean>(false);
-  const style = { ...styles.input, borderColor: isFocus ? '#3485FF' : '#FBFBFB' };
+  const style = { ...styles.input, borderColor: isFocus ? colors.blue : colors.grayLight };
   return (
     <TextInput
       style={style}
