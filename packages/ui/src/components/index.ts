@@ -1,5 +1,6 @@
 export * from './Test';
 export * from './Button';
+export * from './Input';
 export * from './Stack';
 export * from './ListContainer';
 export * from './NumberBadge';
