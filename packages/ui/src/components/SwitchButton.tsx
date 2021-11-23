@@ -1,6 +1,7 @@
-import { colors } from 'design-token';
 import React, { useState } from 'react';
 import { Animated, Easing, GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
+
+import { colors } from 'design-token';
 
 interface SwitchButtonProps {
   value: boolean;
