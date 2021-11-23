@@ -1,3 +1,4 @@
+import { colors } from 'design-token';
 import React, { useState } from 'react';
 import { Animated, Easing, GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
 
@@ -9,7 +10,7 @@ interface SwitchButtonProps {
 export const SwitchButton = (props: SwitchButtonProps) => {
   const { value, onChange } = props;
   const [aniValue, setAniValue] = useState(new Animated.Value(0));
-  const color = value ? '#3485FF' : '#EFEFEF';
+  const color = value ? colors.blue : colors.grayMedium;
 
   const moveSwitchToggle = aniValue.interpolate({
     inputRange: [0, 1],
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   toggleWheel: {
     width: 20,
     height: 20,
-    backgroundColor: '#ffffff',
+    backgroundColor: colors.white,
     borderRadius: 16,
     shadowColor: '#000',
     shadowOffset: {
