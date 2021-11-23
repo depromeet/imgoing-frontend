@@ -1,6 +1,8 @@
+import { colors } from 'design-token';
 import React, { useRef, useState } from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
+import { StyleSheet, TextInput, View } from 'react-native';
 import { InputChangeEventType } from '.';
+import { Text } from './Text';
 
 type InputGroup = {
   name?: string;
@@ -27,7 +29,7 @@ export const InputGroup = (props: InputGroupProps) => {
 
   const renderItem = (item: InputGroup, index: number) => (
     <View style={styles.inputWrapper} key={index}>
-      <Text style={{ color: item.name === focusName ? '#3485FF' : '#999EAA' }}>
+      <Text fontType='BOLD_12' color={item.name === focusName ? colors.blue : colors.grayDark}>
         {item.visiableName}
       </Text>
       <TextInput
@@ -44,9 +46,12 @@ export const InputGroup = (props: InputGroupProps) => {
 
   return (
     <View style={{ height: 40, width: '100%' }}>
-      <Text style={styles.groupName}>{name}</Text>
-      {/* Typography 추가되면 Title로 변경 필요 */}
-      <View style={{ ...styles.inputListWrapper, borderColor: isFocus ? '#3485FF' : '#FBFBFB' }}>
+      <Text fontType='BOLD_16'>{name}</Text>
+      <View
+        style={{
+          ...styles.inputListWrapper,
+          borderColor: isFocus ? colors.blue : colors.grayLight,
+        }}>
         {items.map(renderItem)}
       </View>
     </View>
