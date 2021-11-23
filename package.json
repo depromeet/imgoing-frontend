@@ -3,5 +3,8 @@
   "workspaces": [
     "packages/*",
     "libraries/*"
-  ]
+  ],
+  "scripts": {
+    "start": "yarn workspace app start"
+  }
 }
