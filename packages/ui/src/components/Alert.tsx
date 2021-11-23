@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { colors } from 'design-token';
+import { Text } from './Text';
 
 interface AlertProps {
   disabled?: boolean;
@@ -9,8 +11,14 @@ interface AlertProps {
 export const Alert = (props: AlertProps) => {
   const { disabled = false, text } = props;
   return (
-    <View style={{ ...styles.wrapper, backgroundColor: disabled ? '#EFEFEF' : '#FFF9FA' }}>
-      <Text style={{ color: disabled ? '#999EAA' : '#F53E50' }}>{text}</Text>
+    <View
+      style={{
+        ...styles.wrapper,
+        backgroundColor: disabled ? colors.grayMedium : colors.redLight,
+      }}>
+      <Text fontType='REGULAR_14' color={disabled ? colors.grayDark : colors.red}>
+        {text}
+      </Text>
     </View>
   );
 };
