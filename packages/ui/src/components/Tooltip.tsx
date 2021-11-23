@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import { colors } from 'design-token';
+import { Text } from 'ui';
 
 interface TooltipProps {
   type: TooltipType;
@@ -10,8 +13,8 @@ interface TooltipProps {
 type TooltipType = 'primary' | 'basic';
 
 const colorScheme = {
-  primary: '#3485FF',
-  basic: '#333A44',
+  primary: colors.blue,
+  basic: colors.black,
 };
 
 export const Tooltip = (props: TooltipProps) => {
@@ -23,7 +26,9 @@ export const Tooltip = (props: TooltipProps) => {
         <View style={[styles.triangle, { borderBottomColor: color, borderBottomWidth: 10 }]} />
       )}
       <View style={[styles.main, { backgroundColor: color }]}>
-        <Text style={styles.text}>{content}</Text>
+        <Text fontType='REGULAR_12' color={colors.white}>
+          {content}
+        </Text>
       </View>
       {direction === 'down' && (
         <View style={[styles.triangle, { borderTopColor: color, borderTopWidth: 10 }]} />
@@ -52,12 +57,5 @@ const styles = StyleSheet.create({
     borderRightColor: 'transparent',
     borderLeftWidth: 6,
     borderRightWidth: 6,
-  },
-  text: {
-    fontSize: 12,
-    lineHeight: 14.4,
-    fontWeight: '400',
-    textAlign: 'center',
-    color: '#ffffff',
   },
 });

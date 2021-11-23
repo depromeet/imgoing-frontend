@@ -1,5 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Text } from 'ui';
+
+import { colors } from 'design-token';
 
 interface NumberBadgeProps {
   type: NumberBadgeType;
@@ -10,16 +13,16 @@ type NumberBadgeType = 'alert' | 'normal' | 'reverse';
 
 const colorScheme = {
   alert: {
-    background: '#F53E50',
-    text: '#ffffff',
+    background: colors.red,
+    text: colors.white,
   },
   normal: {
-    background: '#999EAA',
-    text: '#ffffff',
+    background: colors.grayDark,
+    text: colors.white,
   },
   reverse: {
-    background: '#EFEFEF',
-    text: '#999EAA',
+    background: colors.grayMedium,
+    text: colors.grayDark,
   },
 };
 
@@ -28,7 +31,9 @@ export const NumberBadge = (props: NumberBadgeProps) => {
   const color = colorScheme[type];
   return (
     <View style={[styles.container, { backgroundColor: color.background }]}>
-      <Text style={[styles.text, { color: color.text }]}>{count}</Text>
+      <Text fontType='BOLD_10' color={color.text}>
+        {count}
+      </Text>
     </View>
   );
 };
@@ -40,11 +45,5 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  text: {
-    fontSize: 10,
-    lineHeight: 12,
-    fontWeight: '700',
-    textAlign: 'center',
   },
 });
