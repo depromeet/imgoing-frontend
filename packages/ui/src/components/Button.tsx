@@ -1,5 +1,7 @@
 import React from 'react';
-import { GestureResponderEvent, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { GestureResponderEvent, StyleSheet, TouchableOpacity } from 'react-native';
+import { colors } from 'design-token';
+import { Text } from './Text';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -9,15 +11,16 @@ interface ButtonProps {
 
 export const Button = (props: ButtonProps) => {
   const { children, onPress, disabled } = props;
-  const backgroundColor = disabled ? '#EFEFEF' : '#3485FF';
+  const backgroundColor = disabled ? colors.grayMedium : colors.blue;
 
   return (
     <TouchableOpacity
       style={{ ...styles.wrapper, backgroundColor }}
       activeOpacity={disabled ? 1 : 0.8}
       onPress={disabled ? onPress : undefined}>
-      {/** Typography 추가되면 Text를 Subtitle3로 변경 */}
-      <Text style={{ color: 'white', fontSize: 16, fontWeight: 'bold' }}>{children}</Text>
+      <Text color={colors.white} fontType='BOLD_16'>
+        {children}
+      </Text>
     </TouchableOpacity>
   );
 };
