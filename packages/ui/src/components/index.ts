@@ -1,6 +1,6 @@
 export * from './Test';
+export * from './TextBadge';
 export * from './Alert';
-export * from './Input';
 export * from './Stack';
 export * from './ListContainer';
 export * from './NumberBadge';
