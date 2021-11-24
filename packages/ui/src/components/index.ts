@@ -1,4 +1,5 @@
 export * from './Test';
+export * from './Button';
 export * from './TextBadge';
 export * from './Alert';
 export * from './Stack';
