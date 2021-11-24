@@ -6,3 +6,5 @@ export * from './NumberBadge';
 export * from './Tooltip';
 export * from './SwitchButton';
 export * from './Text';
+export * from './Input';
+export * from './InputGroup';
