@@ -1,14 +1,14 @@
 import React from 'react';
-import { View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import { Text } from 'ui';
 
-const AuthLoadingScreen = () => {
+const MyPlanScreen = () => {
   return (
-    <View>
-      <Text>AuthLoadingScreen</Text>
-    </View>
+    <SafeAreaView>
+      <Text>MyPlanScreen</Text>
+    </SafeAreaView>
   );
 };
 
-export default AuthLoadingScreen;
+export default MyPlanScreen;
