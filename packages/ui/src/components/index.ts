@@ -10,3 +10,4 @@ export * from './SwitchButton';
 export * from './Text';
 export * from './Input';
 export * from './InputGroup';
+export * from './Divider';
