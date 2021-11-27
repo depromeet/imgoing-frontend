@@ -1,13 +1,49 @@
-import { colors } from 'design-token';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 
-import { Text } from 'ui';
+import { Text, Stack, ListContainer, Divider, SwitchButton } from 'ui';
+import { colors } from 'design-token';
+import Profile from 'components/Profile';
+import { icon_arrowRight } from 'icons';
+import { SvgXml } from 'react-native-svg';
 
 const SettingScreen = () => {
+  const [arrivalNoti, setArrivalNoti] = useState(true);
+  const [weatherNoti, setWeatherNoti] = useState(true);
   return (
     <SafeAreaView style={styles.wrapper}>
-      <Text>SettingScreen</Text>
+      <Profile />
+      <Stack title='개인 정보'>
+        <ListContainer text='카카오 연동 계정 관리'>
+          <SvgXml xml={icon_arrowRight} />
+        </ListContainer>
+        <ListContainer text='약관, 개인 정보 관리'>
+          <SvgXml xml={icon_arrowRight} />
+        </ListContainer>
+      </Stack>
+      <Divider />
+      <Stack title='알림 설정'>
+        <ListContainer
+          text='도착 후 확인 알림'
+          subText='일정에 등록한 도착시간에 확인 알림을 보냅니다.'>
+          <SwitchButton
+            value={arrivalNoti}
+            onChange={() => {
+              setArrivalNoti(!arrivalNoti);
+            }}
+          />
+        </ListContainer>
+        <ListContainer
+          text='도착지 날씨 알림'
+          subText='준비 시작 전 도착지의 날씨 알림을 보냅니다.'>
+          <SwitchButton
+            value={weatherNoti}
+            onChange={() => {
+              setWeatherNoti(!weatherNoti);
+            }}
+          />
+        </ListContainer>
+      </Stack>
     </SafeAreaView>
   );
 };
