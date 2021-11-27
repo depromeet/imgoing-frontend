@@ -1,13 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import { Text } from 'ui';
 
 const AuthLoadingScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>AuthLoadingScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

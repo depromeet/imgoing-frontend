@@ -1,13 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { SafeAreaView } from 'react-native';
 
 import { Text } from 'ui';
 
 const PlanInputScreen = () => {
   return (
-    <View>
+    <SafeAreaView>
       <Text>PlanInputScreen</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 
