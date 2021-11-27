@@ -17,9 +17,11 @@ export const ListContainer = (props: ListContainerProps) => {
   return (
     <Pressable style={[styles.wrapper, { paddingVertical: wrapperPadding }]} onPress={onClick}>
       <View style={styles.mainContainer}>
-        <Text style={styles.text} fontType='BOLD_16' color={colors.black}>
-          {text}
-        </Text>
+        <View style={styles.text}>
+          <Text fontType='BOLD_16' color={colors.black}>
+            {text}
+          </Text>
+        </View>
         {children && <View style={styles.children}>{children}</View>}
       </View>
       {subText && (
