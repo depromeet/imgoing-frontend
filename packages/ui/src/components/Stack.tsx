@@ -4,12 +4,12 @@ import { StyleSheet, View } from 'react-native';
 import { colors } from 'design-token';
 import { Text } from './Text';
 
-interface SectionListProps {
+interface StackProps {
   title?: string;
   children: JSX.Element[];
 }
 
-export const SectionList = (props: SectionListProps) => {
+export const Stack = (props: StackProps) => {
   const { children, title } = props;
   return (
     <View style={styles.wrapper}>
@@ -31,6 +31,5 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 32,
     justifyContent: 'center',
-    paddingLeft: 20,
   },
 });
