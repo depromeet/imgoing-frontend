@@ -9,9 +9,27 @@ const BottomTab = createBottomTabNavigator<MainRouterParamList>();
 const MainNavigation = () => {
   return (
     <BottomTab.Navigator initialRouteName='Home'>
-      <BottomTab.Screen name='Home' component={HomeScreen} />
-      <BottomTab.Screen name='MyPlan' component={MyPlanScreen} />
-      <BottomTab.Screen name='Settings' component={SettingsScreen} />
+      <BottomTab.Screen
+        name='Home'
+        component={HomeScreen}
+        options={{ title: '홈', headerShown: false }}
+      />
+      <BottomTab.Screen
+        name='MyPlan'
+        component={MyPlanScreen}
+        options={{
+          title: '약속',
+          headerTitleAlign: 'left',
+        }}
+      />
+      <BottomTab.Screen
+        name='Settings'
+        component={SettingsScreen}
+        options={{
+          title: '설정',
+          headerTitleAlign: 'left',
+        }}
+      />
     </BottomTab.Navigator>
   );
 };
