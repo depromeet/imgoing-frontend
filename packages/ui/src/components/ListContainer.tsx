@@ -2,7 +2,7 @@ import React from 'react';
 import { GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
-import { Text } from 'ui';
+import { Text } from './Text';
 
 interface ListContainerProps {
   text: string;
