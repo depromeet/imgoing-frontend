@@ -4,16 +4,16 @@ import { SvgXml } from 'react-native-svg';
 
 import { Text } from 'ui';
 import { colors } from 'design-token';
-import { profile_default_img } from 'icons';
+import { logo } from 'icons';
 
 const Profile = () => {
   return (
     <View style={styles.wrapper}>
       <View style={styles.avatar}>
-        <SvgXml xml={profile_default_img} width='100%' fill={colors.blue} />
+        <SvgXml xml={logo} width={48} />
       </View>
       <View style={styles.profileCard}>
-        <Text fontType='BOLD_18' color={colors.black}>
+        <Text fontType='BOLD_18' color={colors.black} style={{ paddingBottom: 4 }}>
           암고잉
         </Text>
         <Text fontType='REGULAR_14' color={colors.grayDark}>
@@ -29,10 +29,20 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     paddingVertical: 24,
+    paddingHorizontal: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  avatar: { flex: 1, paddingHorizontal: 16, width: 72 },
+  avatar: {
+    flex: 1,
+    width: 72,
+    height: 72,
+    marginRight: 16,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.blueLight,
+  },
   profileCard: { flex: 4 },
 });
 
