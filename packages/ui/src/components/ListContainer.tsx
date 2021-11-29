@@ -38,7 +38,6 @@ export const ListContainer = (props: ListContainerProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
-    width: '95%',
     justifyContent: 'center',
     alignItems: 'flex-start',
     flexDirection: 'column',
@@ -46,18 +45,18 @@ const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: 'row',
   },
-  children: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   subtextContainer: {
     height: 14,
     justifyContent: 'center',
   },
   text: {
-    flex: 14,
+    flex: 8,
     width: 244,
     marginVertical: 10,
+  },
+  children: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

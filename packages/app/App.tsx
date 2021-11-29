@@ -1,7 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, SafeAreaView } from 'react-native';
 import { Provider } from 'react-redux';
 import { useFonts } from 'expo-font';
 

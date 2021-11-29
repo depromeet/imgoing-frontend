@@ -26,10 +26,12 @@ export const Stack = (props: StackProps) => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: { paddingHorizontal: 20 },
+  wrapper: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+  },
   titleBar: {
     width: '100%',
-    height: 32,
     justifyContent: 'center',
   },
 });

@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
     flexDirection: 'row',
-    height: '20%',
+    paddingVertical: 24,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  avatar: { flex: 1, paddingHorizontal: 16 },
+  avatar: { flex: 1, paddingHorizontal: 16, width: 72 },
   profileCard: { flex: 4 },
 });
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { MainRouterParamList } from 'types/Route';
 
+import { MainRouterParamList } from 'types/Route';
 import { HomeScreen, SettingsScreen, MyPlanScreen } from 'screens';
 
 const BottomTab = createBottomTabNavigator<MainRouterParamList>();
