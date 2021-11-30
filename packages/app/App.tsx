@@ -1,13 +1,11 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { useFonts } from 'expo-font';
 
 import store from 'modules/store';
 import RootNavigation from 'navigation/RootNavigation';
-import { Test } from 'ui';
 import { colors } from 'design-token';
 
 export default function App() {
@@ -24,21 +22,9 @@ export default function App() {
   return (
     <ThemeProvider theme={{ colors: colors }}>
       <Provider store={store}>
-        <View style={styles.container}>
-          <StatusBar style='auto' />
-          <Test></Test>
-          <RootNavigation />
-        </View>
+        <StatusBar style='auto' />
+        <RootNavigation />
       </Provider>
     </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

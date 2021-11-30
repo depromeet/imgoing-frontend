@@ -3,12 +3,12 @@ import { View } from 'react-native';
 
 import { Text } from 'ui';
 
-const AuthLoadingScreen = () => {
+const MyPlanScreen = () => {
   return (
     <View>
-      <Text>AuthLoadingScreen</Text>
+      <Text>MyPlanScreen</Text>
     </View>
   );
 };
 
-export default AuthLoadingScreen;
+export default MyPlanScreen;

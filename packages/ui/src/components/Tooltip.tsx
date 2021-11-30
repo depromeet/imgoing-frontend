@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
-import { Text } from 'ui';
+import { Text } from './Text';
 
 interface TooltipProps {
   type: TooltipType;

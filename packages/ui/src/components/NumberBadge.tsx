@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { Text } from 'ui';
 
+import { Text } from './Text';
 import { colors } from 'design-token';
 
 interface NumberBadgeProps {

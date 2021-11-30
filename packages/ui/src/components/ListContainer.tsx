@@ -2,7 +2,7 @@ import React from 'react';
 import { GestureResponderEvent, Pressable, StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
-import { Text } from 'ui';
+import { Text } from './Text';
 
 interface ListContainerProps {
   text: string;
@@ -17,9 +17,11 @@ export const ListContainer = (props: ListContainerProps) => {
   return (
     <Pressable style={[styles.wrapper, { paddingVertical: wrapperPadding }]} onPress={onClick}>
       <View style={styles.mainContainer}>
-        <Text style={styles.text} fontType='BOLD_16' color={colors.black}>
-          {text}
-        </Text>
+        <View style={styles.text}>
+          <Text fontType='BOLD_16' color={colors.black}>
+            {text}
+          </Text>
+        </View>
         {children && <View style={styles.children}>{children}</View>}
       </View>
       {subText && (
@@ -36,7 +38,6 @@ export const ListContainer = (props: ListContainerProps) => {
 const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
-    width: '95%',
     justifyContent: 'center',
     alignItems: 'flex-start',
     flexDirection: 'column',
@@ -44,18 +45,17 @@ const styles = StyleSheet.create({
   mainContainer: {
     flexDirection: 'row',
   },
-  children: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   subtextContainer: {
     height: 14,
     justifyContent: 'center',
   },
   text: {
-    flex: 5,
-    width: 244,
+    flex: 8,
     marginVertical: 10,
+  },
+  children: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

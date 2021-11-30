@@ -2,14 +2,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
-import { Text } from 'ui';
+import { Text } from './Text';
 
-interface SectionListProps {
+interface StackProps {
   title?: string;
   children: JSX.Element[];
 }
 
-export const SectionList = (props: SectionListProps) => {
+export const Stack = (props: StackProps) => {
   const { children, title } = props;
   return (
     <View style={styles.wrapper}>
@@ -26,11 +26,12 @@ export const SectionList = (props: SectionListProps) => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: { paddingHorizontal: 20 },
+  wrapper: {
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+  },
   titleBar: {
     width: '100%',
-    height: 32,
     justifyContent: 'center',
-    paddingLeft: 20,
   },
 });

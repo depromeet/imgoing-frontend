@@ -4,15 +4,15 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { RootRouterParamList } from 'types/Route';
 import { PlanInputScreen, LoginScreen, AuthLoadingScreen, WebviewScreen } from 'screens';
-import { MainNavigation } from 'navigation';
+import MainNavigation from './MainNavigation';
 
 const Root = createStackNavigator<RootRouterParamList>();
 
 const Stacks = () => {
   return (
-    <Root.Navigator initialRouteName='AuthLoading'>
+    <Root.Navigator initialRouteName='Main'>
       <Root.Screen name='AuthLoading' component={AuthLoadingScreen} />
-      <Root.Screen name='Main' component={MainNavigation} />
+      <Root.Screen name='Main' component={MainNavigation} options={{ headerShown: false }} />
       <Root.Screen name='PlanEdit' component={PlanInputScreen} />
       <Root.Screen name='Login' component={LoginScreen} />
       <Root.Screen name='Webview' component={WebviewScreen} />
