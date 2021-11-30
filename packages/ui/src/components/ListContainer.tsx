@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
   },
   text: {
     flex: 8,
-    width: 244,
     marginVertical: 10,
   },
   children: {
