@@ -1,19 +1,29 @@
-import { colors } from 'design-token';
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
+
+import { colors } from 'design-token';
 import { Text } from 'ui';
+import { HomeTopContentsType } from './type';
 
 interface Props extends ViewProps {
-  purpose?: string;
+  purpose: HomeTopContentsType;
   timeRemaining: string;
 }
 
-const TimeRemaining = ({ style, purpose = '출발 시간', timeRemaining }: Props) => {
+const purposeText: {
+  [key in HomeTopContentsType]: string;
+} = {
+  oncoming: '출발 시간',
+  process: '다음 준비 항목',
+  toArrival: '도착지',
+};
+
+const TimeRemaining = ({ style, purpose, timeRemaining }: Props) => {
   return (
     <View style={style}>
       <View style={styles.purposeText}>
         <Text fontType={'BOLD_14'} color={colors.grayDark}>
-          {purpose}
+          {purposeText[purpose]}
         </Text>
         <Text fontType={'REGULAR_14'} color={colors.grayDark}>
           {' '}

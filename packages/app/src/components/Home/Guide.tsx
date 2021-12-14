@@ -1,21 +1,38 @@
-import { colors } from 'design-token';
 import React from 'react';
-import { StyleSheet, View, ViewProps } from 'react-native';
-import { Text, TextBadge, TextBadgeProps } from 'ui';
+import { StyleSheet, View } from 'react-native';
 
-interface Props extends ViewProps {
-  text: string;
-  badge: TextBadgeProps;
+import { colors } from 'design-token';
+import { Text, TextBadge, TextBadgeProps } from 'ui';
+import { GuideType } from './type';
+
+interface Props {
+  type: GuideType;
 }
 
-const Guide = ({ style, text, badge }: Props) => {
+const guideText: { [key in GuideType]: { badge: TextBadgeProps; text: string } } = {
+  oncoming: {
+    badge: {
+      text: '이달 현황',
+      backgroundColor: 'blueLight',
+    },
+    text: '😂 이러다가 지각러가 된다구요!',
+  },
+  toArrival: {
+    badge: {
+      text: '가이드',
+      backgroundColor: 'redLight',
+      textColor: 'red',
+    },
+    text: '잘 도착하셨다면? 응답 필수😉',
+  },
+};
+
+const Guide = ({ type }: Props) => {
   return (
-    <View style={style}>
-      <View style={styles.guide}>
-        <TextBadge {...badge} />
-        <View style={styles.guideText}>
-          <Text fontType={'REGULAR_14'}>{text}</Text>
-        </View>
+    <View style={styles.guide}>
+      <TextBadge {...guideText[type].badge} />
+      <View style={styles.guideText}>
+        <Text fontType={'REGULAR_14'}>{guideText[type].text}</Text>
       </View>
     </View>
   );
@@ -30,6 +47,7 @@ const styles = StyleSheet.create({
     paddingVertical: 13,
     borderWidth: 2,
     borderColor: colors.grayMedium,
+    margin: 20,
   },
   guideText: {
     marginLeft: 12,
