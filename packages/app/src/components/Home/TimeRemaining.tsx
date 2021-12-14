@@ -1,7 +1,7 @@
 import { colors } from 'design-token';
 import React from 'react';
-import { StyleSheet, View, ViewProps, ViewStyle } from 'react-native';
-import { Text, TextBadgeProps } from 'ui';
+import { StyleSheet, View, ViewProps } from 'react-native';
+import { Text } from 'ui';
 
 interface Props extends ViewProps {
   purpose?: string;

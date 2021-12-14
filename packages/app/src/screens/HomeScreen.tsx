@@ -18,7 +18,6 @@ const MainScreen = () => {
       </View>
       <ScrollView
         style={styles.mainContainer}
-        contentContainerStyle={{ backgroundColor: colors.grayBackground }}
         refreshControl={<RefreshControl refreshing={false} />}>
         <View style={styles.component}>
           <TimeRemaining
@@ -27,7 +26,7 @@ const MainScreen = () => {
             timeRemaining={'2021-12-31 10:00:00'}
           />
         </View>
-        <View style={styles.component}>
+        <View style={[styles.component, styles.guide]}>
           <Guide
             text={'😂 이러다가 지각러가 된다구요!'}
             badge={{
@@ -35,7 +34,7 @@ const MainScreen = () => {
             }}
           />
         </View>
-        <View style={{ backgroundColor: colors.grayBackground, height: 12 }} />
+        <View style={styles.gap} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -58,12 +57,19 @@ const styles = StyleSheet.create({
   },
   component: {
     backgroundColor: colors.white,
-    paddingBottom: 20,
     paddingHorizontal: 20,
   },
   timeRemaining: {
     backgroundColor: colors.white,
     paddingHorizontal: 12,
+    paddingTop: 20,
+  },
+  guide: {
+    paddingVertical: 20,
+  },
+  gap: {
+    backgroundColor: colors.grayBackground,
+    height: 12,
   },
 });
 
