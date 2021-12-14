@@ -5,6 +5,7 @@ import { NumberBadge, Text, TextBadge, Tooltip } from 'ui';
 import { colors } from 'design-token';
 import { SvgXml } from 'react-native-svg';
 import { expand_less, icon_arrowDown } from 'icons';
+import IconBadge from './IconBadge';
 
 interface PlanStatisticsProps {
   toggleExpand: boolean;
@@ -36,61 +37,11 @@ const PlanStatistics = (props: PlanStatisticsProps) => {
             </Text>
             {/* 컴포넌트 분리 필요, 각 아이템별로 클릭할 수 있도록 해야 함 */}
             <View style={expandedStyles.icon_list}>
-              <View style={expandedStyles.icon_item}>
-                <View style={expandedStyles.small_circle}>
-                  <View style={expandedStyles.number_badge}>
-                    <NumberBadge count={5} type='reverse' />
-                  </View>
-                  <Text fontType='BOLD_20'>🌳</Text>
-                </View>
-                <Text fontType='REGULAR_12' color={colors.grayDark}>
-                  7월
-                </Text>
-              </View>
-              <View style={expandedStyles.icon_item}>
-                <View style={expandedStyles.small_circle}>
-                  <View style={expandedStyles.number_badge}>
-                    <NumberBadge count={0} type='reverse' />
-                  </View>
-                  <Text fontType='BOLD_20'>🌱</Text>
-                </View>
-                <Text fontType='REGULAR_12' color={colors.grayDark}>
-                  8월
-                </Text>
-              </View>
-              <View style={expandedStyles.icon_item}>
-                <View style={expandedStyles.small_circle}>
-                  <View style={expandedStyles.number_badge}>
-                    <NumberBadge count={6} type='reverse' />
-                  </View>
-                  <Text fontType='BOLD_20'>🌳</Text>
-                </View>
-                <Text fontType='REGULAR_12' color={colors.grayDark}>
-                  9월
-                </Text>
-              </View>
-              <View style={expandedStyles.icon_item}>
-                <View style={expandedStyles.small_circle}>
-                  <View style={expandedStyles.number_badge}>
-                    <NumberBadge count={4} type='reverse' />
-                  </View>
-                  <Text fontType='BOLD_20'>🌿</Text>
-                </View>
-                <Text fontType='REGULAR_12' color={colors.grayDark}>
-                  10월
-                </Text>
-              </View>
-              <View style={expandedStyles.icon_item}>
-                <View style={[expandedStyles.small_circle, { backgroundColor: colors.blueLight }]}>
-                  <View style={expandedStyles.number_badge}>
-                    <NumberBadge count={2} type='active' />
-                  </View>
-                  <Text fontType='BOLD_20'>☘</Text>
-                </View>
-                <Text fontType='REGULAR_12' color={colors.grayDark}>
-                  11월
-                </Text>
-              </View>
+              <IconBadge count={5} selected={false} month={7} />
+              <IconBadge count={0} selected={false} month={8} />
+              <IconBadge count={6} selected={false} month={9} />
+              <IconBadge count={4} selected={false} month={10} />
+              <IconBadge count={2} selected={true} month={11} />
             </View>
             <View style={expandedStyles.tooltip}>
               <Tooltip type='basic' content={'눌러서 상세내역을 보세요'} direction='up' />
@@ -201,6 +152,7 @@ const expandedStyles = StyleSheet.create({
   icon_list: {
     flexDirection: 'row',
     paddingVertical: 24,
+    alignItems: 'center',
   },
   icon_item: {
     justifyContent: 'center',
