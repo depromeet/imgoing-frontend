@@ -8,7 +8,7 @@ import { icon_arrowRight } from 'icons';
 import { ListContainer, Stack, Text } from 'ui';
 
 const MyPlanScreen = () => {
-  const [toggleExpand, setToggleExpand] = useState(false);
+  const [toggleExpand, setToggleExpand] = useState<boolean>(false);
   return (
     <ScrollView style={styles.wrapper}>
       <Stack>
