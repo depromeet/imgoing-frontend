@@ -1,5 +1,6 @@
 import React from 'react';
-import { SafeAreaView, View, StyleSheet, RefreshControl } from 'react-native';
+import { View, StyleSheet, RefreshControl } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { help, notification } from 'icons';
 import { SvgIcon, Text } from 'ui';
