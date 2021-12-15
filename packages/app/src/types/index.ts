@@ -23,3 +23,20 @@ export type ResPlan = {
   memo: string;
   task: Task[];
 };
+
+export interface Location {
+  name: string;
+  lat: number;
+  lng: number;
+}
+
+export type Plan = {
+  id: number;
+  name: string;
+  arrivalAt: string;
+  arrival: Location;
+  departure: Location;
+  belongings: string;
+  memo: string;
+  tasks: Task[];
+};
