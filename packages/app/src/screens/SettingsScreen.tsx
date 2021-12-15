@@ -6,19 +6,32 @@ import { colors } from 'design-token';
 import Profile from 'components/Profile';
 import { icon_arrowRight } from 'icons';
 import { SvgXml } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
+import { RootRouterParams } from 'types/Route';
 
 const SettingScreen = () => {
   const [arrivalNoti, setArrivalNoti] = useState(true);
   const [weatherNoti, setWeatherNoti] = useState(true);
+
+  const navigation = useNavigation<RootRouterParams>();
+
   return (
     <View style={styles.wrapper}>
       <ScrollView>
         <Profile />
         <Stack title='개인 정보'>
-          <ListContainer text='카카오 연동 계정 관리'>
+          <ListContainer
+            text='카카오 연동 계정 관리'
+            onClick={() => {
+              navigation.navigate('AccountManage');
+            }}>
             <SvgXml xml={icon_arrowRight} />
           </ListContainer>
-          <ListContainer text='약관, 개인 정보 관리'>
+          <ListContainer
+            text='약관, 개인 정보 관리'
+            onClick={() => {
+              navigation.navigate('Policy');
+            }}>
             <SvgXml xml={icon_arrowRight} />
           </ListContainer>
         </Stack>
