@@ -10,7 +10,7 @@ import { ListContainer, Stack, Text } from 'ui';
 const MyPlanScreen = () => {
   const [toggleExpand, setToggleExpand] = useState<boolean>(false);
   return (
-    <ScrollView style={styles.wrapper}>
+    <ScrollView style={styles.wrapper} contentContainerStyle={styles.contentContainer}>
       <Stack>
         <Text fontType='BOLD_24'>어머나..🤢</Text>
         <Text fontType='BOLD_24'>이달은 2번 지각했어요</Text>
@@ -41,12 +41,14 @@ const MyPlanScreen = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingVertical: 40,
     backgroundColor: colors.white,
     height: '100%',
     width: '100%',
   },
   gap: {
+    paddingVertical: 20,
+  },
+  contentContainer: {
     paddingVertical: 20,
   },
 });
