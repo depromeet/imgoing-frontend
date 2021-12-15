@@ -1,9 +1,9 @@
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-
-import { NumberBadge, Text, TextBadge, Tooltip } from 'ui';
-import { colors } from 'design-token';
 import { SvgXml } from 'react-native-svg';
+
+import { Text, TextBadge, Tooltip } from 'ui';
+import { colors } from 'design-token';
 import { expand_less, icon_arrowDown } from 'icons';
 import IconBadge from './IconBadge';
 
@@ -49,17 +49,17 @@ const PlanStatistics = (props: PlanStatisticsProps) => {
           </View>
         </View>
       ) : (
-        <View style={styles.border}>
+        <Pressable style={styles.border} onPress={onPress}>
           <TextBadge text='이달 현황' backgroundColor='blueLight' />
           <View style={styles.text}>
             <Text fontType='BOLD_14' color={colors.grayDark}>
               나무에서 떨어진 원숭이 ☘
             </Text>
           </View>
-          <Pressable style={styles.expandButton} onPress={onPress}>
+          <View style={styles.expandButton}>
             <SvgXml xml={icon_arrowDown} />
-          </Pressable>
-        </View>
+          </View>
+        </Pressable>
       )}
     </View>
   );
