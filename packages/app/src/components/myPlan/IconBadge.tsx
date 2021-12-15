@@ -26,9 +26,9 @@ const IconBadge = (props: IconBadgeProps) => {
   const icon = getIcon(count);
   const backgroundColor = selected ? colors.blueLight : colors.grayMedium;
   return (
-    <Pressable style={styles.icon_item} onPress={() => {}}>
-      <View style={[styles.small_circle, { backgroundColor: backgroundColor }]}>
-        <View style={styles.number_badge}>
+    <Pressable style={styles.iconItem} onPress={() => {}}>
+      <View style={[styles.smallCircle, { backgroundColor: backgroundColor }]}>
+        <View style={styles.numberBadge}>
           <NumberBadge count={count} type={selected ? 'active' : 'reverse'} />
         </View>
         <Text fontType='BOLD_20'>{icon}</Text>
@@ -41,11 +41,11 @@ const IconBadge = (props: IconBadgeProps) => {
 };
 
 const styles = StyleSheet.create({
-  icon_item: {
+  iconItem: {
     justifyContent: 'center',
     alignItems: 'center',
   },
-  small_circle: {
+  smallCircle: {
     width: 44,
     height: 44,
     borderRadius: 50,
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 8,
     marginBottom: 8,
   },
-  number_badge: {
+  numberBadge: {
     position: 'absolute',
     left: 29,
     top: 0,
