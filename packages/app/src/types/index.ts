@@ -9,7 +9,7 @@ export type Routine = {
   routinetasks: Task[];
 };
 
-export type Plan = {
+export type ResPlan = {
   id: number;
   name: string;
   arrivalAt: string;
