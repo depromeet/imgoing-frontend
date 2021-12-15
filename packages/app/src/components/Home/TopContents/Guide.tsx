@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
 import { Text, TextBadge, TextBadgeProps } from 'ui';
-import { GuideType } from './type';
+import { GuideType } from '../type';
 
 interface Props {
   type: GuideType;

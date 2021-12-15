@@ -3,7 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
 import { Task } from 'types';
-import { HomeTopContentsType } from './type';
+import { HomeTopContentsType } from '../type';
 import Guide from './Guide';
 import TaskProcess from './TaskProcess';
 import TimeRemaining from './TimeRemaining';
