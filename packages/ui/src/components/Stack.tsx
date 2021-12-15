@@ -6,7 +6,7 @@ import { Text } from './Text';
 
 interface StackProps {
   title?: string;
-  children: JSX.Element[];
+  children: React.ReactNode[] | React.ReactNode;
 }
 
 export const Stack = (props: StackProps) => {
