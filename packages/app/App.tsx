@@ -1,4 +1,5 @@
 import React from 'react';
+import { Platform, UIManager } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
@@ -13,6 +14,10 @@ export default function App() {
     AppleSDGothicNeoB00: require('./src/assets/fonts/AppleSDGothicNeoB00.ttf'),
     AppleSDGothicNeoR00: require('./src/assets/fonts/AppleSDGothicNeoR00.ttf'),
   });
+
+  if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
 
   if (!loaded) {
     // TODO 예외처리: 다른 대체 폰트로 사용
