@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 import { Stack, ListContainer, Divider, SwitchButton } from 'ui';
 import { colors } from 'design-token';
 import Profile from 'components/Profile';
 import { icon_arrowRight } from 'icons';
-import { SvgXml } from 'react-native-svg';
-import { useNavigation } from '@react-navigation/native';
 import { RootRouterParams } from 'types/Route';
 
 const SettingScreen = () => {

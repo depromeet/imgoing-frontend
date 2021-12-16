@@ -1,10 +1,10 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { SvgXml } from 'react-native-svg';
 
 import { RootRouterParamList } from 'types/Route';
 import { PlanInputScreen, LoginScreen, AuthLoadingScreen, WebviewScreen } from 'screens';
-import { SvgXml } from 'react-native-svg';
 import { icon_back } from 'icons';
 import { colors } from 'design-token';
 import MainNavigation from './MainNavigation';

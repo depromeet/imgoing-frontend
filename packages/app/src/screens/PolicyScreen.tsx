@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+import { SvgXml } from 'react-native-svg';
 
 import { Stack, Text } from 'ui';
 import { colors } from 'design-token';
-import { SvgXml } from 'react-native-svg';
 import { lock } from 'icons';
 
 const PolicyScreen = () => {
