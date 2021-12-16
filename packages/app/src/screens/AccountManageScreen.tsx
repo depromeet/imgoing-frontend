@@ -15,35 +15,50 @@ const AccountManageScreen = () => {
           <SvgXml xml={kakao_small_logo} />
         </ListContainer>
       </Stack>
-      {/* <View style={styles.button_box}>
-        <Button style={styles.button} disabled onPress={() => {}}>
-          <Text fontType='BOLD_16' color={colors.grayDark}>
-            회원 탈퇴
-          </Text>
-        </Button>
-        <Button style={styles.button} disabled onPress={() => {}}>
-          <Text fontType='BOLD_16' color={colors.grayDark}>
-            로그아웃
-          </Text>
-        </Button>
-      </View> */}
+      <View style={styles.button_box}>
+        <View style={styles.button}>
+          <Button backgroundColor={colors.grayMedium} onPress={() => {}}>
+            <Text fontType='BOLD_16' color={colors.grayDark}>
+              회원 탈퇴
+            </Text>
+          </Button>
+        </View>
+        <View style={styles.gap} />
+        <View style={styles.button}>
+          <Button backgroundColor={colors.grayMedium} onPress={() => {}}>
+            <Text fontType='BOLD_16' color={colors.grayDark}>
+              로그아웃
+            </Text>
+          </Button>
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   wrapper: {
+    display: 'flex',
     backgroundColor: colors.white,
     height: '100%',
+    width: '100%',
   },
   button_box: {
-    display: 'flex',
+    position: 'absolute',
+    bottom: '5%',
+    width: '100%',
     flexDirection: 'row',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
   },
   button: {
     width: '50%',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  gap: {
+    width: 8,
   },
 });
 
