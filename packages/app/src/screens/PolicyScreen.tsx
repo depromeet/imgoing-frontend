@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: colors.white,
     height: '100%',
-    paddingVertical: 40,
+    paddingVertical: 20,
   },
   main_text: { marginBottom: 16 },
 
