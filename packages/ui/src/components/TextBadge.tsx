@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from './Text';
 import { ColorNames, colors } from 'design-token';
 
-interface TextBadgeProps {
+export interface TextBadgeProps {
   text: string;
   backgroundColor?: ColorNames;
   textColor?: ColorNames;
@@ -15,7 +15,7 @@ export const TextBadge = (props: TextBadgeProps) => {
   return (
     <View style={{ ...styles.wrapper, backgroundColor: colors[backgroundColor] }}>
       {/** Typography 추가되면 Text를 Caption으로 변경 필요 */}
-      <Text fontType='BOLD_11' color={colors[backgroundColor]}>
+      <Text fontType='BOLD_11' color={colors[textColor]}>
         {text}
       </Text>
     </View>
