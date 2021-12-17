@@ -6,6 +6,7 @@ export type RootRouterParamList = {
   Main: NavigatorScreenParams<MainRouterParamList> | undefined;
   PlanEdit: undefined;
   PlanAdd: undefined;
+  PlanAddTask: undefined;
   Login: undefined;
   Webview: {
     url: string;
