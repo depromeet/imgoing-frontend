@@ -12,7 +12,7 @@ const Profile = () => {
       <View style={styles.avatar}>
         <SvgXml xml={logo} width={48} />
       </View>
-      <View style={styles.profileCard}>
+      <View>
         <Text fontType='BOLD_18' color={colors.black} style={{ paddingBottom: 4 }}>
           암고잉
         </Text>
