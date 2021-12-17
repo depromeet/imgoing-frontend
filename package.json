@@ -6,8 +6,5 @@
   ],
   "scripts": {
     "start": "yarn workspace app start"
-  },
-  "dependencies": {
-    "react-native-modal": "^13.0.0"
   }
 }

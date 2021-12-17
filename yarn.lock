@@ -10877,8 +10877,6 @@ __metadata:
 "root-workspace-0b6124@workspace:.":
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
-  dependencies:
-    react-native-modal: ^13.0.0
   languageName: unknown
   linkType: soft
 
@@ -12133,6 +12131,8 @@ __metadata:
 "ui@workspace:1.0.0, ui@workspace:packages/ui":
   version: 0.0.0-use.local
   resolution: "ui@workspace:packages/ui"
+  dependencies:
+    react-native-modal: ^13.0.0
   peerDependencies:
     "@types/styled-components-react-native": ^5.1.1
     design-token: "workspace:1.0.0"
