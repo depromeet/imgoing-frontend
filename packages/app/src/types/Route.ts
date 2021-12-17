@@ -10,6 +10,7 @@ export type RootRouterParamList = {
   Webview: {
     url: string;
   };
+  PastPlan: undefined;
 };
 
 export type MainRouterParamList = {
