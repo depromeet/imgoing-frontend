@@ -8,7 +8,7 @@ interface ListContainerProps {
   text: string;
   subText?: string;
   onClick?: (e: GestureResponderEvent) => void;
-  children?: JSX.Element;
+  children?: React.ReactNode;
 }
 
 export const ListContainer = (props: ListContainerProps) => {
