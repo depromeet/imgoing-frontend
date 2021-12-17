@@ -10291,6 +10291,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-iphone-x-helper@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "react-native-iphone-x-helper@npm:1.3.1"
+  peerDependencies:
+    react-native: ">=0.42.0"
+  checksum: 024376646009a966e33e12fc2358751830818b0fb73b1c601a64eb5e490d2dc43eec23668991b985a8c412a84d087f20eb45bb9b593567c08b66e741b7bddda5
+  languageName: node
+  linkType: hard
+
 "react-native-modal@npm:^13.0.0":
   version: 13.0.0
   resolution: "react-native-modal@npm:13.0.0"
@@ -12132,6 +12141,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ui@workspace:packages/ui"
   dependencies:
+    react-native-iphone-x-helper: ^1.3.1
     react-native-modal: ^13.0.0
   peerDependencies:
     "@types/styled-components-react-native": ^5.1.1
