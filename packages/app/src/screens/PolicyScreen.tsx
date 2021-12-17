@@ -10,7 +10,7 @@ const PolicyScreen = () => {
   return (
     <View style={styles.wrapper}>
       <Stack>
-        <Text style={styles.main_text} fontType='REGULAR_16'>
+        <Text style={styles.mainText} fontType='REGULAR_16'>
           [필수] 카카오 연동계정 정보 동의
         </Text>
         <Text fontType='REGULAR_12' color={colors.grayDark}>
@@ -19,9 +19,9 @@ const PolicyScreen = () => {
         <Text fontType='REGULAR_12' color={colors.grayDark}>
           활용되며, 회원탈퇴 또는 동의철회 시 즉시 파기됩니다.
         </Text>
-        <View style={styles.info_box}>
+        <View style={styles.infoBox}>
           <SvgXml xml={lock} />
-          <Text style={styles.text_in_box} fontType='REGULAR_14' color={colors.grayDark}>
+          <Text style={styles.textInBox} fontType='REGULAR_14' color={colors.grayDark}>
             동의일자 : 2021.11.11
           </Text>
         </View>
@@ -32,13 +32,15 @@ const PolicyScreen = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
+    display: 'flex',
+    flex: 1,
     backgroundColor: colors.white,
-    height: '100%',
     paddingVertical: 20,
   },
-  main_text: { marginBottom: 16 },
-
-  info_box: {
+  mainText: {
+    marginBottom: 16,
+  },
+  infoBox: {
     marginTop: 20,
     backgroundColor: colors.grayMedium,
     paddingVertical: 12,
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  text_in_box: {
+  textInBox: {
     paddingLeft: 12,
   },
 });

@@ -5,6 +5,7 @@ import { SvgXml } from 'react-native-svg';
 import { kakao_small_logo } from 'icons';
 import { Button, ListContainer, Stack, Text } from 'ui';
 import { colors } from 'design-token';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
 
 const AccountManageScreen = () => {
   return (
@@ -15,7 +16,7 @@ const AccountManageScreen = () => {
           <SvgXml xml={kakao_small_logo} />
         </ListContainer>
       </Stack>
-      <View style={styles.button_box}>
+      <View style={styles.buttonBox}>
         <View style={styles.button}>
           <Button backgroundColor={colors.grayMedium} onPress={() => {}}>
             <Text fontType='BOLD_16' color={colors.grayDark}>
@@ -38,22 +39,20 @@ const AccountManageScreen = () => {
 
 const styles = StyleSheet.create({
   wrapper: {
+    flex: 1,
     display: 'flex',
     backgroundColor: colors.white,
-    height: '100%',
-    width: '100%',
+    justifyContent: 'space-between',
   },
-  button_box: {
-    position: 'absolute',
-    bottom: '5%',
+  buttonBox: {
     width: '100%',
     flexDirection: 'row',
-    alignItems: 'flex-end',
     justifyContent: 'center',
     paddingHorizontal: 20,
+    paddingBottom: 34,
   },
   button: {
-    width: '50%',
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

@@ -30,20 +30,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 24,
     paddingHorizontal: 20,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   avatar: {
-    flex: 1,
     width: 72,
     height: 72,
     marginRight: 16,
-    borderRadius: 36,
+    borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.blueLight,
   },
-  profileCard: { flex: 4 },
 });
 
 export default Profile;
