@@ -10002,7 +10002,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.0, prop-types@npm:^15.7.2":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2":
   version: 15.7.2
   resolution: "prop-types@npm:15.7.2"
   dependencies:
@@ -10249,6 +10249,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-animatable@npm:1.3.3":
+  version: 1.3.3
+  resolution: "react-native-animatable@npm:1.3.3"
+  dependencies:
+    prop-types: ^15.7.2
+  checksum: eb35821de36ae4eb00f97d99fc22ed79bd017248092ff1299f9d46a7ab946de16d2e6d6bfbf4cab5ef77d0d3bf47684aec761a7670ec7d36aae8d77ab8ddd171
+  languageName: node
+  linkType: hard
+
 "react-native-codegen@npm:^0.0.6":
   version: 0.0.6
   resolution: "react-native-codegen@npm:0.0.6"
@@ -10279,6 +10288,19 @@ __metadata:
     invariant: ^2.2.4
     prop-types: ^15.7.2
   checksum: fd06147df96fe0b38752c653a2d4bf49570396922719939a31b494197fd30e6775e4c5e73f889af808204dcfbc087eb00f31a0b676c838d5a35e2b017ae9a419
+  languageName: node
+  linkType: hard
+
+"react-native-modal@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "react-native-modal@npm:13.0.0"
+  dependencies:
+    prop-types: ^15.6.2
+    react-native-animatable: 1.3.3
+  peerDependencies:
+    react: "*"
+    react-native: ">=0.65.0"
+  checksum: 0eac02e67a1c00a68b1537346b6a1abea234d56ea713e83af4673fda6b27841d8646339b4a64c2772a697f3f208ab74e1aabe7967e87b52d4e2db4ee3fc6166d
   languageName: node
   linkType: hard
 
@@ -10855,6 +10877,8 @@ __metadata:
 "root-workspace-0b6124@workspace:.":
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
+  dependencies:
+    react-native-modal: ^13.0.0
   languageName: unknown
   linkType: soft
 
