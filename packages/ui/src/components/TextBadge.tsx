@@ -11,11 +11,11 @@ export interface TextBadgeProps {
 }
 
 export const TextBadge = (props: TextBadgeProps) => {
-  const { text, backgroundColor = 'grayMedium', textColor = colors.blue } = props;
+  const { text, backgroundColor = 'grayMedium', textColor = 'blue' } = props;
   return (
     <View style={{ ...styles.wrapper, backgroundColor: colors[backgroundColor] }}>
       {/** Typography 추가되면 Text를 Caption으로 변경 필요 */}
-      <Text fontType='BOLD_11' color={textColor}>
+      <Text fontType='BOLD_11' color={colors[textColor]}>
         {text}
       </Text>
     </View>
