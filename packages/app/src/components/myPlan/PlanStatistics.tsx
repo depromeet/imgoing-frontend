@@ -4,7 +4,7 @@ import { SvgXml } from 'react-native-svg';
 
 import { Text, TextBadge, Tooltip } from 'ui';
 import { colors } from 'design-token';
-import { expand_less, icon_arrowDown } from 'icons';
+import { icon_arrowUp, icon_arrowDown } from 'icons';
 import IconBadge from './IconBadge';
 
 interface PlanStatisticsProps {
@@ -19,7 +19,7 @@ const PlanStatistics = (props: PlanStatisticsProps) => {
       {toggleExpand ? (
         <View style={styles.border}>
           <Pressable style={styles.minimizeButton} onPress={onPress}>
-            <SvgXml xml={expand_less} />
+            <SvgXml xml={icon_arrowUp} />
           </Pressable>
           {/* 다른 월 선택시 바뀌도록 */}
           <View style={expandedStyles.circle}>

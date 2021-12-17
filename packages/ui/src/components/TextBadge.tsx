@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { Text } from './Text';
 import { ColorNames, colors } from 'design-token';
 
-interface TextBadgeProps {
+export interface TextBadgeProps {
   text: string;
   backgroundColor?: ColorNames;
   textColor?: ColorNames;
