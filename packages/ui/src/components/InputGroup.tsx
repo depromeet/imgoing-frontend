@@ -8,6 +8,7 @@ type InputGroup = {
   name?: string;
   visiableName?: string;
   placeholder?: string;
+  onPress?: () => void;
 };
 
 interface InputGroupProps {
@@ -36,6 +37,7 @@ export const InputGroup = (props: InputGroupProps) => {
         ref={(element) => (refArray.current[index] = element)}
         onSubmitEditing={() => refArray.current[index + 1]?.focus()}
         style={styles.textInput}
+        onTouchEnd={item.onPress}
         onChange={(e) => onChange && onChange({ ...e, name: String(item.name) })}
         onFocus={() => onFocusHandler(item.name || '', true)}
         onBlur={() => onFocusHandler('', false)}
@@ -45,8 +47,10 @@ export const InputGroup = (props: InputGroupProps) => {
   );
 
   return (
-    <View style={{ height: 40, width: '100%' }}>
-      <Text fontType='BOLD_16'>{name}</Text>
+    <View style={{ width: '100%' }}>
+      <Text fontType='BOLD_16' style={{ marginBottom: 12 }}>
+        {name}
+      </Text>
       <View
         style={{
           ...styles.inputListWrapper,
