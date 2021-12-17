@@ -9,20 +9,28 @@ interface NumberBadgeProps {
   count: number;
 }
 
-type NumberBadgeType = 'alert' | 'normal' | 'reverse';
+type NumberBadgeType = 'alert' | 'normal' | 'reverse' | 'active';
 
 const colorScheme = {
   alert: {
     background: colors.red,
+    borderColor: colors.red,
     text: colors.white,
   },
   normal: {
     background: colors.grayDark,
+    borderColor: colors.grayDark,
     text: colors.white,
   },
   reverse: {
-    background: colors.grayMedium,
+    background: colors.white,
+    borderColor: colors.grayMedium,
     text: colors.grayDark,
+  },
+  active: {
+    background: colors.white,
+    borderColor: colors.grayMedium,
+    text: colors.black,
   },
 };
 
@@ -30,7 +38,11 @@ export const NumberBadge = (props: NumberBadgeProps) => {
   const { type = 'normal', count } = props;
   const color = colorScheme[type];
   return (
-    <View style={[styles.container, { backgroundColor: color.background }]}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: color.background, borderColor: color.borderColor },
+      ]}>
       <Text fontType='BOLD_10' color={color.text}>
         {count}
       </Text>
@@ -43,6 +55,7 @@ const styles = StyleSheet.create({
     width: 15,
     height: 15,
     borderRadius: 15,
+    borderWidth: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },

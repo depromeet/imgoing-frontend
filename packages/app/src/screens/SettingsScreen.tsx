@@ -3,13 +3,13 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 
 import { Stack, ListContainer, Divider, SwitchButton } from 'ui';
 import { colors } from 'design-token';
-import Profile from 'components/Profile';
 import { icon_arrowRight } from 'icons';
 import { SvgXml } from 'react-native-svg';
+import Profile from 'components/settings/Profile';
 
 const SettingScreen = () => {
-  const [arrivalNoti, setArrivalNoti] = useState(true);
-  const [weatherNoti, setWeatherNoti] = useState(true);
+  const [arrivalNoti, setArrivalNoti] = useState<boolean>(true);
+  const [weatherNoti, setWeatherNoti] = useState<boolean>(true);
   return (
     <View style={styles.wrapper}>
       <ScrollView>
