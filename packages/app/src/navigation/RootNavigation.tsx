@@ -27,18 +27,12 @@ const Stacks = () => {
         options={({ navigation }) => ({
           title: '카카오 연동 계정 관리',
           headerTitleAlign: 'left',
-          headerLeft: () => {
-            return (
-              <SvgXml
+          headerLeft: () => <SvgXml
                 xml={icon_back}
                 style={{ marginLeft: 16 }}
                 fill={colors.black}
-                onPressOut={() => {
-                  navigation.goBack();
-                }}
+                onPressOut={() => navigation.goBack()}
               />
-            );
-          },
         })}
       />
       <Root.Screen
