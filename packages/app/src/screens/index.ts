@@ -5,3 +5,4 @@ export { default as LoginScreen } from './LoginScreen';
 export { default as PlanInputScreen } from './PlanInputScreen';
 export { default as SettingsScreen } from './SettingsScreen';
 export { default as MyPlanScreen } from './MyPlanScreen';
+export { default as PastPlanScreen } from './PastPlanScreen';
