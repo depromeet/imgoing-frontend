@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingBottom: 34,
+    paddingBottom: getBottomSpace() + 20,
   },
   button: {
     flex: 1,
