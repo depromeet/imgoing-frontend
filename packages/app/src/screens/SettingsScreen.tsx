@@ -1,24 +1,37 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
+import { SvgXml } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 import { Stack, ListContainer, Divider, SwitchButton } from 'ui';
 import { colors } from 'design-token';
 import { icon_arrowRight } from 'icons';
-import { SvgXml } from 'react-native-svg';
+import { RootRouterParams } from 'types/Route';
 import Profile from 'components/settings/Profile';
 
 const SettingScreen = () => {
-  const [arrivalNoti, setArrivalNoti] = useState<boolean>(true);
-  const [weatherNoti, setWeatherNoti] = useState<boolean>(true);
+  const [arrivalNoti, setArrivalNoti] = useState(true);
+  const [weatherNoti, setWeatherNoti] = useState(true);
+
+  const navigation = useNavigation<RootRouterParams>();
+
   return (
     <View style={styles.wrapper}>
       <ScrollView>
         <Profile />
         <Stack title='개인 정보'>
-          <ListContainer text='카카오 연동 계정 관리'>
+          <ListContainer
+            text='카카오 연동 계정 관리'
+            onClick={() => {
+              navigation.navigate('AccountManage');
+            }}>
             <SvgXml xml={icon_arrowRight} />
           </ListContainer>
-          <ListContainer text='약관, 개인 정보 관리'>
+          <ListContainer
+            text='약관, 개인 정보 관리'
+            onClick={() => {
+              navigation.navigate('Policy');
+            }}>
             <SvgXml xml={icon_arrowRight} />
           </ListContainer>
         </Stack>

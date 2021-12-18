@@ -10,6 +10,8 @@ export type RootRouterParamList = {
   Webview: {
     url: string;
   };
+  AccountManage: undefined;
+  Policy: undefined;
 };
 
 export type MainRouterParamList = {
