@@ -2817,6 +2817,7 @@ __metadata:
     react-native: 0.64.3
     react-native-dotenv: ^3.3.0
     react-native-gesture-handler: ~1.10.2
+    react-native-iphone-x-helper: ^1.3.1
     react-native-safe-area-context: 3.3.2
     react-native-screens: ~3.8.0
     react-native-svg: 12.1.1
@@ -12141,7 +12142,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ui@workspace:packages/ui"
   dependencies:
-    react-native-iphone-x-helper: ^1.3.1
     react-native-modal: ^13.0.0
   peerDependencies:
     "@types/styled-components-react-native": ^5.1.1
@@ -12149,6 +12149,7 @@ __metadata:
     icons: "workspace:1.0.0"
     react: 16.13.1
     react-native: 0.64.3
+    react-native-iphone-x-helper: ^1.3.1
     styled-components: ^5.3.1
   languageName: unknown
   linkType: soft
