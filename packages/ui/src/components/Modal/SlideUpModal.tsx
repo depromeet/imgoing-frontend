@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH,
     margin: 0,
     justifyContent: 'flex-end',
+    maxHeight: '80%',
   },
   container: {
     backgroundColor: colors.white,
