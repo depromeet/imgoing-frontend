@@ -7,15 +7,15 @@ interface ButtonProps {
   children: React.ReactNode;
   onPress: (event: GestureResponderEvent) => void;
   disabled?: boolean;
+  backgroundColor?: string;
 }
 
 export const Button = (props: ButtonProps) => {
-  const { children, onPress, disabled } = props;
-  const backgroundColor = disabled ? colors.grayMedium : colors.blue;
+  const { children, onPress, disabled, backgroundColor = colors.blue } = props;
 
   return (
     <TouchableOpacity
-      style={{ ...styles.wrapper, backgroundColor }}
+      style={[{ ...styles.wrapper, backgroundColor }]}
       activeOpacity={disabled ? 1 : 0.8}
       onPress={disabled ? onPress : undefined}>
       <Text color={colors.white} fontType='BOLD_16'>

@@ -12,7 +12,7 @@ const Profile = () => {
       <View style={styles.avatar}>
         <SvgXml xml={logo} width={48} />
       </View>
-      <View style={styles.profileCard}>
+      <View>
         <Text fontType='BOLD_18' color={colors.black} style={{ paddingBottom: 4 }}>
           암고잉
         </Text>
@@ -30,20 +30,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingVertical: 24,
     paddingHorizontal: 20,
-    justifyContent: 'center',
     alignItems: 'center',
   },
   avatar: {
-    flex: 1,
     width: 72,
     height: 72,
     marginRight: 16,
-    borderRadius: 50,
+    borderRadius: 100,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: colors.blueLight,
   },
-  profileCard: { flex: 4 },
 });
 
 export default Profile;
