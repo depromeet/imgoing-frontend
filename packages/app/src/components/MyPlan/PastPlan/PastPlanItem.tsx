@@ -19,7 +19,7 @@ const PastPlanItem = ({ date, title, late }: PastPlanItemProps) => {
   const result = late === 'notChecked' ? '도착 확인 불가' : late === 'late' ? '늦음' : '안늦음';
   return (
     <View style={styles.wrapper}>
-      <View style={[styles.row]}>
+      <View style={styles.row}>
         <SvgXml xml={icon_markRead} fill={colors.grayDark}></SvgXml>
         <Text style={styles.date} fontType='BOLD_12' color={colors.grayDark}>
           {date}
