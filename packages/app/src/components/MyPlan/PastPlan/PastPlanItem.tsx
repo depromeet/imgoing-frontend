@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
 import { icon_markRead } from 'icons';
@@ -9,12 +9,14 @@ import { Button, Text } from 'ui';
 interface PastPlanItemProps {
   date: string;
   title: string;
-  late: boolean | null;
+  late: lateStatus;
 }
 
+type lateStatus = 'late' | 'notLate' | 'notChecked';
+
 const PastPlanItem = ({ date, title, late }: PastPlanItemProps) => {
-  const textColor = late === null ? colors.red : colors.black;
-  const result = late === null ? '확인 불가' : late ? '늦음' : '안늦음';
+  const textColor = late === 'notChecked' ? colors.red : colors.black;
+  const result = late === 'notChecked' ? '도착 확인 불가' : late === 'late' ? '늦음' : '안늦음';
   return (
     <View style={styles.wrapper}>
       <View style={[styles.row]}>
@@ -29,15 +31,21 @@ const PastPlanItem = ({ date, title, late }: PastPlanItemProps) => {
       <Text style={[styles.result, { color: textColor }]} fontType='REGULAR_12'>
         {result}
       </Text>
-      {late === null && (
+      {late === 'notChecked' && (
         <View style={[styles.row, styles.buttonGroup]}>
-          <View style={styles.button}>
-            <Button onPress={() => {}}>늦음</Button>
-          </View>
+          <Pressable
+            style={[styles.button, { backgroundColor: colors.grayMedium, width: 49 }]}
+            onPress={() => {}}>
+            <Text fontType='REGULAR_12'>늦음</Text>
+          </Pressable>
           <View style={styles.gap} />
-          <View style={styles.button}>
-            <Button onPress={() => {}}>안늦음</Button>
-          </View>
+          <Pressable
+            style={[styles.button, { backgroundColor: colors.blue, width: 63 }]}
+            onPress={() => {}}>
+            <Text fontType='REGULAR_12' color={colors.white}>
+              안 늦음
+            </Text>
+          </Pressable>
         </View>
       )}
     </View>
@@ -65,12 +73,12 @@ const styles = StyleSheet.create({
   },
   buttonGroup: {
     paddingLeft: 28,
-    justifyContent: 'center',
   },
   button: {
-    flex: 1,
+    borderRadius: 4,
     justifyContent: 'center',
     alignItems: 'center',
+    height: 32,
   },
   gap: {
     width: 10,

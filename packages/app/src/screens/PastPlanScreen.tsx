@@ -16,9 +16,13 @@ const PastPlanScreen = () => {
           지난 일정
         </Text>
         <ScrollView>
-          <PastPlanItem date={'11월 16일 금요일'} title={'퇴근하고 삼겹살 먹기'} late={true} />
-          <PastPlanItem date={'11월 16일 금요일'} title={'퇴근하고 삼겹살 먹기'} late={null} />
-          <PastPlanItem date={'11월 16일 금요일'} title={'퇴근하고 삼겹살 먹기'} late={false} />
+          <PastPlanItem date={'11월 16일 금요일'} title={'퇴근하고 삼겹살 먹기'} late={'late'} />
+          <PastPlanItem
+            date={'11월 16일 금요일'}
+            title={'퇴근하고 삼겹살 먹기'}
+            late={'notChecked'}
+          />
+          <PastPlanItem date={'11월 16일 금요일'} title={'퇴근하고 삼겹살 먹기'} late={'notLate'} />
         </ScrollView>
       </Stack>
     </View>
