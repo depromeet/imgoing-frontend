@@ -12,6 +12,7 @@ export type RootRouterParamList = {
   };
   AccountManage: undefined;
   Policy: undefined;
+  RoutineManage: undefined;
 };
 
 export type MainRouterParamList = {

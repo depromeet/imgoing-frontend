@@ -15,6 +15,7 @@ import { RootRouterParamList } from 'types/Route';
 import { icon_back } from 'icons';
 import { colors } from 'design-token';
 import MainNavigation from './MainNavigation';
+import RoutineManageScreen from 'screens/RoutineManageScreen';
 
 const Root = createStackNavigator<RootRouterParamList>();
 
@@ -47,6 +48,22 @@ const Stacks = () => {
         component={PolicyScreen}
         options={({ navigation }) => ({
           title: '약관, 개인정보 관리',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgXml
+              xml={icon_back}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
+      <Root.Screen
+        name='RoutineManage'
+        component={RoutineManageScreen}
+        options={({ navigation }) => ({
+          title: '루틴 관리',
           headerTitleAlign: 'left',
           headerLeft: () => (
             <SvgXml

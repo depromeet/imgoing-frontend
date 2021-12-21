@@ -6,9 +6,11 @@ import PlanStatistics from 'components/myPlan/PlanStatistics';
 import { colors } from 'design-token';
 import { icon_arrowRight } from 'icons';
 import { ListContainer, Stack, Text } from 'ui';
+import { useNavigation } from '@react-navigation/native';
 
 const MyPlanScreen = () => {
   const [toggleExpand, setToggleExpand] = useState<boolean>(false);
+  const navigation = useNavigation();
   return (
     <ScrollView style={styles.wrapper} contentContainerStyle={styles.contentContainer}>
       <Stack>
@@ -23,7 +25,11 @@ const MyPlanScreen = () => {
       />
       <View style={styles.gap} />
       <Stack title='일정 관리'>
-        <ListContainer text='루틴 관리'>
+        <ListContainer
+          text='루틴 관리'
+          onClick={() => {
+            navigation.navigate('RoutineManage');
+          }}>
           <SvgXml xml={icon_arrowRight} />
         </ListContainer>
         <ListContainer text='지난 일정 보기'>
