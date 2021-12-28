@@ -39,7 +39,7 @@ const HomeScreen = () => {
             timeRemaining: '2021-12-31 10:00:00',
           }}
         />
-        {planInProgress && <Schedule plans={[planInProgress]} title='inProgress' />}
+        {planInProgress && <Schedule active plans={[planInProgress]} title='inProgress' />}
         {upcomingPlans && upcomingPlans.length && (
           <Schedule plans={upcomingPlans} title='upcoming' />
         )}
