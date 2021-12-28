@@ -9,7 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import TopContents from 'components/Home/TopContents';
 import Schedule from 'components/Home/Schedule';
 
-const MainScreen = () => {
+const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainScreen;
+export default HomeScreen;
