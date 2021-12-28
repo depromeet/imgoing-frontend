@@ -9,18 +9,15 @@ import { ScrollView } from 'react-native-gesture-handler';
 import TopContents from 'components/Home/TopContents';
 import Schedule from 'components/Home/Schedule';
 import { useGetPlansQuery } from 'modules/services/plan';
-
-const isInProgress = (start: string, end: string) => {
-  const currentDate = new Date();
-  return new Date(start) < currentDate && currentDate < new Date(end);
-};
+import { isInProgress } from 'utils';
 
 const HomeScreen = () => {
   const { data } = useGetPlansQuery();
+  if (!data) return <Text>Loading...</Text>;
+  if (!data.length) return <Text>no data...</Text>;
 
-  const planInProgress =
-    data && isInProgress(data[0].startAt, data[0].arrivalAt) ? data[0] : undefined;
-  const upcomingPlans = planInProgress ? data?.slice(1) : data;
+  const planInProgress = isInProgress(data[0].startAt, data[0].arrivalAt) ? data[0] : undefined;
+  const upcomingPlans = (planInProgress ? data?.slice(1) : data) || [];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -33,12 +30,7 @@ const HomeScreen = () => {
         style={styles.mainContainer}
         contentContainerStyle={{ paddingBottom: 120 }}
         refreshControl={<RefreshControl refreshing={false} />}>
-        <TopContents
-          remaining={{
-            purpose: 'toArrival',
-            timeRemaining: '2021-12-31 10:00:00',
-          }}
-        />
+        <TopContents plan={data[0]} />
         {planInProgress && <Schedule active plans={[planInProgress]} title='inProgress' />}
         {upcomingPlans && upcomingPlans.length && (
           <Schedule plans={upcomingPlans} title='upcoming' />
