@@ -2806,6 +2806,7 @@ __metadata:
     axios: ^0.24.0
     babel-plugin-module-resolver: ^4.1.0
     babel-plugin-styled-components: ^1.13.3
+    date-fns: ^2.27.0
     design-token: "workspace:1.0.0"
     expo: ~43.0.2
     expo-font: ~10.0.3
@@ -4618,6 +4619,13 @@ __metadata:
   version: 1.0.1
   resolution: "cyclist@npm:1.0.1"
   checksum: 3cc2fdeb358599ca0ea96f5ecf2fc530ccab7ed1f8aa1a894aebfacd2009281bd7380cb9b30db02a18cdd00b3ed1d7ce81a3b11fe56e33a6a0fe4424dc592fbe
+  languageName: node
+  linkType: hard
+
+"date-fns@npm:^2.27.0":
+  version: 2.27.0
+  resolution: "date-fns@npm:2.27.0"
+  checksum: db62036b3816eb0322c9532b353beac7f660a91e1a55dbd21c14893c621ebb8509f21c66ba287844dabd34dee0207edd54a9537bce6bb7cab9383dedc6b8bc90
   languageName: node
   linkType: hard
 
