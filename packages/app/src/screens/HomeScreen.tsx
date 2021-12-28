@@ -8,8 +8,20 @@ import { colors } from 'design-token';
 import { ScrollView } from 'react-native-gesture-handler';
 import TopContents from 'components/Home/TopContents';
 import Schedule from 'components/Home/Schedule';
+import { useGetPlansQuery } from 'modules/services/plan';
+
+const isInProgress = (start: string, end: string) => {
+  const currentDate = new Date();
+  return new Date(start) < currentDate && currentDate < new Date(end);
+};
 
 const HomeScreen = () => {
+  const { data } = useGetPlansQuery();
+
+  const planInProgress =
+    data && isInProgress(data[0].startAt, data[0].arrivalAt) ? data[0] : undefined;
+  const upcomingPlans = planInProgress ? data?.slice(1) : data;
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -27,16 +39,10 @@ const HomeScreen = () => {
             timeRemaining: '2021-12-31 10:00:00',
           }}
         />
-        <View style={styles.gap} />
-        <View style={styles.section}>
-          <Text fontType={'BOLD_14'}>진행중인 일정</Text>
-        </View>
-        <Schedule plans={Array.from({ length: 2 })} />
-        <View style={styles.gap} />
-        <View style={styles.section}>
-          <Text fontType={'BOLD_14'}>다가오는 일정</Text>
-        </View>
-        <Schedule plans={Array.from({ length: 3 })} />
+        {planInProgress && <Schedule plans={[planInProgress]} title='inProgress' />}
+        {upcomingPlans && upcomingPlans.length && (
+          <Schedule plans={upcomingPlans} title='upcoming' />
+        )}
       </ScrollView>
     </SafeAreaView>
   );
@@ -56,14 +62,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     height: '100%',
     backgroundColor: colors.white,
-  },
-  gap: {
-    backgroundColor: colors.grayBackground,
-    height: 12,
-  },
-  section: {
-    paddingVertical: 23,
-    paddingHorizontal: 20,
   },
 });
 
