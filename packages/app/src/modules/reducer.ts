@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-
-// import users from 'modules/slices/user';
+import { planApi } from './services/plan';
 
 const reducer = combineReducers({
-  // users
+  [planApi.reducerPath]: planApi.reducer,
 });
 
 export type ReducerType = ReturnType<typeof reducer>;
