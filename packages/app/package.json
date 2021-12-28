@@ -7,7 +7,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "postinstall": "expo-yarn-workspaces postinstall"
+    "postinstall": "expo-yarn-workspaces postinstall",
+    "json-server": "json-server --watch db.json"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "0.2.5",
