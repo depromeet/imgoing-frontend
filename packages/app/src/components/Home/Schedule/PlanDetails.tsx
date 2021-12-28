@@ -6,6 +6,7 @@ import { Text } from 'ui';
 import { SvgXml } from 'react-native-svg';
 import { bag, bling, kakaolocation, location, task } from 'icons';
 import Task from './Task';
+import { Plan } from 'types';
 
 interface Props extends ViewProps {
   detailType: PlanDetailType;
@@ -57,7 +58,7 @@ const PlanDetail = ({ children, detailType }: Props) => {
   );
 };
 
-const PlanDetails = () => {
+const PlanDetails = ({ plan }: { plan: Plan }) => {
   return (
     <View style={styles.planDetails}>
       <PlanDetail detailType={'arrival'}>
@@ -67,27 +68,20 @@ const PlanDetails = () => {
             fontType={'BOLD_12'}
             color={colors.blue}
             style={{ textDecorationLine: 'underline' }}>
-            도림천
+            {plan.arrival.name}
           </Text>
         </View>
       </PlanDetail>
       <PlanDetail detailType={'belongs'}>
-        <Text fontType={'REGULAR_12'}>
-          보조 배터리, 갤워치, 여벌 트레닝복, 허브티, 스타벅스 텀블러, 고무줄 머리끈
-        </Text>
+        <Text fontType={'REGULAR_12'}>{plan.belongings}</Text>
       </PlanDetail>
       <PlanDetail detailType={'detail'}>
-        <Text fontType={'REGULAR_12'}>
-          {
-            '집에 오는 길에 은행들려서 계좌 이체하고 오기. 서점 들러서 <트렌드 코리아 2022> <미움받을 용기> <오리지널스> 책 있는지 확인!'
-          }
-        </Text>
+        <Text fontType={'REGULAR_12'}>{plan.memo}</Text>
       </PlanDetail>
       <PlanDetail detailType={'task'}>
-        <Task text={'💧 물 마시기'} time={1} />
-        <Task text={'아침 식사'} time={15} />
-        <Task text={'샤워'} time={15} />
-        <Task text={'옷 갈아입기'} time={10} />
+        {plan.tasks.map((task) => (
+          <Task text={task.name} time={task.time} />
+        ))}
       </PlanDetail>
     </View>
   );
