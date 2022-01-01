@@ -12,10 +12,11 @@ import {
   PolicyScreen,
 } from 'screens';
 import { RootRouterParamList } from 'types/Route';
-import { icon_back } from 'icons';
+import { icon_back, icon_close } from 'icons';
 import { colors } from 'design-token';
 import MainNavigation from './MainNavigation';
 import RoutineManageScreen from 'screens/RoutineManageScreen';
+import RoutineEditScreen from 'screens/RoutineEditScreen';
 
 const Root = createStackNavigator<RootRouterParamList>();
 
@@ -68,6 +69,22 @@ const Stacks = () => {
           headerLeft: () => (
             <SvgXml
               xml={icon_back}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
+      <Root.Screen
+        name='RoutineEdit'
+        component={RoutineEditScreen}
+        options={({ navigation }) => ({
+          title: '편집하기',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgXml
+              xml={icon_close}
               style={{ marginLeft: 16 }}
               fill={colors.black}
               onPressOut={() => navigation.goBack()}
