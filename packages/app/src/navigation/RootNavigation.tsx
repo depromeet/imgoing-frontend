@@ -92,6 +92,22 @@ const Stacks = () => {
           ),
         })}
       />
+      <Root.Screen
+        name='RoutineAdd'
+        component={RoutineEditScreen}
+        options={({ navigation }) => ({
+          title: '루틴 추가',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgXml
+              xml={icon_close}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
     </Root.Navigator>
   );
 };

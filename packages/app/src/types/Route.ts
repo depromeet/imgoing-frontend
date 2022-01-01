@@ -14,6 +14,7 @@ export type RootRouterParamList = {
   Policy: undefined;
   RoutineManage: undefined;
   RoutineEdit: undefined;
+  RoutineAdd: undefined;
 };
 
 export type MainRouterParamList = {
