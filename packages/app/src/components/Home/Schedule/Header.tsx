@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
 import { Text } from 'ui';
+import { getHours, getMeridiem, getMinutes } from 'utils/date';
 
 interface Props {
   active: boolean;
@@ -26,7 +27,7 @@ const Header = ({ active, title, time }: Props) => {
       </View>
       <View style={styles.datetime}>
         <Text fontType={'REGULAR_12'} color={colors.grayDark}>
-          {time}
+          {`${getHours(time)}:${getMinutes(time)} / ${getMeridiem(time)}`}
         </Text>
       </View>
     </View>

@@ -5,6 +5,7 @@
     "libraries/*"
   ],
   "scripts": {
-    "start": "yarn workspace app start"
+    "start": "yarn workspace app start",
+    "json-server": "yarn workspace app json-server"
   }
 }

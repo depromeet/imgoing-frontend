@@ -7,7 +7,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "postinstall": "expo-yarn-workspaces postinstall"
+    "postinstall": "expo-yarn-workspaces postinstall",
+    "json-server": "json-server --watch db.json"
   },
   "dependencies": {
     "@react-native-masked-view/masked-view": "0.2.5",
@@ -16,6 +17,7 @@
     "@react-navigation/stack": "^6.0.11",
     "@reduxjs/toolkit": "^1.6.2",
     "axios": "^0.24.0",
+    "date-fns": "^2.27.0",
     "design-token": "workspace:1.0.0",
     "expo": "~43.0.2",
     "expo-font": "~10.0.3",

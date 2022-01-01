@@ -8,19 +8,21 @@ import { Text } from 'ui';
 import { icon_arrowDown, icon_arrowUp } from 'icons';
 import PlanDetails from './PlanDetails';
 import Header from './Header';
+import { Plan as PlanType } from 'types';
 
 interface Props {
+  plan: PlanType;
   active: boolean;
 }
 
-const Plan = ({ active }: Props) => {
+const Plan = ({ plan, active }: Props) => {
   const [expanded, toggleExpanded] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Header active={active} title={'👟 유나랑 신도림에서 조깅하기'} time={'9:30 / 오전'} />
+      <Header active={active} title={plan.name} time={plan.arrivalAt} />
       <View>
-        {expanded && <PlanDetails />}
+        {expanded && <PlanDetails plan={plan} />}
         <View style={styles.expandContainer}>
           <TouchableOpacity
             onPress={() => {

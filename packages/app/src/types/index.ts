@@ -22,6 +22,7 @@ export type ResPlan = {
   belongings: string;
   memo: string;
   task: Task[];
+  startAt: string;
 };
 
 export interface Location {
@@ -39,4 +40,5 @@ export type Plan = {
   belongings: string;
   memo: string;
   tasks: Task[];
+  startAt: string;
 };
