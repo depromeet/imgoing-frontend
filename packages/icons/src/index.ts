@@ -24,10 +24,9 @@ export const icon_arrowRight = `<svg width="24" height="24" viewBox="0 0 24 24" 
 </svg>
 `;
 
-export const icon_arrowUp = `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M6.175 12.842L10 9.02533L13.825 12.842L15 11.667L10 6.66699L5 11.667L6.175 12.842Z" fill="#999EAA"/>
-</svg>
-`;
+export const icon_arrowUp = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.41 15.41L12 10.83L16.59 15.41L18 14L12 8L6 14L7.41 15.41Z" fill="#999EAA"/>
+</svg>`;
 
 export const icon_arrowDown = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M16.59 8.58984L12 13.1698L7.41 8.58984L6 9.99984L12 15.9998L18 9.99984L16.59 8.58984Z" fill="#999EAA"/>
