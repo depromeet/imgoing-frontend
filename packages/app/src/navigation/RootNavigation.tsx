@@ -17,6 +17,7 @@ import { colors } from 'design-token';
 import MainNavigation from './MainNavigation';
 import RoutineManageScreen from 'screens/RoutineManageScreen';
 import RoutineEditScreen from 'screens/RoutineEditScreen';
+import { SvgIcon } from 'ui';
 
 const Root = createStackNavigator<RootRouterParamList>();
 
@@ -35,7 +36,7 @@ const Stacks = () => {
           title: '카카오 연동 계정 관리',
           headerTitleAlign: 'left',
           headerLeft: () => (
-            <SvgXml
+            <SvgIcon
               xml={icon_back}
               style={{ marginLeft: 16 }}
               fill={colors.black}
@@ -51,7 +52,7 @@ const Stacks = () => {
           title: '약관, 개인정보 관리',
           headerTitleAlign: 'left',
           headerLeft: () => (
-            <SvgXml
+            <SvgIcon
               xml={icon_back}
               style={{ marginLeft: 16 }}
               fill={colors.black}
@@ -67,7 +68,7 @@ const Stacks = () => {
           title: '루틴 관리',
           headerTitleAlign: 'left',
           headerLeft: () => (
-            <SvgXml
+            <SvgIcon
               xml={icon_back}
               style={{ marginLeft: 16 }}
               fill={colors.black}
@@ -83,7 +84,7 @@ const Stacks = () => {
           title: '편집하기',
           headerTitleAlign: 'left',
           headerLeft: () => (
-            <SvgXml
+            <SvgIcon
               xml={icon_close}
               style={{ marginLeft: 16 }}
               fill={colors.black}
@@ -99,7 +100,7 @@ const Stacks = () => {
           title: '루틴 추가',
           headerTitleAlign: 'left',
           headerLeft: () => (
-            <SvgXml
+            <SvgIcon
               xml={icon_close}
               style={{ marginLeft: 16 }}
               fill={colors.black}
