@@ -17,7 +17,7 @@ export const Button = (props: ButtonProps) => {
     <TouchableOpacity
       style={[{ ...styles.wrapper, backgroundColor }]}
       activeOpacity={disabled ? 1 : 0.8}
-      onPress={disabled ? onPress : undefined}>
+      onPress={disabled ? undefined : onPress}>
       <Text color={colors.white} fontType='BOLD_16'>
         {children}
       </Text>

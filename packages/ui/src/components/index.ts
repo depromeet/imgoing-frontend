@@ -13,3 +13,4 @@ export * from './InputGroup';
 export * from './Divider';
 export * from './Modal';
 export * from './SvgIcon';
+export * from './FixedBottomCTA';

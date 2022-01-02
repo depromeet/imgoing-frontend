@@ -2810,6 +2810,7 @@ __metadata:
     design-token: "workspace:1.0.0"
     expo: ~43.0.2
     expo-font: ~10.0.3
+    expo-linear-gradient: ~10.0.3
     expo-status-bar: ~1.1.0
     expo-yarn-workspaces: ^1.6.0
     icons: "workspace:1.0.0"
@@ -2819,6 +2820,7 @@ __metadata:
     react-native-dotenv: ^3.3.0
     react-native-gesture-handler: ~1.10.2
     react-native-iphone-x-helper: ^1.3.1
+    react-native-keyboard-aware-scroll-view: ^0.9.5
     react-native-safe-area-context: 3.3.2
     react-native-screens: ~3.8.0
     react-native-svg: 12.1.1
@@ -5383,6 +5385,15 @@ __metadata:
   peerDependencies:
     expo: "*"
   checksum: d2cd813b3af21cdba5d20db45163a81216c9e19bfdd087dddbc1bfc292494f3610f67d24850b587e4286508ca9e4fb360e5d9e19a8e6abb169182872052d38d4
+  languageName: node
+  linkType: hard
+
+"expo-linear-gradient@npm:~10.0.3":
+  version: 10.0.3
+  resolution: "expo-linear-gradient@npm:10.0.3"
+  dependencies:
+    expo-modules-core: ~0.4.4
+  checksum: f8b18e3da6aa4f190bfa3c9cc00051481340008717e729cb0bc6ff7ac25fd5b9540d572f707f565d89db845355f62fff45d9639912ca097c90716c60cbd46fc6
   languageName: node
   linkType: hard
 
@@ -10300,12 +10311,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-iphone-x-helper@npm:^1.3.1":
+"react-native-iphone-x-helper@npm:^1.0.3, react-native-iphone-x-helper@npm:^1.3.1":
   version: 1.3.1
   resolution: "react-native-iphone-x-helper@npm:1.3.1"
   peerDependencies:
     react-native: ">=0.42.0"
   checksum: 024376646009a966e33e12fc2358751830818b0fb73b1c601a64eb5e490d2dc43eec23668991b985a8c412a84d087f20eb45bb9b593567c08b66e741b7bddda5
+  languageName: node
+  linkType: hard
+
+"react-native-keyboard-aware-scroll-view@npm:^0.9.5":
+  version: 0.9.5
+  resolution: "react-native-keyboard-aware-scroll-view@npm:0.9.5"
+  dependencies:
+    prop-types: ^15.6.2
+    react-native-iphone-x-helper: ^1.0.3
+  peerDependencies:
+    react-native: ">=0.48.4"
+  checksum: 5eec2aedb886213dfed4c8428a443b565dce80ba9fcf5897171e4c8829d4dd64c5011ac004d93f29adfc83ad6f88c2838d1a5b45255dc4a49bd1c0a169245800
   languageName: node
   linkType: hard
 
