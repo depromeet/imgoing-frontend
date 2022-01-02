@@ -26,7 +26,11 @@ const MyPlanScreen = () => {
       />
       <View style={styles.gap} />
       <Stack title='일정 관리'>
-        <ListContainer text='루틴 관리'>
+        <ListContainer
+          text='루틴 관리'
+          onClick={() => {
+            navigation.navigate('RoutineManage');
+          }}>
           <SvgXml xml={icon_arrowRight} />
         </ListContainer>
         <ListContainer

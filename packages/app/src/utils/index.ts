@@ -12,3 +12,8 @@ export const normalize = (size: number): number => {
     return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2;
   }
 };
+
+export const isInProgress = (start: string, end: string) => {
+  const currentDate = new Date();
+  return new Date(start) < currentDate && currentDate < new Date(end);
+};

@@ -13,9 +13,12 @@ import {
   PastPlanScreen,
 } from 'screens';
 import { RootRouterParamList } from 'types/Route';
-import { icon_back } from 'icons';
+import { icon_back, icon_close } from 'icons';
 import { colors } from 'design-token';
 import MainNavigation from './MainNavigation';
+import RoutineManageScreen from 'screens/RoutineManageScreen';
+import RoutineEditScreen from 'screens/RoutineEditScreen';
+import { SvgIcon } from 'ui';
 
 const Root = createStackNavigator<RootRouterParamList>();
 
@@ -34,7 +37,7 @@ const Stacks = () => {
           title: '카카오 연동 계정 관리',
           headerTitleAlign: 'left',
           headerLeft: () => (
-            <SvgXml
+            <SvgIcon
               xml={icon_back}
               style={{ marginLeft: 16 }}
               fill={colors.black}
@@ -50,7 +53,7 @@ const Stacks = () => {
           title: '약관, 개인정보 관리',
           headerTitleAlign: 'left',
           headerLeft: () => (
-            <SvgXml
+            <SvgIcon
               xml={icon_back}
               style={{ marginLeft: 16 }}
               fill={colors.black}
@@ -68,6 +71,54 @@ const Stacks = () => {
           headerLeft: () => (
             <SvgXml
               xml={icon_back}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
+      <Root.Screen
+        name='RoutineManage'
+        component={RoutineManageScreen}
+        options={({ navigation }) => ({
+          title: '루틴 관리',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgIcon
+              xml={icon_back}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
+      <Root.Screen
+        name='RoutineEdit'
+        component={RoutineEditScreen}
+        options={({ navigation }) => ({
+          title: '편집하기',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgIcon
+              xml={icon_close}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
+      <Root.Screen
+        name='RoutineAdd'
+        component={RoutineEditScreen}
+        options={({ navigation }) => ({
+          title: '루틴 추가',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgIcon
+              xml={icon_close}
               style={{ marginLeft: 16 }}
               fill={colors.black}
               onPressOut={() => navigation.goBack()}

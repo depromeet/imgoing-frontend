@@ -1,0 +1,109 @@
+{
+  "plans": {
+    "data": [
+      {
+        "id": 1,
+        "arrivalAt": "2021-12-30 17:30:00",
+        "arrivalLat": 37.5572772,
+        "arrivalLng": 126.9215528,
+        "arrivalName": "홍대입구역 2번 출구",
+        "belongings": "보조 배터리, 고데기",
+        "departureLat": 37.5398007,
+        "departureLng": 127.0696434,
+        "departureName": "건대입구역 5번 출구",
+        "memo": "편의점 들러서 물 사기",
+        "name": "유나랑 영풍문고 앞에서 만나서 이번주 작업하기",
+        "startAt": "2021-12-30 16:30:00",
+        "task": [
+          {
+            "id": 0,
+            "isBookmarked": true,
+            "name": "아침 식사",
+            "time": 30
+          },
+          {
+            "id": 1,
+            "isBookmarked": true,
+            "name": "고양이 밥주기",
+            "time": 5
+          },
+          {
+            "id": 2,
+            "isBookmarked": true,
+            "name": "샤워하기",
+            "time": 25
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "arrivalAt": "2022-01-01 16:30:00",
+        "arrivalLat": 37.5572772,
+        "arrivalLng": 126.9215528,
+        "arrivalName": "홍대입구역 2번 출구",
+        "belongings": "보조 배터리, 고데기",
+        "departureLat": 37.5398007,
+        "departureLng": 127.0696434,
+        "departureName": "건대입구역 5번 출구",
+        "memo": "편의점 들러서 물 사기",
+        "name": "유나랑 신도림에서 조깅하기",
+        "startAt": "2022-01-01 14:47:00",
+        "task": [
+          {
+            "id": 0,
+            "isBookmarked": true,
+            "name": "아침 식사",
+            "time": 30
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "arrivalAt": "2022-01-02 12:30:00",
+        "arrivalLat": 37.5572772,
+        "arrivalLng": 126.9215528,
+        "arrivalName": "홍대입구역 2번 출구",
+        "belongings": "보조 배터리, 고데기",
+        "departureLat": 37.5398007,
+        "departureLng": 127.0696434,
+        "departureName": "건대입구역 5번 출구",
+        "memo": "편의점 들러서 물 사기",
+        "name": "잠실에서 미팅",
+        "startAt": "2022-01-01 11:16:00",
+        "task": [
+          {
+            "id": 0,
+            "isBookmarked": true,
+            "name": "아침 식사",
+            "time": 30
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "arrivalAt": "2022-01-12 09:30:00",
+        "arrivalLat": 37.5572772,
+        "arrivalLng": 126.9215528,
+        "arrivalName": "홍대입구역 2번 출구",
+        "belongings": "보조 배터리, 고데기",
+        "departureLat": 37.5398007,
+        "departureLng": 127.0696434,
+        "departureName": "건대입구역 5번 출구",
+        "memo": "편의점 들러서 물 사기",
+        "name": "홍대 독서 모임",
+        "startAt": "2022-01-01 09:13:00",
+        "task": [
+          {
+            "id": 0,
+            "isBookmarked": true,
+            "name": "아침 식사",
+            "time": 30
+          }
+        ]
+      }
+    ],
+    "message": "string",
+    "status": "ACCEPTED",
+    "statusCode": 0
+  }
+}
