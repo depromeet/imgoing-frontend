@@ -10,6 +10,7 @@ import {
   WebviewScreen,
   AccountManageScreen,
   PolicyScreen,
+  PastPlanScreen,
 } from 'screens';
 import { RootRouterParamList } from 'types/Route';
 import { icon_back } from 'icons';
@@ -47,6 +48,22 @@ const Stacks = () => {
         component={PolicyScreen}
         options={({ navigation }) => ({
           title: '약관, 개인정보 관리',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgXml
+              xml={icon_back}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
+      <Root.Screen
+        name='PastPlan'
+        component={PastPlanScreen}
+        options={({ navigation }) => ({
+          title: '지난 일정 보기',
           headerTitleAlign: 'left',
           headerLeft: () => (
             <SvgXml

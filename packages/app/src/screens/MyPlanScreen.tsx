@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
-import PlanStatistics from 'components/myPlan/PlanStatistics';
+import PlanStatistics from 'components/MyPlan/PlanStatistics';
 import { colors } from 'design-token';
 import { icon_arrowRight } from 'icons';
 import { ListContainer, Stack, Text } from 'ui';
+import { RootRouterParams } from 'types/Route';
 
 const MyPlanScreen = () => {
-  const [toggleExpand, setToggleExpand] = useState<boolean>(false);
+  const [toggleExpand, setToggleExpand] = useState(false);
+  const navigation = useNavigation<RootRouterParams>();
   return (
     <ScrollView style={styles.wrapper} contentContainerStyle={styles.contentContainer}>
       <Stack>
@@ -26,7 +29,11 @@ const MyPlanScreen = () => {
         <ListContainer text='루틴 관리'>
           <SvgXml xml={icon_arrowRight} />
         </ListContainer>
-        <ListContainer text='지난 일정 보기'>
+        <ListContainer
+          text='지난 일정 보기'
+          onClick={() => {
+            navigation.navigate('PastPlan');
+          }}>
           <SvgXml xml={icon_arrowRight} />
         </ListContainer>
       </Stack>

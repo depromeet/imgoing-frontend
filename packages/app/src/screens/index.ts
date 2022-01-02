@@ -7,3 +7,4 @@ export { default as SettingsScreen } from './SettingsScreen';
 export { default as MyPlanScreen } from './MyPlanScreen';
 export { default as AccountManageScreen } from './AccountManageScreen';
 export { default as PolicyScreen } from './PolicyScreen';
+export { default as PastPlanScreen } from './PastPlanScreen';
