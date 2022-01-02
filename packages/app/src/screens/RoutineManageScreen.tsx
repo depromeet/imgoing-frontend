@@ -3,8 +3,8 @@ import { StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { colors } from 'design-token';
-import RoutineList from 'components/myPlan/Routine/RoutineList';
-import LandingView from 'components/myPlan/Routine/LandingView';
+import RoutineList from 'components/MyPlan/Routine/RoutineList';
+import LandingView from 'components/MyPlan/Routine/LandingView';
 import { FixedBottomCTA, Stack, Text } from 'ui';
 import { RootRouterParams } from 'types/Route';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ViewProps } from 'react-native';
 
-import { Text } from 'ui';
+import { Text } from '../Text';
 import { SCREEN_WIDTH } from 'design-token';
 import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Modal from 'react-native-modal';

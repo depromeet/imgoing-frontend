@@ -1,10 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
-import TaskItem from 'components/myPlan/Routine/TaskItem';
-import { colors } from 'design-token';
-import { icon_add, task } from 'icons';
+import TaskItem from 'components/MyPlan/Routine/TaskItem';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+
+import { colors } from 'design-token';
+import { icon_add, task } from 'icons';
 import { Divider, FixedBottomCTA, Input, Stack, Text } from 'ui';
 
 const RoutineEditScreen = () => {

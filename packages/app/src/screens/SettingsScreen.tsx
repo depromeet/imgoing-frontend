@@ -7,7 +7,7 @@ import { Stack, ListContainer, Divider, SwitchButton } from 'ui';
 import { colors } from 'design-token';
 import { icon_arrowRight } from 'icons';
 import { RootRouterParams } from 'types/Route';
-import Profile from 'components/settings/Profile';
+import Profile from 'components/Settings/Profile';
 
 const SettingScreen = () => {
   const [arrivalNoti, setArrivalNoti] = useState(true);

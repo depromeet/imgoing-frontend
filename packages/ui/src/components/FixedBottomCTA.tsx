@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { getBottomSpace } from 'react-native-iphone-x-helper';
 
-import { Button } from '.';
+import { Button } from './Button';
 import { colors } from 'design-token';
 
 interface Props {
