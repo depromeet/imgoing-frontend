@@ -1,18 +1,51 @@
-import { useNavigation } from '@react-navigation/native';
-import TaskItem from 'components/MyPlan/Routine/TaskItem';
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
+import TaskItem from 'components/MyPlan/Routine/TaskItem';
 import { colors } from 'design-token';
-import { icon_add, task } from 'icons';
-import { Divider, FixedBottomCTA, Input, Stack, Text } from 'ui';
+import { icon_add } from 'icons';
+import { Divider, FixedBottomCTA, Input, SlideUpModal, Stack, Text } from 'ui';
+import HistoryModal from 'components/MyPlan/Routine/HistoryModal';
+import AddTaskModal from 'components/MyPlan/Routine/AddTaskModal';
+import { Task } from 'types';
+import WheelPicker from 'ui/src/components/WheelPicker';
 
 const RoutineEditScreen = () => {
-  const taskData = [];
+  const [isHistoryModalVisible, setHistoryModalVisible] = useState(false);
+  const toggleHistoryModal = () => {
+    setHistoryModalVisible(!isHistoryModalVisible);
+  };
+  const [isAddTaskModalVisible, setAddTaskModalVisible] = useState(false);
+  const toggleAddTaskModal = () => {
+    setAddTaskModalVisible(!isAddTaskModalVisible);
+  };
+  const [isDurationModalVisible, setDurationModalVisible] = useState(false);
+  const toggleDurationModalVisible = () => {
+    setDurationModalVisible(!isDurationModalVisible);
+  };
+  const [taskData, setTaskData] = useState<Task[]>([]);
+
   return (
     //타이틀이 없거나 준비항목이 0일 경우 버튼 disabled 처리
     <FixedBottomCTA text='저장' onPress={() => {}}>
+      <SlideUpModal
+        title={'히스토리'}
+        setModalVisible={setHistoryModalVisible}
+        isModalVisible={isHistoryModalVisible}>
+        <HistoryModal />
+      </SlideUpModal>
+      <SlideUpModal
+        title={'새로운 준비 항목'}
+        setModalVisible={setAddTaskModalVisible}
+        isModalVisible={isAddTaskModalVisible}>
+        <AddTaskModal />
+      </SlideUpModal>
+      <SlideUpModal
+        setModalVisible={setDurationModalVisible}
+        isModalVisible={isDurationModalVisible}>
+        <WheelPicker dataSource={['10', '20', '30']} onValueChange={(value, index) => index} />
+      </SlideUpModal>
       <Stack>
         <Text fontType='BOLD_16' style={styles.title}>
           루틴 타이틀
@@ -26,17 +59,26 @@ const RoutineEditScreen = () => {
             <Text fontType='BOLD_16'>준비 항목 ({taskData.length})</Text>
           </View>
           {/* 히스토리 버튼 눌렀을 때 모달 창 */}
-          <Pressable style={{ flex: 1 }} onPress={() => {}}>
+          <Pressable
+            style={{ flex: 1 }}
+            onPress={() => {
+              toggleHistoryModal();
+            }}>
             <Text fontType='BOLD_12' color={colors.grayDark}>
               히스토리
             </Text>
           </Pressable>
         </View>
-        {taskData.map(() => (
-          <TaskItem duration={30} title='브런치 먹기' edit />
+
+        {taskData.map((task) => (
+          <TaskItem duration={task.time} title={task.name} type={'edit'} />
         ))}
         {/* 새로운 준비 항목 눌렀을 때 추가하는 모달창 */}
-        <Pressable style={styles.addTaskBtn} onPress={() => {}}>
+        <Pressable
+          style={styles.addTaskBtn}
+          onPress={() => {
+            toggleAddTaskModal();
+          }}>
           <SvgXml xml={icon_add} style={{ marginRight: 10 }} />
           <Text fontType='BOLD_14' color={colors.grayDark}>
             새로운 준비 항목
