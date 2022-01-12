@@ -10398,6 +10398,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-native-wheel-scrollview-picker@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "react-native-wheel-scrollview-picker@npm:1.2.2"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-native": "*"
+    react: "*"
+    react-native: "*"
+    typescript: "*"
+  checksum: 7e0fdbff1367c5e9256cd05f379f468d9774bdcd63efd1a43121dc6a7209f0d95d68b958663fdb77814c81f512e99407a5d0c12441dbe1fb105db7a4ee1b429b
+  languageName: node
+  linkType: hard
+
 "react-native@npm:0.64.3":
   version: 0.64.3
   resolution: "react-native@npm:0.64.3"
@@ -10918,6 +10931,8 @@ __metadata:
 "root-workspace-0b6124@workspace:.":
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
+  dependencies:
+    react-native-wheel-scrollview-picker: ^1.2.2
   languageName: unknown
   linkType: soft
 
