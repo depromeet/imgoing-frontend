@@ -14,3 +14,4 @@ export * from './Divider';
 export * from './Modal';
 export * from './SvgIcon';
 export * from './FixedBottomCTA';
+export * from './WheelPicker';
