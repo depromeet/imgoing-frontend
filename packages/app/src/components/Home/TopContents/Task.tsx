@@ -11,6 +11,7 @@ interface Props {
 }
 
 const Task = ({ active = false, title, time }: Props) => {
+  console.log(title, time);
   return (
     <View style={[styles.container, { ...(active && styles.active) }]}>
       <View style={styles.title}>
@@ -21,7 +22,7 @@ const Task = ({ active = false, title, time }: Props) => {
       <View style={[styles.flexRow, styles.time]}>
         <View style={styles.flexRow}>
           <Text fontType={'BOLD_14'} color={active ? colors.white : colors.grayDark}>
-            {Math.floor(time / 60)}
+            {time}
           </Text>
           <Text fontType={'REGULAR_14'} color={active ? colors.white : colors.grayDark}>
             분 일정
@@ -30,7 +31,13 @@ const Task = ({ active = false, title, time }: Props) => {
         <View style={styles.flexRow}>
           {active && <Text>💣 </Text>}
           <Text fontType={'BOLD_14'} color={active ? colors.white : colors.black}>
-            00:00:47
+            {active
+              ? ``
+              : `${Math.floor(time / 60)
+                  .toString()
+                  .padStart(2, '0')}:${Math.floor(time % 60)
+                  .toString()
+                  .padStart(2, '0')}:00`}
           </Text>
         </View>
       </View>
