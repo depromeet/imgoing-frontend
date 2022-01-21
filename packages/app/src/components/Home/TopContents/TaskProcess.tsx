@@ -12,8 +12,13 @@ interface Props {
 const TaskProcess = ({ tasks }: Props) => {
   return (
     <ScrollView horizontal contentContainerStyle={styles.container}>
-      {tasks.map((_, idx) => (
-        <Task title={'물 마시기💧'} time={60} active={idx === 0} />
+      {tasks.map((task, idx) => (
+        <Task
+          key={`${task.name}-${task.time}`}
+          title={task.name}
+          time={task.time}
+          active={idx === 0}
+        />
       ))}
     </ScrollView>
   );
