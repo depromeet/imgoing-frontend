@@ -17,3 +17,4 @@ export const isInProgress = (start: string, end: string) => {
   const currentDate = new Date();
   return new Date(start) < currentDate && currentDate < new Date(end);
 };
+export const mod = (n: number, m: number) => ((n % m) + m) % m;
