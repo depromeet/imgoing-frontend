@@ -22,6 +22,12 @@ export const planApi = createApi({
             lat: plan.arrivalLat,
             lng: plan.arrivalLng,
           },
+          departureAt: format(
+            add(new Date(plan.startAt), {
+              minutes: plan.task.reduce((acc, cur) => acc + cur.time, 0),
+            }),
+            'yyyy-MM-dd HH:mm:ss',
+          ),
           departure: {
             name: plan.departureName,
             lat: plan.departureLat,

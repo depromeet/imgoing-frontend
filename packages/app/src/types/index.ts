@@ -38,6 +38,7 @@ export type Plan = {
   arrivalAt: string;
   arrival: Location;
   departure: Location;
+  departureAt: string;
   belongings: string;
   memo: string;
   tasks: Task[];
