@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { add, format } from 'date-fns';
 
 import env from 'environments';
-import { Plan, ResPlan } from 'types';
+import { Plan, ResPlan, Task } from 'types';
 
 export const planApi = createApi({
   reducerPath: 'planApi',
@@ -28,7 +29,21 @@ export const planApi = createApi({
           },
           belongings: plan.belongings,
           memo: plan.memo,
-          tasks: plan.task,
+          tasks: plan.task.reduce((tasks, cur, idx): Task[] => {
+            if (tasks.length === 0) {
+              return [{ ...cur, startTime: plan.startAt }];
+            }
+            return [
+              ...tasks,
+              {
+                ...cur,
+                startTime: format(
+                  add(new Date(tasks[idx - 1].startTime), { minutes: cur.time }),
+                  'yyyy-MM-dd HH:mm:ss',
+                ),
+              },
+            ];
+          }, [] as Task[]),
           startAt: plan.startAt,
         })),
     }),

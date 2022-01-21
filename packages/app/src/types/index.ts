@@ -2,6 +2,7 @@ export type Task = {
   id: number;
   name: string;
   time: number;
+  startTime: string;
 };
 
 export type Routine = {
