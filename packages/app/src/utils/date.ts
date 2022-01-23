@@ -11,3 +11,10 @@ export const getHours = (date: string) => new Date(date).getHours();
 export const getMinutes = (date: string) => new Date(date).getMinutes();
 
 export const getMeridiem = (date: string) => (getHours(date) < 12 ? '오전' : '오후');
+
+export const timeText = (strings: TemplateStringsArray, ...exp: (boolean | string | number)[]) => {
+  return strings.reduce((prev, cur, idx) => {
+    const result = prev.concat(cur);
+    return exp[idx] ? result.concat(exp[idx].toString()) : result;
+  }, '');
+};
