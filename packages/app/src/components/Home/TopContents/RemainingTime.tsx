@@ -11,7 +11,7 @@ interface Props {
   purpose: HomeTopContentsType;
   startTime: string;
   endTime: string;
-  updateDuration: 1 | 60;
+  duration: 1 | 60;
   updatePurpose: () => void;
 }
 
@@ -44,7 +44,7 @@ const purposeText: {
   },
 };
 
-const RemainingTime = ({ purpose, startTime, endTime, updateDuration, updatePurpose }: Props) => {
+const RemainingTime = ({ purpose, startTime, endTime, duration, updatePurpose }: Props) => {
   let intervalId: NodeJS.Timer;
   const diffDays = differenceInCalendarDays(new Date(startTime), new Date());
   const [remainingTimeText, setRemainingTimeText] = useState('');
@@ -53,7 +53,7 @@ const RemainingTime = ({ purpose, startTime, endTime, updateDuration, updatePurp
     startTime: string,
     endTime: string,
     callback: (time: string | null) => void,
-    updateDuration: 1 | 60 = 1,
+    duration: 1 | 60 = 1,
   ) => {
     const remainingTime = differenceInSeconds(new Date(endTime), new Date(startTime));
     const remianingMinuites = Math.floor(remainingTime / ONE_MINUTES_BY_SECONDS);
@@ -68,12 +68,12 @@ const RemainingTime = ({ purpose, startTime, endTime, updateDuration, updatePurp
     }
     intervalId = setInterval(() => {
       let remainingTimeText = '';
-      if (updateDuration === 60) {
+      if (duration === 60) {
         if (minuites - 1 === 0 && hour === 0) return;
         minuites - 1 < 0 && hour--;
         minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
         remainingTimeText = hour ? `${hour}시간 ${minuites}분` : `${minuites}분`;
-      } else if (updateDuration === 1) {
+      } else if (duration === 1) {
         if (seconds - 1 === 0 && minuites === 0) return;
         seconds - 1 < 0 && minuites--;
         seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
@@ -81,7 +81,7 @@ const RemainingTime = ({ purpose, startTime, endTime, updateDuration, updatePurp
       }
 
       callback(remainingTimeText);
-    }, updateDuration * 1000);
+    }, duration * 1000);
 
     setTimeout(() => {
       clearInterval(intervalId);
@@ -126,7 +126,7 @@ const RemainingTime = ({ purpose, startTime, endTime, updateDuration, updatePurp
   // );
 
   useEffect(() => {
-    diffDays < 2 && getRemainingTimeText(startTime, endTime, updateRemainingTime, updateDuration);
+    diffDays < 2 && getRemainingTimeText(startTime, endTime, updateRemainingTime, duration);
   }, [purpose]);
 
   useEffect(() => {
