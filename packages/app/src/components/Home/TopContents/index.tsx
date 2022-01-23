@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
-import { add } from 'date-fns';
 
 import { Plan } from 'types';
 import Guide from './Guide';
@@ -23,30 +22,30 @@ const TopContents = ({ plan }: Props) => {
     endTime: plan.arrivalAt,
   });
 
-  const updateProcess = () => {};
-
-  useEffect(() => {
-    const today = new Date();
-    if (today < new Date(plan.startAt)) {
+  const updateProcess = () => {
+    const cur = new Date();
+    if (cur < new Date(plan.startAt)) {
       setProcessTime({
         purpose: 'oncoming',
         duration: 60,
         endTime: plan.startAt,
       });
-    } else if (today < new Date(plan.departureAt)) {
+    } else if (cur < new Date(plan.departureAt)) {
       setProcessTime({
         purpose: 'process',
         duration: 1,
         endTime: '',
       });
-    } else if (today < new Date(plan.arrivalAt)) {
+    } else if (cur < new Date(plan.arrivalAt)) {
       setProcessTime({
         purpose: 'toArrival',
         duration: 60,
         endTime: plan.arrivalAt,
       });
     }
-  }, []);
+  };
+
+  useEffect(updateProcess, []);
 
   return (
     <View>

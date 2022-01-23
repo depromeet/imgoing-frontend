@@ -78,12 +78,10 @@ const RemainingTime = ({ process, updateProcess }: Props) => {
   const updateRemainingTime = (time: string | null) => {
     console.log('timupdateRemainingTime', time);
     if (!time) {
-      const cur = new Date();
-      // purpose 설정 혹은 getRemainingTimeText 함수 다시 호출
-      return;
+      updateProcess();
+    } else {
+      setRemainingTimeText(time);
     }
-
-    setRemainingTimeText(time);
   };
 
   useEffect(() => {
