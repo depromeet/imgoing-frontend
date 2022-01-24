@@ -54,7 +54,7 @@ const RemainingTime = ({ process, updateProcess }: Props) => {
           if (seconds - 1 === 0 && minuites === 0) return;
           seconds - 1 < 0 && minuites--;
           seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
-          remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds}초`;
+          remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds && `${seconds}초`}`;
         }
         callback(remainingTimeText);
       };
