@@ -44,7 +44,7 @@ export const planApi = createApi({
               {
                 ...cur,
                 startTime: format(
-                  add(new Date(tasks[idx - 1].startTime), { minutes: cur.time }),
+                  add(new Date(tasks[idx - 1].startTime), { minutes: tasks[idx - 1].time }),
                   'yyyy-MM-dd HH:mm:ss',
                 ),
               },
