@@ -36,19 +36,18 @@ export const planApi = createApi({
           belongings: plan.belongings,
           memo: plan.memo,
           tasks: plan.task.reduce((tasks, cur, idx): Task[] => {
-            if (tasks.length === 0) {
-              return [{ ...cur, startTime: plan.startAt }];
-            }
-            return [
-              ...tasks,
-              {
-                ...cur,
-                startTime: format(
-                  add(new Date(tasks[idx - 1].startTime), { minutes: tasks[idx - 1].time }),
-                  'yyyy-MM-dd HH:mm:ss',
-                ),
-              },
-            ];
+            const startTime =
+              tasks.length === 0
+                ? plan.startAt
+                : format(
+                    add(new Date(tasks[idx - 1].startTime), { minutes: tasks[idx - 1].time }),
+                    'yyyy-MM-dd HH:mm:ss',
+                  );
+            const endTime = format(
+              add(new Date(startTime), { minutes: cur.time }),
+              'yyyy-MM-dd HH:mm:ss',
+            );
+            return [...tasks, { ...cur, startTime, endTime }];
           }, [] as Task[]),
           startAt: plan.startAt,
         })),
