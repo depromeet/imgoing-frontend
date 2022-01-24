@@ -1,5 +1,5 @@
 import { colors } from 'design-token';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Text } from 'ui';
@@ -33,47 +33,46 @@ const RemainingTime = ({ process, updateProcess }: Props) => {
   const diffDays = differenceInCalendarDays(new Date(process.endTime), new Date());
   const [remainingTimeText, setRemainingTimeText] = useState('');
 
-  const getRemainingTimeText = (
-    endTime: string,
-    callback: (time: string | null) => void,
-    duration: 1 | 60 = 1,
-  ) => {
-    const remainingTime = differenceInSeconds(new Date(endTime), new Date());
-    const remianingMinuites = Math.floor(remainingTime / ONE_MINUTES_BY_SECONDS);
-    let [hour, minuites, seconds] = [
-      Math.floor(remianingMinuites / ONE_MINUTES_BY_SECONDS),
-      remianingMinuites % ONE_MINUTES_BY_SECONDS,
-      remainingTime % ONE_MINUTES_BY_SECONDS,
-    ];
+  const getRemainingTimeText = useCallback(
+    (endTime: string, callback: (time: string | null) => void, duration: 1 | 60 = 1) => {
+      const remainingTime = differenceInSeconds(new Date(endTime), new Date());
+      const remianingMinuites = Math.floor(remainingTime / ONE_MINUTES_BY_SECONDS);
+      let [hour, minuites, seconds] = [
+        Math.floor(remianingMinuites / ONE_MINUTES_BY_SECONDS),
+        remianingMinuites % ONE_MINUTES_BY_SECONDS,
+        remainingTime % ONE_MINUTES_BY_SECONDS,
+      ];
 
-    const makeTimeText = () => {
-      let remainingTimeText = '';
-      if (duration === 60) {
-        if (minuites - 1 === 0 && hour === 0) return;
-        minuites - 1 < 0 && hour--;
-        minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
-        remainingTimeText = timeText`${hour && `${hour}시간 `}${minuites && `${minuites}분`}`;
-      } else if (duration === 1) {
-        if (seconds - 1 === 0 && minuites === 0) return;
-        seconds - 1 < 0 && minuites--;
-        seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
-        remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds && `${seconds}초`}`;
+      const makeTimeText = () => {
+        let remainingTimeText = '';
+        if (duration === 60) {
+          if (minuites - 1 === 0 && hour === 0) return;
+          minuites - 1 < 0 && hour--;
+          minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
+          remainingTimeText = timeText`${hour && `${hour}시간 `}${minuites && `${minuites}분`}`;
+        } else if (duration === 1) {
+          if (seconds - 1 === 0 && minuites === 0) return;
+          seconds - 1 < 0 && minuites--;
+          seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
+          remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds}초`;
+        }
+        callback(remainingTimeText);
+      };
+
+      makeTimeText();
+
+      if (intervalId.current) {
+        clearInterval(intervalId.current);
       }
-      callback(remainingTimeText);
-    };
+      intervalId.current = setInterval(makeTimeText, duration * 1000);
 
-    makeTimeText();
-
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-    }
-    intervalId.current = setInterval(makeTimeText, duration * 1000);
-
-    setTimeout(() => {
-      intervalId.current && clearInterval(intervalId.current);
-      callback(null);
-    }, remainingTime * 1000);
-  };
+      setTimeout(() => {
+        intervalId.current && clearInterval(intervalId.current);
+        callback(null);
+      }, remainingTime * 1000);
+    },
+    [process],
+  );
 
   const updateRemainingTime = (time: string | null) => {
     console.log('timupdateRemainingTime', time);
