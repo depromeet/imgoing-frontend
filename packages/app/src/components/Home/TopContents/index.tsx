@@ -31,10 +31,13 @@ const TopContents = ({ plan }: Props) => {
         endTime: plan.startAt,
       });
     } else if (cur < new Date(plan.departureAt)) {
+      const intendedPlans = plan.tasks.find(
+        (task) => new Date(task.startTime) <= new Date() && new Date() < new Date(task.endTime),
+      );
       setProcessTime({
         purpose: 'process',
         duration: 1,
-        endTime: '',
+        endTime: intendedPlans?.endTime || plan.departureAt,
       });
     } else if (cur < new Date(plan.arrivalAt)) {
       setProcessTime({
