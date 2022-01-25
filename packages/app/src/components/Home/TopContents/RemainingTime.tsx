@@ -7,6 +7,7 @@ import { HomeTopContentsType } from '../type';
 import { differenceInCalendarDays, differenceInSeconds } from 'date-fns';
 import { mod } from 'utils';
 import { timeText } from 'utils/date';
+import { calcRemainingTime } from './utils';
 
 interface Props {
   process: {
@@ -35,15 +36,10 @@ const RemainingTime = ({ process, updateProcess }: Props) => {
 
   const getRemainingTimeText = useCallback(
     (endTime: string, callback: (time: string | null) => void, duration: 1 | 60 = 1) => {
-      const remainingTime = differenceInSeconds(new Date(endTime), new Date());
-      const remianingMinuites = Math.floor(remainingTime / ONE_MINUTES_BY_SECONDS);
-      let [hour, minuites, seconds] = [
-        Math.floor(remianingMinuites / ONE_MINUTES_BY_SECONDS),
-        remianingMinuites % ONE_MINUTES_BY_SECONDS,
-        remainingTime % ONE_MINUTES_BY_SECONDS,
-      ];
+      const remainingSeconds = differenceInSeconds(new Date(endTime), new Date());
+      let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
 
-      const makeTimeText = () => {
+      const makeTimeToText = () => {
         let remainingTimeText = '';
         if (duration === 60) {
           if (minuites - 1 === 0 && hour === 0) return;
@@ -59,23 +55,20 @@ const RemainingTime = ({ process, updateProcess }: Props) => {
         callback(remainingTimeText);
       };
 
-      makeTimeText();
-
       if (intervalId.current) {
         clearInterval(intervalId.current);
       }
-      intervalId.current = setInterval(makeTimeText, duration * 1000);
+      intervalId.current = setInterval(makeTimeToText, duration * 1000);
 
       setTimeout(() => {
         intervalId.current && clearInterval(intervalId.current);
         callback(null);
-      }, remainingTime * 1000);
+      }, remainingSeconds * 1000);
     },
     [process],
   );
 
   const updateRemainingTime = (time: string | null) => {
-    console.log('timupdateRemainingTime', time);
     if (!time) {
       updateProcess();
     } else {
