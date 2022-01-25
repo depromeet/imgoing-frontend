@@ -1,13 +1,11 @@
 import { colors } from 'design-token';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { Text } from 'ui';
 import { HomeTopContentsType } from '../type';
-import { differenceInCalendarDays, differenceInSeconds } from 'date-fns';
-import { mod } from 'utils';
-import { timeText } from 'utils/date';
-import { calcRemainingTime } from './utils';
+import { differenceInCalendarDays } from 'date-fns';
+import { TimeRemainingRefType } from './types';
 
 interface Props {
   process: {
@@ -15,7 +13,6 @@ interface Props {
     duration: 1 | 60;
     endTime: string;
   };
-  updateProcess: () => void;
 }
 
 const ONE_MINUTES_BY_SECONDS = 60;
@@ -29,67 +26,69 @@ const purposeText: {
   toArrival: '도착지',
 };
 
-const RemainingTime = ({ process, updateProcess }: Props) => {
-  let intervalId = useRef<NodeJS.Timer>();
-  const diffDays = differenceInCalendarDays(new Date(process.endTime), new Date());
+const RemainingTime = forwardRef(({ process }: Props, ref: TimeRemainingRefType) => {
   const [remainingTimeText, setRemainingTimeText] = useState('');
 
-  const getRemainingTimeText = useCallback(
-    (endTime: string, callback: (time: string | null) => void, duration: 1 | 60 = 1) => {
-      const remainingSeconds = differenceInSeconds(new Date(endTime), new Date());
-      let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
+  // const getRemainingTimeText = useCallback(
+  //   (endTime: string, callback: (time: string | null) => void, duration: 1 | 60 = 1) => {
+  //     const remainingSeconds = differenceInSeconds(new Date(endTime), new Date());
+  //     let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
 
-      const makeTimeToText = () => {
-        let remainingTimeText = '';
-        if (duration === 60) {
-          if (minuites - 1 === 0 && hour === 0) return;
-          minuites - 1 < 0 && hour--;
-          minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
-          remainingTimeText = timeText`${hour && `${hour}시간 `}${minuites && `${minuites}분`}`;
-        } else if (duration === 1) {
-          if (seconds - 1 === 0 && minuites === 0) return;
-          seconds - 1 < 0 && minuites--;
-          seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
-          remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds && `${seconds}초`}`;
-        }
-        callback(remainingTimeText);
-      };
+  //     const makeTimeToText = () => {
+  //       let remainingTimeText = '';
+  //       if (duration === 60) {
+  //         if (minuites - 1 === 0 && hour === 0) return;
+  //         minuites - 1 < 0 && hour--;
+  //         minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
+  //         remainingTimeText = timeText`${hour && `${hour}시간 `}${minuites && `${minuites}분`}`;
+  //       } else if (duration === 1) {
+  //         if (seconds - 1 === 0 && minuites === 0) return;
+  //         seconds - 1 < 0 && minuites--;
+  //         seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
+  //         remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds && `${seconds}초`}`;
+  //       }
+  //       callback(remainingTimeText);
+  //     };
 
-      if (intervalId.current) {
-        clearInterval(intervalId.current);
-      }
-      intervalId.current = setInterval(makeTimeToText, duration * 1000);
+  //     if (intervalId.current) {
+  //       clearInterval(intervalId.current);
+  //     }
+  //     intervalId.current = setInterval(makeTimeToText, duration * 1000);
 
-      setTimeout(() => {
-        intervalId.current && clearInterval(intervalId.current);
-        callback(null);
-      }, remainingSeconds * 1000);
+  //     setTimeout(() => {
+  //       intervalId.current && clearInterval(intervalId.current);
+  //       callback(null);
+  //     }, remainingSeconds * 1000);
+  //   },
+  //   [process],
+  // );
+
+  // const updateRemainingTime = (time: string | null) => {
+  //   if (!time) {
+  //     updateProcess();
+  //   } else {
+  //     setRemainingTimeText(time);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (diffDays < 2) {
+  //     getRemainingTimeText(process.endTime, updateRemainingTime, process.duration);
+  //   }
+  // }, [process]);
+
+  useImperativeHandle(ref, () => ({
+    forceUpdate: () => {
+      console.log('RemainingTime update');
     },
-    [process],
-  );
-
-  const updateRemainingTime = (time: string | null) => {
-    if (!time) {
-      updateProcess();
-    } else {
-      setRemainingTimeText(time);
-    }
-  };
+  }));
 
   useEffect(() => {
-    if (diffDays < 2) {
-      getRemainingTimeText(process.endTime, updateRemainingTime, process.duration);
-    }
-  }, [process]);
-
-  useEffect(() => {
+    const diffDays = differenceInCalendarDays(new Date(process.endTime), new Date());
     if (diffDays > 3) {
       setRemainingTimeText(`${diffDays}일`);
-      return;
-    }
-    if (diffDays === 2) {
+    } else if (diffDays === 2) {
       setRemainingTimeText('이틀');
-      return;
     }
   }, []);
 
@@ -116,7 +115,7 @@ const RemainingTime = ({ process, updateProcess }: Props) => {
       </View>
     </View>
   );
-};
+});
 
 const styles = StyleSheet.create({
   component: {
