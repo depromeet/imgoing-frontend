@@ -21,6 +21,7 @@ type ProcessState = {
 
 const TopContents = ({ plan }: Props) => {
   const timeRemainingRef = useRef<TimeRemainingRefFunc>(null);
+  const taskActiveProcessRef = useRef<TimeRemainingRefFunc>(null);
 
   let intervalId = useRef<NodeJS.Timer>();
   const [processTime, setProcessTime] = useState<ProcessState>({
@@ -60,6 +61,7 @@ const TopContents = ({ plan }: Props) => {
     intervalId.current = setInterval(() => {
       // update component
       timeRemainingRef.current?.forceUpdate();
+      taskActiveProcessRef.current?.forceUpdate();
     }, newState.duration * 1000);
 
     setTimeout(() => {
@@ -74,7 +76,7 @@ const TopContents = ({ plan }: Props) => {
     <View>
       <RemainingTime process={processTime} ref={timeRemainingRef} />
       {processTime.purpose === 'process' ? (
-        <TaskProcess tasks={plan.tasks} />
+        <TaskProcess tasks={plan.tasks} ref={taskActiveProcessRef} />
       ) : (
         <Guide type={processTime.purpose} />
       )}
