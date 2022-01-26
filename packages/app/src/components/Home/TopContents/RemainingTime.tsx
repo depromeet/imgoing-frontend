@@ -1,22 +1,15 @@
 import { colors } from 'design-token';
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
+import { differenceInCalendarDays } from 'date-fns';
 
 import { Text } from 'ui';
-import { HomeTopContentsType } from '../type';
-import { differenceInCalendarDays } from 'date-fns';
-import { TimeRemainingRefType } from './types';
+import { HomeTopContentsType, ProcessState, TimeRemainingRefType } from '../type';
+import { timeText } from 'utils/date';
 
 interface Props {
-  process: {
-    purpose: HomeTopContentsType;
-    duration: 1 | 60;
-    endTime: string;
-  };
+  process: ProcessState;
 }
-
-const ONE_MINUTES_BY_SECONDS = 60;
-const ONE_HOUR_BY_SECONDS = ONE_MINUTES_BY_SECONDS * 60;
 
 const purposeText: {
   [key in HomeTopContentsType]: string;
@@ -29,57 +22,15 @@ const purposeText: {
 const RemainingTime = forwardRef(({ process }: Props, ref: TimeRemainingRefType) => {
   const [remainingTimeText, setRemainingTimeText] = useState('');
 
-  // const getRemainingTimeText = useCallback(
-  //   (endTime: string, callback: (time: string | null) => void, duration: 1 | 60 = 1) => {
-  //     const remainingSeconds = differenceInSeconds(new Date(endTime), new Date());
-  //     let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
-
-  //     const makeTimeToText = () => {
-  //       let remainingTimeText = '';
-  //       if (duration === 60) {
-  //         if (minuites - 1 === 0 && hour === 0) return;
-  //         minuites - 1 < 0 && hour--;
-  //         minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
-  //         remainingTimeText = timeText`${hour && `${hour}시간 `}${minuites && `${minuites}분`}`;
-  //       } else if (duration === 1) {
-  //         if (seconds - 1 === 0 && minuites === 0) return;
-  //         seconds - 1 < 0 && minuites--;
-  //         seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
-  //         remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds && `${seconds}초`}`;
-  //       }
-  //       callback(remainingTimeText);
-  //     };
-
-  //     if (intervalId.current) {
-  //       clearInterval(intervalId.current);
-  //     }
-  //     intervalId.current = setInterval(makeTimeToText, duration * 1000);
-
-  //     setTimeout(() => {
-  //       intervalId.current && clearInterval(intervalId.current);
-  //       callback(null);
-  //     }, remainingSeconds * 1000);
-  //   },
-  //   [process],
-  // );
-
-  // const updateRemainingTime = (time: string | null) => {
-  //   if (!time) {
-  //     updateProcess();
-  //   } else {
-  //     setRemainingTimeText(time);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (diffDays < 2) {
-  //     getRemainingTimeText(process.endTime, updateRemainingTime, process.duration);
-  //   }
-  // }, [process]);
-
   useImperativeHandle(ref, () => ({
-    forceUpdate: () => {
-      console.log('RemainingTime update');
+    forceUpdate: (hour, minuites, seconds) => {
+      let remainingTimeText = '';
+      if (process.duration === 60) {
+        remainingTimeText = timeText`${hour && `${hour}시간 `}${minuites && `${minuites}분`}`;
+      } else if (process.duration === 1) {
+        remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds && `${seconds}초`}`;
+      }
+      setRemainingTimeText(remainingTimeText);
     },
   }));
 
