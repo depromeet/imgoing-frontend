@@ -1,23 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
+import { differenceInCalendarDays, differenceInSeconds } from 'date-fns';
 
+import { mod } from 'utils';
 import { Plan } from 'types';
+import { ProcessState, TimeRemainingRefFunc } from '../type';
 import Guide from './Guide';
 import TaskProcess from './TaskProcess';
-import { HomeTopContentsType } from '../type';
 import RemainingTime from './RemainingTime';
-import { differenceInCalendarDays, differenceInSeconds } from 'date-fns';
-import { TimeRemainingRefFunc } from './types';
+import { calcRemainingTime, ONE_MINUTES_BY_SECONDS } from './utils';
 
 interface Props {
   plan: Plan;
 }
-
-type ProcessState = {
-  purpose: HomeTopContentsType;
-  duration: 1 | 60;
-  endTime: string;
-};
 
 const TopContents = ({ plan }: Props) => {
   const timeRemainingRef = useRef<TimeRemainingRefFunc>(null);
@@ -51,17 +46,23 @@ const TopContents = ({ plan }: Props) => {
 
     setProcessTime(newState);
 
-    const remainingSeconds = differenceInSeconds(new Date(newState.endTime), new Date());
     const diffDays = differenceInCalendarDays(new Date(newState.endTime), new Date());
     if (diffDays >= 2) return;
+
+    const remainingSeconds = differenceInSeconds(new Date(newState.endTime), new Date());
+    let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
 
     if (intervalId.current) {
       clearInterval(intervalId.current);
     }
     intervalId.current = setInterval(() => {
-      // update component
-      timeRemainingRef.current?.forceUpdate();
-      taskActiveProcessRef.current?.forceUpdate();
+      if (seconds - 1 < 0) {
+        if (minuites - 1 < 0) hour--;
+        minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
+      }
+      seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
+      timeRemainingRef.current?.forceUpdate(hour, minuites, seconds);
+      taskActiveProcessRef.current?.forceUpdate(hour, minuites, seconds);
     }, newState.duration * 1000);
 
     setTimeout(() => {
@@ -76,7 +77,7 @@ const TopContents = ({ plan }: Props) => {
     <View>
       <RemainingTime process={processTime} ref={timeRemainingRef} />
       {processTime.purpose === 'process' ? (
-        <TaskProcess tasks={plan.tasks} ref={taskActiveProcessRef} />
+        <TaskProcess process={processTime} tasks={plan.tasks} ref={taskActiveProcessRef} />
       ) : (
         <Guide type={processTime.purpose} />
       )}
