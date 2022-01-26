@@ -1,40 +1,40 @@
-import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import React, { forwardRef, useEffect, useState } from 'react';
 import { LayoutAnimation, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { Task as TaskType } from 'types';
-import Task from './Task';
-import { TimeRemainingRefType } from './types';
+import { ProcessState, TimeRemainingRefType } from '../type';
+import Task, { ActiveTask } from './Task';
 
 interface Props {
   tasks: TaskType[];
+  process: ProcessState;
 }
 
-const TaskProcess = forwardRef(({ tasks }: Props, ref: TimeRemainingRefType) => {
-  const [clicked, setClicked] = useState<string[]>([]);
+const TaskProcess = forwardRef(({ process, tasks }: Props, ref: TimeRemainingRefType) => {
+  const [planedTask, setPlanedTask] = useState<TaskType[]>(
+    tasks.filter((task) => new Date() < new Date(task.endTime)),
+  );
 
-  useImperativeHandle(ref, () => ({
-    forceUpdate: () => {
-      console.log('TaskProcess');
-    },
-  }));
+  useEffect(() => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setPlanedTask(tasks.filter((task) => new Date() < new Date(task.endTime)));
+  }, [process]);
 
   return (
     <ScrollView horizontal contentContainerStyle={styles.container}>
-      {tasks
-        .filter((task) => new Date() < new Date(task.endTime))
-        .map((task, idx) => (
-          <Task
+      {planedTask.map((task, idx) =>
+        idx === 0 ? (
+          <ActiveTask
+            ref={ref}
             key={`${task.name}-${task.time}`}
             title={task.name}
             time={task.time}
-            active={idx === 0}
-            onTouchEnd={() => {
-              LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-              setClicked([...clicked, `${task.name}-${task.time}`]);
-            }}
           />
-        ))}
+        ) : (
+          <Task key={`${task.name}-${task.time}`} title={task.name} time={task.time} />
+        ),
+      )}
     </ScrollView>
   );
 });
