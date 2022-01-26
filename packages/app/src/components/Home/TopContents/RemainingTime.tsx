@@ -28,7 +28,9 @@ const RemainingTime = forwardRef(({ process }: Props, ref: TimeRemainingRefType)
       if (process.duration === 60) {
         remainingTimeText = timeText`${hour && `${hour}시간 `}${minuites && `${minuites}분`}`;
       } else if (process.duration === 1) {
-        remainingTimeText = timeText`${minuites && `${minuites}분 `}${seconds && `${seconds}초`}`;
+        remainingTimeText = timeText`${minuites && `${hour * 60 + minuites}분 `}${
+          seconds && `${seconds}초`
+        }`;
       }
       setRemainingTimeText(remainingTimeText);
     },
