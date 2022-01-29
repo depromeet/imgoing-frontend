@@ -12,13 +12,15 @@ import { calcRemainingTime, ONE_MINUTES_BY_SECONDS } from './utils';
 
 interface Props {
   plan: Plan;
+  refetch: () => void;
 }
 
-const TopContents = ({ plan }: Props) => {
+const TopContents = ({ plan, refetch }: Props) => {
   const timeRemainingRef = useRef<TimeRemainingRefFunc>(null);
   const taskActiveProcessRef = useRef<TimeRemainingRefFunc>(null);
 
   let intervalId = useRef<NodeJS.Timer>();
+  let timerId = useRef<NodeJS.Timer>();
   const [processTime, setProcessTime] = useState<ProcessState>({
     purpose: 'oncoming',
     duration: 60,
@@ -50,13 +52,16 @@ const TopContents = ({ plan }: Props) => {
     if (diffDays >= 2) return;
 
     const remainingSeconds = differenceInSeconds(new Date(newState.endTime), new Date());
+    if (remainingSeconds <= 0) {
+      refetch();
+      return;
+    }
+
     let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
     timeRemainingRef.current?.forceUpdate(hour, minuites, seconds);
     taskActiveProcessRef.current?.forceUpdate(hour, minuites, seconds);
 
-    if (intervalId.current) {
-      clearInterval(intervalId.current);
-    }
+    if (intervalId.current) clearInterval(intervalId.current);
     intervalId.current = setInterval(() => {
       if (seconds - newState.duration < 0) {
         if (minuites - 1 < 0) hour--;
@@ -67,13 +72,14 @@ const TopContents = ({ plan }: Props) => {
       taskActiveProcessRef.current?.forceUpdate(hour, minuites, seconds);
     }, newState.duration * 1000);
 
-    setTimeout(() => {
+    if (timerId.current) clearTimeout(timerId.current);
+    timerId.current = setTimeout(() => {
       intervalId.current && clearInterval(intervalId.current);
       updateProcess();
     }, remainingSeconds * 1000);
   };
 
-  useEffect(updateProcess, []);
+  useEffect(updateProcess, [plan]);
 
   return (
     <View>

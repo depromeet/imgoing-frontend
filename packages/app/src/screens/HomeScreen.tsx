@@ -12,7 +12,7 @@ import { useGetPlansQuery } from 'modules/services/plan';
 import { isInProgress } from 'utils';
 
 const HomeScreen = () => {
-  const { data } = useGetPlansQuery();
+  const { data, refetch } = useGetPlansQuery();
   if (!data) return <Text>Loading...</Text>;
   if (!data.length) return <Text>no data...</Text>;
 
@@ -30,7 +30,7 @@ const HomeScreen = () => {
         style={styles.mainContainer}
         contentContainerStyle={{ paddingBottom: 120 }}
         refreshControl={<RefreshControl refreshing={false} />}>
-        <TopContents plan={data[0]} />
+        <TopContents plan={data[0]} refetch={refetch} />
         {planInProgress && <Schedule active plans={[planInProgress]} title='inProgress' />}
         {upcomingPlans && upcomingPlans.length && (
           <Schedule plans={upcomingPlans} title='upcoming' />
