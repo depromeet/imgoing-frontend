@@ -80,7 +80,7 @@ const PlanDetails = ({ plan }: { plan: Plan }) => {
       </PlanDetail>
       <PlanDetail detailType={'task'}>
         {plan.tasks.map((task) => (
-          <Task text={task.name} time={task.time} />
+          <Task key={task.id} text={task.name} time={task.time} />
         ))}
       </PlanDetail>
     </View>
