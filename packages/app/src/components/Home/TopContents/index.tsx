@@ -39,7 +39,7 @@ const TopContents = ({ plan }: Props) => {
       newState.purpose = 'process';
       newState.duration = 1;
       newState.endTime = intendedPlans?.endTime || plan.departureAt;
-    } else if (cur < new Date(plan.arrivalAt)) {
+    } else if (new Date(plan.departureAt) < cur && cur < new Date(plan.arrivalAt)) {
       newState.purpose = 'toArrival';
       newState.endTime = plan.arrivalAt;
     }
@@ -51,6 +51,8 @@ const TopContents = ({ plan }: Props) => {
 
     const remainingSeconds = differenceInSeconds(new Date(newState.endTime), new Date());
     let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
+    timeRemainingRef.current?.forceUpdate(hour, minuites, seconds);
+    taskActiveProcessRef.current?.forceUpdate(hour, minuites, seconds);
 
     if (intervalId.current) {
       clearInterval(intervalId.current);
