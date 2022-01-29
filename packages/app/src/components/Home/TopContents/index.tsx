@@ -58,11 +58,11 @@ const TopContents = ({ plan }: Props) => {
       clearInterval(intervalId.current);
     }
     intervalId.current = setInterval(() => {
-      if (seconds - 1 < 0) {
+      if (seconds - newState.duration < 0) {
         if (minuites - 1 < 0) hour--;
         minuites = mod(minuites - 1, ONE_MINUTES_BY_SECONDS);
       }
-      seconds = mod(seconds - 1, ONE_MINUTES_BY_SECONDS);
+      seconds = mod(seconds - newState.duration, ONE_MINUTES_BY_SECONDS);
       timeRemainingRef.current?.forceUpdate(hour, minuites, seconds);
       taskActiveProcessRef.current?.forceUpdate(hour, minuites, seconds);
     }, newState.duration * 1000);
