@@ -77,6 +77,11 @@ const TopContents = ({ plan, refetch }: Props) => {
       intervalId.current && clearInterval(intervalId.current);
       updateProcess();
     }, remainingSeconds * 1000);
+
+    return () => {
+      if (intervalId.current) clearInterval(intervalId.current);
+      if (timerId.current) clearTimeout(timerId.current);
+    };
   };
 
   useEffect(updateProcess, [plan]);
