@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -10,14 +10,34 @@ import TopContents from 'components/Home/TopContents';
 import Schedule from 'components/Home/Schedule';
 import { useGetPlansQuery } from 'modules/services/plan';
 import { isInProgress } from 'utils';
+import { differenceInSeconds } from 'date-fns';
+import { Plan } from 'types';
 
 const HomeScreen = () => {
-  const { data, refetch } = useGetPlansQuery();
+  const { data = [], refetch } = useGetPlansQuery();
+  const [planInProgress, setPlanInProgress] = useState<Plan | null>(null);
+
+  useEffect(() => {
+    if (!data || !data.length) return;
+
+    let timeoutId: NodeJS.Timeout;
+    const curPlan = isInProgress(data[0].startAt, data[0].arrivalAt) ? data[0] : null;
+
+    setPlanInProgress(curPlan);
+    timeoutId = setTimeout(() => {
+      setPlanInProgress(data[0]);
+      timeoutId = setTimeout(() => {
+        refetch();
+      }, (differenceInSeconds(new Date(data[0].arrivalAt), new Date()) + 1) * 1000);
+    }, differenceInSeconds(new Date(data[0].startAt), new Date()) * 1000);
+
+    return () => {
+      timeoutId && clearTimeout(timeoutId);
+    };
+  }, [data]);
+
   if (!data) return <Text>Loading...</Text>;
   if (!data.length) return <Text>no data...</Text>;
-
-  const planInProgress = isInProgress(data[0].startAt, data[0].arrivalAt) ? data[0] : undefined;
-  const upcomingPlans = (planInProgress ? data?.slice(1) : data) || [];
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,11 +50,9 @@ const HomeScreen = () => {
         style={styles.mainContainer}
         contentContainerStyle={{ paddingBottom: 120 }}
         refreshControl={<RefreshControl refreshing={false} />}>
-        <TopContents plan={data[0]} refetch={refetch} />
+        <TopContents plan={data[0]} />
         {planInProgress && <Schedule active plans={[planInProgress]} title='inProgress' />}
-        {upcomingPlans && upcomingPlans.length && (
-          <Schedule plans={upcomingPlans} title='upcoming' />
-        )}
+        <Schedule plans={planInProgress ? data.slice(1) : data} title='upcoming' />
       </ScrollView>
     </SafeAreaView>
   );
