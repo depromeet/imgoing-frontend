@@ -24,6 +24,11 @@ const RemainingTime = forwardRef(({ process }: Props, ref: TimeRemainingRefType)
 
   useImperativeHandle(ref, () => ({
     forceUpdate: (hour, minuites, seconds) => {
+      if (hour < 0 || minuites < 0 || seconds < 0) {
+        setRemainingTimeText('');
+        return;
+      }
+
       let remainingTimeText = '';
       if (process.duration === 60) {
         remainingTimeText = `${timeText`${hour && `${hour}시간 `}`}${minuites}분`;
