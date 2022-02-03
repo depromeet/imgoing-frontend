@@ -1,23 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, RefreshControl } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { differenceInSeconds } from 'date-fns';
 
-import { help, notification } from 'icons';
 import { SvgIcon, Text } from 'ui';
 import { colors } from 'design-token';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Plan } from 'types';
+import { isInProgress } from 'utils';
+import { toSeoulDate } from 'utils/date';
+import { help, notification } from 'icons';
 import TopContents from 'components/Home/TopContents';
 import Schedule from 'components/Home/Schedule';
 import { useGetPlansQuery } from 'modules/services/plan';
-import { isInProgress } from 'utils';
-import { differenceInSeconds } from 'date-fns';
-import { Plan } from 'types';
-import { toSeoulDate } from 'utils/date';
 
 const HomeScreen = () => {
   const [refreshing, setRefreshing] = useState(false);
-  const { data = [], refetch } = useGetPlansQuery();
+  const { data = [], refetch, isSuccess, isFetching } = useGetPlansQuery();
   const [planInProgress, setPlanInProgress] = useState<Plan | null>(null);
+
+  useEffect(() => {
+    if (isSuccess && !isFetching) {
+      setRefreshing(false);
+    }
+  }, [isFetching, isSuccess]);
 
   useEffect(() => {
     if (!data || !data.length) return;
@@ -51,7 +57,15 @@ const HomeScreen = () => {
       <ScrollView
         style={styles.mainContainer}
         contentContainerStyle={{ paddingBottom: 120 }}
-        refreshControl={<RefreshControl refreshing={false} />}>
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={() => {
+              setRefreshing(true);
+              refetch();
+            }}
+          />
+        }>
         <TopContents plan={data[0]} />
         {planInProgress && <Schedule active plans={[planInProgress]} title='inProgress' />}
         <Schedule plans={planInProgress ? data.slice(1) : data} title='upcoming' />
