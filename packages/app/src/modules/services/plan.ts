@@ -3,6 +3,7 @@ import { add, format } from 'date-fns';
 
 import env from 'environments';
 import { Plan, ResPlan, Task } from 'types';
+import { toSeoulDate } from 'utils/date';
 
 export const planApi = createApi({
   reducerPath: 'planApi',
@@ -12,9 +13,9 @@ export const planApi = createApi({
   endpoints: (builder) => ({
     getPlans: builder.query<Plan[], void>({
       query: () => ({ url: '/plans' }),
-      transformResponse: (response: { data: ResPlan[] }) =>
-        response.data
-          .filter((plan) => new Date() < new Date(plan.arrivalAt))
+      transformResponse: ({ data }: { data: ResPlan[] }) =>
+        data
+          .filter((plan) => toSeoulDate(new Date()) < toSeoulDate(plan.arrivalAt))
           .map((plan) => ({
             id: plan.id,
             name: plan.name,
@@ -25,7 +26,7 @@ export const planApi = createApi({
               lng: plan.arrivalLng,
             },
             departureAt: format(
-              add(new Date(plan.startAt), {
+              add(toSeoulDate(plan.startAt), {
                 minutes: plan.task.reduce((acc, cur) => acc + cur.time, 0),
               }),
               'yyyy-MM-dd HH:mm:ss',
@@ -42,11 +43,13 @@ export const planApi = createApi({
                 tasks.length === 0
                   ? plan.startAt
                   : format(
-                      add(new Date(tasks[idx - 1].startTime), { minutes: tasks[idx - 1].time }),
+                      add(toSeoulDate(tasks[idx - 1].startTime), {
+                        minutes: tasks[idx - 1].time,
+                      }),
                       'yyyy-MM-dd HH:mm:ss',
                     );
               const endTime = format(
-                add(new Date(startTime), { minutes: cur.time }),
+                add(toSeoulDate(startTime), { minutes: cur.time }),
                 'yyyy-MM-dd HH:mm:ss',
               );
               return [...tasks, { ...cur, startTime, endTime }];

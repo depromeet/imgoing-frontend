@@ -3,6 +3,7 @@ import { LayoutAnimation, StyleSheet } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import { Task as TaskType } from 'types';
+import { toSeoulDate } from 'utils/date';
 import { ProcessState, TimeRemainingRefType } from '../type';
 import Task, { ActiveTask } from './Task';
 
@@ -13,12 +14,12 @@ interface Props {
 
 const TaskProcess = forwardRef(({ process, tasks }: Props, ref: TimeRemainingRefType) => {
   const [planedTask, setPlanedTask] = useState<TaskType[]>(
-    tasks.filter((task) => new Date() < new Date(task.endTime)),
+    tasks.filter((task) => toSeoulDate(new Date()) < toSeoulDate(task.endTime)),
   );
 
   useEffect(() => {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-    setPlanedTask(tasks.filter((task) => new Date() < new Date(task.endTime)));
+    setPlanedTask(tasks.filter((task) => toSeoulDate(new Date()) < toSeoulDate(task.endTime)));
   }, [process]);
 
   return (

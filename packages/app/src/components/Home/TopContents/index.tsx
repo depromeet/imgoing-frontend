@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { differenceInCalendarDays, differenceInSeconds } from 'date-fns';
 
 import { mod } from 'utils';
+import { toSeoulDate } from 'utils/date';
 import { Plan } from 'types';
 import { ProcessState, TimeRemainingRefFunc } from '../type';
 import Guide from './Guide';
@@ -27,20 +28,22 @@ const TopContents = ({ plan }: Props) => {
   });
 
   const getNewProcessState = () => {
-    const cur = new Date();
+    const cur = toSeoulDate(new Date());
     const newState: ProcessState = {
       purpose: 'oncoming',
       duration: 60,
       endTime: plan.startAt,
     };
-    if (new Date(plan.startAt) < cur && cur < new Date(plan.departureAt)) {
+    if (toSeoulDate(plan.startAt) < cur && cur < toSeoulDate(plan.departureAt)) {
       const intendedPlans = plan.tasks.find(
-        (task) => new Date(task.startTime) <= new Date() && new Date() < new Date(task.endTime),
+        (task) =>
+          toSeoulDate(task.startTime) <= toSeoulDate(new Date()) &&
+          toSeoulDate(new Date()) < toSeoulDate(task.endTime),
       );
       newState.purpose = 'process';
       newState.duration = 1;
       newState.endTime = intendedPlans?.endTime || plan.departureAt;
-    } else if (new Date(plan.departureAt) < cur && cur < new Date(plan.arrivalAt)) {
+    } else if (toSeoulDate(plan.departureAt) < cur && cur < toSeoulDate(plan.arrivalAt)) {
       newState.purpose = 'toArrival';
       newState.endTime = plan.arrivalAt;
     }
@@ -51,10 +54,16 @@ const TopContents = ({ plan }: Props) => {
     const newState = getNewProcessState();
     setProcessTime(newState);
 
-    const diffDays = differenceInCalendarDays(new Date(newState.endTime), new Date());
+    const diffDays = differenceInCalendarDays(
+      toSeoulDate(newState.endTime),
+      toSeoulDate(new Date()),
+    );
     if (diffDays >= 2) return;
 
-    const remainingSeconds = differenceInSeconds(new Date(newState.endTime), new Date());
+    const remainingSeconds = differenceInSeconds(
+      toSeoulDate(newState.endTime),
+      toSeoulDate(new Date()),
+    );
 
     let [hour, minuites, seconds] = calcRemainingTime(remainingSeconds);
     timeRemainingRef.current?.forceUpdate(hour, minuites, seconds);

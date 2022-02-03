@@ -2,6 +2,7 @@ import { PixelRatio, Platform } from 'react-native';
 
 import { GUIDELINE_BASE_WIDTH } from 'constant/index';
 import { SCREEN_WIDTH } from 'theme/Metrics';
+import { toSeoulDate } from './date';
 
 export const normalize = (size: number): number => {
   const newSize = size * (SCREEN_WIDTH / GUIDELINE_BASE_WIDTH);
@@ -14,7 +15,7 @@ export const normalize = (size: number): number => {
 };
 
 export const isInProgress = (start: string, end: string) => {
-  const currentDate = new Date();
-  return new Date(start) < currentDate && currentDate < new Date(end);
+  const currentDate = toSeoulDate(new Date());
+  return toSeoulDate(start) < currentDate && currentDate < toSeoulDate(end);
 };
 export const mod = (n: number, m: number) => ((n % m) + m) % m;

@@ -12,8 +12,10 @@ import { useGetPlansQuery } from 'modules/services/plan';
 import { isInProgress } from 'utils';
 import { differenceInSeconds } from 'date-fns';
 import { Plan } from 'types';
+import { toSeoulDate } from 'utils/date';
 
 const HomeScreen = () => {
+  const [refreshing, setRefreshing] = useState(false);
   const { data = [], refetch } = useGetPlansQuery();
   const [planInProgress, setPlanInProgress] = useState<Plan | null>(null);
 
@@ -28,8 +30,8 @@ const HomeScreen = () => {
       setPlanInProgress(data[0]);
       timeoutId = setTimeout(() => {
         refetch();
-      }, (differenceInSeconds(new Date(data[0].arrivalAt), new Date()) + 1) * 1000);
-    }, differenceInSeconds(new Date(data[0].startAt), new Date()) * 1000);
+      }, (differenceInSeconds(toSeoulDate(data[0].arrivalAt), toSeoulDate(new Date())) + 1) * 1000);
+    }, differenceInSeconds(toSeoulDate(data[0].startAt), toSeoulDate(new Date())) * 1000);
 
     return () => {
       timeoutId && clearTimeout(timeoutId);

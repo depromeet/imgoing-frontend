@@ -5,7 +5,7 @@ import { differenceInCalendarDays } from 'date-fns';
 
 import { Text } from 'ui';
 import { HomeTopContentsType, ProcessState, TimeRemainingRefType } from '../type';
-import { timeText } from 'utils/date';
+import { timeText, toSeoulDate } from 'utils/date';
 
 interface Props {
   process: ProcessState;
@@ -42,7 +42,10 @@ const RemainingTime = forwardRef(({ process }: Props, ref: TimeRemainingRefType)
   }));
 
   useEffect(() => {
-    const diffDays = differenceInCalendarDays(new Date(process.endTime), new Date());
+    const diffDays = differenceInCalendarDays(
+      toSeoulDate(process.endTime),
+      toSeoulDate(new Date()),
+    );
     if (diffDays > 3) {
       setRemainingTimeText(`${diffDays}일`);
     } else if (diffDays === 2) {
