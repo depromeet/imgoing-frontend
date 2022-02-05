@@ -20,10 +20,7 @@ const RoutineEditScreen = () => {
   const toggleAddTaskModal = () => {
     setAddTaskModalVisible(!isAddTaskModalVisible);
   };
-  const [isDurationModalVisible, setDurationModalVisible] = useState(false);
-  const toggleDurationModalVisible = () => {
-    setDurationModalVisible(!isDurationModalVisible);
-  };
+
   const [taskData, setTaskData] = useState<Task[]>([]);
 
   return (
@@ -35,16 +32,8 @@ const RoutineEditScreen = () => {
         isModalVisible={isHistoryModalVisible}>
         <HistoryModal />
       </SlideUpModal>
-      <SlideUpModal
-        title={'새로운 준비 항목'}
-        setModalVisible={setAddTaskModalVisible}
-        isModalVisible={isAddTaskModalVisible}>
+      <SlideUpModal setModalVisible={setAddTaskModalVisible} isModalVisible={isAddTaskModalVisible}>
         <AddTaskModal />
-      </SlideUpModal>
-      <SlideUpModal
-        setModalVisible={setDurationModalVisible}
-        isModalVisible={isDurationModalVisible}>
-        <WheelPicker dataSource={['10', '20', '30']} onValueChange={(value, index) => index} />
       </SlideUpModal>
       <Stack>
         <Text fontType='BOLD_16' style={styles.title}>
