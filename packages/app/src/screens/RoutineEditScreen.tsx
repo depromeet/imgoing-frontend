@@ -60,7 +60,7 @@ const RoutineEditScreen = () => {
         </View>
 
         {taskData.map((task) => (
-          <TaskItem duration={task.time} title={task.name} type={'edit'} />
+          <TaskItem key={task.id} duration={task.time} title={task.name} type={'edit'} />
         ))}
         {/* 새로운 준비 항목 눌렀을 때 추가하는 모달창 */}
         <Pressable
