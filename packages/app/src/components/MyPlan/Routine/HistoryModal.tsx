@@ -1,7 +1,8 @@
-import { colors } from 'design-token';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+
+import { colors } from 'design-token';
 import { Button, Text } from 'ui';
 import TaskItem from './TaskItem';
 

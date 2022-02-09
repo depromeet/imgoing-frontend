@@ -1,8 +1,9 @@
-import { colors } from 'design-token';
-import { icon_add, icon_delete } from 'icons';
+import { SvgXml } from 'react-native-svg';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
-import { SvgXml } from 'react-native-svg';
+
+import { colors } from 'design-token';
+import { icon_add, icon_delete } from 'icons';
 import { Text } from 'ui';
 
 interface TaskItemProps {

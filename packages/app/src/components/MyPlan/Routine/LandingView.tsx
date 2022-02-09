@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
 
-import { character, logo } from 'icons';
+import { character } from 'icons';
 import { Text } from 'ui';
 import { colors } from 'design-token';
 

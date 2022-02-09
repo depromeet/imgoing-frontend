@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { SvgXml } from 'react-native-svg';
+import { useNavigation } from '@react-navigation/native';
 
 import { colors } from 'design-token';
 import { icon_arrowDown, icon_arrowUp } from 'icons';
 import { Text } from 'ui';
 import TaskItem from './TaskItem';
-import { useNavigation } from '@react-navigation/native';
 import { RootRouterParams } from 'types/Route';
 
 const RoutineItem = () => {

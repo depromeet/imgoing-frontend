@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
-import { Button, Input, InputChangeEventType, SlideUpModal, Text } from 'ui';
+import { Button, Input, InputChangeEventType, Text } from 'ui';
 import WheelPicker from 'ui/src/components/WheelPicker';
-import styled from 'styled-components';
 
-interface AddTaskModalProps {
-  // setTaskData?;
-}
-const AddTaskModal = ({}: AddTaskModalProps) => {
+const AddTaskModal = () => {
   type StepType = 'name' | 'duration';
   const [taskItem, setTaskItem] = useState({ name: '', time: '' });
   const [step, setStep] = useState<StepType>('name');

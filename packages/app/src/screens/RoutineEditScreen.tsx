@@ -9,7 +9,6 @@ import { Divider, FixedBottomCTA, Input, SlideUpModal, Stack, Text } from 'ui';
 import HistoryModal from 'components/MyPlan/Routine/HistoryModal';
 import AddTaskModal from 'components/MyPlan/Routine/AddTaskModal';
 import { Task } from 'types';
-import WheelPicker from 'ui/src/components/WheelPicker';
 
 const RoutineEditScreen = () => {
   const [isHistoryModalVisible, setHistoryModalVisible] = useState(false);
