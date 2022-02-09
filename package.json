@@ -7,8 +7,5 @@
   "scripts": {
     "start": "yarn workspace app start",
     "json-server": "yarn workspace app json-server"
-  },
-  "dependencies": {
-    "react-native-wheel-scrollview-picker": "^1.2.2"
   }
 }
