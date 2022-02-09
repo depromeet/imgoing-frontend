@@ -1,10 +1,9 @@
-import { SvgXml } from 'react-native-svg';
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { colors } from 'design-token';
 import { icon_add, icon_delete } from 'icons';
-import { Text } from 'ui';
+import { SvgIcon, Text } from 'ui';
 import { ItemType } from './type';
 
 interface TaskItemProps {
@@ -23,9 +22,10 @@ const TaskItem = ({ title, duration, type = 'default' }: TaskItemProps) => {
         {duration}분
       </Text>
       {type !== 'default' && (
-        <Pressable onPress={() => {}} style={{ alignItems: 'flex-end', flex: 1 }}>
-          <SvgXml xml={type === 'edit' ? icon_delete : icon_add} />
-        </Pressable>
+        <SvgIcon
+          style={{ alignItems: 'flex-end', flex: 1 }}
+          xml={type === 'edit' ? icon_delete : icon_add}
+        />
       )}
     </View>
   );

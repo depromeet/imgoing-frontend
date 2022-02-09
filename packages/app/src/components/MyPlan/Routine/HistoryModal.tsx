@@ -7,7 +7,7 @@ import { Button, Text } from 'ui';
 import TaskItem from './TaskItem';
 
 const HistoryModal = () => {
-  const historyData: any[] = [{}, {}, {}, {}, {}, {}];
+  const historyData: any[] = Array.from({ length: 5 });
   return (
     <View>
       <ScrollView style={{ paddingBottom: 15 }}>
