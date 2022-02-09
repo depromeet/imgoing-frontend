@@ -12,14 +12,7 @@ import { Task } from 'types';
 
 const RoutineEditScreen = () => {
   const [isHistoryModalVisible, setHistoryModalVisible] = useState(false);
-  const toggleHistoryModal = () => {
-    setHistoryModalVisible(!isHistoryModalVisible);
-  };
   const [isAddTaskModalVisible, setAddTaskModalVisible] = useState(false);
-  const toggleAddTaskModal = () => {
-    setAddTaskModalVisible(!isAddTaskModalVisible);
-  };
-
   const [taskData, setTaskData] = useState<Task[]>([]);
 
   return (
@@ -50,7 +43,7 @@ const RoutineEditScreen = () => {
           <Pressable
             style={{ flex: 1 }}
             onPress={() => {
-              toggleHistoryModal();
+              setHistoryModalVisible(true);
             }}>
             <Text fontType='BOLD_12' color={colors.grayDark}>
               히스토리
@@ -65,7 +58,7 @@ const RoutineEditScreen = () => {
         <Pressable
           style={styles.addTaskBtn}
           onPress={() => {
-            toggleAddTaskModal();
+            setAddTaskModalVisible(true);
           }}>
           <SvgXml xml={icon_add} style={{ marginRight: 10 }} />
           <Text fontType='BOLD_14' color={colors.grayDark}>
