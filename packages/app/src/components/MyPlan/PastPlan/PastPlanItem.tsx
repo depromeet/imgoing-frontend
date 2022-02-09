@@ -4,15 +4,14 @@ import { SvgXml } from 'react-native-svg';
 
 import { icon_markRead } from 'icons';
 import { colors } from 'design-token';
-import { Button, Text } from 'ui';
+import { Text } from 'ui';
+import { lateStatus } from './type';
 
 interface PastPlanItemProps {
   date: string;
   title: string;
   late: lateStatus;
 }
-
-type lateStatus = 'late' | 'notLate' | 'notChecked';
 
 const PastPlanItem = ({ date, title, late }: PastPlanItemProps) => {
   const textColor = late === 'notChecked' ? colors.red : colors.black;

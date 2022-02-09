@@ -7,7 +7,7 @@ import { colors } from 'design-token';
 import { icon_add } from 'icons';
 import { Divider, FixedBottomCTA, Input, SlideUpModal, Stack, Text } from 'ui';
 import HistoryModal from 'components/MyPlan/Routine/HistoryModal';
-import AddTaskModal from 'components/MyPlan/Routine/AddTaskModal';
+import AddTaskModal from 'components/MyPlan/Routine/AddingTaskModal';
 import { Task } from 'types';
 
 const RoutineEditScreen = () => {

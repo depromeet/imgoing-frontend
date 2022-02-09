@@ -4,9 +4,9 @@ import { StyleSheet, View } from 'react-native';
 import { colors } from 'design-token';
 import { Button, Input, InputChangeEventType, Text } from 'ui';
 import WheelPicker from 'ui/src/components/WheelPicker';
+import { StepType } from './type';
 
 const AddingTaskModal = () => {
-  type StepType = 'name' | 'duration';
   const [taskItem, setTaskItem] = useState({ name: '', time: '' });
   const [step, setStep] = useState<StepType>('name');
   const [data, setData] = useState({
