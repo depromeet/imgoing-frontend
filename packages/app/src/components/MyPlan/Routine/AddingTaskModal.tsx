@@ -5,7 +5,7 @@ import { colors } from 'design-token';
 import { Button, Input, InputChangeEventType, Text } from 'ui';
 import WheelPicker from 'ui/src/components/WheelPicker';
 
-const AddTaskModal = () => {
+const AddingTaskModal = () => {
   type StepType = 'name' | 'duration';
   const [taskItem, setTaskItem] = useState({ name: '', time: '' });
   const [step, setStep] = useState<StepType>('name');
@@ -86,4 +86,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddTaskModal;
+export default AddingTaskModal;
