@@ -5,12 +5,12 @@ import { SvgXml } from 'react-native-svg';
 import { icon_markRead } from 'icons';
 import { colors } from 'design-token';
 import { Text } from 'ui';
-import { lateStatus } from './type';
+import { LateStatus } from './type';
 
 interface PastPlanItemProps {
   date: string;
   title: string;
-  late: lateStatus;
+  late: LateStatus;
 }
 
 const PastPlanItem = ({ date, title, late }: PastPlanItemProps) => {

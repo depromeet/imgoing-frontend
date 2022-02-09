@@ -5,12 +5,12 @@ import { Pressable, StyleSheet, View } from 'react-native';
 import { colors } from 'design-token';
 import { icon_add, icon_delete } from 'icons';
 import { Text } from 'ui';
-import { itemType } from './type';
+import { ItemType } from './type';
 
 interface TaskItemProps {
   title: string;
   duration?: number;
-  type?: itemType;
+  type?: ItemType;
 }
 
 const TaskItem = ({ title, duration, type = 'default' }: TaskItemProps) => {

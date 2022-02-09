@@ -1,1 +1,1 @@
-export type lateStatus = 'late' | 'notLate' | 'notChecked';
+export type LateStatus = 'late' | 'notLate' | 'notChecked';

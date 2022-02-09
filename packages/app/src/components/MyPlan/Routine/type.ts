@@ -1,2 +1,2 @@
 export type StepType = 'name' | 'duration';
-export type itemType = 'default' | 'edit' | 'add';
+export type ItemType = 'default' | 'edit' | 'add';
