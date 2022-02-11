@@ -30,14 +30,14 @@ const Schedule = ({ active = false, plans, title }: Props) => {
         <Text fontType={'BOLD_14'}>{title === 'upcoming' ? '다가오는 일정' : '진행중인 일정'}</Text>
       </View>
       {schedulesByDate.map((schedule) => (
-        <View style={styles.container}>
+        <View key={schedule.date} style={styles.container}>
           <View style={styles.date}>
             <Text fontType={'REGULAR_14'} color={colors.grayDark}>
               {getMonth(schedule.date)}월 {getDate(schedule.date)}일 {getDay(schedule.date)}요일
             </Text>
           </View>
           {schedule.plans.map((plan) => (
-            <Plan active={active} plan={plan} />
+            <Plan key={plan.id} active={active} plan={plan} />
           ))}
         </View>
       ))}

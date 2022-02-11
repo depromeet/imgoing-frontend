@@ -2,6 +2,8 @@ export type Task = {
   id: number;
   name: string;
   time: number;
+  startTime: string;
+  endTime: string;
 };
 
 export type Routine = {
@@ -37,6 +39,7 @@ export type Plan = {
   arrivalAt: string;
   arrival: Location;
   departure: Location;
+  departureAt: string;
   belongings: string;
   memo: string;
   tasks: Task[];

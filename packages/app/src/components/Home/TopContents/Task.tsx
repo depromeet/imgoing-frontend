@@ -1,42 +1,97 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
+import { LayoutAnimation, StyleSheet, View, ViewProps } from 'react-native';
 
 import { colors } from 'design-token';
 import { Text } from 'ui';
+import { TimeRemainingRefType } from '../type';
 
-interface Props {
-  active?: boolean;
+interface Props extends ViewProps {
   title: string;
   time: number;
 }
 
-const Task = ({ active = false, title, time }: Props) => {
+const Task = ({ title, time, ...props }: Props) => {
   return (
-    <View style={[styles.container, { ...(active && styles.active) }]}>
+    <View
+      {...props}
+      style={[styles.container]}
+      onLayout={() => {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+      }}>
       <View style={styles.title}>
-        <Text fontType={'BOLD_16'} color={active ? colors.white : colors.grayDark}>
+        <Text fontType={'BOLD_16'} color={colors.grayDark}>
           {title}
         </Text>
       </View>
       <View style={[styles.flexRow, styles.time]}>
         <View style={styles.flexRow}>
-          <Text fontType={'BOLD_14'} color={active ? colors.white : colors.grayDark}>
-            {Math.floor(time / 60)}
+          <Text fontType={'BOLD_14'} color={colors.grayDark}>
+            {time}
           </Text>
-          <Text fontType={'REGULAR_14'} color={active ? colors.white : colors.grayDark}>
+          <Text fontType={'REGULAR_14'} color={colors.grayDark}>
             분 일정
           </Text>
         </View>
         <View style={styles.flexRow}>
-          {active && <Text>💣 </Text>}
-          <Text fontType={'BOLD_14'} color={active ? colors.white : colors.black}>
-            00:00:47
+          <Text fontType={'BOLD_14'} color={colors.black}>
+            {`${Math.floor(time / 60)
+              .toString()
+              .padStart(2, '0')}:${Math.floor(time % 60)
+              .toString()
+              .padStart(2, '0')}:00`}
           </Text>
         </View>
       </View>
     </View>
   );
 };
+
+export const ActiveTask = forwardRef(
+  ({ title, time, ...props }: Props, ref: TimeRemainingRefType) => {
+    const [timerTime, setTimerTime] = useState('');
+
+    useImperativeHandle(ref, () => ({
+      forceUpdate: (hour, minuites, seconds) => {
+        setTimerTime(
+          `${hour.toString().padStart(2, '0')}:${minuites.toString().padStart(2, '0')}:${seconds
+            .toString()
+            .padStart(2, '0')}`,
+        );
+      },
+    }));
+
+    return (
+      <View
+        {...props}
+        style={[styles.container, styles.active]}
+        onLayout={() => {
+          LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+        }}>
+        <View style={styles.title}>
+          <Text fontType={'BOLD_16'} color={colors.white}>
+            {title}
+          </Text>
+        </View>
+        <View style={[styles.flexRow, styles.time]}>
+          <View style={styles.flexRow}>
+            <Text fontType={'BOLD_14'} color={colors.white}>
+              {time}
+            </Text>
+            <Text fontType={'REGULAR_14'} color={colors.white}>
+              분 일정
+            </Text>
+          </View>
+          <View style={styles.flexRow}>
+            <Text>💣 </Text>
+            <Text fontType={'BOLD_14'} color={colors.white}>
+              {timerTime}
+            </Text>
+          </View>
+        </View>
+      </View>
+    );
+  },
+);
 
 const styles = StyleSheet.create({
   flexRow: {
