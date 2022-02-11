@@ -1,29 +1,31 @@
-import { colors } from 'design-token';
-import { icon_delete } from 'icons';
 import React from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
-import { SvgXml } from 'react-native-svg';
-import { Text } from 'ui';
+import { StyleSheet, View } from 'react-native';
+
+import { colors } from 'design-token';
+import { icon_add, icon_delete } from 'icons';
+import { SvgIcon, Text } from 'ui';
+import { ItemType } from './type';
 
 interface TaskItemProps {
   title: string;
   duration?: number;
-  edit?: boolean;
+  type?: ItemType;
 }
 
-const TaskItem = ({ title, duration, edit = false }: TaskItemProps) => {
+const TaskItem = ({ title, duration, type = 'default' }: TaskItemProps) => {
   return (
     <View style={styles.wrapper}>
-      <View style={edit ? styles.edit : styles.title}>
+      <View style={type !== 'default' ? styles.edit : styles.title}>
         <Text fontType='BOLD_14'>{title}</Text>
       </View>
       <Text fontType='REGULAR_12' color={colors.grayDark}>
         {duration}분
       </Text>
-      {edit && (
-        <Pressable onPress={() => {}} style={{ alignItems: 'flex-end', flex: 1 }}>
-          <SvgXml xml={icon_delete} />
-        </Pressable>
+      {type !== 'default' && (
+        <SvgIcon
+          style={{ alignItems: 'flex-end', flex: 1 }}
+          xml={type === 'edit' ? icon_delete : icon_add}
+        />
       )}
     </View>
   );
