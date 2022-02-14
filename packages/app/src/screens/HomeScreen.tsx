@@ -52,7 +52,7 @@ const HomeScreen = () => {
       <View style={styles.header}>
         <SvgIcon xml={notification} />
         <View style={{ width: 16 }} />
-        <SvgIcon xml={help} />
+        <SvgIcon onPress={() => navigate('Webview')} xml={help} />
       </View>
       <ScrollView
         style={styles.mainContainer}
