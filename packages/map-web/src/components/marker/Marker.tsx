@@ -2,8 +2,8 @@ import styled from '@emotion/styled';
 import { colors } from 'design-token';
 
 interface MarkerProps {
-  name: string;
-  address: string;
+  name?: string;
+  address?: string;
 }
 const Marker = (props: MarkerProps) => {
   const { name, address } = props;

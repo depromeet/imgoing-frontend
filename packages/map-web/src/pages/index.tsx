@@ -1,18 +1,40 @@
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { Map, MapMarker, CustomOverlayMap } from 'react-kakao-maps-sdk';
 import Marker from '../components/marker/Marker';
 
-const Home: NextPage = () => {
+interface KaKaoMapWebViewProps {
+  latLng: {
+    lat: number;
+    lng: number;
+  };
+  address?: string;
+  name?: string;
+}
+
+const Home: NextPage<KaKaoMapWebViewProps> = ({ latLng, name, address }) => {
+  const { lat, lng } = latLng;
   return (
-    <Map center={{ lat: 33.5563, lng: 126.79581 }} style={{ width: '100%', height: '100%' }}>
-      <CustomOverlayMap position={{ lat: 33.5563, lng: 126.79581 }}>
-        <Marker name='명동롯데백화점' address='test' />
+    <Map center={{ lat, lng }} style={{ width: '100%', height: '100%' }}>
+      <CustomOverlayMap position={{ lat, lng }}>
+        {(name || address) && <Marker name={name} address={address} />}
       </CustomOverlayMap>
-      {/* <MapMarker position={{ lat: 33.55635, lng: 126.795841 }}>
-        <Marker name='test' address='test' />
-      </MapMarker> */}
     </Map>
   );
 };
 
 export default Home;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { lat, lng, address, name } = ctx.query;
+
+  return {
+    props: {
+      latLng: {
+        lat,
+        lng,
+      },
+      address,
+      name,
+    },
+  };
+};

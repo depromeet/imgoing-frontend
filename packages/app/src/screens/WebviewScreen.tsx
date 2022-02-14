@@ -10,15 +10,20 @@ const WebviewScreen = () => {
 
   return (
     <>
-      {/* <WebView
+      <WebView
         style={{ width: '100%', height: '100%', display: isSearch ? 'none' : 'flex' }}
-        source={{ uri: 'https://eunseong.loca.lt/' }}></WebView> */}
+        source={{ uri: 'https://eunseong.loca.lt/' }}
+      />
       <View style={styles.searchWrapper}>
         <View style={styles.searchForm}>
           <Input placeholder='출발지를 입력해 주세요' />
         </View>
-        <Stack title='즐겨찾는 장소'></Stack>
-        <Stack title='최근 검색'></Stack>
+        <Stack title='즐겨찾는 장소'>
+          <TextBadge text='강남역' />
+          <TextBadge text='롯데월드' />
+          <TextBadge text='명동백화점' />
+        </Stack>
+        <Stack title='최근 검색'>mock up</Stack>
       </View>
     </>
   );
