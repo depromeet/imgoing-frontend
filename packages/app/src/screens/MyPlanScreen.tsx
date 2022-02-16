@@ -42,7 +42,11 @@ const MyPlanScreen = () => {
         </ListContainer>
       </Stack>
       <Stack title='장소 관리'>
-        <ListContainer text='즐겨찾는 장소'>
+        <ListContainer
+          text='즐겨찾는 장소'
+          onClick={() => {
+            navigation.navigate('FavoriteLocation');
+          }}>
           <SvgXml xml={icon_arrowRight} />
         </ListContainer>
       </Stack>
