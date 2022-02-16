@@ -16,6 +16,7 @@ export type RootRouterParamList = {
   RoutineManage: undefined;
   RoutineEdit: undefined;
   RoutineAdd: undefined;
+  FavoriteLocation: undefined;
 };
 
 export type MainRouterParamList = {

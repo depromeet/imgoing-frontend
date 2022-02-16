@@ -19,6 +19,7 @@ import MainNavigation from './MainNavigation';
 import RoutineManageScreen from 'screens/RoutineManageScreen';
 import RoutineEditScreen from 'screens/RoutineEditScreen';
 import { SvgIcon } from 'ui';
+import FavoriteLocationScreen from 'screens/FavoriteLocationScreen';
 
 const Root = createStackNavigator<RootRouterParamList>();
 
@@ -119,6 +120,22 @@ const Stacks = () => {
           headerLeft: () => (
             <SvgIcon
               xml={icon_close}
+              style={{ marginLeft: 16 }}
+              fill={colors.black}
+              onPressOut={() => navigation.goBack()}
+            />
+          ),
+        })}
+      />
+      <Root.Screen
+        name='FavoriteLocation'
+        component={FavoriteLocationScreen}
+        options={({ navigation }) => ({
+          title: '즐겨찾는 장소',
+          headerTitleAlign: 'left',
+          headerLeft: () => (
+            <SvgIcon
+              xml={icon_back}
               style={{ marginLeft: 16 }}
               fill={colors.black}
               onPressOut={() => navigation.goBack()}
