@@ -180,3 +180,7 @@ export const character = `<svg width="101" height="171" viewBox="0 0 101 171" fi
 </defs>
 </svg>
 `;
+
+export const star = `<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 7.635L8.09 9.5L7.27 5.985L10 3.62L6.405 3.315L5 0L3.595 3.315L0 3.62L2.73 5.985L1.91 9.5L5 7.635Z" fill="#333A44"/>
+</svg>`;
